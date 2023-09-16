@@ -19,9 +19,9 @@ module.exports = {
     extend: {
       colors: {
         // can just replace below stuff with hex codes!
-        border: "hsl(var(--border))",
+        border: "#3a472e",
         input: "#3a472e",
-        ring: "hsl(var(--ring))",
+        ring: "#748b64",
         background: "#f7fdf5",
         foreground: "#24341c",
         primary: {
@@ -37,8 +37,8 @@ module.exports = {
           foreground: "#FFFFFF",
         },
         muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
+          DEFAULT: "#dbe1d7",
+          foreground: "#3a4833",
         },
         accent: {
           DEFAULT: "#748b64",
