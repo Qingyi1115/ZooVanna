@@ -1,7 +1,14 @@
 import "./App.css";
+import TestPage from "./pages/TestPage";
 
 function App() {
-  return <div className="border rounded border-black text-red-400">Hello</div>;
+  return (
+    <div className="rounded border border-black">
+      Hello
+      <br />
+      <TestPage />
+    </div>
+  );
 }
 
 export default App;
