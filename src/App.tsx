@@ -1,12 +1,39 @@
 import "./App.css";
-import TestPage from "./pages/TestPage";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+  useLocation,
+} from "react-router-dom";
+
+import MainLayout from "./components/MainLayout";
+import HomePage from "./pages/HomePage";
+import MapPage from "./pages/MapPage";
+import TicketsPage from "./pages/TicketsPage";
+import ItineraryPage from "./pages/ItineraryPage";
+import AccountPage from "./pages/AccountPage";
 
 function App() {
   return (
-    <div className="rounded border border-black">
-      Hello
-      <br />
-      <TestPage />
+    <div className="">
+      <BrowserRouter>
+        {/* <Routes>
+            <Route
+              path="/login"
+              element={!user ? <LoginPage /> : <Navigate to={"/"} />}
+            />
+          </Routes> */}
+        <MainLayout>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/map" element={<MapPage />} />
+            <Route path="/tickets" element={<TicketsPage />} />
+            <Route path="/itinerary" element={<ItineraryPage />} />
+            <Route path="/account" element={<AccountPage />} />
+          </Routes>
+        </MainLayout>
+      </BrowserRouter>
     </div>
   );
 }

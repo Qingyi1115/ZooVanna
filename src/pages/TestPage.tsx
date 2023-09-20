@@ -10,7 +10,7 @@ import {
 
 function TestPage() {
   return (
-    <div>
+    <div className="h-[100vh] overflow-scroll">
       <Button>Click me</Button>
       <Button variant={"secondary"}>Click me</Button>
       <Button variant={"outline"}>Outline</Button>
@@ -22,6 +22,46 @@ function TestPage() {
         <PopoverTrigger>Open</PopoverTrigger>
         <PopoverContent>Place content for the popover here.</PopoverContent>
       </Popover>
+      <span>Test</span>
+      <br />
+      <span>Test</span>
+      <br />
+      <span>Test</span>
+      <br />
+      <span>Test</span>
+      <br />
+      <span>Test</span>
+      <br />
+      <span>Test</span>
+      <br />
+      <span>Test</span>
+      <br />
+      <span>Test</span>
+      <br />
+      <span>Test</span>
+      <br />
+      <span>Test</span>
+      <br />
+      <span>Test</span>
+      <br />
+      <span>Test</span>
+      <br />
+      <span>Test</span>
+      <br />
+      <span>Test</span>
+      <br />
+      <span>Test</span>
+      <br />
+      <span>Test</span>
+      <br />
+      <span>Test</span>
+      <br />
+      <span>Test</span>
+      <br />
+      <span>Test</span>
+      <br />
+      <span>Test</span>
+      <br />
     </div>
   );
 }
