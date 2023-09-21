@@ -26,7 +26,7 @@ const BottomBar = () => {
   return (
     <footer
       ref={sidebar}
-      className={`z-9999 h-18 fixed bottom-0 left-0 flex w-screen flex-row overflow-y-hidden bg-black duration-300 ease-linear lg:static `}
+      className={`z-9999 fixed bottom-0 left-0 flex h-[9%] w-screen flex-row overflow-y-hidden bg-black duration-300 ease-linear lg:static `}
     >
       <div className="no-scrollbar flex h-full w-full flex-row items-center justify-around duration-300 ease-linear">
         <NavLink
@@ -36,7 +36,7 @@ const BottomBar = () => {
           }`}
         >
           <div className="flex flex-col items-center justify-center">
-            <HiOutlineHome className="h-full w-6" />
+            <HiOutlineHome className="h-full w-5" />
             <span className="text-sm">Home</span>
           </div>
         </NavLink>
@@ -47,7 +47,7 @@ const BottomBar = () => {
           }`}
         >
           <div className="flex flex-col items-center justify-center">
-            <HiOutlineMap className="h-full w-6" />
+            <HiOutlineMap className="h-full w-5" />
             <span className="text-sm">Map</span>
           </div>
         </NavLink>
@@ -58,7 +58,7 @@ const BottomBar = () => {
           }`}
         >
           <div className="flex flex-col items-center justify-center">
-            <HiOutlineTicket className="h-full w-6" />
+            <HiOutlineTicket className="h-full w-5" />
             <span className="text-sm">Tickets</span>
           </div>
         </NavLink>
@@ -69,7 +69,7 @@ const BottomBar = () => {
           }`}
         >
           <div className="flex flex-col items-center justify-center">
-            <HiOutlineDocumentText className="h-full w-6" />
+            <HiOutlineDocumentText className="h-full w-5" />
             <span className="text-sm">Itinerary</span>
           </div>
         </NavLink>
@@ -80,7 +80,7 @@ const BottomBar = () => {
           }`}
         >
           <div className="flex flex-col items-center justify-center">
-            <HiOutlineUser className="h-full w-6" />
+            <HiOutlineUser className="h-full w-5" />
             <span className="text-sm">Account</span>
           </div>
         </NavLink>

@@ -24,34 +24,20 @@ module.exports = {
         ring: "#748b64",
         background: "#f7fdf5",
         foreground: "#24341c",
-        primary: {
-          DEFAULT: "#2fb31c",
-          foreground: "#f7fdf5",
-        },
-        secondary: {
-          DEFAULT: "#caee80",
-          foreground: "#FFFFFF",
-        },
-        destructive: {
-          DEFAULT: "#D34053",
-          foreground: "#FFFFFF",
-        },
-        muted: {
-          DEFAULT: "#dbe1d7",
-          foreground: "#3a4833",
-        },
-        accent: {
-          DEFAULT: "#748b64",
-          foreground: "#f7fdf5",
-        },
-        popover: {
-          DEFAULT: "#FFFFFF",
-          foreground: "#24341c",
-        },
-        card: {
-          DEFAULT: "#FFFFFF",
-          foreground: "#24341c",
-        },
+        primary: "#2fb31c", // below there's another primary too
+        "primary-foreground": "#f7fdf5",
+        secondary: "#caee80",
+        "secondary-foreground": "#FFFFFF",
+        destructive: "#D34053",
+        "destructive-foreground": "#FFFFFF",
+        muted: "#dbe1d7",
+        "muted-foreground": "#3a4833",
+        accent: "#748b64",
+        "accent-foreground": "#f7fdf5",
+        popover: "#FFFFFF",
+        "popover-foreground": "#24341c",
+        card: "#FFFFFF",
+        "card-foreground": "#24341c",
         //
         "zoovanna-green-light": "F5F9E4",
         "zoovanna-green": "#84985A",
