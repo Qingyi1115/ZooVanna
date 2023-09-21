@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import {useNavigate} from 'react-router-dom';
 import * as Form from "@radix-ui/react-form";
 import useLogin from "../../hooks/useLogin";
 
 function LoginForm() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const navigate = useNavigate();
   const { login, error } = useLogin();
 
   // ValidityState properties: https://developer.mozilla.org/en-US/docs/Web/API/ValidityState
@@ -42,10 +44,14 @@ function LoginForm() {
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    // console.log("Inside handleSubmit");
-    // console.log(email);
-    // console.log(password);
-    await login(email, password);
+    console.log("Inside handleSubmit");
+    console.log(email);
+    console.log(password);
+    
+    const isSuccess = await login(email, password);
+    if(isSuccess) {
+      navigate("/account");
+    }
   }
 
   return (

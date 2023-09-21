@@ -9,7 +9,7 @@ import { HiOutlineChevronRight } from "react-icons/hi";
 function NonLoggedInCardContent() {
   return (
     <div className="flex flex-col">
-      <NavLink to="/account">
+      <NavLink to="/login">
         <Button
           variant={"ghost"}
           className="mx-0 w-full justify-between rounded-none text-base"
@@ -19,12 +19,22 @@ function NonLoggedInCardContent() {
         </Button>
         <Separator className="opacity-20" />
       </NavLink>
-      <NavLink to="/LoginForm">
+      <NavLink to="/account">
         <Button
           variant={"ghost"}
           className="w-full justify-between rounded-none  text-base"
         >
-          Change Password
+          Sign up
+          <HiOutlineChevronRight />
+        </Button>
+        <Separator className="opacity-20" />
+      </NavLink>
+      <NavLink to="/account">
+        <Button
+          variant={"ghost"}
+          className="w-full justify-between rounded-none  text-base"
+        >
+          Forgot password
           <HiOutlineChevronRight />
         </Button>
         <Separator className="opacity-20" />

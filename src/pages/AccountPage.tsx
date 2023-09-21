@@ -13,10 +13,14 @@ import { Label } from "@/components/ui/label";
 import LoginForm from "../components/AccountPage/LoginForm";
 import LoggedInCardContent from "../components/AccountPage/LoggedInCardContent";
 import { Button } from "@/components/ui/button";
+import NonLoggedInCardContent from "../components/AccountPage/NonLoggedInCardContent";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 function AccountPage() {
-  // const {user} = useAuthContext();
-  const user = null;
+  const { state } = useAuthContext();
+  const { user } = state;
+  console.log(user);
+  
   return (
     <div className="flex h-screen flex-col items-center p-6">
       {/* AccountPage */}
@@ -28,13 +32,13 @@ function AccountPage() {
           </CardDescription> */}
         </CardHeader>
         <CardContent>
-          can force a reload upon successful log in using
-          window.location.reload();
-          {!user ? <LoginForm /> : <LoggedInCardContent />}
+          {/* can force a reload upon successful log in using
+          window.location.reload(); */}
+          {!user ? <NonLoggedInCardContent /> : <LoggedInCardContent />}
         </CardContent>
         <CardFooter className="flex justify-between"></CardFooter>
       </Card>
-      <Card className="mt-6 w-full">
+      {/* <Card className="mt-6 w-full">
         <CardHeader>
           <CardTitle>
             testing only, should be either or in above! the user context thingy
@@ -42,7 +46,7 @@ function AccountPage() {
           {/* <CardDescription>
             Deploy your new project in one-click.
           </CardDescription> */}
-        </CardHeader>
+        {/* </CardHeader>
         <CardContent className="px-0">
           <LoggedInCardContent />
         </CardContent>
@@ -54,15 +58,21 @@ function AccountPage() {
           {/* <CardDescription>
             Deploy your new project in one-click.
           </CardDescription> */}
-        </CardHeader>
+        {/* </CardHeader>
         <CardContent>Favourites stuff and whatever else</CardContent>
         <CardFooter className="flex justify-between"></CardFooter>
-      </Card>
+      </Card> */} 
       <Button
         variant={"outline"}
-        className="border-danger hover:bg-danger/50 text-danger mb-6 mt-4 w-1/2 rounded-xl shadow-md"
+        className="border-danger hover:bg-danger/50 text-danger mb-6 mt-4 w-full rounded-xl shadow-md"
       >
         Log out
+      </Button>
+      <Button
+        variant={"outline"}
+        className="border-danger hover:bg-danger/50 text-danger mb-6 mt-4 w-full rounded-xl shadow-md"
+      >
+        Delete my account
       </Button>
       <div className="invisible"> padding</div>
     </div>

@@ -14,13 +14,9 @@ import TicketsPage from "./pages/TicketsPage";
 import ItineraryPage from "./pages/ItineraryPage";
 import AccountPage from "./pages/AccountPage";
 import LoginPage from "./pages/LoginPage";
-import LoginForm from "./components/AccountPage/LoginForm";
-import LoginCard from "./components/AccountPage/LoginCard";
 import { useAuthContext } from "./hooks/useAuthContext";
 
 function App() {
-  const { state } = useAuthContext();
-  
   return (
     <div className="">
       <BrowserRouter>

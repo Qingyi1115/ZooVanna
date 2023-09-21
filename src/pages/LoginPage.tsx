@@ -16,7 +16,7 @@ import { Button } from "@/components/ui/button";
 
 function LoginPage() {
   // const {user} = useAuthContext();
-  const user = null;
+//   const user = null;
   return (
     <div className="flex h-screen flex-col items-center p-6">
         <Card className="mt-6 w-full">

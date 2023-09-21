@@ -20,7 +20,7 @@ function useLogin() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const { dispatch } = useAuthContext();
 
-  async function login(email: string, password: string) {
+  async function login(email: string, password: string): Promise<boolean>{
     setIsLoading(true);
     setError(null);
 
@@ -35,7 +35,7 @@ function useLogin() {
         const json: ErrorResponse = await response.json();
         setIsLoading(false);
         setError(json.error);
-        return;
+        return false;
       }
 
       const json: LoginResponse = await response.json();
@@ -47,9 +47,11 @@ function useLogin() {
       dispatch({ type: "LOGIN", payload: json });
 
       setIsLoading(false);
+      return true;
     } catch (error) {
       setIsLoading(false);
       setError("An error occurred while logging in.");
+      return false;
     }
   }
 
