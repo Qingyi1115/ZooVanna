@@ -13,8 +13,14 @@ import MapPage from "./pages/MapPage";
 import TicketsPage from "./pages/TicketsPage";
 import ItineraryPage from "./pages/ItineraryPage";
 import AccountPage from "./pages/AccountPage";
+import LoginPage from "./pages/LoginPage";
+import LoginForm from "./components/AccountPage/LoginForm";
+import LoginCard from "./components/AccountPage/LoginCard";
+import { useAuthContext } from "./hooks/useAuthContext";
 
 function App() {
+  const { state } = useAuthContext();
+  
   return (
     <div className="">
       <BrowserRouter>
@@ -31,6 +37,7 @@ function App() {
             <Route path="/tickets" element={<TicketsPage />} />
             <Route path="/itinerary" element={<ItineraryPage />} />
             <Route path="/account" element={<AccountPage />} />
+            <Route path="/login" element={<LoginPage />} />
           </Routes>
         </MainLayout>
       </BrowserRouter>
