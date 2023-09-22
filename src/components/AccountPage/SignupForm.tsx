@@ -279,9 +279,10 @@ function SignupForm() {
         </Form.Field> */}
 
         <div className="card justify-content-center mb-10 flex flex-col">
-          <div>Birthday</div>
+          <div>Date of Birth</div>
 
           <Calendar
+            placeholder="Enter your date of birth"
             value={birthday}
             onChange={(e: CalendarChangeEvent) => {
               if (e && e.value !== undefined) {
@@ -335,7 +336,7 @@ function SignupForm() {
         />
 
         <Form.Submit asChild>
-          <button className="h-12 w-full rounded-full border bg-black text-whiter">
+          <button className="mt-10 h-12 w-full rounded-full border bg-black text-whiter">
             Sign up
           </button>
         </Form.Submit>

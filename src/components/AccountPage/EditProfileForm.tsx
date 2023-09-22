@@ -13,6 +13,8 @@ function EditProfileForm() {
   const toastShadcn = useToast().toast;
   const navigate = useNavigate();
 
+  //view --> disabled, editing --> not disabled
+  const [isDisabled, setIsDisabled] = useState<boolean>(true);
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [firstName, setFirstName] = useState<string>("");
@@ -112,18 +114,18 @@ function EditProfileForm() {
     return null;
   }
 
-  function validateBirthday(props: ValidityState) {
-    if (props != undefined) {
-      if (props.valueMissing) {
-        return (
-          <div className="font-medium text-red-600">
-            * Please enter a birthday
-          </div>
-        );
-      }
-    }
-    return null;
-  }
+  // function validateBirthday(props: ValidityState) {
+  //   if (props != undefined) {
+  //     if (props.valueMissing) {
+  //       return (
+  //         <div className="font-medium text-red-600">
+  //           * Please enter a birthday
+  //         </div>
+  //       );
+  //     }
+  //   }
+  //   return null;
+  // }
 
   function validateAddress(props: ValidityState) {
     if (props != undefined) {
