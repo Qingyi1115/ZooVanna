@@ -15,12 +15,15 @@ import LoggedInCardContent from "../components/AccountPage/LoggedInCardContent";
 import { Button } from "@/components/ui/button";
 import NonLoggedInCardContent from "../components/AccountPage/NonLoggedInCardContent";
 import { useAuthContext } from "../hooks/useAuthContext";
+import LogoutButton from "../components/AccountPage/LogoutButton";
+import DeleteButton from "../components/AccountPage/DeleteButton";
 
 function AccountPage() {
   const { state } = useAuthContext();
   const { user } = state;
+  // const customerId = user ? user.customerId : -1;
   console.log(user);
-  
+
   return (
     <div className="flex h-screen flex-col items-center p-6">
       {/* AccountPage */}
@@ -38,6 +41,8 @@ function AccountPage() {
         </CardContent>
         <CardFooter className="flex justify-between"></CardFooter>
       </Card>
+      {user ? <LogoutButton /> : <div />}
+      {/* {customerId !== null ? <DeleteButton customerId={customerId} /> : <div />} */}
       {/* <Card className="mt-6 w-full">
         <CardHeader>
           <CardTitle>
@@ -46,7 +51,7 @@ function AccountPage() {
           {/* <CardDescription>
             Deploy your new project in one-click.
           </CardDescription> */}
-        {/* </CardHeader>
+      {/* </CardHeader>
         <CardContent className="px-0">
           <LoggedInCardContent />
         </CardContent>
@@ -58,22 +63,11 @@ function AccountPage() {
           {/* <CardDescription>
             Deploy your new project in one-click.
           </CardDescription> */}
-        {/* </CardHeader>
+      {/* </CardHeader>
         <CardContent>Favourites stuff and whatever else</CardContent>
         <CardFooter className="flex justify-between"></CardFooter>
-      </Card> */} 
-      <Button
-        variant={"outline"}
-        className="border-danger hover:bg-danger/50 text-danger mb-6 mt-4 w-full rounded-xl shadow-md"
-      >
-        Log out
-      </Button>
-      <Button
-        variant={"outline"}
-        className="border-danger hover:bg-danger/50 text-danger mb-6 mt-4 w-full rounded-xl shadow-md"
-      >
-        Delete my account
-      </Button>
+      </Card> */}
+
       <div className="invisible"> padding</div>
     </div>
   );
