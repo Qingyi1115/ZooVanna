@@ -7,6 +7,14 @@ import EditProfileForm from "../components/AccountPage/EditProfileForm";
 import { useAuthContext } from "../hooks/useAuthContext";
 import ViewProfileForm from "../components/AccountPage/ViewProfileForm";
 import ChangePasswordForm from "../components/AccountPage/ChangePasswordForm";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 function ChangePasswordPage() {
   const { state } = useAuthContext();
@@ -54,7 +62,20 @@ function ChangePasswordPage() {
   return (
     <div className="p-10">
       {currCustomer.customerId !== -1 && (
-        <ChangePasswordForm currCustomer={currCustomer} />
+        <Card className="w-full">
+          <CardHeader>
+            <CardTitle>Change Password</CardTitle>
+            {/* <CardDescription>
+            Deploy your new project in one-click.
+          </CardDescription> */}
+          </CardHeader>
+          <CardContent>
+            {/* can force a reload upon successful log in using
+          window.location.reload(); */}
+            <ChangePasswordForm currCustomer={currCustomer} />
+          </CardContent>
+          <CardFooter className="flex justify-between"></CardFooter>
+        </Card>
       )}
     </div>
   );

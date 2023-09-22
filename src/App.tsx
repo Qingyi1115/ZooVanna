@@ -21,6 +21,9 @@ import SignupPage from "./pages/SignUpPage";
 import ViewProfilePage from "./pages/ViewProfilePage";
 import EditProfilePage from "./pages/EditProfilePage";
 import ChangePasswordPage from "./pages/ChangePasswordPage";
+import RequestResetPasswordForm from "./components/AccountPage/RequestResetPasswordForm";
+import ResetPasswordForm from "./components/AccountPage/ResetPasswordForm";
+import ResetPasswordPage from "./pages/ResetPasswordPage";
 
 function App() {
   return (
@@ -45,6 +48,14 @@ function App() {
               <Route path="/viewProfile" element={<ViewProfilePage />} />
               <Route path="/editProfile" element={<EditProfilePage />} />
               <Route path="/changePassword" element={<ChangePasswordPage />} />
+              <Route
+                path="/requestResetPassword"
+                element={<RequestResetPasswordForm />}
+              />
+              <Route
+                path="/resetPasswordNew/:token"
+                element={<ResetPasswordForm />}
+              />
             </Routes>
           </MainLayout>
         </BrowserRouter>

@@ -161,6 +161,7 @@ function ViewProfileForm(props: ViewCustomerFormProps) {
 
   return (
     <div className="flex w-full justify-center">
+      {/* <h2>My Profile</h2> */}
       <Form.Root className="w-4/5" onSubmit={handleSubmit}>
         <Form.Field name="email" className="mb-10 flex flex-col gap-1">
           <Form.Label className="text-base font-medium text-black">
