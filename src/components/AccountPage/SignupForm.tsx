@@ -302,7 +302,8 @@ function SignupForm() {
             required
             placeholder="eg. 9012XXXX"
             value={contactNo}
-            pattern="[0-9]{7-15}"
+            pattern="^(?:[0-9\s\-\(\)]*?\d){7,}$"
+            title="Contact number should only contain digits, spaces, hyphens, or parentheses and must have at least 7 digits."
             onChange={(e) => setContactNo(e.target.value)}
             className="h-14 w-full rounded-md border border-zoovanna-brown/50 bg-whiten px-4 text-black placeholder-black/70"
           />
@@ -316,6 +317,8 @@ function SignupForm() {
           <Form.Control
             type="text"
             required
+            pattern=".{5,}"
+            title="Address should be at least 5 characters long."
             placeholder="eg. 1 Pasir Ris #01-01"
             value={address}
             onChange={(e) => setAddress(e.target.value)}

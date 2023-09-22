@@ -78,6 +78,12 @@ function EditProfileForm(props: EditCustomerFormProps) {
             * Please enter your first name
           </div>
         );
+      } else if (props.patternMismatch) {
+        return (
+          <div className="font-medium text-danger">
+            * Please enter at least 2 characters
+          </div>
+        );
       }
     }
     return null;
@@ -89,6 +95,12 @@ function EditProfileForm(props: EditCustomerFormProps) {
         return (
           <div className="font-medium text-red-600">
             * Please enter your last name
+          </div>
+        );
+      } else if (props.patternMismatch) {
+        return (
+          <div className="font-medium text-danger">
+            * Please enter at least 2 characters
           </div>
         );
       }
@@ -107,7 +119,8 @@ function EditProfileForm(props: EditCustomerFormProps) {
       } else if (props.patternMismatch) {
         return (
           <div className="font-medium text-danger">
-            * Please enter 8-digit phone number
+            * Contact number should only contain digits, spaces, hyphens, or
+            parentheses and must have at least 7 digits.
           </div>
         );
       }
@@ -134,6 +147,12 @@ function EditProfileForm(props: EditCustomerFormProps) {
         return (
           <div className="font-medium text-red-600">
             * Please enter an address
+          </div>
+        );
+      } else if (props.patternMismatch) {
+        return (
+          <div className="font-medium text-danger">
+            * Please enter at least 5 characters
           </div>
         );
       }
@@ -252,6 +271,7 @@ function EditProfileForm(props: EditCustomerFormProps) {
             required
             placeholder="Type your first name"
             value={firstName}
+            pattern=".{2,}"
             onChange={(e) => setFirstName(e.target.value)}
             className="h-14 w-full rounded-md border border-zoovanna-brown/50 bg-whiten px-4 text-black placeholder-black/70"
             disabled={isDisabled}
@@ -268,6 +288,7 @@ function EditProfileForm(props: EditCustomerFormProps) {
             required
             placeholder="Type your last name"
             value={lastName}
+            pattern=".{2,}"
             onChange={(e) => setLastName(e.target.value)}
             disabled={isDisabled}
             className="h-14 w-full rounded-md border border-zoovanna-brown/50 bg-whiten px-4 text-black placeholder-black/70"
@@ -315,7 +336,8 @@ function EditProfileForm(props: EditCustomerFormProps) {
             disabled={isDisabled}
             placeholder="eg. 9012XXXX"
             value={contactNo}
-            pattern="[0-9]{7-15}"
+            pattern="^(?:[0-9\s\-\(\)]*?\d){7,}$"
+            title="Contact number should only contain digits, spaces, hyphens, or parentheses and must have at least 7 digits."
             onChange={(e) => setContactNo(e.target.value)}
             className="h-14 w-full rounded-md border border-zoovanna-brown/50 bg-whiten px-4 text-black placeholder-black/70"
           />
@@ -330,6 +352,8 @@ function EditProfileForm(props: EditCustomerFormProps) {
             type="text"
             required
             disabled={isDisabled}
+            pattern=".{5,}"
+            title="Address should be at least 5 characters long."
             placeholder="eg. 1 Pasir Ris #01-01"
             value={address}
             onChange={(e) => setAddress(e.target.value)}
