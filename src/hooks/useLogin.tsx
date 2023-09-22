@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useAuthContext } from "./useAuthContext";
+// import User from "../models/User";
 
 interface User {
   email: string;
@@ -11,6 +12,7 @@ interface ErrorResponse {
 }
 
 interface LoginResponse extends User {
+  customerId: number;
   email: string;
   token: string;
 }
@@ -20,7 +22,7 @@ function useLogin() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const { dispatch } = useAuthContext();
 
-  async function login(email: string, password: string): Promise<boolean>{
+  async function login(email: string, password: string): Promise<boolean> {
     setIsLoading(true);
     setError(null);
 
