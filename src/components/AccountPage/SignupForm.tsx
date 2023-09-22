@@ -62,6 +62,13 @@ function SignupForm() {
             * Please enter a password
           </div>
         );
+      } else if (props.patternMismatch) {
+        return (
+          <div className="font-medium text-danger">
+            * Password must be at least 8 characters long and contain at least
+            one uppercase letter, one lowercase letter, and one digit.
+          </div>
+        );
       }
     }
     return null;
@@ -75,6 +82,12 @@ function SignupForm() {
             * Please enter your first name
           </div>
         );
+      } else if (props.patternMismatch) {
+        return (
+          <div className="font-medium text-danger">
+            * Please enter at least 2 characters
+          </div>
+        );
       }
     }
     return null;
@@ -86,6 +99,12 @@ function SignupForm() {
         return (
           <div className="font-medium text-red-600">
             * Please enter your last name
+          </div>
+        );
+      } else if (props.patternMismatch) {
+        return (
+          <div className="font-medium text-danger">
+            * Please enter at least 2 characters
           </div>
         );
       }
@@ -104,7 +123,8 @@ function SignupForm() {
       } else if (props.patternMismatch) {
         return (
           <div className="font-medium text-danger">
-            * Please enter 8-digit phone number
+            * Contact number should only contain digits, spaces, hyphens, or
+            parentheses and must have at least 7 digits.
           </div>
         );
       }
@@ -131,6 +151,12 @@ function SignupForm() {
         return (
           <div className="font-medium text-red-600">
             * Please enter an address
+          </div>
+        );
+      } else if (props.patternMismatch) {
+        return (
+          <div className="font-medium text-danger">
+            * Please enter at least 5 characters
           </div>
         );
       }
@@ -222,6 +248,8 @@ function SignupForm() {
           <Form.Control
             type="password"
             required
+            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$"
+            title="Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one digit."
             placeholder="Type your password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -241,6 +269,7 @@ function SignupForm() {
             type="text"
             required
             placeholder="Type your first name"
+            pattern=".{2,}"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
             className="h-14 w-full rounded-md border border-zoovanna-brown/50 bg-whiten px-4 text-black placeholder-black/70"
@@ -256,6 +285,7 @@ function SignupForm() {
             type="text"
             required
             placeholder="Type your last name"
+            pattern=".{2,}"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
             className="h-14 w-full rounded-md border border-zoovanna-brown/50 bg-whiten px-4 text-black placeholder-black/70"
