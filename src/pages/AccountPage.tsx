@@ -23,7 +23,7 @@ function AccountPage() {
   const { user } = state;
   let email: string = user ? user.email : "";
   // const customerId = user ? user.customerId : -1;
-  console.log(user);
+  console.log("User in account page: " + user?.email + user?.token);
 
   return (
     <div className="flex h-screen flex-col items-center p-6">

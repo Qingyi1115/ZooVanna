@@ -13,6 +13,7 @@ interface PropsType {
   value: string | undefined;
   setValue: (value: React.SetStateAction<string | undefined>) => void;
   validateFunction: (props: ValidityState) => JSX.Element | null;
+  isDisabled?: boolean;
 }
 
 // interface SelectItemProps {
@@ -48,6 +49,7 @@ function FormFieldSelect(props: PropsType) {
     valueLabelPair,
     setValue,
     validateFunction,
+    isDisabled = false,
   } = props;
 
   const ref = useRef();
@@ -67,7 +69,7 @@ function FormFieldSelect(props: PropsType) {
     <Form.Field
       name={formFieldName}
       id={label + "id"}
-      className="flex w-full flex-col gap-1 data-[invalid]:text-danger"
+      className="${disabled ? 'cursor-not-allowed opacity-50' : ''} flex w-full flex-col gap-1 data-[invalid]:text-danger "
     >
       <Form.Label className="font-medium">{label}</Form.Label>
       {/* for Edit forms, need to include value={value} */}

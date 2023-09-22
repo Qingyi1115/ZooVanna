@@ -14,16 +14,26 @@ function LoggedInCardContent() {
         alt="profile pic"
         className="mb-4 aspect-square w-1/4 self-center rounded-full border shadow-lg"
       />
-      <NavLink to="/account">
+      <NavLink to="/viewProfile">
         <Button
           variant={"ghost"}
           className="mx-0 w-full justify-between rounded-none text-base"
         >
-          View Profile Details
+          View My Profile
           <HiOutlineChevronRight />
         </Button>
         <Separator className="opacity-20" />
       </NavLink>
+      {/* <NavLink to="/editProfile">
+        <Button
+          variant={"ghost"}
+          className="mx-0 w-full justify-between rounded-none text-base"
+        >
+          Edit My Profile
+          <HiOutlineChevronRight />
+        </Button>
+        <Separator className="opacity-20" />
+      </NavLink> */}
       <NavLink to="/account">
         <Button
           variant={"ghost"}

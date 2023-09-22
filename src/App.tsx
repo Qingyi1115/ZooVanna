@@ -18,6 +18,8 @@ import { useAuthContext } from "./hooks/useAuthContext";
 import SignupForm from "./components/AccountPage/SignupForm";
 import { PrimeReactProvider, PrimeReactContext } from "primereact/api";
 import SignupPage from "./pages/SignUpPage";
+import ViewProfilePage from "./pages/ViewProfilePage";
+import EditProfilePage from "./pages/EditProfilePage";
 
 function App() {
   return (
@@ -39,6 +41,8 @@ function App() {
               <Route path="/account" element={<AccountPage />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/signup" element={<SignupPage />} />
+              <Route path="/viewProfile" element={<ViewProfilePage />} />
+              <Route path="/editProfile" element={<EditProfilePage />} />
             </Routes>
           </MainLayout>
         </BrowserRouter>

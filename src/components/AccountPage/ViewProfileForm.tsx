@@ -10,12 +10,12 @@ import { clear } from "console";
 import Customer from "../../models/Customer";
 import useApiFormData from "../../hooks/useApiFormData";
 
-interface EditCustomerFormProps {
+interface ViewCustomerFormProps {
   currCustomer: Customer;
 }
 
-function EditProfileForm(props: EditCustomerFormProps) {
-  const apiJson = useApiJson();
+function ViewProfileForm(props: ViewCustomerFormProps) {
+  const apiFormData = useApiFormData();
 
   const { currCustomer } = props;
 
@@ -23,7 +23,7 @@ function EditProfileForm(props: EditCustomerFormProps) {
   const navigate = useNavigate();
 
   //view --> disabled, editing --> not disabled
-  const [isDisabled, setIsDisabled] = useState<boolean>(false);
+  const [isDisabled, setIsDisabled] = useState<boolean>(true);
   const [email, setEmail] = useState<string>(currCustomer.email);
   const [firstName, setFirstName] = useState<string>(currCustomer.firstName);
   const [lastName, setLastName] = useState<string>(currCustomer.lastName);
@@ -156,69 +156,7 @@ function EditProfileForm(props: EditCustomerFormProps) {
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    console.log("Inside customer sign up handleSubmit");
-    // console.log(email);
-    // console.log(password);
-    // const jsBirthday = new Date(birthday);
-    // const isoBirthday = jsBirthday.toISOString();
-    // console.log(jsBirthday);
-    // console.log(isoBirthday);
-    const formattedBirthday =
-      birthday instanceof Date ? birthday.toISOString() : undefined;
-
-    // const formData = new FormData();
-    // formData.append("email", email);
-    // formData.append("firstName", firstName);
-    // formData.append("lastName", lastName);
-    // formData.append("contactNo", contactNo);
-    // if (formattedBirthday) {
-    //   formData.append("birthday", formattedBirthday);
-    // } else {
-    //   formData.append("birthday", currCustomer.birthday.toISOString());
-    // }
-    // formData.append("address", address);
-    // if (nationality !== undefined) {
-    //   formData.append("nationality", nationality);
-    // } else {
-    //   formData.append("nationality", currCustomer.nationality);
-    // }
-    // formData.forEach((value, key) => {
-    //   console.log(key, value);
-    // });
-
-    const updatedCustomer = {
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-      contactNo: contactNo,
-      //   birthday: isoBirthday,
-      birthday:
-        birthday == undefined
-          ? currCustomer.birthday.toISOString()
-          : formattedBirthday,
-      address: address,
-      nationality: nationality,
-    };
-
-    try {
-      await apiJson.put(
-        `http://localhost:3000/api/customer/updateCustomer/${currCustomer.customerId}`,
-        updatedCustomer,
-      );
-      // success
-      toastShadcn({
-        description: "Successfully edited your account.",
-      });
-      navigate("/viewProfile");
-    } catch (error: any) {
-      toastShadcn({
-        variant: "destructive",
-        title: "Uh oh! Something went wrong.",
-        description:
-          "An error has occurred while updating your account: \n" +
-          error.message,
-      });
-    }
+    navigate("/editProfile");
   }
 
   return (
@@ -360,4 +298,4 @@ function EditProfileForm(props: EditCustomerFormProps) {
   );
 }
 
-export default EditProfileForm;
+export default ViewProfileForm;
