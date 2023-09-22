@@ -12,7 +12,7 @@ interface ErrorResponse {
 }
 
 interface LoginResponse extends User {
-  customerId: number;
+  // customerId: number;
   email: string;
   token: string;
 }

@@ -21,6 +21,7 @@ import DeleteButton from "../components/AccountPage/DeleteButton";
 function AccountPage() {
   const { state } = useAuthContext();
   const { user } = state;
+  let email: string = user ? user.email : "";
   // const customerId = user ? user.customerId : -1;
   console.log(user);
 
@@ -42,7 +43,8 @@ function AccountPage() {
         <CardFooter className="flex justify-between"></CardFooter>
       </Card>
       {user ? <LogoutButton /> : <div />}
-      {/* {customerId !== null ? <DeleteButton customerId={customerId} /> : <div />} */}
+      {user ? <DeleteButton email={email} /> : <div />}
+
       {/* <Card className="mt-6 w-full">
         <CardHeader>
           <CardTitle>
