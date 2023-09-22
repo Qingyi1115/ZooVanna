@@ -8,7 +8,7 @@ import FormFieldSelect from "../FormFieldSelect";
 import { countryValueLabelPair } from "../../enums/Country";
 import { clear } from "console";
 
-function SignupForm() {
+function EditProfileForm() {
   const apiJson = useApiJson();
   const toastShadcn = useToast().toast;
   const navigate = useNavigate();
@@ -344,4 +344,4 @@ function SignupForm() {
   );
 }
 
-export default SignupForm;
+export default EditProfileForm;

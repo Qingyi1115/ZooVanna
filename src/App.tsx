@@ -15,29 +15,35 @@ import ItineraryPage from "./pages/ItineraryPage";
 import AccountPage from "./pages/AccountPage";
 import LoginPage from "./pages/LoginPage";
 import { useAuthContext } from "./hooks/useAuthContext";
+import SignupForm from "./components/AccountPage/SignupForm";
+import { PrimeReactProvider, PrimeReactContext } from "primereact/api";
+import SignupPage from "./pages/SignUpPage";
 
 function App() {
   return (
-    <div className="">
-      <BrowserRouter>
-        {/* <Routes>
+    <PrimeReactProvider>
+      <div className="">
+        <BrowserRouter>
+          {/* <Routes>
             <Route
               path="/login"
               element={!user ? <LoginPage /> : <Navigate to={"/"} />}
             />
           </Routes> */}
-        <MainLayout>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/map" element={<MapPage />} />
-            <Route path="/tickets" element={<TicketsPage />} />
-            <Route path="/itinerary" element={<ItineraryPage />} />
-            <Route path="/account" element={<AccountPage />} />
-            <Route path="/login" element={<LoginPage />} />
-          </Routes>
-        </MainLayout>
-      </BrowserRouter>
-    </div>
+          <MainLayout>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/map" element={<MapPage />} />
+              <Route path="/tickets" element={<TicketsPage />} />
+              <Route path="/itinerary" element={<ItineraryPage />} />
+              <Route path="/account" element={<AccountPage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/signup" element={<SignupPage />} />
+            </Routes>
+          </MainLayout>
+        </BrowserRouter>
+      </div>
+    </PrimeReactProvider>
   );
 }
 

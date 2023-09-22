@@ -9,8 +9,6 @@ interface Customer {
   birthday: Date;
   address: string;
   nationality: Country;
-  passwordHash: string;
-  salt: string;
 }
 
 export default Customer;

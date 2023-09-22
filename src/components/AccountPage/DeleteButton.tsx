@@ -21,7 +21,7 @@ function DeleteButton({ email }: { email: string }) {
       );
 
       toastShadcn({
-        // variant: "destructive",
+        variant: "destructive",
         title: "Deletion Successful",
         description: "Successfully deleted your account",
       });
@@ -36,7 +36,7 @@ function DeleteButton({ email }: { email: string }) {
         variant: "destructive",
         title: "Uh oh! Something went wrong.",
         description:
-          "An error has occurred while deleting species: \n" + apiJson.error,
+          "An error has occurred while deleting customer: \n" + apiJson.error,
       });
     }
   };

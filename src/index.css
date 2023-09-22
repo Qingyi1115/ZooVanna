@@ -1,3 +1,8 @@
+/* PrimeReact */
+@import "primereact/resources/primereact.min.css";
+/* @import "primereact/resources/themes/lara-light-indigo/theme.css"; */
+@import "./assets/capstonePrimeReactTheme.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

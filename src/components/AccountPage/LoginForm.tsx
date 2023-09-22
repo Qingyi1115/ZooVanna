@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import * as Form from "@radix-ui/react-form";
 import useLogin from "../../hooks/useLogin";
 
@@ -47,16 +47,16 @@ function LoginForm() {
     console.log("Inside handleSubmit");
     console.log(email);
     console.log(password);
-    
+
     const isSuccess = await login(email, password);
-    if(isSuccess) {
+    if (isSuccess) {
       navigate("/account");
     }
   }
 
   return (
     <div className="flex w-full justify-center">
-      <Form.Root className="w-3/5" onSubmit={handleSubmit}>
+      <Form.Root className="w-4/5" onSubmit={handleSubmit}>
         <Form.Field name="email" className="mb-10 flex flex-col gap-1">
           <Form.Label className="text-base font-medium text-black">
             E-mail
