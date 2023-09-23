@@ -254,7 +254,7 @@ function EditProfileForm(props: EditCustomerFormProps) {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className="h-14 w-full rounded-md border border-zoovanna-brown/50 bg-whiten px-4 text-black placeholder-black/70"
-            disabled={isDisabled}
+            disabled={true}
           />
           {/* <Form.Message name="email" match={"valueMissing"}>
               Please enter an email
