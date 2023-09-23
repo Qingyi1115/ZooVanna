@@ -84,6 +84,7 @@ function FormFieldSelect(props: PropsType) {
         onValueChange={setValue}
         value={value}
         onOpenChange={onOpenChange}
+        disabled={isDisabled}
       >
         <Select.Trigger
           className="inline-flex items-center justify-center gap-4 rounded-lg border-[1.5px] border-stroke bg-transparent px-2 py-4 text-base leading-none shadow-[0_2px_10px] shadow-black/10 outline-none transition-all hover:bg-whiten focus:shadow-[0_0_0_2px] focus:shadow-body data-[placeholder]:text-graydark"

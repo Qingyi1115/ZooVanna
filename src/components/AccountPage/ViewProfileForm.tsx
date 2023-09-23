@@ -281,7 +281,7 @@ function ViewProfileForm(props: ViewCustomerFormProps) {
           formFieldName="nationality"
           label="Nationality"
           required={true}
-          isDisabled={isDisabled}
+          isDisabled
           placeholder="Select your nationality..."
           valueLabelPair={countryValueLabelPair}
           value={nationality}
