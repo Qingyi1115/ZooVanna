@@ -3,6 +3,17 @@ import { useToast } from "@/components/ui/use-toast";
 import useApiJson from "../../hooks/useApiJson";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 function DeleteButton({ email }: { email: string }) {
   const apiJson = useApiJson();
@@ -41,13 +52,31 @@ function DeleteButton({ email }: { email: string }) {
     }
   };
   return (
-    <Button
-      onClick={deleteCustomer}
-      variant={"outline"}
-      className="mb-6 mt-4 w-full rounded-xl border-danger text-danger shadow-md hover:bg-danger/50"
-    >
-      Delete my account
-    </Button>
+    <AlertDialog>
+      <AlertDialogTrigger asChild>
+        <Button
+          variant={"outline"}
+          className="mb-6 mt-4 w-full rounded-xl border-danger text-danger shadow-md hover:bg-danger/50"
+        >
+          Delete my account
+        </Button>
+      </AlertDialogTrigger>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+          <AlertDialogDescription>
+            This will permanently delete your account. This action cannot be
+            undone.
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogAction onClick={deleteCustomer}>
+            Confirm Delete
+          </AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
   );
 }
 
