@@ -55,8 +55,8 @@ function DeleteButton({ email }: { email: string }) {
     <AlertDialog>
       <AlertDialogTrigger asChild>
         <Button
-          variant={"outline"}
-          className="mb-6 mt-4 w-full rounded-xl border-danger text-danger shadow-md hover:bg-danger/50"
+          variant={"destructive"}
+          className="mb-6 mt-4 w-full rounded-xl border-danger text-whiteri shadow-md hover:bg-danger/50"
         >
           Delete my account
         </Button>
