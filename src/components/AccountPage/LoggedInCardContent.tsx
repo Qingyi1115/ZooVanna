@@ -9,11 +9,11 @@ import { HiOutlineChevronRight } from "react-icons/hi";
 function LoggedInCardContent() {
   return (
     <div className="flex flex-col">
-      <img
+      {/* <img
         src="https://cloudfour.com/examples/img-currentsrc/images/kitten-large.png"
         alt="profile pic"
         className="mb-4 aspect-square w-1/4 self-center rounded-full border shadow-lg"
-      />
+      /> */}
       <NavLink to="/viewProfile">
         <Button
           variant={"ghost"}
