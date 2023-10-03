@@ -26,12 +26,12 @@ const BottomBar = () => {
   return (
     <footer
       ref={sidebar}
-      className={`z-9999 fixed bottom-0 left-0 flex h-[9%] w-screen flex-row overflow-y-hidden bg-black duration-300 ease-linear lg:static `}
+      className={`fixed inset-x-0 bottom-0 left-0 z-9999 mb-0 inline-block flex h-auto w-screen flex-row overflow-y-hidden bg-black duration-300 ease-linear lg:static`}
     >
       <div className="no-scrollbar flex h-full w-full flex-row items-center justify-around duration-300 ease-linear">
         <NavLink
           to="/"
-          className={`text-bodydark1 hover:bg-graydark flex h-14 w-14 items-center justify-center rounded-sm font-medium duration-300 ease-in-out ${
+          className={`flex h-14 w-14 items-center justify-center rounded-sm font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark ${
             pathname.includes("calendar") && "bg-graydark "
           }`}
         >
@@ -42,7 +42,7 @@ const BottomBar = () => {
         </NavLink>
         <NavLink
           to="/map"
-          className={`text-bodydark1 hover:bg-graydark flex h-14 w-14 items-center justify-center rounded-sm font-medium duration-300 ease-in-out ${
+          className={`flex h-14 w-14 items-center justify-center rounded-sm font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark ${
             pathname.includes("calendar") && "bg-graydark "
           }`}
         >
@@ -53,7 +53,7 @@ const BottomBar = () => {
         </NavLink>
         <NavLink
           to="/tickets"
-          className={`text-bodydark1 hover:bg-graydark flex h-14 w-14 items-center justify-center rounded-sm font-medium duration-300 ease-in-out ${
+          className={`flex h-14 w-14 items-center justify-center rounded-sm font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark ${
             pathname.includes("calendar") && "bg-graydark "
           }`}
         >
@@ -64,7 +64,7 @@ const BottomBar = () => {
         </NavLink>
         <NavLink
           to="/itinerary"
-          className={`text-bodydark1 hover:bg-graydark flex h-14 w-14 items-center justify-center rounded-sm font-medium duration-300 ease-in-out ${
+          className={`flex h-14 w-14 items-center justify-center rounded-sm font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark ${
             pathname.includes("calendar") && "bg-graydark "
           }`}
         >
@@ -75,7 +75,7 @@ const BottomBar = () => {
         </NavLink>
         <NavLink
           to="/account"
-          className={`text-bodydark1 hover:bg-graydark flex h-14 w-14 items-center justify-center rounded-sm font-medium duration-300 ease-in-out ${
+          className={`flex h-14 w-14 items-center justify-center rounded-sm font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark ${
             pathname.includes("calendar") && "bg-graydark "
           }`}
         >

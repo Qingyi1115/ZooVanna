@@ -24,6 +24,7 @@ import ChangePasswordPage from "./pages/ChangePasswordPage";
 import RequestResetPasswordForm from "./components/AccountPage/RequestResetPasswordForm";
 import ResetPasswordForm from "./components/AccountPage/ResetPasswordForm";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
+import ListingPage from "./pages/PurchaseTicketManagement.tsx/ListingPage";
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
               <Route path="/" element={<HomePage />} />
               <Route path="/map" element={<MapPage />} />
               <Route path="/tickets" element={<TicketsPage />} />
+              <Route path="/tickets/selectListing" element={<ListingPage />} />
               <Route path="/itinerary" element={<ItineraryPage />} />
               <Route path="/account" element={<AccountPage />} />
               <Route path="/login" element={<LoginPage />} />

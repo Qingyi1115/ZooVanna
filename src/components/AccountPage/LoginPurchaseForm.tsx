@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import * as Form from "@radix-ui/react-form";
 import useLogin from "../../hooks/useLogin";
 
-function LoginForm() {
+function LoginPurchaseForm() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const navigate = useNavigate();
@@ -50,7 +50,7 @@ function LoginForm() {
 
     const isSuccess = await login(email, password);
     if (isSuccess) {
-      navigate("/account");
+      navigate("/ticket/listing");
     }
   }
 
@@ -106,4 +106,4 @@ function LoginForm() {
   );
 }
 
-export default LoginForm;
+export default LoginPurchaseForm;
