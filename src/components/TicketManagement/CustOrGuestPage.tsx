@@ -7,7 +7,6 @@ import {
 } from "@/components/ui/card";
 import { useAuthContext } from "../../hooks/useAuthContext";
 //import LoggedInCardContent from "../../components/AccountPage/LoggedInCardContent";
-import { Separator } from "@radix-ui/react-separator";
 import { Button } from "@/components/ui/button";
 import { NavLink } from "react-router-dom";
 import LoginPurchaseForm from "../AccountPage/LoginPurchaseForm";

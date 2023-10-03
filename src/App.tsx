@@ -24,7 +24,7 @@ import ChangePasswordPage from "./pages/ChangePasswordPage";
 import RequestResetPasswordForm from "./components/AccountPage/RequestResetPasswordForm";
 import ResetPasswordForm from "./components/AccountPage/ResetPasswordForm";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
-import ListingPage from "./pages/PurchaseTicketManagement.tsx/ListingPage";
+import ListingPage from "./pages/PurchaseTicketManagement/ListingPage";
 
 function App() {
   return (

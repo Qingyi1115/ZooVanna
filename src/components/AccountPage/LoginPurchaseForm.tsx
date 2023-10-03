@@ -50,7 +50,7 @@ function LoginPurchaseForm() {
 
     const isSuccess = await login(email, password);
     if (isSuccess) {
-      navigate("/ticket/listing");
+      navigate("/tickets/selectListing");
     }
   }
 
