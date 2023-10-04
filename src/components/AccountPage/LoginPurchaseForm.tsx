@@ -2,12 +2,24 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as Form from "@radix-ui/react-form";
 import useLogin from "../../hooks/useLogin";
+import Listing from "../../models/Listing";
+import { Navigate } from "react-router-dom";
 
-function LoginPurchaseForm() {
+interface LoginPurchaseProps {
+  localListingList: Listing[];
+  foreignerListingList: Listing[];
+  entry: Date;
+  personal: any;
+}
+function LoginPurchaseForm(props: LoginPurchaseProps) {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const navigate = useNavigate();
   const { login, error } = useLogin();
+  const localListingList = props.localListingList;
+  const foreignerListingList = props.foreignerListingList;
+  const entry = props.entry;
+  const personal = props.personal;
+  const navigate = useNavigate();
 
   // ValidityState properties: https://developer.mozilla.org/en-US/docs/Web/API/ValidityState
   function validateEmail(props: ValidityState) {
@@ -49,8 +61,9 @@ function LoginPurchaseForm() {
     console.log(password);
 
     const isSuccess = await login(email, password);
+    console.log(isSuccess);
     if (isSuccess) {
-      navigate("/tickets/selectListing");
+      navigate("/tickets");
     }
   }
 

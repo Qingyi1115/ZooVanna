@@ -26,6 +26,11 @@ import ResetPasswordForm from "./components/AccountPage/ResetPasswordForm";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import ListingPage from "./pages/PurchaseTicketManagement/ListingPage";
 import SelectDateForm from "./components/TicketManagement/SelectDateForm";
+import OrderReviewForm from "./components/TicketManagement/OrderReviewForm";
+import CustOrGuest from "./components/TicketManagement/CustOrGuestPage";
+import ListingForm from "./components/TicketManagement/ListingForm";
+import PersonalDetails from "./components/TicketManagement/PersonalDetails";
+import LoginPurchaseForm from "./components/AccountPage/LoginPurchaseForm";
 
 function App() {
   return (
@@ -45,7 +50,24 @@ function App() {
               <Route path="/tickets" element={<TicketsPage />} />
               <Route path="/tickets/selectListing" element={<ListingPage />} />
               <Route path="/tickets/selectDate" element={<SelectDateForm />} />
-
+              <Route
+                path="/tickets/orderReview"
+                element={<OrderReviewForm />}
+              />
+              <Route
+                path="tickets/selectListing/listingForm"
+                element={<ListingForm />}
+              />
+              <Route
+                path="tickets/personalDetails"
+                element={<PersonalDetails />}
+              />
+              <Route path="/tickets/custOrGuest" element={<CustOrGuest />} />
+              <Route
+                path="tickets/custOrGuest/listingForm"
+                element={<ListingForm />}
+              />
+              ;
               <Route path="/itinerary" element={<ItineraryPage />} />
               <Route path="/account" element={<AccountPage />} />
               <Route path="/login" element={<LoginPage />} />

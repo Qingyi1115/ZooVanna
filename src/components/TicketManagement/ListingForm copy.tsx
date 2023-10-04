@@ -6,7 +6,6 @@ import Listing from "../../models/Listing";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { NavLink, useLocation } from "react-router-dom";
-import { useRef } from "react";
 
 interface CheckboxProps {
   label: string;
@@ -32,20 +31,13 @@ function ListingForm() {
   const [isChecked, setIsChecked] = useState<boolean>(location.state.isChecked);
   let localListingList: Listing[] = location.state.localListingList;
   let foreignerListingList: Listing[] = location.state.foreignerListingList;
-  let entry = new Date(
+  let entryDate = new Date(
     location.state.entry ? location.state.entry : new Date(Date.now()),
   );
 
   let personal = location.state.personal;
-  const isInitialRender = useRef(true);
   //const [localAdultOrderItem, setLocalAdult] = ;
-  const [total, setTotal] = useState<number>(
-    Number(location.state.total ? location.state.total : 0),
-  );
-
-  console.log(total);
-  console.log("here " + localListingList);
-  console.log("hereeee " + foreignerListingList);
+  const [total, setTotal] = useState<number>(Number(location.state.total));
 
   const handleCheckboxChange = (isChecked: boolean) => {
     setIsChecked(isChecked);
@@ -125,7 +117,7 @@ function ListingForm() {
           state={{
             localListingList,
             foreignerListingList,
-            entry,
+            entryDate,
             total,
             personal,
             isChecked,

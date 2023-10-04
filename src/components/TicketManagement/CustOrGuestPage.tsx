@@ -4,15 +4,23 @@ import { useAuthContext } from "../../hooks/useAuthContext";
 import { Button } from "@/components/ui/button";
 import { NavLink } from "react-router-dom";
 import LoginPurchaseForm from "../AccountPage/LoginPurchaseForm";
+import Listing from "../../models/Listing";
+import { useLocation } from "react-router-dom";
+import { useState } from "react";
 
 function CustOrGuest() {
-  const { state } = useAuthContext();
-  const { user } = state;
-  let email: string = user ? user.email : "";
-  // const customerId = user ? user.customerId : -1;
-  console.log("User in account page: " + user?.email + user?.token);
+  const location = useLocation();
+  const [localListingList, setLocalListingList] = useState<Listing[]>(
+    location.state.localListingList,
+  );
+  const [foreignerListingList, setForeignerListingList] = useState<Listing[]>(
+    location.state.foreignerListingList,
+  );
+  const entryDate = location.state.entryDate;
+  const personal = location.state.personal;
+
   return (
-    <div className="block items-center overflow-hidden pt-5 lg:flex lg:pt-0">
+    <div className="block h-full items-center overflow-hidden pt-15 lg:flex lg:pt-0">
       <div className=" flex w-screen items-center justify-center px-5 lg:px-10">
         <Card className="lg:md-50 w-full items-center justify-center md:mt-0">
           <CardHeader className="items-center justify-center">
@@ -22,7 +30,15 @@ function CustOrGuest() {
             <div className="mb-5">
               You can buy ticket without creating an account!
             </div>
-            <NavLink to="/tickets/selectListing">
+            <NavLink
+              to="/tickets/selectListing/"
+              state={{
+                localListingList,
+                foreignerListingList,
+                entryDate,
+                personal,
+              }}
+            >
               <Button className="w-full">Continue as guest</Button>
             </NavLink>
           </CardContent>
@@ -39,7 +55,12 @@ function CustOrGuest() {
             </CardDescription> */}
           </CardHeader>
           <CardContent className="h-auto w-auto items-center justify-center">
-            <LoginPurchaseForm />
+            <LoginPurchaseForm
+              localListingList={localListingList}
+              foreignerListingList={foreignerListingList}
+              entry={entryDate}
+              personal={personal}
+            />
           </CardContent>
         </Card>
       </div>

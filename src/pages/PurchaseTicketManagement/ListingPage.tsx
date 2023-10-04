@@ -5,43 +5,30 @@ import useApiJson from "../../hooks/useApiJson";
 import { useState, useEffect } from "react";
 import Listing from "../../models/Listing";
 import SelectDateForm from "../../components/TicketManagement/SelectDateForm";
+import Customer from "../../models/Customer";
+import { useLocation } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 function ListingPage() {
-  const [localListingList, setLocalListingList] = useState<Listing[]>();
-  const [foreignerListingList, setForeignerListingList] = useState<Listing[]>();
-  const apiJson = useApiJson();
-  const entryDate = new Date(Date.now());
+  const location = useLocation();
+  let localListingList: Listing[] = location.state.localListingList;
+  const foreignerListingList: Listing[] = location.state.foreignerListingList;
+  const entryDate = location.state.entryDate;
+  const personal = location.state.personal;
 
-  useEffect(() => {
-    apiJson
-      .get("http://localhost:3000/api/listingCustomer/getLocalListings")
-      .catch((err) => console.log(err))
-      .then((res) => {
-        console.log(res);
-        setLocalListingList(res.result as Listing[]);
-      });
-  }, []);
+  console.log("here " + localListingList);
 
-  useEffect(() => {
-    apiJson
-      .get("http://localhost:3000/api/listingCustomer/getForeignerListings")
-      .catch((err) => console.log(err))
-      .then((res) => {
-        console.log(res);
-        setForeignerListingList(res.result as Listing[]);
-      });
-  }, []);
-
-  window.onbeforeunload = function () {
-    return "Data will be lost if you refresh the page. Are you sure?";
-  };
   return (
     <>
       <div className="flex items-center justify-center pb-5 pt-0">
-        <ListingForm
-          localListingList={localListingList}
-          foreignerListingList={foreignerListingList}
-          entryDate={entryDate}
+        <Navigate
+          to="listingForm"
+          state={{
+            localListingList,
+            foreignerListingList,
+            entryDate,
+            personal,
+          }}
         />
       </div>
     </>
