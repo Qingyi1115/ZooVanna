@@ -8,7 +8,7 @@ function TicketsPage() {
   const { state } = useAuthContext();
   const { user } = state;
   return (
-    <div className="flex h-screen flex-col items-center justify-center p-6 pb-14">
+    <div className="flex items-center justify-center overflow-hidden pb-5 pt-10 lg:pt-40">
       {!user ? <CustOrGuest /> : <Navigate to={"/tickets/selectListing"} />}
     </div>
   );

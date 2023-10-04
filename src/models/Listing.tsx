@@ -9,7 +9,7 @@ interface Listing {
   price: number;
   listingType: ListingType;
   listingStatus: ListingStatus;
-  orderItems: OrderItem[] | null;
+  orderItems: OrderItem[];
 }
 
 export default Listing;
