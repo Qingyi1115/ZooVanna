@@ -24,10 +24,10 @@ function OrderReviewForm() {
 
   return (
     <div className="block lg:pt-25">
-      <div className="mb-5 mt-10 block w-screen items-center justify-center px-5 pb-5 sm:px-20 md:pt-5 lg:flex lg:pt-0">
-        <div className="m-0 mb-5 text-2xl font-bold md:mb-5 lg:px-20">
-          Order Review
-        </div>
+      <div className="m-0 mb-7 mt-10 px-5 text-2xl font-bold sm:px-20 md:mb-5 ">
+        Order Review
+      </div>
+      <div className="mb-5 mt-5 block w-screen items-center justify-center px-5 pb-5 sm:px-20 md:pt-5 lg:flex lg:pt-0">
         <div className="w-full">
           <Card className="w-full items-center justify-between lg:mt-0">
             <CardHeader className="flex justify-between">

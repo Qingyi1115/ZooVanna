@@ -39,13 +39,13 @@ function SelectDateForm() {
   console.log(localListingList);
   console.log(foreignerListingList);
   return (
-    <div className="block items-center overflow-hidden pt-5 lg:pt-20">
-      <div className="mb-5 px-5 text-2xl font-bold md:mb-5 lg:px-20">
+    <div className="block items-center overflow-hidden pt-5 lg:pt-30">
+      <div className="mb-5 px-10 text-2xl font-bold sm:px-20 md:mb-5 md:px-40 lg:px-27">
         Select Date
       </div>
       <div className="mt-0 block w-screen items-center justify-center lg:flex">
         <div className="mb-5 flex w-screen items-center justify-center px-5 lg:px-20">
-          <div className=" w-full items-center justify-center md:mt-0">
+          <div className=" w-full items-center justify-center px-5 sm:px-15 md:mt-0 md:px-35 lg:p-0 lg:px-8">
             <div className="flex items-center justify-around  ">
               <Calendar
                 value={entry}
@@ -55,13 +55,13 @@ function SelectDateForm() {
                   }
                 }}
                 inline
-                className="border-0"
+                className="w-full border-0"
                 minDate={new Date(Date.now())}
               />
             </div>
           </div>
         </div>
-        <div className="mb-2 mt-10 flex w-screen items-center justify-center px-5 pb-5 sm:px-20 md:px-40">
+        <div className="mb-2 mt-10 flex w-screen items-center justify-center px-10 pb-5 sm:px-20 md:px-40 lg:p-0 lg:px-20">
           <Card className="w-full items-center justify-between lg:mt-0">
             <CardHeader className="flex justify-between">
               <CardTitle className="flex justify-between text-2xl font-bold">
@@ -108,7 +108,7 @@ function SelectDateForm() {
           </Card>
         </div>
       </div>
-      <div className="mb-5 flex w-screen justify-end px-5 text-2xl font-bold sm:px-30 md:px-40 lg:px-40">
+      <div className="mb-5 flex w-screen justify-end px-10 text-2xl font-bold sm:px-30 md:px-40 lg:px-20">
         <NavLink
           to="/tickets/selectListing/listingForm"
           state={{
