@@ -33,13 +33,15 @@ function useApiJson<TData = any>() {
   const [error, setError] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const { state } = useAuthContext();
-  const { user } = state;
+  {
+    /*const { state } = useAuthContext();
+const { user } = state;*/
+  }
 
   const request = async (
     url: string,
     method: string = "GET",
-    body: any = null
+    body: any = null,
   ) => {
     setLoading(true);
     setError(null);
@@ -49,8 +51,8 @@ function useApiJson<TData = any>() {
         method,
         headers: {
           "Content-Type": "application/json",
-          // Add any other headers as needed
-          Authorization: `Bearer ${user?.token}`,
+          //  // Add any other headers as needed
+          //  Authorization: `Bearer ${user?.token}`,
         },
         body: body ? JSON.stringify(body) : null,
       };

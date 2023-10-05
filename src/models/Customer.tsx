@@ -13,8 +13,6 @@
 
 // export default Customer;
 
-import { Country } from "../enums/Country";
-
 interface Customer {
   customerId: number;
   firstName: string;

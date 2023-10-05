@@ -9,7 +9,7 @@ interface PropsType {
 function MainLayout(props: PropsType) {
   return (
     <div className="">
-      <div className="h-[91vh] overflow-scroll">{props.children}</div>
+      <div className="h-[93.2vh] overflow-scroll">{props.children}</div>
       <BottomBar />
       <Toaster />
     </div>

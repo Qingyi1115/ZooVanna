@@ -2,12 +2,24 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as Form from "@radix-ui/react-form";
 import useLogin from "../../hooks/useLogin";
+import Listing from "../../models/Listing";
+import { Navigate } from "react-router-dom";
 
-function LoginForm() {
+interface LoginPurchaseProps {
+  localListingList: Listing[];
+  foreignerListingList: Listing[];
+  entry: Date;
+  personal: any;
+}
+function LoginPurchaseForm(props: LoginPurchaseProps) {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const navigate = useNavigate();
   const { login, error } = useLogin();
+  const localListingList = props.localListingList;
+  const foreignerListingList = props.foreignerListingList;
+  const entry = props.entry;
+  const personal = props.personal;
+  const navigate = useNavigate();
 
   // ValidityState properties: https://developer.mozilla.org/en-US/docs/Web/API/ValidityState
   function validateEmail(props: ValidityState) {
@@ -49,13 +61,14 @@ function LoginForm() {
     console.log(password);
 
     const isSuccess = await login(email, password);
+    console.log(isSuccess);
     if (isSuccess) {
-      navigate("/account");
+      navigate("/tickets");
     }
   }
 
   return (
-    <div className="md:h-200 flex w-80 w-full justify-center sm:w-150 md:w-150">
+    <div className="md:h-200 flex  w-full justify-center">
       <Form.Root className="w-4/5" onSubmit={handleSubmit}>
         <Form.Field name="email" className="mb-10 flex flex-col gap-1">
           <Form.Label className="text-base font-medium text-black">
@@ -106,4 +119,4 @@ function LoginForm() {
   );
 }
 
-export default LoginForm;
+export default LoginPurchaseForm;
