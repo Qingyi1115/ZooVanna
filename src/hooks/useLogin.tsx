@@ -15,6 +15,7 @@ interface LoginResponse extends User {
   // customerId: number;
   email: string;
   token: string;
+  id: number;
 }
 
 function useLogin() {

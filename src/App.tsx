@@ -24,6 +24,15 @@ import ChangePasswordPage from "./pages/ChangePasswordPage";
 import RequestResetPasswordForm from "./components/AccountPage/RequestResetPasswordForm";
 import ResetPasswordForm from "./components/AccountPage/ResetPasswordForm";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
+import ListingPage from "./pages/PurchaseTicketManagement/ListingPage";
+import SelectDateForm from "./components/TicketManagement/SelectDateForm";
+import OrderReviewForm from "./components/TicketManagement/OrderReviewForm";
+import CustOrGuest from "./components/TicketManagement/CustOrGuestPage";
+import ListingForm from "./components/TicketManagement/ListingForm";
+import PersonalDetails from "./components/TicketManagement/PersonalDetails";
+import LoginPurchaseForm from "./components/AccountPage/LoginPurchaseForm";
+import PaymentForm from "./components/TicketManagement/PaymentForm";
+import CompletionPage from "./pages/PurchaseTicketManagement/CompletionPage";
 
 function App() {
   return (
@@ -41,6 +50,30 @@ function App() {
               <Route path="/" element={<HomePage />} />
               <Route path="/map" element={<MapPage />} />
               <Route path="/tickets" element={<TicketsPage />} />
+              <Route path="/tickets/selectListing" element={<ListingPage />} />
+              <Route path="/tickets/selectDate" element={<SelectDateForm />} />
+              <Route
+                path="/tickets/orderReview"
+                element={<OrderReviewForm />}
+              />
+              <Route
+                path="tickets/selectListing/listingForm"
+                element={<ListingForm />}
+              />
+              <Route
+                path="tickets/personalDetails"
+                element={<PersonalDetails />}
+              />
+              <Route path="/tickets/custOrGuest" element={<CustOrGuest />} />
+              <Route
+                path="tickets/custOrGuest/listingForm"
+                element={<ListingForm />}
+              />
+              <Route path="/tickets/payment" element={<PaymentForm />} />
+              <Route
+                path="/tickets/completion/:customerOrderId/:code/:id"
+                element={<CompletionPage />}
+              />
               <Route path="/itinerary" element={<ItineraryPage />} />
               <Route path="/account" element={<AccountPage />} />
               <Route path="/login" element={<LoginPage />} />
