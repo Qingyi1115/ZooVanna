@@ -15,7 +15,7 @@ function SelectDateForm() {
   const localListingList: Listing[] = location.state.localListingList;
   const foreignerListingList: Listing[] = location.state.foreignerListingList;
   const entryDate: Date = location.state.entry;
-  const total: number = location.state.total;
+  const [total, setTotal] = useState<number>(0);
   const personal: any = location.state.personal;
   const [item, setItem] = useState<number>(0);
   const [entry, setEntry] = useState<string | Date | Date[] | null>(
@@ -35,6 +35,14 @@ function SelectDateForm() {
     }
     setItem(result);
   }, []);
+
+  useEffect(() => {
+    let result = 0;
+    for (const listing of listingList) {
+      result += listing.orderItems.length * listing.price;
+    }
+    setTotal(result);
+  });
 
   console.log(localListingList);
   console.log(foreignerListingList);
