@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { NavLink, useLocation } from "react-router-dom";
 import { useRef } from "react";
+import { ListingStatus } from "../../enums/ListingStatus";
 
 interface CheckboxProps {
   label: string;
@@ -88,14 +89,17 @@ function ListingForm() {
                 checked={isChecked}
                 onChange={handleCheckboxChange}
               />
-              {localListingList?.map((listing) => (
-                <ListingCard
-                  listing={listing}
-                  isChecked={isChecked}
-                  total={total}
-                  setTotal={setTotal}
-                />
-              ))}
+              {localListingList?.map(
+                (listing) =>
+                  listing.listingStatus !== ListingStatus.DISCONTINUED && (
+                    <ListingCard
+                      listing={listing}
+                      isChecked={isChecked}
+                      total={total}
+                      setTotal={setTotal}
+                    />
+                  ),
+              )}
             </CardContent>
           </Card>
         </div>
@@ -107,14 +111,17 @@ function ListingForm() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              {foreignerListingList?.map((listing) => (
-                <ListingCard
-                  listing={listing}
-                  isChecked={true}
-                  total={total}
-                  setTotal={setTotal}
-                />
-              ))}
+              {foreignerListingList?.map(
+                (listing) =>
+                  listing.listingStatus !== ListingStatus.DISCONTINUED && (
+                    <ListingCard
+                      listing={listing}
+                      isChecked={true}
+                      total={total}
+                      setTotal={setTotal}
+                    />
+                  ),
+              )}
             </CardContent>
           </Card>
         </div>
