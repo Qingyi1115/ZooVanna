@@ -98,7 +98,10 @@ function PersonalDetails() {
   }
 
   return (
-    <div className="dark flex h-full w-full flex-col justify-center gap-6 rounded-lg border border-stroke p-10 text-black dark:border-stroke">
+    <div className="dark flex h-full w-full flex-col justify-center gap-6 rounded-lg border border-stroke p-10 pt-5 text-black dark:border-stroke md:pt-10 ">
+      <div className="m-0 mb-7 text-2xl font-bold md:mb-5 lg:px-20">
+        Personal Details
+      </div>
       <InputText
         value={firstName}
         placeholder="First Name"

@@ -39,9 +39,9 @@ function SelectDateForm() {
   console.log(localListingList);
   console.log(foreignerListingList);
   return (
-    <div className="block items-center overflow-hidden pt-5 lg:pt-30">
+    <div className="block items-center overflow-hidden pt-5 lg:pt-20">
       <div className="mb-5 px-5 text-2xl font-bold md:mb-5 lg:px-20">
-        2. Select Date
+        Select Date
       </div>
       <div className="mt-0 block w-screen items-center justify-center lg:flex">
         <div className="mb-5 flex w-screen items-center justify-center px-5 lg:px-20">

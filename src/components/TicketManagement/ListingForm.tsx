@@ -72,7 +72,7 @@ function ListingForm() {
   return (
     <div className="block items-center overflow-hidden pt-5 lg:pt-6">
       <div className="m-0 mb-7 px-5 text-2xl font-bold md:mb-5 lg:px-20">
-        1. Select Listing
+        Select Listing
       </div>
       <div className="mt-0 block w-screen items-center justify-center md:flex">
         <div className="mb-5 flex w-screen items-center justify-center px-5 lg:px-20">

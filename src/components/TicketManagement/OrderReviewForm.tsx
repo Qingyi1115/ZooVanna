@@ -5,7 +5,7 @@ import { Separator } from "@/components/ui/separator";
 import DateFormSummary from "./DateFormSummary";
 import { Button } from "@/components/ui/button";
 import { NavLink } from "react-router-dom";
-import { useAuthContext } from "src/hooks/useAuthContext";
+import { useAuthContext } from "../../hooks/useAuthContext";
 import { InputText } from "primereact/inputtext";
 
 function OrderReviewForm() {
@@ -19,9 +19,15 @@ function OrderReviewForm() {
   const isChecked: boolean = location.state.isChecked;
   console.log(personal);
 
+  const { state } = useAuthContext();
+  const { user } = state;
+
   return (
     <div className="block lg:pt-25">
       <div className="mb-5 mt-10 block w-screen items-center justify-center px-5 pb-5 sm:px-20 md:pt-5 lg:flex lg:pt-0">
+        <div className="m-0 mb-5 text-2xl font-bold md:mb-5 lg:px-20">
+          Order Review
+        </div>
         <div className="w-full">
           <Card className="w-full items-center justify-between lg:mt-0">
             <CardHeader className="flex justify-between">
@@ -78,21 +84,39 @@ function OrderReviewForm() {
       </div>
 
       <div className="mb-5 flex w-screen justify-end px-5 text-2xl font-bold sm:px-20 ">
-        <NavLink
-          to="/tickets/personalDetails"
-          state={{
-            localListingList,
-            foreignerListingList,
-            entry,
-            total,
-            item,
-            personal,
-            isChecked,
-          }}
-          className="mr-5"
-        >
-          <Button className="w-20 rounded">Back</Button>
-        </NavLink>
+        {!user ? (
+          <NavLink
+            to="/tickets/personalDetails"
+            state={{
+              localListingList,
+              foreignerListingList,
+              entry,
+              total,
+              item,
+              personal,
+              isChecked,
+            }}
+            className="mr-5"
+          >
+            <Button className="w-20 rounded">Back</Button>
+          </NavLink>
+        ) : (
+          <NavLink
+            to="/tickets/selectDate"
+            state={{
+              localListingList,
+              foreignerListingList,
+              entry,
+              total,
+              item,
+              personal,
+              isChecked,
+            }}
+            className="mr-5"
+          >
+            <Button className="w-20 rounded">Back</Button>
+          </NavLink>
+        )}
         <NavLink
           to="/tickets/orderReview"
           state={{
