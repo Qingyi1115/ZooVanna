@@ -26,38 +26,38 @@ function PersonalDetails() {
   let personal: any = location.state.personal;
 
   const [firstName, setFirstName] = useState<string>(
-    personal.firstName ? personal.firstName : "",
+    personal.customerFirstName ? personal.customerFirstName : "",
   ); // text input
   const [lastName, setLastName] = useState<string>(
-    personal.lastName ? personal.lastName : "",
+    personal.customerLastName ? personal.customerLastName : "",
   ); // text input
   const [email, setEmail] = useState<string>(
-    personal.email ? personal.email : "",
+    personal.customerEmail ? personal.customerEmail : "",
   ); // text input
   const [contactNo, setContactNo] = useState<string>(
-    personal.contactNo ? personal.contactNo : "",
+    personal.customerContactNo ? personal.customerContactNo : "",
   ); // text input
 
   const [confirmEmail, setConfirmEmail] = useState<string>(
-    personal.email ? personal.email : "",
+    personal.customerEmail ? personal.customerEmail : "",
   );
 
   const [error, setError] = useState<boolean>(false);
 
   useEffect(() => {
-    personal.firstName = firstName;
+    personal.customerFirstName = firstName;
   }, [firstName]);
 
   useEffect(() => {
-    personal.lastName = lastName;
+    personal.customerLastName = lastName;
   }, [lastName]);
 
   useEffect(() => {
-    personal.email = email;
+    personal.customerEmail = email;
   }, [email]);
 
   useEffect(() => {
-    personal.contactNo = contactNo;
+    personal.customerContactNo = contactNo;
   });
 
   function clearForm() {
@@ -68,7 +68,9 @@ function PersonalDetails() {
   }
 
   function handleClick(e: any) {
-    if (!(firstName && lastName && email && contactNo)) {
+    if (
+      !(firstName && lastName && email && contactNo && email === confirmEmail)
+    ) {
       e.preventDefault();
     }
   }
@@ -78,7 +80,7 @@ function PersonalDetails() {
     personal.lastName = lastName;
     personal.email = email;
     personal.contactNo = contactNo;
-    if (firstName && lastName && email && contactNo) {
+    if (firstName && lastName && email && contactNo && email === confirmEmail) {
       <Navigate
         to="/tickets/orderReview"
         state={{
@@ -96,7 +98,7 @@ function PersonalDetails() {
   }
 
   return (
-    <div className="dark flex h-full w-full flex-col justify-center gap-6 rounded-lg border border-stroke p-20 text-black dark:border-stroke">
+    <div className="dark flex h-full w-full flex-col justify-center gap-6 rounded-lg border border-stroke p-10 text-black dark:border-stroke">
       <InputText
         value={firstName}
         placeholder="First Name"
@@ -167,7 +169,7 @@ function PersonalDetails() {
           * Please fill in the contactNo
         </div>
       )}
-      <div className="flex justify-end">
+      <div className="mb-5 flex w-screen justify-end px-20 text-2xl font-bold sm:px-20 ">
         <NavLink
           to="/tickets/selectDate"
           state={{
@@ -178,9 +180,9 @@ function PersonalDetails() {
             personal,
             isChecked,
           }}
-          className="mr-5 mt-6 h-12 w-1/3 md:w-1/6"
+          className="mr-5"
         >
-          <Button className="w-full self-center rounded text-lg">
+          <Button className="w-15 rounded sm:w-20">
             <div>Back</div>
           </Button>
         </NavLink>
@@ -195,10 +197,10 @@ function PersonalDetails() {
               personal,
               isChecked,
             }}
-            className="mt-6 h-12 w-1/3 md:w-1/6"
+            className="flex"
           >
-            <Button className="w-full self-center rounded text-lg">
-              <div>Submit</div>
+            <Button className="w-15 rounded sm:w-20">
+              <div>Next</div>
             </Button>
           </NavLink>
         ) : (
@@ -212,11 +214,11 @@ function PersonalDetails() {
               personal,
               isChecked,
             }}
-            className="mt-6 h-12 w-1/3 md:w-1/6"
+            className="flex"
             onClick={handleClick}
           >
-            <Button className="w-full self-center rounded text-lg" disabled>
-              <div>Submit</div>
+            <Button className="w-15 rounded sm:w-20" disabled>
+              <div>Next</div>
             </Button>
           </NavLink>
         )}
