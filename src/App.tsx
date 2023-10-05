@@ -31,6 +31,8 @@ import CustOrGuest from "./components/TicketManagement/CustOrGuestPage";
 import ListingForm from "./components/TicketManagement/ListingForm";
 import PersonalDetails from "./components/TicketManagement/PersonalDetails";
 import LoginPurchaseForm from "./components/AccountPage/LoginPurchaseForm";
+import PaymentForm from "./components/TicketManagement/PaymentForm";
+import CompletionPage from "./pages/PurchaseTicketManagement/CompletionPage";
 
 function App() {
   return (
@@ -67,7 +69,11 @@ function App() {
                 path="tickets/custOrGuest/listingForm"
                 element={<ListingForm />}
               />
-              ;
+              <Route path="/tickets/payment" element={<PaymentForm />} />
+              <Route
+                path="/tickets/completion/:customerOrderId/:code/:id"
+                element={<CompletionPage />}
+              />
               <Route path="/itinerary" element={<ItineraryPage />} />
               <Route path="/account" element={<AccountPage />} />
               <Route path="/login" element={<LoginPage />} />

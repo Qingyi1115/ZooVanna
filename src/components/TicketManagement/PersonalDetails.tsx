@@ -42,6 +42,8 @@ function PersonalDetails() {
     personal.customerEmail ? personal.customerEmail : "",
   );
 
+  console.log(personal);
+
   const [error, setError] = useState<boolean>(false);
 
   useEffect(() => {

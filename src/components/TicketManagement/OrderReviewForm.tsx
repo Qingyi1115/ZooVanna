@@ -7,6 +7,9 @@ import { Button } from "@/components/ui/button";
 import { NavLink } from "react-router-dom";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { InputText } from "primereact/inputtext";
+import { useState } from "react";
+import { Dialog } from "primereact/dialog";
+import React from "react";
 
 function OrderReviewForm() {
   const location = useLocation();
@@ -17,6 +20,37 @@ function OrderReviewForm() {
   const item: number = location.state.item;
   const personal: any = location.state.personal;
   const isChecked: boolean = location.state.isChecked;
+  const [guestDialog, setGuestDialog] = useState<boolean>(false);
+
+  const handleGuestDialog = () => {
+    setGuestDialog(true);
+  };
+
+  const hideGuestDialog = () => {
+    setGuestDialog(false);
+  };
+
+  const guestDialogFooter = (
+    <React.Fragment>
+      <Button onClick={hideGuestDialog}>No</Button>
+      <NavLink
+        to="/tickets/payment"
+        state={{
+          localListingList,
+          foreignerListingList,
+          entry,
+          total,
+          item,
+          personal,
+          isChecked,
+        }}
+        className=""
+      >
+        <Button>Yes</Button>
+      </NavLink>
+    </React.Fragment>
+  );
+
   console.log(personal);
 
   const { state } = useAuthContext();
@@ -68,7 +102,7 @@ function OrderReviewForm() {
             </CardContent>
           </Card>
         </div>
-        <div className="mt-10 block w-full items-center justify-center lg:ml-40 lg:mt-0 lg:flex ">
+        <div className="mt-10 w-full items-center justify-center lg:ml-40 lg:mt-0">
           <Card className="lg:md-50 h-45 w-full items-center justify-center md:mt-0">
             <CardHeader className="items-center justify-center">
               <CardTitle className="mb-1 text-2xl font-bold">
@@ -117,22 +151,55 @@ function OrderReviewForm() {
             <Button className="w-20 rounded">Back</Button>
           </NavLink>
         )}
-        <NavLink
-          to="/tickets/orderReview"
-          state={{
-            localListingList,
-            foreignerListingList,
-            entry,
-            total,
-            item,
-            personal,
-            isChecked,
-          }}
-          className="flex bg-red-100"
-        >
-          <Button className="w-20 w-full rounded">Pay now</Button>
-        </NavLink>
+        {user ? (
+          <NavLink
+            to="/tickets/payment"
+            state={{
+              localListingList,
+              foreignerListingList,
+              entry,
+              total,
+              item,
+              personal,
+              isChecked,
+            }}
+            className="flex bg-red-100"
+          >
+            <Button className="w-20 rounded">Next</Button>
+          </NavLink>
+        ) : (
+          <div className="flex bg-red-100">
+            <Button
+              className="w-20 rounded"
+              onClick={() => handleGuestDialog()}
+            >
+              Next
+            </Button>
+          </div>
+        )}
       </div>
+      <Dialog
+        visible={guestDialog}
+        style={{ width: "32rem" }}
+        breakpoints={{ "960px": "75vw", "641px": "90vw" }}
+        header="Confirm"
+        modal
+        footer={guestDialogFooter}
+        onHide={hideGuestDialog}
+      >
+        <div className="confirmation-content flex justify-around">
+          <i
+            className="pi pi-exclamation-triangle mr-3"
+            style={{ fontSize: "2rem" }}
+          />
+          <div className="">
+            <div className="flex">Guest Email:</div>
+            <div className="flex font-bold">{personal.customerEmail}</div>
+            <div className="mt-2">Guest Phone Number:</div>
+            <div className="font-bold">{personal.customerContactNo}</div>
+          </div>
+        </div>
+      </Dialog>
     </div>
   );
 }
