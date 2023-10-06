@@ -10,6 +10,8 @@ import { InputText } from "primereact/inputtext";
 import { useState } from "react";
 import { Dialog } from "primereact/dialog";
 import React from "react";
+import useApiJson from "../../hooks/useApiJson";
+import { useToast } from "@/components/ui/use-toast";
 
 function OrderReviewForm() {
   const location = useLocation();
@@ -21,6 +23,63 @@ function OrderReviewForm() {
   const personal: any = location.state.personal;
   const isChecked: boolean = location.state.isChecked;
   const [guestDialog, setGuestDialog] = useState<boolean>(false);
+
+  const [isPromotionApplied, setIsPromotionApplied] = useState<boolean>(false);
+  const [promotionCode, setPromotionCode] = useState<string>("");
+  const [discount, setDiscount] = useState<number>(0);
+  const [discountAmount, setDiscountAmount] = useState<number>(0);
+  const [finalTotal, setFinalTotal] = useState<number>(total);
+
+  const apiJson = useApiJson();
+
+  const toastShadcn = useToast().toast;
+
+  const changePromotionCode = async () => {
+    setDiscount(0);
+    setDiscountAmount(0);
+    setFinalTotal(total);
+    setIsPromotionApplied(false);
+  };
+
+  const applyPromotionCode = async () => {
+    try {
+      const currentSpendingParam = {
+        currentSpending: total,
+      };
+      const promotion = await apiJson.get(
+        `http://localhost:3000/api/promotion/verifyPromotionCode/${promotionCode}`,
+        currentSpendingParam,
+      );
+
+      const discountPercentage: number = promotion.percentage;
+      setDiscount(discountPercentage);
+      console.log("Discount applied: " + discountPercentage);
+
+      const discAmount: number = (discountPercentage / 100) * total;
+      setDiscountAmount(discAmount);
+      console.log("Discounted amount: " + discAmount);
+
+      const finalTot: number = total - discAmount;
+      setFinalTotal(finalTot);
+      console.log("Final total: " + finalTot);
+
+      setIsPromotionApplied(true);
+
+      toastShadcn({
+        title: "Promotion Applied Successfully",
+        description: "Successfully applied promotion code",
+      });
+
+      //   setDeleteSpeciesDialog(false);
+    } catch (error: any) {
+      // got error
+      toastShadcn({
+        variant: "destructive",
+        title: "Promotion cannot be applied",
+        description: apiJson.error,
+      });
+    }
+  };
 
   const handleGuestDialog = () => {
     setGuestDialog(true);
@@ -65,25 +124,33 @@ function OrderReviewForm() {
         <div className="w-full">
           <Card className="w-full items-center justify-between lg:mt-0">
             <CardHeader className="flex justify-between">
-              <CardTitle className="flex justify-between text-2xl font-bold">
+              <CardTitle className="flex justify-between text-xl font-bold">
                 <div>Total Payable:</div>
-                <div>S${total}</div>
+                <div>S${finalTotal}</div>
               </CardTitle>
             </CardHeader>
             <CardContent className="">
               <div className="flex justify-between">
-                <div className="flex text-xl">Price:</div>
+                <div className="text-l flex">Subtotal:</div>
                 <div className="flex">S${total}</div>
               </div>
-              <Separator className="opacity-20" />
-              <div className="flex justify-between">
-                <div className="flex">ZooVanna</div>
-                <div className="flex">{item}</div>
+              <div className="mb-3 flex justify-between">
+                <div className="text-l flex">Discount:</div>
+                <div className="flex ">- S${discountAmount}</div>
               </div>
-              <div>{entry.toLocaleDateString()}</div>
+              <Separator className="opacity-20" />
+              {/* <div className="flex justify-between">
+                <div className="flex">Merlion Zoo</div>
+                <div className="flex">{item}</div>
+              </div> */}
+
               <div className="mt-5">
-                <div className="text-2xl font-bold">Admissions</div>
-                <div className="my-1">ZooVanna admission</div>
+                <div className="text-xl font-bold">Admissions</div>
+                <div className="flex justify-between">
+                  <div className="flex">Merlion Zoo</div>
+                  <div className="flex">{item} item(s)</div>
+                </div>
+                <div className="mb-2 text-xs">{entry.toLocaleDateString()}</div>
                 <Separator className="opacity-20" />
                 {localListingList?.map(
                   (listing) =>
@@ -110,8 +177,22 @@ function OrderReviewForm() {
               </CardTitle>
             </CardHeader>
             <CardContent className="flex justify-center">
-              <InputText className="h-11 w-3/4" />
-              <Button className="h-11 w-1/4">Apply</Button>
+              <InputText
+                className="h-11 w-3/4"
+                value={promotionCode}
+                onChange={(e) => setPromotionCode(e.target.value)}
+                placeholder="Enter promotion code"
+                disabled={isPromotionApplied}
+              />
+              {isPromotionApplied ? (
+                <Button className="h-11 w-1/4" onClick={changePromotionCode}>
+                  Change
+                </Button>
+              ) : (
+                <Button className="h-11 w-1/4" onClick={applyPromotionCode}>
+                  Apply
+                </Button>
+              )}
             </CardContent>
           </Card>
         </div>
