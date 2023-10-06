@@ -98,7 +98,7 @@ function OrderReviewForm() {
           localListingList,
           foreignerListingList,
           entry,
-          total,
+          total: finalTotal,
           item,
           personal,
           isChecked,
@@ -134,7 +134,7 @@ function OrderReviewForm() {
                 <div className="text-l flex">Subtotal:</div>
                 <div className="flex">S${total}</div>
               </div>
-              <div className="mb-3 flex justify-between">
+              <div className="mb-2 flex justify-between">
                 <div className="text-l flex">Discount:</div>
                 <div className="flex ">- S${discountAmount}</div>
               </div>

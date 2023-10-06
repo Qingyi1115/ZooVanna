@@ -23,6 +23,7 @@ function ListingCard(props: ListingProps) {
   const total = props.total;
   const setTotal = props.setTotal;
   console.log("Listing Card" + listing.orderItems);
+  console.log("listing status " + listing.listingStatus);
   return (
     <div className="mt-9 items-center justify-center">
       {!isChecked

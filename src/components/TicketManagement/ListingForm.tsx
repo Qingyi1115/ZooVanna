@@ -60,18 +60,20 @@ function ListingForm() {
   useEffect(() => {
     if (!isChecked) {
       for (const listing of localListingList) {
-        const len = listing.orderItems.length;
-        for (let i = 0; i < len; i++) {
-          console.log(listing.orderItems.length);
-          listing.orderItems.pop();
-          setTotal(total - listing.price);
+        if (listing.orderItems) {
+          const len = listing.orderItems.length;
+          for (let i = 0; i < len; i++) {
+            console.log(listing.orderItems.length);
+            listing.orderItems.pop();
+            setTotal(total - listing.price);
+          }
         }
       }
     }
   }, [isChecked]);
 
   return (
-    <div className="block items-center overflow-hidden pt-5 lg:pt-6">
+    <div className="block items-center overflow-hidden pb-3 pt-8 lg:pt-10">
       <div className="m-0 mb-7 px-5 text-2xl font-bold md:mb-5 lg:px-20">
         Select Listing
       </div>

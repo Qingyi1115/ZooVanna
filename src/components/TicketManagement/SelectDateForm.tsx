@@ -72,30 +72,29 @@ function SelectDateForm() {
         <div className="mb-2 mt-10 flex w-screen items-center justify-center px-10 pb-5 sm:px-20 md:px-40 lg:p-0 lg:px-20">
           <Card className="w-full items-center justify-between lg:mt-0">
             <CardHeader className="flex justify-between">
-              <CardTitle className="flex justify-between text-2xl font-bold">
+              <CardTitle className="flex justify-between text-xl font-bold">
                 <div>Total Payable:</div>
                 <div>S${total}</div>
               </CardTitle>
             </CardHeader>
             <CardContent className="">
-              <div className="flex justify-between">
-                <div className="flex text-xl">Price:</div>
+              <div className="mb-2 flex justify-between">
+                <div className="text-l flex">Subtotal:</div>
                 <div className="flex">S${total}</div>
               </div>
 
               <Separator className="opacity-20" />
-              <div className="flex justify-between">
-                <div className="flex">ZooVanna</div>
-                <div className="flex">{item}</div>
-              </div>
-              <div>
-                {new Date(
-                  entry ? entry.toString() : entryDate.toString(),
-                )?.toLocaleDateString()}
-              </div>
               <div className="mt-5">
-                <div className="text-2xl font-bold">Admissions</div>
-                <div className="my-1">ZooVanna admission</div>
+                <div className="text-xl font-bold">Admissions</div>
+                <div className="flex justify-between">
+                  <div className="flex">Merlion Zoo</div>
+                  <div className="flex">{item} item(s)</div>
+                </div>
+                <div className="mb-2 text-xs">
+                  {new Date(
+                    entry ? entry.toString() : entryDate.toString(),
+                  )?.toLocaleDateString()}
+                </div>
                 <Separator className="opacity-20" />
                 {localListingList?.map(
                   (listing) =>

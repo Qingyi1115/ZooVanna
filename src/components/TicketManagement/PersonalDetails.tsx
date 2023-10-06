@@ -43,6 +43,7 @@ function PersonalDetails() {
   );
 
   console.log(personal);
+  console.log(item);
 
   const [error, setError] = useState<boolean>(false);
 
@@ -178,6 +179,7 @@ function PersonalDetails() {
           state={{
             localListingList,
             foreignerListingList,
+            item,
             entry,
             total,
             personal,
@@ -195,6 +197,7 @@ function PersonalDetails() {
             state={{
               localListingList,
               foreignerListingList,
+              item,
               entry,
               total,
               personal,
@@ -213,6 +216,7 @@ function PersonalDetails() {
               localListingList,
               foreignerListingList,
               entry,
+              item,
               total,
               personal,
               isChecked,
