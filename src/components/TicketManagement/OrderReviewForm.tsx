@@ -205,7 +205,7 @@ function OrderReviewForm() {
         </div>
       </div>
 
-      <div className="mb-5 flex w-screen justify-end px-5 text-2xl font-bold sm:px-20 ">
+      <div className="mb-5 flex w-screen justify-between px-5 text-2xl font-bold sm:px-20 ">
         {!user ? (
           <NavLink
             to="/tickets/personalDetails"
@@ -218,9 +218,9 @@ function OrderReviewForm() {
               personal,
               isChecked,
             }}
-            className="mr-5"
+            className="justify-left w-2/5"
           >
-            <Button className="w-20 rounded">Back</Button>
+            <Button className="w-full rounded">Back</Button>
           </NavLink>
         ) : (
           <NavLink
@@ -234,9 +234,9 @@ function OrderReviewForm() {
               personal,
               isChecked,
             }}
-            className="mr-5"
+            className="justify-left w-2/5"
           >
-            <Button className="w-20 rounded">Back</Button>
+            <Button className="w-full rounded">Back</Button>
           </NavLink>
         )}
         {user ? (
@@ -251,9 +251,9 @@ function OrderReviewForm() {
               personal,
               isChecked,
             }}
-            className="flex bg-red-100"
+            className="justify-right flex w-2/5 bg-red-100"
           >
-            <Button className="w-20 rounded">Next</Button>
+            <Button className="w-full rounded">Next</Button>
           </NavLink>
         ) : (
           <div className="flex bg-red-100">
