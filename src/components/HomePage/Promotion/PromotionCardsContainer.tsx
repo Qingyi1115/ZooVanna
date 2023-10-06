@@ -10,6 +10,8 @@ import useApiJson from "../../../hooks/useApiJson";
 
 import { useToast } from "@/components/ui/use-toast";
 
+import { Link } from "react-router-dom";
+
 function PromotionCardsContainer() {
   const apiJson = useApiJson();
 
@@ -191,12 +193,14 @@ function PromotionCardsContainer() {
       {promotionList && (
         <HorizontalCardContainer>
           {promotionList.map((item) => (
-            <ImageCard
-              id={item.promotionId}
-              imageUrl={"http://localhost:3000/" + item.imageUrl}
-              title={item.title}
-              description={item.description}
-            />
+            <Link to="/account">
+              <ImageCard
+                id={item.promotionId}
+                imageUrl={"http://localhost:3000/" + item.imageUrl}
+                title={item.title}
+                description={item.description}
+              />
+            </Link>
           ))}
         </HorizontalCardContainer>
       )}

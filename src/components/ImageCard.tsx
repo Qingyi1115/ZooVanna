@@ -8,6 +8,7 @@ import {
   CardTitleModified,
 } from "./CardModified";
 
+
 interface ImageCardProps {
   id: number;
   imageUrl: string;
