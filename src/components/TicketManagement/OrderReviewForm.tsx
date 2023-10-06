@@ -252,9 +252,9 @@ function OrderReviewForm() {
             </NavLink>
           </div>
         ) : (
-          <div className="flex bg-red-100">
+          <div className="bg-red-10 flex w-2/5 md:w-2/5 lg:w-1/5">
             <Button
-              className="w-full rounded lg:w-20"
+              className="w-full rounded"
               onClick={() => handleGuestDialog()}
             >
               Next
