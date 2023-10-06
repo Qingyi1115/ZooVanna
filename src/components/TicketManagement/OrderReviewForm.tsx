@@ -213,7 +213,7 @@ function OrderReviewForm() {
                 isChecked,
               }}
             >
-              <Button className="w-full rounded md:w-3/5 lg:w-20">Back</Button>
+              <Button className="w-full rounded">Back</Button>
             </NavLink>
           </div>
         ) : (
@@ -235,7 +235,7 @@ function OrderReviewForm() {
           </div>
         )}
         {user ? (
-          <div className="w-2/5 bg-red-500 md:w-2/5 lg:w-1/5">
+          <div className="w-2/5 md:w-2/5 lg:w-1/5">
             <NavLink
               to="/tickets/payment"
               state={{
@@ -252,7 +252,7 @@ function OrderReviewForm() {
             </NavLink>
           </div>
         ) : (
-          <div className="bg-red-10 flex w-2/5 md:w-2/5 lg:w-1/5">
+          <div className=" flex w-2/5 md:w-2/5 lg:w-1/5">
             <Button
               className="w-full rounded"
               onClick={() => handleGuestDialog()}

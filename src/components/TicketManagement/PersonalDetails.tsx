@@ -78,28 +78,6 @@ function PersonalDetails() {
     }
   }
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    personal.firstName = firstName;
-    personal.lastName = lastName;
-    personal.email = email;
-    personal.contactNo = contactNo;
-    if (firstName && lastName && email && contactNo && email === confirmEmail) {
-      <Navigate
-        to="/tickets/orderReview"
-        state={{
-          localListingList,
-          foreignerListingList,
-          entry,
-          total,
-          item,
-          isChecked,
-          personal,
-        }}
-      />;
-    }
-    // handle success case or failurecase using apiJson
-  }
-
   return (
     <div className="dark flex h-full w-full flex-col justify-center gap-6 rounded-lg border border-stroke p-10 pt-5 text-black dark:border-stroke md:pt-10 ">
       <div className="m-0 text-2xl font-bold md:mb-5">Personal Details</div>
@@ -173,61 +151,67 @@ function PersonalDetails() {
           * Please fill in the contactNo
         </div>
       )}
-      <div className="mb-5 flex w-screen justify-end px-20 text-2xl font-bold sm:px-20 ">
-        <NavLink
-          to="/tickets/selectDate"
-          state={{
-            localListingList,
-            foreignerListingList,
-            item,
-            entry,
-            total,
-            personal,
-            isChecked,
-          }}
-          className="mr-5"
-        >
-          <Button className="w-15 rounded sm:w-20">
-            <div>Back</div>
-          </Button>
-        </NavLink>
+      <div className="mb-5 flex w-full justify-between text-2xl font-bold">
+        <div className="justify-left w-2/5 md:w-2/5 lg:w-1/5">
+          <NavLink
+            to="/tickets/selectDate"
+            state={{
+              localListingList,
+              foreignerListingList,
+              item,
+              entry,
+              total,
+              personal,
+              isChecked,
+            }}
+          >
+            <Button className="w-full rounded">
+              <div>Back</div>
+            </Button>
+          </NavLink>
+        </div>
+
         {lastName && firstName && email && contactNo ? (
-          <NavLink
-            to="/tickets/orderReview"
-            state={{
-              localListingList,
-              foreignerListingList,
-              item,
-              entry,
-              total,
-              personal,
-              isChecked,
-            }}
-            className="flex"
-          >
-            <Button className="w-15 rounded sm:w-20">
-              <div>Next</div>
-            </Button>
-          </NavLink>
+          <div className="justify-right w-2/5 md:w-2/5 lg:w-1/5">
+            <NavLink
+              to="/tickets/orderReview"
+              state={{
+                localListingList,
+                foreignerListingList,
+                item,
+                entry,
+                total,
+                personal,
+                isChecked,
+              }}
+              className="flex"
+            >
+              <Button className="w-full rounded">
+                <div>Next</div>
+              </Button>
+            </NavLink>
+          </div>
         ) : (
-          <NavLink
-            to="/tickets/orderReview"
-            state={{
-              localListingList,
-              foreignerListingList,
-              entry,
-              item,
-              total,
-              personal,
-              isChecked,
-            }}
-            className="flex"
-            onClick={handleClick}
-          >
-            <Button className="w-15 rounded sm:w-20" disabled>
-              <div>Next</div>
-            </Button>
-          </NavLink>
+          <div className=" flex w-3/5 md:w-2/5 lg:w-1/5">
+            <NavLink
+              to="/tickets/orderReview"
+              state={{
+                localListingList,
+                foreignerListingList,
+                entry,
+                item,
+                total,
+                personal,
+                isChecked,
+              }}
+              className="flex"
+              onClick={handleClick}
+            >
+              <Button className="w-full rounded" disabled>
+                <div>Next</div>
+              </Button>
+            </NavLink>
+          </div>
         )}
       </div>
     </div>

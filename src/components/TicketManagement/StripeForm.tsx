@@ -194,7 +194,7 @@ function StripeForm(props: StripeFormProps) {
       <PaymentElement />
       <div className="mt-5 flex w-full md:justify-end">
         <Button
-          className="w-full md:w-1/5 lg:w-20"
+          className="w-full md:w-1/5 lg:w-1/5"
           onClick={handleProcessing}
           disabled={isProcessing}
         >
