@@ -8,7 +8,6 @@ import {
   CardTitleModified,
 } from "./CardModified";
 
-
 interface ImageCardProps {
   id: number;
   imageUrl: string;
@@ -30,7 +29,9 @@ function ImageCard({ id, imageUrl, title, description }: ImageCardProps) {
       </CardContentModified>
       <CardHeaderModified>
         <CardTitleModified>{title}</CardTitleModified>
-        <CardDescriptionModified>{description}</CardDescriptionModified>
+        <CardDescriptionModified className="line-clamp-2">
+          {description}
+        </CardDescriptionModified>
       </CardHeaderModified>
     </CardModified>
   );
