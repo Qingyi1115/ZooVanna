@@ -128,20 +128,32 @@ function ListingForm() {
           </Card>
         </div>
       </div>
-      <div className="mb-5 flex w-screen justify-end pr-5 text-2xl font-bold lg:pr-20">
-        <NavLink
-          to="/tickets/selectDate"
-          state={{
-            localListingList,
-            foreignerListingList,
-            entry,
-            total,
-            personal,
-            isChecked,
-          }}
-        >
-          <Button className="w-20 rounded ">Next</Button>
-        </NavLink>
+      <div className="mb-5 flex w-screen justify-end px-5 text-2xl font-bold lg:px-20">
+        {total > 0 ? (
+          <NavLink
+            to="/tickets/selectDate"
+            state={{
+              localListingList,
+              foreignerListingList,
+              entry,
+              total,
+              personal,
+              isChecked,
+            }}
+            className="w-full"
+          >
+            <Button className="w-full rounded">Next</Button>
+          </NavLink>
+        ) : (
+          <div className="w-full">
+            <div className="flex h-8 items-center justify-center bg-red-100 text-sm text-red-600">
+              Please select at least one ticket!
+            </div>
+            <div className="mt-2 flex w-full justify-end">
+              <Button className="disabled w-full rounded">Next</Button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -31,7 +31,11 @@ function SelectDateForm() {
   useEffect(() => {
     let result = 0;
     for (const listing of listingList) {
-      result += listing.orderItems.length;
+      if (listing.orderItems) {
+        result += listing.orderItems.length;
+      } else {
+        listing.orderItems = [];
+      }
     }
     setItem(result);
   }, []);
@@ -39,7 +43,9 @@ function SelectDateForm() {
   useEffect(() => {
     let result = 0;
     for (const listing of listingList) {
-      result += listing.orderItems.length * listing.price;
+      if (listing.orderItems) {
+        result += listing.orderItems.length * listing.price;
+      }
     }
     setTotal(result);
   });
@@ -98,13 +104,13 @@ function SelectDateForm() {
                 <Separator className="opacity-20" />
                 {localListingList?.map(
                   (listing) =>
-                    listing.orderItems.length > 0 && (
+                    listing.orderItems?.length > 0 && (
                       <DateFormSummary listing={listing} />
                     ),
                 )}
                 {foreignerListingList?.map(
                   (listing) =>
-                    listing.orderItems.length > 0 && (
+                    listing.orderItems?.length > 0 && (
                       <DateFormSummary listing={listing} />
                     ),
                 )}
@@ -115,7 +121,7 @@ function SelectDateForm() {
           </Card>
         </div>
       </div>
-      <div className="mb-5 flex w-screen justify-end px-10 text-2xl font-bold sm:px-30 md:px-40 lg:px-20">
+      <div className="mb-5 flex w-screen justify-between px-10 text-2xl font-bold sm:px-30 md:px-40 lg:px-20">
         <NavLink
           to="/tickets/selectListing/listingForm"
           state={{
@@ -127,9 +133,9 @@ function SelectDateForm() {
             personal,
             isChecked,
           }}
-          className="mr-5"
+          className="justify-left mr-5 w-2/5 "
         >
-          <Button className="w-20 rounded">Back</Button>
+          <Button className="w-full rounded">Back</Button>
         </NavLink>
         {!user ? (
           <NavLink
@@ -143,8 +149,9 @@ function SelectDateForm() {
               personal,
               isChecked,
             }}
+            className="justify-right w-2/5"
           >
-            <Button className="w-20 rounded">Next</Button>
+            <Button className="w-full rounded">Next</Button>
           </NavLink>
         ) : (
           <NavLink
@@ -158,8 +165,9 @@ function SelectDateForm() {
               personal,
               isChecked,
             }}
+            className="justify-right w-2/5"
           >
-            <Button className="w-20 rounded">Next</Button>
+            <Button className="w-full rounded">Next</Button>
           </NavLink>
         )}
       </div>

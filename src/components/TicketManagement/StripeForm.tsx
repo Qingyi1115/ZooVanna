@@ -192,8 +192,12 @@ function StripeForm(props: StripeFormProps) {
   return (
     <div>
       <PaymentElement />
-      <div className="mt-5 flex w-full justify-end">
-        <Button className="" onClick={handleProcessing} disabled={isProcessing}>
+      <div className="mt-5 flex w-full">
+        <Button
+          className="w-full"
+          onClick={handleProcessing}
+          disabled={isProcessing}
+        >
           <span>{isProcessing ? "Processing..." : "Pay"}</span>
         </Button>
       </div>
