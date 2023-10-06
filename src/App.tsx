@@ -33,6 +33,7 @@ import PersonalDetails from "./components/TicketManagement/PersonalDetails";
 import LoginPurchaseForm from "./components/AccountPage/LoginPurchaseForm";
 import PaymentForm from "./components/TicketManagement/PaymentForm";
 import CompletionPage from "./pages/PurchaseTicketManagement/CompletionPage";
+import ViewPromotionPage from "./pages/Promotion/ViewPromotionPage";
 
 function App() {
   return (
@@ -48,6 +49,10 @@ function App() {
           <MainLayout>
             <Routes>
               <Route path="/" element={<HomePage />} />
+              <Route
+                path="/promotion/viewpromotion/:promotionId"
+                element={<ViewPromotionPage />}
+              />
               <Route path="/map" element={<MapPage />} />
               <Route path="/tickets" element={<TicketsPage />} />
               <Route path="/tickets/selectListing" element={<ListingPage />} />

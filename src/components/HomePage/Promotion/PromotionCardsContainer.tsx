@@ -193,7 +193,7 @@ function PromotionCardsContainer() {
       {promotionList && (
         <HorizontalCardContainer>
           {promotionList.map((item) => (
-            <Link to="/account">
+            <Link to={`/promotion/viewpromotion/${item.promotionId}`}>
               <ImageCard
                 id={item.promotionId}
                 imageUrl={"http://localhost:3000/" + item.imageUrl}

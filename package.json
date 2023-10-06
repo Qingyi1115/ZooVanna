@@ -24,6 +24,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "lucide-react": "^0.279.0",
+    "moment-timezone": "^0.5.43",
     "primeicons": "^6.0.1",
     "primereact": "^9.6.2",
     "react": "^18.2.0",
