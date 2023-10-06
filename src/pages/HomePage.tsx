@@ -4,7 +4,7 @@ import PromotionCardsContainer from "../components/HomePage/Promotion/PromotionC
 
 function HomePage() {
   return (
-    <div className="flex h-screen flex-col items-center p-6">
+    <div className="flex h-screen flex-col p-6">
       {/* <Button>Default</Button>
       <Button variant="destructive">Destructive</Button>
       <Button variant="ghost">Ghost</Button>
