@@ -185,11 +185,17 @@ function OrderReviewForm() {
                 disabled={isPromotionApplied}
               />
               {isPromotionApplied ? (
-                <Button className="h-11 w-1/4" onClick={changePromotionCode}>
+                <Button
+                  className="ml-2 h-11 w-1/4"
+                  onClick={changePromotionCode}
+                >
                   Change
                 </Button>
               ) : (
-                <Button className="h-11 w-1/4" onClick={applyPromotionCode}>
+                <Button
+                  className="ml-2 h-11 w-1/4"
+                  onClick={applyPromotionCode}
+                >
                   Apply
                 </Button>
               )}

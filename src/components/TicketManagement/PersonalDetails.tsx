@@ -91,7 +91,7 @@ function PersonalDetails() {
       />
       {!firstName && (
         <div className="bg-red-100 font-medium text-danger">
-          * Please fill in the name!
+          * Please fill in the first name!
         </div>
       )}
       <InputText
@@ -104,7 +104,7 @@ function PersonalDetails() {
       />
       {!lastName && (
         <div className="bg-red-100 font-medium text-danger">
-          * Please fill in the name!
+          * Please fill in the last name!
         </div>
       )}
       <InputText
@@ -115,6 +115,11 @@ function PersonalDetails() {
           setEmail(target.value);
         }}
       />
+      {!email && (
+        <div className="bg-red-100 font-medium text-danger">
+          * Please fill in the email
+        </div>
+      )}
       {!email && email !== confirmEmail && (
         <div className="bg-red-100 font-medium text-danger">
           * The Email is not the same!
@@ -148,7 +153,7 @@ function PersonalDetails() {
       />
       {!contactNo && (
         <div className="bg-red-100 font-medium text-danger">
-          * Please fill in the contactNo
+          * Please fill in the contact number!
         </div>
       )}
       <div className="mb-5 flex w-full justify-between text-2xl font-bold">
@@ -192,7 +197,7 @@ function PersonalDetails() {
             </NavLink>
           </div>
         ) : (
-          <div className=" flex w-3/5 md:w-2/5 lg:w-1/5">
+          <div className=" w-2/5 md:w-2/5 lg:w-1/5">
             <NavLink
               to="/tickets/orderReview"
               state={{
