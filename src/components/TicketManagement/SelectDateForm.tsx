@@ -60,7 +60,7 @@ function SelectDateForm() {
       <div className="mt-0 block w-screen items-center justify-center lg:flex">
         <div className="mb-5 flex w-screen items-center justify-center px-5 lg:px-20">
           <div className=" w-full items-center justify-center px-5 sm:px-15 md:mt-0 md:px-35 lg:p-0 lg:px-8">
-            <div className="flex items-center justify-around  ">
+            <div className="flex items-center  ">
               <Calendar
                 value={entry}
                 onChange={(e: CalendarChangeEvent) => {
@@ -69,106 +69,113 @@ function SelectDateForm() {
                   }
                 }}
                 inline
-                className="w-full border-0"
+                className="w-full border-0 "
                 minDate={new Date(Date.now())}
               />
             </div>
           </div>
         </div>
-        <div className="mb-2 mt-10 flex w-screen items-center justify-center px-10 pb-5 sm:px-20 md:px-40 lg:p-0 lg:px-20">
-          <Card className="w-full items-center justify-between lg:mt-0">
-            <CardHeader className="flex justify-between">
-              <CardTitle className="flex justify-between text-xl font-bold">
-                <div>Total Payable:</div>
-                <div>S${total}</div>
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="">
-              <div className="mb-2 flex justify-between">
-                <div className="text-l flex">Subtotal:</div>
-                <div className="flex">S${total}</div>
-              </div>
+        <div className="mb-2 flex w-screen items-center justify-center px-10 pb-5 sm:px-20 md:px-40 lg:p-0 lg:px-20">
+          <div className="flex w-full items-center">
+            <Card className="w-full items-center justify-center lg:mt-0">
+              <CardHeader className="flex justify-between">
+                <CardTitle className="flex justify-between text-xl font-bold">
+                  <div>Total Payable:</div>
+                  <div>S${total}</div>
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="">
+                <div className="mb-2 flex justify-between">
+                  <div className="text-l flex">Subtotal:</div>
+                  <div className="flex">S${total}</div>
+                </div>
 
-              <Separator className="opacity-20" />
-              <div className="mt-5">
-                <div className="text-xl font-bold">Admissions</div>
-                <div className="flex justify-between">
-                  <div className="flex">Merlion Zoo</div>
-                  <div className="flex">{item} item(s)</div>
-                </div>
-                <div className="mb-2 text-xs">
-                  {new Date(
-                    entry ? entry.toString() : entryDate.toString(),
-                  )?.toLocaleDateString()}
-                </div>
                 <Separator className="opacity-20" />
-                {localListingList?.map(
-                  (listing) =>
-                    listing.orderItems?.length > 0 && (
-                      <DateFormSummary listing={listing} />
-                    ),
-                )}
-                {foreignerListingList?.map(
-                  (listing) =>
-                    listing.orderItems?.length > 0 && (
-                      <DateFormSummary listing={listing} />
-                    ),
-                )}
-              </div>
+                <div className="mt-5">
+                  <div className="text-xl font-bold">Admissions</div>
+                  <div className="flex justify-between">
+                    <div className="flex">Merlion Zoo</div>
+                    <div className="flex">{item} item(s)</div>
+                  </div>
+                  <div className="mb-2 text-xs">
+                    {new Date(
+                      entry ? entry.toString() : entryDate.toString(),
+                    )?.toLocaleDateString()}
+                  </div>
+                  <Separator className="opacity-20" />
+                  {localListingList?.map(
+                    (listing) =>
+                      listing.orderItems?.length > 0 && (
+                        <DateFormSummary listing={listing} />
+                      ),
+                  )}
+                  {foreignerListingList?.map(
+                    (listing) =>
+                      listing.orderItems?.length > 0 && (
+                        <DateFormSummary listing={listing} />
+                      ),
+                  )}
+                </div>
 
-              <Separator className="opacity-20" />
-            </CardContent>
-          </Card>
+                <Separator className="opacity-20" />
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </div>
-      <div className="mb-5 flex w-screen justify-between px-10 text-2xl font-bold sm:px-30 md:px-40 lg:px-20">
-        <NavLink
-          to="/tickets/selectListing/listingForm"
-          state={{
-            localListingList,
-            foreignerListingList,
-            entry,
-            total,
-            item,
-            personal,
-            isChecked,
-          }}
-          className="justify-left mr-5 w-2/5 "
-        >
-          <Button className="w-full rounded">Back</Button>
-        </NavLink>
+      <div className="mb-5 flex w-screen justify-between px-10 text-2xl font-bold sm:px-20 md:px-40 lg:px-20">
+        <div className="justify-left w-2/5 lg:ml-8 lg:w-1/5">
+          <NavLink
+            to="/tickets/selectListing/listingForm"
+            state={{
+              localListingList,
+              foreignerListingList,
+              entry,
+              total,
+              item,
+              personal,
+              isChecked,
+            }}
+          >
+            <Button className="w-full rounded">Back</Button>
+          </NavLink>
+        </div>
+
         {!user ? (
-          <NavLink
-            to="/tickets/personalDetails"
-            state={{
-              localListingList,
-              foreignerListingList,
-              entry,
-              total,
-              item,
-              personal,
-              isChecked,
-            }}
-            className="justify-right w-2/5"
-          >
-            <Button className="w-full rounded">Next</Button>
-          </NavLink>
+          <div className="justify-right w-2/5 lg:w-1/5">
+            <NavLink
+              to="/tickets/personalDetails"
+              state={{
+                localListingList,
+                foreignerListingList,
+                entry,
+                total,
+                item,
+                personal,
+                isChecked,
+              }}
+            >
+              <Button className="w-full rounded">Next</Button>
+            </NavLink>
+          </div>
         ) : (
-          <NavLink
-            to="/tickets/orderReview"
-            state={{
-              localListingList,
-              foreignerListingList,
-              entry,
-              total,
-              item,
-              personal,
-              isChecked,
-            }}
-            className="justify-right w-2/5"
-          >
-            <Button className="w-full rounded">Next</Button>
-          </NavLink>
+          <div className="justify-right w-2/5 lg:w-1/5">
+            {" "}
+            <NavLink
+              to="/tickets/orderReview"
+              state={{
+                localListingList,
+                foreignerListingList,
+                entry,
+                total,
+                item,
+                personal,
+                isChecked,
+              }}
+            >
+              <Button className="w-full rounded">Next</Button>
+            </NavLink>
+          </div>
         )}
       </div>
     </div>

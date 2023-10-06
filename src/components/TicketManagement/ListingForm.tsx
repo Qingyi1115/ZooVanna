@@ -16,14 +16,14 @@ interface CheckboxProps {
 }
 function Checkbox({ label, checked, onChange }: CheckboxProps) {
   return (
-    <div className="w-80 lg:w-100">
+    <div className="flex w-full justify-around">
       <input
         type="checkbox"
         checked={checked}
         onChange={(e) => onChange(e.target.checked)}
-        className="mb-2 block"
+        className="mb-2 mr-7 flex"
       />
-      <label className="text-red-500">{label}</label>
+      <label className="text-justify opacity-60">{label}</label>
     </div>
   );
 }
@@ -128,29 +128,35 @@ function ListingForm() {
           </Card>
         </div>
       </div>
-      <div className="mb-5 flex w-screen justify-end px-5 text-2xl font-bold lg:px-20">
+      <div className="mb-5 flex w-screen px-5 text-2xl font-bold md:justify-end lg:px-20">
         {total > 0 ? (
-          <NavLink
-            to="/tickets/selectDate"
-            state={{
-              localListingList,
-              foreignerListingList,
-              entry,
-              total,
-              personal,
-              isChecked,
-            }}
-            className="w-full"
-          >
-            <Button className="w-full rounded">Next</Button>
-          </NavLink>
+          <div className="w-full justify-end bg-red-400 md:w-1/5">
+            <NavLink
+              to="/tickets/selectDate"
+              state={{
+                localListingList,
+                foreignerListingList,
+                entry,
+                total,
+                personal,
+                isChecked,
+              }}
+            >
+              <Button className="w-full rounded">Next</Button>
+            </NavLink>
+          </div>
         ) : (
           <div className="w-full">
-            <div className="flex h-8 items-center justify-center bg-red-100 text-sm text-red-600">
-              Please select at least one ticket!
+            <div className="flex w-full md:justify-end ">
+              <div className="flex h-8 w-full items-center justify-center bg-red-100 text-sm text-red-600 md:w-2/5 lg:w-1/5">
+                Please select at least one ticket!
+              </div>
             </div>
+
             <div className="mt-2 flex w-full justify-end">
-              <Button className="disabled w-full rounded">Next</Button>
+              <Button className="disabled w-full rounded md:w-2/5 lg:w-1/5">
+                Next
+              </Button>
             </div>
           </div>
         )}

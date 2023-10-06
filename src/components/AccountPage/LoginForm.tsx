@@ -94,7 +94,7 @@ function LoginForm() {
         </Form.Field>
 
         <Form.Submit asChild>
-          <button className="h-12 w-full rounded-full border bg-black text-whiter">
+          <button className="h-12 w-full rounded border bg-black text-whiter">
             Log In
           </button>
         </Form.Submit>

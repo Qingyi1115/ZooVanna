@@ -29,9 +29,12 @@ function ListingCard(props: ListingProps) {
       {!isChecked
         ? listing.listingStatus !== ListingStatus.DISCONTINUED && (
             <div className="bg-gray-300 text-gray-900 cursor-not-allowed justify-center">
-              <div className="flex items-center">
-                <h2 className="text-xl font-bold">{listing.name}</h2>
-                <p className="ml-5 mr-5 font-bold">S${listing.price}</p>
+              <div className="flex items-center justify-between">
+                <div className="flex">
+                  <h2 className="text-xl font-bold">{listing.name}</h2>
+                  <p className="ml-5 mr-5 font-bold">S${listing.price}</p>
+                </div>
+
                 <AddOrMinusButton
                   listing={listing}
                   isChecked={isChecked}
@@ -44,9 +47,11 @@ function ListingCard(props: ListingProps) {
           )
         : listing.listingStatus !== ListingStatus.DISCONTINUED && (
             <div className="block justify-center">
-              <div className="justify-left flex items-center">
-                <h2 className="text-xl font-bold">{listing.name}</h2>
-                <p className="ml-5 mr-5 font-bold">S${listing.price}</p>
+              <div className="flex items-center justify-between">
+                <div className="flex">
+                  <h2 className="text-xl font-bold">{listing.name}</h2>
+                  <p className="ml-5 mr-5 font-bold">S${listing.price}</p>
+                </div>
                 <AddOrMinusButton
                   listing={listing}
                   isChecked={true}

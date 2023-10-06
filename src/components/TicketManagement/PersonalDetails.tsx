@@ -112,7 +112,7 @@ function PersonalDetails() {
         }}
       />
       {!firstName && (
-        <div className="font-medium text-danger">
+        <div className="bg-red-100 font-medium text-danger">
           * Please fill in the name!
         </div>
       )}
@@ -125,7 +125,7 @@ function PersonalDetails() {
         }}
       />
       {!lastName && (
-        <div className="font-medium text-danger">
+        <div className="bg-red-100 font-medium text-danger">
           * Please fill in the name!
         </div>
       )}
@@ -138,7 +138,7 @@ function PersonalDetails() {
         }}
       />
       {!email && email !== confirmEmail && (
-        <div className="font-medium text-danger">
+        <div className="bg-red-100 font-medium text-danger">
           * The Email is not the same!
         </div>
       )}
@@ -151,12 +151,12 @@ function PersonalDetails() {
         }}
       />
       {!confirmEmail && (
-        <div className="font-medium text-danger">
+        <div className="bg-red-100 font-medium text-danger">
           * Please fill in the confirmation email!
         </div>
       )}
       {email !== confirmEmail && (
-        <div className="font-medium text-danger">
+        <div className="bg-red-100 font-medium text-danger">
           * The Email is not the same!
         </div>
       )}
@@ -169,7 +169,7 @@ function PersonalDetails() {
         }}
       />
       {!contactNo && (
-        <div className="font-medium text-danger">
+        <div className="bg-red-100 font-medium text-danger">
           * Please fill in the contactNo
         </div>
       )}
