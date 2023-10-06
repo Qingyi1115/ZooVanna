@@ -31,7 +31,7 @@ function StripeForm(props: StripeFormProps) {
   const apiJson = useApiJson();
   const [customer, setCustomer] = useState<Customer>();
   const toastShadcn = props.toastShadcn;
-  let customerOrderId: number;
+  const [customerOrderId, setCustomerOrderId] = useState<number | null>(null);
   let code: number;
   const id = props.id;
 
@@ -69,60 +69,25 @@ function StripeForm(props: StripeFormProps) {
 
   async function handleProcessing() {
     let customerOrder;
-    if (!user || !customer) {
-      customerOrder = {
-        bookingReference: uuidv4(),
-        totalAmount: total,
-        orderStatus: "ACTIVE",
-        entryDate: entry,
-        customerFirstName: personal.customerFirstName,
-        customerLastName: personal.customerLastName,
-        customerContactNo: personal.customerContactNo,
-        customerEmail: personal.customerEmail,
-        paymentStatus: "PENDING",
-      };
-
-      apiJson
-        .post(
-          "http://localhost:3000/api/customer/createCustomerOrderForGuest",
-          {
-            listings: listings,
-            customerOrder: customerOrder,
-          },
-        )
-        .catch((err) => {
-          console.log(err);
-          toastShadcn({
-            variant: "destructive",
-            title: "Uh oh! Something went wrong.",
-            description:
-              "An error has occurred while creating customer order: \n" + err,
-          });
-        })
-        .then((res) => {
-          console.log(res);
-          console.log(res.result.customerOrderId);
-          customerOrderId = res.result.customerOrderId;
-          handlePayment();
-        });
-    } else {
-      if (customer && user) {
+    console.log(customerOrderId);
+    if (!customerOrderId) {
+      if (!user || !customer) {
         customerOrder = {
           bookingReference: uuidv4(),
           totalAmount: total,
           orderStatus: "ACTIVE",
           entryDate: entry,
-          customerFirstName: customer.firstName,
-          customerLastName: customer.lastName,
-          customerContactNo: customer.contactNo,
-          customerEmail: customer.email,
+          customerFirstName: personal.customerFirstName,
+          customerLastName: personal.customerLastName,
+          customerContactNo: personal.customerContactNo,
+          customerEmail: personal.customerEmail,
           paymentStatus: "PENDING",
         };
+
         apiJson
           .post(
-            "http://localhost:3000/api/customer/createCustomerOrderForCustomer",
+            "http://localhost:3000/api/customer/createCustomerOrderForGuest",
             {
-              email: user.email,
               listings: listings,
               customerOrder: customerOrder,
             },
@@ -138,12 +103,61 @@ function StripeForm(props: StripeFormProps) {
           })
           .then((res) => {
             console.log(res);
-            console.log(res.result);
             console.log(res.result.customerOrderId);
-            customerOrderId = res.result.customerOrderId;
+            setCustomerOrderId(res.result.customerOrderId);
+            console.log(customerOrderId);
+          })
+          .then(() => {
+            console.log(customerOrderId);
             handlePayment();
           });
+      } else {
+        if (customer && user) {
+          customerOrder = {
+            bookingReference: uuidv4(),
+            totalAmount: total,
+            orderStatus: "ACTIVE",
+            entryDate: entry,
+            customerFirstName: customer.firstName,
+            customerLastName: customer.lastName,
+            customerContactNo: customer.contactNo,
+            customerEmail: customer.email,
+            paymentStatus: "PENDING",
+          };
+          apiJson
+            .post(
+              "http://localhost:3000/api/customer/createCustomerOrderForCustomer",
+              {
+                email: user.email,
+                listings: listings,
+                customerOrder: customerOrder,
+              },
+            )
+            .catch((err) => {
+              console.log(err);
+              toastShadcn({
+                variant: "destructive",
+                title: "Uh oh! Something went wrong.",
+                description:
+                  "An error has occurred while creating customer order: \n" +
+                  err,
+              });
+            })
+            .then((res) => {
+              console.log(res);
+              console.log(res.result);
+              console.log(res.result.customerOrderId);
+              setCustomerOrderId(res.result.customerOrderId);
+              console.log(customerOrderId);
+            })
+            .then(() => {
+              console.log(customerOrderId);
+              handlePayment();
+            });
+        }
       }
+    } else {
+      handlePayment();
     }
   }
 
@@ -165,6 +179,7 @@ function StripeForm(props: StripeFormProps) {
         title: "Uh oh! Something went wrong.",
         description: error.message,
       });
+      console.log(customerOrderId);
     } else {
       toastShadcn({
         title: "Successful",
