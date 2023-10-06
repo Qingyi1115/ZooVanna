@@ -118,10 +118,10 @@ function ViewPromotionDetails(props: PromotionDetailsProps) {
           </TableRow>
 
           <TableRow>
-            <TableCell className="w-1/3 font-bold" colSpan={2}>
+            {/* <TableCell className="w-1/3 font-bold" colSpan={2}>
               Description
-            </TableCell>
-            <TableCell>{curPromotion.description}</TableCell>
+            </TableCell> */}
+            <TableCell colSpan={3}>{curPromotion.description}</TableCell>
           </TableRow>
         </TableBody>
       </Table>

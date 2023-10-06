@@ -34,6 +34,7 @@ import LoginPurchaseForm from "./components/AccountPage/LoginPurchaseForm";
 import PaymentForm from "./components/TicketManagement/PaymentForm";
 import CompletionPage from "./pages/PurchaseTicketManagement/CompletionPage";
 import ViewPromotionPage from "./pages/Promotion/ViewPromotionPage";
+import TicketLandingPage from "./pages/TicketLandingPage";
 
 function App() {
   return (
@@ -54,7 +55,9 @@ function App() {
                 element={<ViewPromotionPage />}
               />
               <Route path="/map" element={<MapPage />} />
-              <Route path="/tickets" element={<TicketsPage />} />
+
+              <Route path="/tickets" element={<TicketLandingPage />} />
+              <Route path="/tickets/buy" element={<TicketsPage />} />
               <Route path="/tickets/selectListing" element={<ListingPage />} />
               <Route path="/tickets/selectDate" element={<SelectDateForm />} />
               <Route

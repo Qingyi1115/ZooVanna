@@ -35,6 +35,13 @@ function OrderReviewForm() {
   const toastShadcn = useToast().toast;
 
   const changePromotionCode = async () => {
+    const currentSpendingParam = {
+      currentSpending: total,
+    };
+    const promotion = await apiJson.get(
+      `http://localhost:3000/api/promotion/cancelUsePromotionCode/${promotionCode}`,
+      currentSpendingParam,
+    );
     setDiscount(0);
     setDiscountAmount(0);
     setFinalTotal(total);

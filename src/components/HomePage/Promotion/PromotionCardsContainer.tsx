@@ -195,7 +195,7 @@ function PromotionCardsContainer() {
           {promotionList.map((item) => (
             <Link to={`/promotion/viewpromotion/${item.promotionId}`}>
               <ImageCard
-                id={item.promotionId}
+                key={item.promotionId}
                 imageUrl={"http://localhost:3000/" + item.imageUrl}
                 title={item.title}
                 description={item.description}
