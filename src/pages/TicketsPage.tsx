@@ -83,7 +83,7 @@ function TicketsPage() {
           />
         ) : (
           <Navigate
-            to={"/tickets/selectListing"}
+            to={"/tickets/selectListing/listingForm"}
             state={{
               localListingList,
               foreignerListingList,

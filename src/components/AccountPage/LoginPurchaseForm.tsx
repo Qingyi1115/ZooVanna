@@ -63,7 +63,15 @@ function LoginPurchaseForm(props: LoginPurchaseProps) {
     const isSuccess = await login(email, password);
     console.log(isSuccess);
     if (isSuccess) {
-      navigate("/tickets");
+      navigate("/tickets/selectListing/listingForm", {
+        state: { localListingList, foreignerListingList, entry, personal },
+      });
+      {
+        /*<Navigate
+        to="/tickets/selectListing/listingForm"
+        state={{ localListingList, foreignerListingList, entry, personal }}
+    />;*/
+      }
     }
   }
 
