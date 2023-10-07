@@ -34,6 +34,7 @@ import LoginPurchaseForm from "./components/AccountPage/LoginPurchaseForm";
 import PaymentForm from "./components/TicketManagement/PaymentForm";
 import CompletionPage from "./pages/PurchaseTicketManagement/CompletionPage";
 import ViewPromotionPage from "./pages/Promotion/ViewPromotionPage";
+import Successful from "./pages/PurchaseTicketManagement/Successful";
 
 function App() {
   return (
@@ -75,6 +76,7 @@ function App() {
                 element={<ListingForm />}
               />
               <Route path="/tickets/payment" element={<PaymentForm />} />
+              <Route path="/success" element={<Successful />} />
               <Route
                 path="/tickets/completion/:customerOrderId/:code/:id"
                 element={<CompletionPage />}

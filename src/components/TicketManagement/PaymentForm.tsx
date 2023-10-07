@@ -34,6 +34,21 @@ function PaymentForm() {
     intent: "capture",
   };
 
+  const handleBeforeUnload = (event: any) => {
+    // You can provide a custom message here if needed
+    event.returnValue = ""; // Set an empty string to prevent the confirmation dialog
+  };
+
+  useEffect(() => {
+    // Attach the event listener when the component mounts
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    // Detach the event listener when the component unmounts
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
+
   const toast = useRef<Toast>(null);
   const toastShadcn = useToast().toast;
 

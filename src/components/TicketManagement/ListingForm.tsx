@@ -36,6 +36,7 @@ function ListingForm() {
   let entry = new Date(
     location.state.entry ? location.state.entry : new Date(Date.now()),
   );
+  let result: number = 0;
 
   let personal = location.state.personal;
   const isInitialRender = useRef(true);
@@ -58,6 +59,8 @@ function ListingForm() {
   }
 
   useEffect(() => {
+    console.log("here");
+    let result: number = Number(total);
     if (!isChecked) {
       for (const listing of localListingList) {
         if (listing.orderItems) {
@@ -65,11 +68,12 @@ function ListingForm() {
           for (let i = 0; i < len; i++) {
             console.log(listing.orderItems.length);
             listing.orderItems.pop();
-            setTotal(total - listing.price);
+            result -= listing.price;
           }
         }
       }
     }
+    setTotal(result);
   }, [isChecked]);
 
   return (

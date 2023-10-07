@@ -48,7 +48,7 @@ function SelectDateForm() {
       }
     }
     setTotal(result);
-  });
+  }, []);
 
   console.log(localListingList);
   console.log(foreignerListingList);

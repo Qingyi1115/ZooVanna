@@ -44,6 +44,21 @@ function StripeForm(props: StripeFormProps) {
     code = 0;
   }
 
+  const handleBeforeUnload = (event: any) => {
+    // You can provide a custom message here if needed
+    event.returnValue = ""; // Set an empty string to prevent the confirmation dialog
+  };
+
+  useEffect(() => {
+    // Attach the event listener when the component mounts
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    // Detach the event listener when the component unmounts
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
+
   useEffect(() => {
     if (user) {
       apiJson
@@ -105,11 +120,8 @@ function StripeForm(props: StripeFormProps) {
             console.log(res);
             console.log(res.result.customerOrderId);
             setCustomerOrderId(res.result.customerOrderId);
+            handlePayment(res.result.customerOrderId);
             console.log(customerOrderId);
-          })
-          .then(() => {
-            console.log(customerOrderId);
-            handlePayment();
           });
       } else {
         if (customer && user) {
@@ -148,20 +160,17 @@ function StripeForm(props: StripeFormProps) {
               console.log(res.result);
               console.log(res.result.customerOrderId);
               setCustomerOrderId(res.result.customerOrderId);
+              handlePayment(res.result.customerOrderId);
               console.log(customerOrderId);
-            })
-            .then(() => {
-              console.log(customerOrderId);
-              handlePayment();
             });
         }
       }
     } else {
-      handlePayment();
+      handlePayment(customerOrderId);
     }
   }
 
-  async function handlePayment() {
+  async function handlePayment(customerOrderId: number | null) {
     if (!stripe || !elements) {
       return;
     }

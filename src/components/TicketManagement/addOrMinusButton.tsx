@@ -29,6 +29,13 @@ function AddOrMinusButton(props: ButtonProps) {
   }
   let [count, setCount] = useState<number>(listing.orderItems.length);
 
+  useEffect(() => {
+    console.log("here");
+    if (!isChecked) {
+      setCount(0);
+    }
+  }, [isChecked]);
+
   console.log(listing.orderItems);
   console.log("is it here");
 
@@ -38,19 +45,14 @@ function AddOrMinusButton(props: ButtonProps) {
       verificationCode: uuidv4(),
       timeRedeemed: null,
     });
-    console.log("YES");
-    console.log(listing.orderItems);
-    console.log(total);
     setCount(count + 1);
     setTotal(Number(total) + Number(listing.price));
-    console.log(listing.orderItems + " HERE");
   }
 
   function decNum() {
     if (listing.orderItems.length > 0 && count > 0) {
       setCount(count - 1);
       listing.orderItems.pop();
-      console.log(total);
       setTotal(Number(total) - Number(listing.price));
     }
   }
