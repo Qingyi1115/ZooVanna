@@ -22,7 +22,7 @@ function ListingPage() {
     <>
       <div className="flex items-center justify-center pb-5 pt-0">
         <Navigate
-          to="listingForm"
+          to="/listingForm"
           state={{
             localListingList,
             foreignerListingList,

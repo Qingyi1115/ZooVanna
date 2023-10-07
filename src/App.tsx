@@ -66,7 +66,7 @@ function App() {
                 element={<OrderReviewForm />}
               />
               <Route
-                path="tickets/selectListing/listingForm"
+                path="/tickets/selectListing/listingForm"
                 element={<ListingForm />}
               />
               <Route
@@ -75,7 +75,7 @@ function App() {
               />
               <Route path="/tickets/custOrGuest" element={<CustOrGuest />} />
               <Route
-                path="tickets/custOrGuest/listingForm"
+                path="/tickets/custOrGuest/listingForm"
                 element={<ListingForm />}
               />
               <Route path="/tickets/payment" element={<PaymentForm />} />

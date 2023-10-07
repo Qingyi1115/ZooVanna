@@ -31,7 +31,7 @@ function CustOrGuest() {
               You can buy ticket without creating an account!
             </div>
             <NavLink
-              to="/tickets/selectListing/"
+              to="/tickets/selectListing/listingForm"
               state={{
                 localListingList,
                 foreignerListingList,

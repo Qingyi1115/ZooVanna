@@ -53,47 +53,50 @@ function OrderReviewForm() {
   };
 
   const applyPromotionCode = async () => {
-      if (!promotionCode || !promotionCode.length) {
-        return toastShadcn({
-          variant: "destructive",
-          title: "Promotion cannot be applied",
-          description: "Please type in a promo code!",
-        });
-      }
-      const packet = {
-        currentSpending: total,
-      };
-      apiJson.put(
+    if (!promotionCode || !promotionCode.length) {
+      return toastShadcn({
+        variant: "destructive",
+        title: "Promotion cannot be applied",
+        description: "Please type in a promo code!",
+      });
+    }
+    const packet = {
+      currentSpending: total,
+    };
+    apiJson
+      .put(
         `http://localhost:3000/api/promotion/verifyPromotionCode/${promotionCode}`,
         packet,
-      ).then(promotion=>{
-        console.log("promotion",promotion)
-  
+      )
+      .then((promotion) => {
+        console.log("promotion", promotion);
+
         const discountPercentage: number = promotion.percentage;
         setDiscount(discountPercentage);
         console.log("Discount applied: " + discountPercentage);
-  
+
         const discAmount: number = (discountPercentage / 100) * total;
         setDiscountAmount(discAmount);
         console.log("Discounted amount: " + discAmount);
-  
+
         const finalTot: number = total - discAmount;
         setFinalTotal(finalTot);
         console.log("Final total: " + finalTot);
-  
+
         setIsPromotionApplied(true);
-  
+
         toastShadcn({
           title: "Promotion Applied Successfully",
           description: "Successfully applied promotion code",
         });
-      }).catch(error=>{
+      })
+      .catch((error) => {
         toastShadcn({
           variant: "destructive",
           title: "Promotion cannot be applied",
           description: error.message,
         });
-      })
+      });
   };
 
   const handleGuestDialog = () => {
@@ -263,7 +266,7 @@ function OrderReviewForm() {
                 localListingList,
                 foreignerListingList,
                 entry,
-                total,
+                total: finalTotal,
                 item,
                 personal,
                 isChecked,
