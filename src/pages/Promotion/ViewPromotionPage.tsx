@@ -48,37 +48,6 @@ function ViewPromotionDetailsPage() {
 
   return (
     <div className="flex h-screen flex-col">
-      {/* <div className="flex w-full flex-col gap-6 rounded-lg border border-stroke bg-white p-20 text-black shadow-lg">
-        {curPromotion && curPromotion.promotionId != -1 && (
-          <div className="relative flex flex-col">
-            <div className="mb-4 flex justify-between">
-              <NavLink className="flex" to={`/`}>
-                <Button variant={"outline"} type="button" className="">
-                  Back
-                </Button>
-              </NavLink>
-              <span className="self-center text-lg text-graydark">
-                Promotion Details
-              </span>
-              <Button disabled className="invisible">
-                Back
-              </Button>
-            </div>
-            <Separator />
-            <span className="mt-4 self-center text-title-xl font-bold">
-              {curPromotion.title}
-            </span> */}
-      {/* <img
-        src={"http://localhost:3000/" + curPromotion.imageUrl}
-        alt="Current promotion image"
-        className="self-centerobject-cover w-full shadow-4"
-      />
-      <NavLink className="flex" to={`/`}>
-        <Button variant={"outline"} type="button" className="">
-          Back
-        </Button>
-      </NavLink> */}
-
       <div className="relative">
         <img
           src={"http://localhost:3000/" + curPromotion.imageUrl}
