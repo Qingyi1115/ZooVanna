@@ -262,7 +262,9 @@ function ForeignListingTable() {
                     listing.listingStatus !== ListingStatus.DISCONTINUED && (
                       <TableRowModified key={listing.listingId}>
                         <TableCellModified>{listing.name}</TableCellModified>
-                        <TableCellModified>{listing.price}</TableCellModified>
+                        <TableCellModified>
+                          S$ {listing.price}
+                        </TableCellModified>
                         {/* Add more TableCell components for other fields */}
                       </TableRowModified>
                     ),
