@@ -196,11 +196,17 @@ function OrderReviewForm() {
                 disabled={isPromotionApplied}
               />
               {isPromotionApplied ? (
-                <Button className="h-11 w-1/4" onClick={changePromotionCode}>
+                <Button
+                  className="ml-2 h-11 w-1/4"
+                  onClick={changePromotionCode}
+                >
                   Change
                 </Button>
               ) : (
-                <Button className="h-11 w-1/4" onClick={applyPromotionCode}>
+                <Button
+                  className="ml-2 h-11 w-1/4"
+                  onClick={applyPromotionCode}
+                >
                   Apply
                 </Button>
               )}
@@ -224,7 +230,7 @@ function OrderReviewForm() {
                 isChecked,
               }}
             >
-              <Button className="w-full rounded md:w-3/5 lg:w-20">Back</Button>
+              <Button className="w-full rounded">Back</Button>
             </NavLink>
           </div>
         ) : (
@@ -246,7 +252,7 @@ function OrderReviewForm() {
           </div>
         )}
         {user ? (
-          <div className="w-2/5 bg-red-500 md:w-2/5 lg:w-1/5">
+          <div className="w-2/5 md:w-2/5 lg:w-1/5">
             <NavLink
               to="/tickets/payment"
               state={{
@@ -263,9 +269,9 @@ function OrderReviewForm() {
             </NavLink>
           </div>
         ) : (
-          <div className="flex bg-red-100">
+          <div className=" flex w-2/5 md:w-2/5 lg:w-1/5">
             <Button
-              className="w-full rounded lg:w-20"
+              className="w-full rounded"
               onClick={() => handleGuestDialog()}
             >
               Next

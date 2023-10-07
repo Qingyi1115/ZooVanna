@@ -78,28 +78,6 @@ function PersonalDetails() {
     }
   }
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    personal.firstName = firstName;
-    personal.lastName = lastName;
-    personal.email = email;
-    personal.contactNo = contactNo;
-    if (firstName && lastName && email && contactNo && email === confirmEmail) {
-      <Navigate
-        to="/tickets/orderReview"
-        state={{
-          localListingList,
-          foreignerListingList,
-          entry,
-          total,
-          item,
-          isChecked,
-          personal,
-        }}
-      />;
-    }
-    // handle success case or failurecase using apiJson
-  }
-
   return (
     <div className="dark flex h-full w-full flex-col justify-center gap-6 rounded-lg border border-stroke p-10 pt-5 text-black dark:border-stroke md:pt-10 ">
       <div className="m-0 text-2xl font-bold md:mb-5">Personal Details</div>
@@ -113,7 +91,7 @@ function PersonalDetails() {
       />
       {!firstName && (
         <div className="bg-red-100 font-medium text-danger">
-          * Please fill in the name!
+          * Please fill in the first name!
         </div>
       )}
       <InputText
@@ -126,7 +104,7 @@ function PersonalDetails() {
       />
       {!lastName && (
         <div className="bg-red-100 font-medium text-danger">
-          * Please fill in the name!
+          * Please fill in the last name!
         </div>
       )}
       <InputText
@@ -137,6 +115,11 @@ function PersonalDetails() {
           setEmail(target.value);
         }}
       />
+      {!email && (
+        <div className="bg-red-100 font-medium text-danger">
+          * Please fill in the email
+        </div>
+      )}
       {!email && email !== confirmEmail && (
         <div className="bg-red-100 font-medium text-danger">
           * The Email is not the same!
@@ -170,64 +153,70 @@ function PersonalDetails() {
       />
       {!contactNo && (
         <div className="bg-red-100 font-medium text-danger">
-          * Please fill in the contactNo
+          * Please fill in the contact number!
         </div>
       )}
-      <div className="mb-5 flex w-screen justify-end px-20 text-2xl font-bold sm:px-20 ">
-        <NavLink
-          to="/tickets/selectDate"
-          state={{
-            localListingList,
-            foreignerListingList,
-            item,
-            entry,
-            total,
-            personal,
-            isChecked,
-          }}
-          className="mr-5"
-        >
-          <Button className="w-15 rounded sm:w-20">
-            <div>Back</div>
-          </Button>
-        </NavLink>
+      <div className="mb-5 flex w-full justify-between text-2xl font-bold">
+        <div className="justify-left w-2/5 md:w-2/5 lg:w-1/5">
+          <NavLink
+            to="/tickets/selectDate"
+            state={{
+              localListingList,
+              foreignerListingList,
+              item,
+              entry,
+              total,
+              personal,
+              isChecked,
+            }}
+          >
+            <Button className="w-full rounded">
+              <div>Back</div>
+            </Button>
+          </NavLink>
+        </div>
+
         {lastName && firstName && email && contactNo ? (
-          <NavLink
-            to="/tickets/orderReview"
-            state={{
-              localListingList,
-              foreignerListingList,
-              item,
-              entry,
-              total,
-              personal,
-              isChecked,
-            }}
-            className="flex"
-          >
-            <Button className="w-15 rounded sm:w-20">
-              <div>Next</div>
-            </Button>
-          </NavLink>
+          <div className="justify-right w-2/5 md:w-2/5 lg:w-1/5">
+            <NavLink
+              to="/tickets/orderReview"
+              state={{
+                localListingList,
+                foreignerListingList,
+                item,
+                entry,
+                total,
+                personal,
+                isChecked,
+              }}
+              className="flex"
+            >
+              <Button className="w-full rounded">
+                <div>Next</div>
+              </Button>
+            </NavLink>
+          </div>
         ) : (
-          <NavLink
-            to="/tickets/orderReview"
-            state={{
-              localListingList,
-              foreignerListingList,
-              entry,
-              item,
-              total,
-              personal,
-              isChecked,
-            }}
-            className="flex"
-            onClick={handleClick}
-          >
-            <Button className="w-15 rounded sm:w-20" disabled>
-              <div>Next</div>
-            </Button>
-          </NavLink>
+          <div className=" w-2/5 md:w-2/5 lg:w-1/5">
+            <NavLink
+              to="/tickets/orderReview"
+              state={{
+                localListingList,
+                foreignerListingList,
+                entry,
+                item,
+                total,
+                personal,
+                isChecked,
+              }}
+              className="flex"
+              onClick={handleClick}
+            >
+              <Button className="w-full rounded" disabled>
+                <div>Next</div>
+              </Button>
+            </NavLink>
+          </div>
         )}
       </div>
     </div>
