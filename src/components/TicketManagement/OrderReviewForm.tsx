@@ -35,50 +35,65 @@ function OrderReviewForm() {
   const toastShadcn = useToast().toast;
 
   const changePromotionCode = async () => {
-    setDiscount(0);
-    setDiscountAmount(0);
-    setFinalTotal(total);
-    setIsPromotionApplied(false);
+    try {
+      const packet = {
+        currentSpending: total,
+      };
+      const response = await apiJson.put(
+        `http://localhost:3000/api/promotion/cancelUsePromotionCode/${promotionCode}`,
+        packet,
+      );
+      setDiscount(0);
+      setDiscountAmount(0);
+      setFinalTotal(total);
+      setIsPromotionApplied(false);
+    } catch (error) {
+      console.log("Error: " + error);
+    }
   };
 
   const applyPromotionCode = async () => {
-    try {
-      const currentSpendingParam = {
+      if (!promotionCode || !promotionCode.length) {
+        return toastShadcn({
+          variant: "destructive",
+          title: "Promotion cannot be applied",
+          description: "Please type in a promo code!",
+        });
+      }
+      const packet = {
         currentSpending: total,
       };
-      const promotion = await apiJson.get(
+      apiJson.put(
         `http://localhost:3000/api/promotion/verifyPromotionCode/${promotionCode}`,
-        currentSpendingParam,
-      );
-
-      const discountPercentage: number = promotion.percentage;
-      setDiscount(discountPercentage);
-      console.log("Discount applied: " + discountPercentage);
-
-      const discAmount: number = (discountPercentage / 100) * total;
-      setDiscountAmount(discAmount);
-      console.log("Discounted amount: " + discAmount);
-
-      const finalTot: number = total - discAmount;
-      setFinalTotal(finalTot);
-      console.log("Final total: " + finalTot);
-
-      setIsPromotionApplied(true);
-
-      toastShadcn({
-        title: "Promotion Applied Successfully",
-        description: "Successfully applied promotion code",
-      });
-
-      //   setDeleteSpeciesDialog(false);
-    } catch (error: any) {
-      // got error
-      toastShadcn({
-        variant: "destructive",
-        title: "Promotion cannot be applied",
-        description: apiJson.error,
-      });
-    }
+        packet,
+      ).then(promotion=>{
+        console.log("promotion",promotion)
+  
+        const discountPercentage: number = promotion.percentage;
+        setDiscount(discountPercentage);
+        console.log("Discount applied: " + discountPercentage);
+  
+        const discAmount: number = (discountPercentage / 100) * total;
+        setDiscountAmount(discAmount);
+        console.log("Discounted amount: " + discAmount);
+  
+        const finalTot: number = total - discAmount;
+        setFinalTotal(finalTot);
+        console.log("Final total: " + finalTot);
+  
+        setIsPromotionApplied(true);
+  
+        toastShadcn({
+          title: "Promotion Applied Successfully",
+          description: "Successfully applied promotion code",
+        });
+      }).catch(error=>{
+        toastShadcn({
+          variant: "destructive",
+          title: "Promotion cannot be applied",
+          description: error.message,
+        });
+      })
   };
 
   const handleGuestDialog = () => {

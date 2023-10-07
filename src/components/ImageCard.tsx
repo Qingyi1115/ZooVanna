@@ -9,13 +9,13 @@ import {
 } from "./CardModified";
 
 interface ImageCardProps {
-  id: number;
+  key: number;
   imageUrl: string;
   title: string;
   description: string;
 }
 
-function ImageCard({ id, imageUrl, title, description }: ImageCardProps) {
+function ImageCard({ key, imageUrl, title, description }: ImageCardProps) {
   return (
     <CardModified className="w-full min-w-[60vw] lg:max-w-md">
       <CardContentModified>
