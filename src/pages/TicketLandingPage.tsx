@@ -7,7 +7,7 @@ import ForeignListingTable from "../components/TicketManagement/ForeignListingTa
 
 function HomePage() {
   return (
-    <div className="flex h-screen flex-col p-6">
+    <div className="flex h-full flex-col p-6">
       {/* <Button>Default</Button>
       <Button variant="destructive">Destructive</Button>
       <Button variant="ghost">Ghost</Button>
@@ -28,9 +28,11 @@ function HomePage() {
         <ForeignListingTable />
       </div>
 
-      <NavLink to={"/tickets/buy"}>
-        <Button className="mr-2">Buy Now</Button>
-      </NavLink>
+      <div className="md:justify- w-full ">
+        <NavLink to={"/tickets/buy"}>
+          <Button className="mr-2 w-full md:w-1/5">Buy Now</Button>
+        </NavLink>
+      </div>
     </div>
   );
 }
