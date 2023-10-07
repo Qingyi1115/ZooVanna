@@ -81,7 +81,6 @@ function OrderReviewForm() {
         description: "Successfully applied promotion code",
       });
 
-      //   setDeleteSpeciesDialog(false);
     } catch (error: any) {
       // got error
       toastShadcn({
