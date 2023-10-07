@@ -66,7 +66,7 @@ function AddOrMinusButton(props: ButtonProps) {
           <Button
             className="h-8 w-8 rounded-full text-white hover:bg-green-500"
             disabled
-            onClick={() => decNum()}
+            onClick={decNum}
           >
             -
           </Button>
