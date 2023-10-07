@@ -35,20 +35,31 @@ function OrderReviewForm() {
   const toastShadcn = useToast().toast;
 
   const changePromotionCode = async () => {
-    setDiscount(0);
-    setDiscountAmount(0);
-    setFinalTotal(total);
-    setIsPromotionApplied(false);
+    try {
+      const packet = {
+        currentSpending: total,
+      };
+      const response = await apiJson.put(
+        `http://localhost:3000/api/promotion/cancelUsePromotionCode/${promotionCode}`,
+        packet,
+      );
+      setDiscount(0);
+      setDiscountAmount(0);
+      setFinalTotal(total);
+      setIsPromotionApplied(false);
+    } catch (error) {
+      console.log("Error: " + error);
+    }
   };
 
   const applyPromotionCode = async () => {
     try {
-      const currentSpendingParam = {
+      const packet = {
         currentSpending: total,
       };
-      const promotion = await apiJson.get(
+      const promotion = await apiJson.put(
         `http://localhost:3000/api/promotion/verifyPromotionCode/${promotionCode}`,
-        currentSpendingParam,
+        packet,
       );
 
       const discountPercentage: number = promotion.percentage;
