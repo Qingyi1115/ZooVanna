@@ -257,13 +257,18 @@ function LocalListingTable() {
             </TableHeaderModified>
             <TableBodyModified>
               {listingList.length > 0 ? (
-                listingList.map((listing) => (
-                  <TableRowModified key={listing.listingId}>
-                    <TableCellModified>{listing.name}</TableCellModified>
-                    <TableCellModified>{listing.price}</TableCellModified>
-                    {/* Add more TableCell components for other fields */}
-                  </TableRowModified>
-                ))
+                listingList.map(
+                  (listing) =>
+                    listing.listingStatus !== ListingStatus.DISCONTINUED && (
+                      <TableRowModified key={listing.listingId}>
+                        <TableCellModified>{listing.name}</TableCellModified>
+                        <TableCellModified>
+                          S$ {listing.price}
+                        </TableCellModified>
+                        {/* Add more TableCell components for other fields */}
+                      </TableRowModified>
+                    ),
+                )
               ) : (
                 <TableRowModified>
                   <TableCellModified colSpan={2} className="h-24 text-center">

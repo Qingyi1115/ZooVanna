@@ -11,7 +11,9 @@ function HomePage() {
       <Button variant="outline">Outline</Button>
       <Button variant="secondary">Secondary</Button>
       <Button variant="link">Link</Button> */}
-
+      <div className="mb-3 pt-4">
+        <h1 className="px-4 text-2xl font-bold">Merlion Zoo</h1>
+      </div>
       <PromotionCardsContainer />
     </div>
   );

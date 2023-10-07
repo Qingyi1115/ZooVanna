@@ -14,6 +14,9 @@ function HomePage() {
       <Button variant="outline">Outline</Button>
       <Button variant="secondary">Secondary</Button>
       <Button variant="link">Link</Button> */}
+      <div className="mb-3 pt-4">
+        <h1 className="text-2xl font-bold">Ticket Pricing</h1>
+      </div>
       <div className="mb-5">
         <div className="mb-3 pt-4">
           <h1 className="text-xl font-extrabold">Local Resident</h1>
