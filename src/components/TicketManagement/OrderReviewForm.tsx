@@ -295,6 +295,31 @@ function OrderReviewForm() {
         footer={guestDialogFooter}
         onHide={hideGuestDialog}
       >
+        <div className="confirmation-content mt-4">
+          <div className="items-top flex">
+            <i
+              className="pi pi-exclamation-triangle mt-8"
+              style={{ fontSize: "2rem", marginRight: "1rem" }}
+            />
+            <div className="mx-3">
+              <div className="flex ">Guest Email:</div>
+              <div className="font-bold ">{personal.customerEmail}</div>
+              <div className="mt-4">Guest Phone Number:</div>
+              <div className="font-bold">{personal.customerContactNo}</div>
+            </div>
+          </div>
+        </div>
+      </Dialog>
+
+      {/* <Dialog
+        visible={guestDialog}
+        style={{ width: "32rem" }}
+        breakpoints={{ "960px": "75vw", "641px": "90vw" }}
+        header="Confirm"
+        modal
+        footer={guestDialogFooter}
+        onHide={hideGuestDialog}
+      >
         <div className="confirmation-content flex justify-around">
           <i
             className="pi pi-exclamation-triangle mr-3"
@@ -307,7 +332,7 @@ function OrderReviewForm() {
             <div className="font-bold">{personal.customerContactNo}</div>
           </div>
         </div>
-      </Dialog>
+      </Dialog> */}
     </div>
   );
 }
