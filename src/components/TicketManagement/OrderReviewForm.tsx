@@ -109,22 +109,24 @@ function OrderReviewForm() {
 
   const guestDialogFooter = (
     <React.Fragment>
-      <Button onClick={hideGuestDialog}>No</Button>
-      <NavLink
-        to="/tickets/payment"
-        state={{
-          localListingList,
-          foreignerListingList,
-          entry,
-          total: finalTotal,
-          item,
-          personal,
-          isChecked,
-        }}
-        className=""
-      >
-        <Button>Yes</Button>
-      </NavLink>
+      <div className="">
+        <Button onClick={hideGuestDialog}>No</Button>
+        <NavLink
+          to="/tickets/payment"
+          state={{
+            localListingList,
+            foreignerListingList,
+            entry,
+            total: finalTotal,
+            item,
+            personal,
+            isChecked,
+          }}
+          className=""
+        >
+          <Button>Yes</Button>
+        </NavLink>
+      </div>
     </React.Fragment>
   );
 
@@ -288,19 +290,20 @@ function OrderReviewForm() {
       </div>
       <Dialog
         visible={guestDialog}
-        style={{ width: "32rem" }}
+        style={{ width: "25rem" }}
         breakpoints={{ "960px": "75vw", "641px": "90vw" }}
         header="Confirm"
         modal
         footer={guestDialogFooter}
         onHide={hideGuestDialog}
+        className=""
       >
-        <div className="confirmation-content flex justify-around">
+        <div className="confirmation-content flex w-full items-center justify-start pt-3">
           <i
             className="pi pi-exclamation-triangle mr-3"
             style={{ fontSize: "2rem" }}
           />
-          <div className="">
+          <div className="ml-3">
             <div className="flex">Guest Email:</div>
             <div className="flex font-bold">{personal.customerEmail}</div>
             <div className="mt-2">Guest Phone Number:</div>
