@@ -17,7 +17,7 @@ interface ImageCardProps {
 
 function ImageCard({ key, imageUrl, title, description }: ImageCardProps) {
   return (
-    <CardModified className="w-full min-w-[60vw] lg:max-w-md">
+    <CardModified className="w-full min-w-[240px] max-w-[300px]">
       <CardContentModified>
         <div className="relative h-40 w-full overflow-hidden">
           <img
