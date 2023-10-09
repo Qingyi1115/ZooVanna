@@ -38,7 +38,6 @@ function ViewProfilePage() {
       try {
         const responseJson = await apiJson.get(
           "http://localhost:3000/api/customer/getCustomer",
-          email,
         );
         setCurrCustomer(responseJson as Customer);
       } catch (error: any) {

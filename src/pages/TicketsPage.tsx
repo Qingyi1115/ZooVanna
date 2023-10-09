@@ -49,9 +49,7 @@ function TicketsPage() {
   useEffect(() => {
     if (user) {
       apiJson
-        .post("http://localhost:3000/api/customer/getCustomer", {
-          email: user.email,
-        })
+        .get("http://localhost:3000/api/customer/getCustomer")
         .catch((err: any) => console.log(err))
         .then((res: any) => {
           console.log(res);

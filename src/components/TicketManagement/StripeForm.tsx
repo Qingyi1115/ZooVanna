@@ -62,9 +62,7 @@ function StripeForm(props: StripeFormProps) {
   useEffect(() => {
     if (user) {
       apiJson
-        .post("http://localhost:3000/api/customer/getCustomer", {
-          email: user.email,
-        })
+        .get("http://localhost:3000/api/customer/getCustomer")
         .catch((error) => {
           console.log(error);
           toastShadcn({
@@ -140,7 +138,6 @@ function StripeForm(props: StripeFormProps) {
             .post(
               "http://localhost:3000/api/customer/createCustomerOrderForCustomer",
               {
-                email: user.email,
                 listings: listings,
                 customerOrder: customerOrder,
               },
