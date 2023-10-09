@@ -24,7 +24,6 @@ function DeleteButton({ email }: { email: string }) {
     try {
       const customer = await apiJson.get(
         "http://localhost:3000/api/customer/getCustomer",
-        email,
       );
       const responseJson = await apiJson.del(
         "http://localhost:3000/api/customer/deleteCustomer/" +
