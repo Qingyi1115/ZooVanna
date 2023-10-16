@@ -6,7 +6,6 @@ import useApiJson from "../../hooks/useApiJson";
 import { Calendar, CalendarChangeEvent } from "primereact/calendar";
 import FormFieldSelect from "../FormFieldSelect";
 import { countryValueLabelPair } from "../../enums/Country";
-import { clear } from "console";
 
 function SignupForm() {
   const apiJson = useApiJson();

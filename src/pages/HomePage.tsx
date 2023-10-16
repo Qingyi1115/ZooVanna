@@ -1,5 +1,3 @@
-import { Button } from "@/components/ui/button";
-import React from "react";
 import PromotionCardsContainer from "../components/HomePage/Promotion/PromotionCardsContainer";
 
 function HomePage() {

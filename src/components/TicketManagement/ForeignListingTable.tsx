@@ -1,35 +1,18 @@
-import { Toast } from "primereact/toast";
-import React, { useEffect, useState, useRef } from "react";
-import { DataTable } from "primereact/datatable";
+import { useEffect, useState } from "react";
 import {
   TableModified,
   TableHeaderModified,
   TableBodyModified,
-  TableFooterModified,
   TableHeadModified,
   TableRowModified,
   TableCellModified,
-  TableCaptionModified,
 } from "./TableModified";
 import useApiJson from "../../hooks/useApiJson";
 import Listing from "src/models/Listing";
-import { InputText } from "primereact/inputtext";
-import { Column } from "primereact/column";
-import { NavLink } from "react-router-dom";
-import { HiCheck, HiEye, HiPencil, HiPlus, HiTrash, HiX } from "react-icons/hi";
-import { Button } from "@/components/ui/button";
-import { useToast } from "@/components/ui/use-toast";
-import { Dialog } from "primereact/dialog";
-import { ListingType } from "../../enums/ListingType";
 import { ListingStatus } from "../../enums/ListingStatus";
-import { Separator } from "@/components/ui/separator";
 import {
   CardModified,
   CardContentModified,
-  CardDescriptionModified,
-  CardFooterModified,
-  CardHeaderModified,
-  CardTitleModified,
 } from "../CardModified";
 
 {
@@ -63,14 +46,12 @@ function ForeignListingTable() {
   //   };
 
   const [listingList, setListingList] = useState<Listing[]>([]);
-  const dt = useRef<DataTable<Listing[]>>(null);
   //   const [globalFilter, setGlobalFilter] = useState<string>("");
   //   const [listingDisableDialog, setlistingDisableDialog] =
   //     useState<boolean>(false);
   //   const toastShadcn = useToast().toast;
   //   const [disable, setDisable] = useState<boolean>();
   //   let [count, setCount] = useState<number>(0);
-  const isInitialRender = useRef(true);
 
   const fetchlistings = async () => {
     try {
