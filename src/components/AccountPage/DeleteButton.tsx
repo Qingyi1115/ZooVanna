@@ -23,15 +23,16 @@ function DeleteButton({ email }: { email: string }) {
   const toastShadcn = useToast().toast;
   const navigate = useNavigate();
   const [input, setInput] = useState<string>("");
+  const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
 
   const deleteCustomer = async () => {
     if (input == "DELETE") {
       try {
         const customer = await apiJson.get(
-          "http://localhost:3000/api/customer/getCustomer",
+          `http://${localhost_address}/api/customer/getCustomer`,
         );
         const responseJson = await apiJson.del(
-          "http://localhost:3000/api/customer/deleteCustomer/" +
+          `http://${localhost_address}/api/customer/deleteCustomer/` +
             customer.customerId,
         );
 
@@ -131,7 +132,6 @@ function DeleteButton({ email }: { email: string }) {
 
 export default DeleteButton;
 
-
 // import React from "react";
 // import { useToast } from "@/components/ui/use-toast";
 // import useApiJson from "../../hooks/useApiJson";
@@ -157,10 +157,10 @@ export default DeleteButton;
 //   const deleteCustomer = async () => {
 //     try {
 //       const customer = await apiJson.get(
-//         "http://localhost:3000/api/customer/getCustomer",
+//         "http://${localhost_address}/api/customer/getCustomer",
 //       );
 //       const responseJson = await apiJson.del(
-//         "http://localhost:3000/api/customer/deleteCustomer/" +
+//         "http://${localhost_address}/api/customer/deleteCustomer/" +
 //           customer.customerId,
 //       );
 

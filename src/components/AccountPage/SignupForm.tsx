@@ -22,6 +22,8 @@ function SignupForm() {
   const [address, setAddress] = useState<string>("");
   const [nationality, setNationality] = useState<string | undefined>(undefined);
 
+  const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
+
   function clearForm() {
     setEmail("");
     setPassword("");
@@ -199,7 +201,7 @@ function SignupForm() {
 
     try {
       const responseJson = await apiJson.post(
-        "http://localhost:3000/api/customer/createCustomer",
+        `http://${localhost_address}/api/customer/createCustomer`,
         newCustomer,
       );
       // success

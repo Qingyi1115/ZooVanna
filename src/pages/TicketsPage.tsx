@@ -19,6 +19,7 @@ function TicketsPage() {
   const [foreignerListingList, setForeignerListingList] = useState<Listing[]>();
   const apiJson = useApiJson();
   const entryDate = new Date(Date.now());
+  const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
   let personal: any = {
     customerFirstName: "",
     customerLastName: "",
@@ -28,7 +29,7 @@ function TicketsPage() {
 
   useEffect(() => {
     apiJson
-      .get("http://localhost:3000/api/listingCustomer/getLocalListings")
+      .get(`http://${localhost_address}/api/listingCustomer/getLocalListings`)
       .catch((err: any) => console.log(err))
       .then((res: any) => {
         console.log("local" + res);
@@ -38,7 +39,9 @@ function TicketsPage() {
 
   useEffect(() => {
     apiJson
-      .get("http://localhost:3000/api/listingCustomer/getForeignerListings")
+      .get(
+        `http://${localhost_address}/api/listingCustomer/getForeignerListings`,
+      )
       .catch((err: any) => console.log(err))
       .then((res: any) => {
         console.log(res);
@@ -49,7 +52,7 @@ function TicketsPage() {
   useEffect(() => {
     if (user) {
       apiJson
-        .get("http://localhost:3000/api/customer/getCustomer")
+        .get(`http://${localhost_address}/api/customer/getCustomer`)
         .catch((err: any) => console.log(err))
         .then((res: any) => {
           console.log(res);

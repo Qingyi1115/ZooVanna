@@ -14,6 +14,8 @@ function ResetPasswordForm() {
   const [newPassword, setNewPassword] = useState<string>("");
   const [newPassword2, setNewPassword2] = useState<string>("");
 
+  const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
+
   // ValidityState properties: https://developer.mozilla.org/en-US/docs/Web/API/ValidityState
   function validateNewPassword(props: ValidityState) {
     if (props != undefined) {
@@ -63,7 +65,7 @@ function ResetPasswordForm() {
 
     try {
       const responseJson = await apiJson.put(
-        `http://172.31.16.158:3000/api/customer/resetForgottenPassword/` +
+        `http://${localhost_address}/api/customer/resetForgottenPassword/` +
           token,
         packet,
       );

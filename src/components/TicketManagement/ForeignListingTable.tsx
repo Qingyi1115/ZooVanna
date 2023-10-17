@@ -10,10 +10,7 @@ import {
 import useApiJson from "../../hooks/useApiJson";
 import Listing from "src/models/Listing";
 import { ListingStatus } from "../../enums/ListingStatus";
-import {
-  CardModified,
-  CardContentModified,
-} from "../CardModified";
+import { CardModified, CardContentModified } from "../CardModified";
 
 {
   /*const toast = useRef<Toast>(null);*/
@@ -21,6 +18,7 @@ import {
 
 function ForeignListingTable() {
   const apiJson = useApiJson();
+  const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
 
   //   const headerStyles: React.CSSProperties = {
   //     backgroundColor: "black",
@@ -56,7 +54,9 @@ function ForeignListingTable() {
   const fetchlistings = async () => {
     try {
       apiJson
-        .get("http://localhost:3000/api/listingCustomer/getForeignerListings")
+        .get(
+          `http://${localhost_address}/api/listingCustomer/getForeignerListings`,
+        )
         .catch((err: any) => console.log(err))
         .then((res: any) => {
           console.log("local" + res);
@@ -98,7 +98,7 @@ function ForeignListingTable() {
   //       console.log(selectedListing);
   //       apiJson
   //         .del(
-  //           `http://localhost:3000/api/listing/disableListing/${selectedListing.listingId}`
+  //           `http://${localhost_address}/api/listing/disableListing/${selectedListing.listingId}`
   //         )
   //         .catch((error) =>
   //           toastShadcn({
@@ -122,7 +122,7 @@ function ForeignListingTable() {
   //       console.log(selectedListing);
   //       apiJson
   //         .del(
-  //           `http://localhost:3000/api/listing/enableListing/${selectedListing.listingId}`
+  //           `http://${localhost_address}/api/listing/enableListing/${selectedListing.listingId}`
   //         )
   //         .catch((error) =>
   //           toastShadcn({

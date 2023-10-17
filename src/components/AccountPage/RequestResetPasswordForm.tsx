@@ -17,6 +17,8 @@ function RequestResetPasswordForm() {
   const navigate = useNavigate();
   const [email, setEmail] = useState<string>("");
 
+  const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
+
   // ValidityState properties: https://developer.mozilla.org/en-US/docs/Web/API/ValidityState
   function validateEmail(props: ValidityState) {
     if (props != undefined) {
@@ -42,7 +44,7 @@ function RequestResetPasswordForm() {
 
     try {
       const responseJson = await apiJson.post(
-        `http://172.31.16.158:3000/api/customer/sendForgetPasswordLink/` +
+        `http://${localhost_address}/api/customer/sendForgetPasswordLink/` +
           email,
         {},
       );
