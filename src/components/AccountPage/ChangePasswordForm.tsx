@@ -97,7 +97,7 @@ function EditPasswordForm(props: EditPasswordFormProps) {
     try {
       console.log(currCustomer.customerId);
       const responseJson = await apiJson.put(
-        `http://localhost:3000/api/customer/updatePassword/${currCustomer.customerId}`,
+        `http://172.31.16.158:3000/api/customer/updatePassword/${currCustomer.customerId}`,
         passwords,
       );
 

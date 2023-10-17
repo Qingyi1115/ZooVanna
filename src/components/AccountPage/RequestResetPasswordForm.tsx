@@ -42,7 +42,8 @@ function RequestResetPasswordForm() {
 
     try {
       const responseJson = await apiJson.post(
-        `http://localhost:3000/api/customer/sendForgetPasswordLink/` + email,
+        `http://172.31.16.158:3000/api/customer/sendForgetPasswordLink/` +
+          email,
         {},
       );
 

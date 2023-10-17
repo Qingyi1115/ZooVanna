@@ -63,7 +63,8 @@ function ResetPasswordForm() {
 
     try {
       const responseJson = await apiJson.put(
-        `http://localhost:3000/api/customer/resetForgottenPassword/` + token,
+        `http://172.31.16.158:3000/api/customer/resetForgottenPassword/` +
+          token,
         packet,
       );
 
@@ -71,8 +72,7 @@ function ResetPasswordForm() {
 
       // success
       toastShadcn({
-        description:
-          "You have successfully changed your password.",
+        description: "You have successfully changed your password.",
       });
       navigate("/account");
     } catch (error: any) {
