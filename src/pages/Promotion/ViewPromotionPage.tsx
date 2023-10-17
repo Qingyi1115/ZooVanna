@@ -35,7 +35,7 @@ function ViewPromotionDetailsPage() {
     const fetchPromotion = async () => {
       try {
         const responseJson = await apiJson.get(
-          `http://localhost:3000/api/promotion/getPromotion/${promotionId}`,
+          `http://172.31.16.158:3000/api/promotion/getPromotion/${promotionId}`,
         );
         setCurPromotion(responseJson as Promotion);
       } catch (error: any) {
