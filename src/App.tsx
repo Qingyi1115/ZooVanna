@@ -38,16 +38,18 @@ import Successful from "./pages/PurchaseTicketManagement/Successful";
 import TicketLandingPage from "./pages/TicketLandingPage";
 
 function App() {
+  const { state } = useAuthContext();
+  const { user } = state;
   return (
     <PrimeReactProvider>
       <div className="">
         <BrowserRouter>
-          {/* <Routes>
+          <Routes>
             <Route
               path="/login"
               element={!user ? <LoginPage /> : <Navigate to={"/"} />}
             />
-          </Routes> */}
+          </Routes>
           <MainLayout>
             <Routes>
               <Route path="/" element={<HomePage />} />
