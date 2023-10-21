@@ -12,12 +12,14 @@ function EditProfilePage() {
   const { state } = useAuthContext();
   const { user } = state;
   let email: string = user ? user.email : "";
+  const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
+
   //   console.log("User in view edit profile page: " + user?.email + user?.token);
 
   const apiJson = useApiJson();
 
   //   const customer = await apiJson.get(
-  //     "http://localhost:3000/api/customer/getCustomer",
+  //     "http://${localhost_address}/api/customer/getCustomer",
   //     email,
   //   );
 
@@ -62,7 +64,7 @@ function EditProfilePage() {
 export default EditProfilePage;
 
 //   useEffect(() => {
-//     apiJson.get("http://localhost:3000/api/customer/getCustomer", email);
+//     apiJson.get("http://${localhost_address}/api/customer/getCustomer", email);
 //   }, []);
 
 //   useEffect(() => {
@@ -77,7 +79,7 @@ export default EditProfilePage;
 //     async function fetchCustomerData() {
 //       try {
 //         const response = await apiJson.get(
-//           "http://localhost:3000/api/customer/getCustomer",
+//           "http://${localhost_address}/api/customer/getCustomer",
 //           email,
 //         );
 //         console.log(response);

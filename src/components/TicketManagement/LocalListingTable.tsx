@@ -64,6 +64,8 @@ function LocalListingTable() {
   //   };
 
   const [listingList, setListingList] = useState<Listing[]>([]);
+  const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
+
   const dt = useRef<DataTable<Listing[]>>(null);
   //   const [globalFilter, setGlobalFilter] = useState<string>("");
   //   const [listingDisableDialog, setlistingDisableDialog] =
@@ -118,7 +120,7 @@ function LocalListingTable() {
   //       console.log(selectedListing);
   //       apiJson
   //         .del(
-  //           `http://localhost:3000/api/listing/disableListing/${selectedListing.listingId}`
+  //           `http://${localhost_address}/api/listing/disableListing/${selectedListing.listingId}`
   //         )
   //         .catch((error) =>
   //           toastShadcn({
@@ -142,7 +144,7 @@ function LocalListingTable() {
   //       console.log(selectedListing);
   //       apiJson
   //         .del(
-  //           `http://localhost:3000/api/listing/enableListing/${selectedListing.listingId}`
+  //           `http://${localhost_address}/api/listing/enableListing/${selectedListing.listingId}`
   //         )
   //         .catch((error) =>
   //           toastShadcn({

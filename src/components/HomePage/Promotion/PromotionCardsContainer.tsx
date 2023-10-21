@@ -45,6 +45,8 @@ function PromotionCardsContainer() {
   //     useState<boolean>(false);
   const [globalFilter, setGlobalFilter] = useState<string>("");
 
+  const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
+
   //   const dt = useRef<DataTable<Promotion[]>>(null);
 
   const toastShadcn = useToast().toast;
@@ -71,7 +73,7 @@ function PromotionCardsContainer() {
   //   const imageBodyTemplate = (rowData: Promotion) => {
   //     return (
   //       <img
-  //         src={"http://localhost:3000/" + rowData.imageUrl}
+  //         src={"http://${localhost_address}/" + rowData.imageUrl}
   //         alt={rowData.title}
   //         className="aspect-square w-16 rounded-full border border-white object-cover shadow-4"
   //       />
@@ -107,7 +109,7 @@ function PromotionCardsContainer() {
   //     const deletePromotionApi = async () => {
   //       try {
   //         const responseJson = await apiJson.del(
-  //           "http://localhost:3000/api/promotion/deletePromotion/" +
+  //           "http://${localhost_address}/api/promotion/deletePromotion/" +
   //             selectedPromotion.promotionId
   //         );
 
@@ -197,7 +199,7 @@ function PromotionCardsContainer() {
             <Link to={`/promotion/viewpromotion/${item.promotionId}`}>
               <ImageCard
                 key={item.promotionId}
-                imageUrl={"http://localhost:3000/" + item.imageUrl}
+                imageUrl={`http://${localhost_address}/` + item.imageUrl}
                 title={item.title}
                 description={item.description}
               />

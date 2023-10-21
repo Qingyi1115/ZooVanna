@@ -58,6 +58,8 @@ function PaymentForm() {
   const [clientSecret, setClientSecret] = useState<string>("");
   const [paymentIntentId, setPaymentIntentId] = useState<string>("");
 
+  const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
+
   const appearance: Appearance = {
     theme: "stripe",
   };

@@ -32,6 +32,8 @@ function ViewPromotionDetailsPage() {
   const [curPromotion, setCurPromotion] = useState<Promotion>(emptyPromotion);
   const [refreshSeed, setRefreshSeed] = useState<number>(0);
 
+  const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
+
   useEffect(() => {
     const fetchPromotion = async () => {
       try {
@@ -51,7 +53,7 @@ function ViewPromotionDetailsPage() {
     <div className="flex h-screen flex-col">
       <div className="relative">
         <img
-          src={"http://localhost:3000/" + curPromotion.imageUrl}
+          src={`http://${localhost_address}/` + curPromotion.imageUrl}
           alt="Current promotion image"
           className="w-full object-cover shadow-4"
         />

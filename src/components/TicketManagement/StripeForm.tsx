@@ -35,6 +35,7 @@ function StripeForm(props: StripeFormProps) {
   const [customerOrderId, setCustomerOrderId] = useState<number | null>(null);
   let code: number;
   const id = props.id;
+  const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
 
   const { state } = useAuthContext();
   const { user } = state;
@@ -101,7 +102,7 @@ function StripeForm(props: StripeFormProps) {
 
         apiJson
           .post(
-            "http://localhost:3000/api/customer/createCustomerOrderForGuest",
+            `http://${localhost_address}/api/customer/createCustomerOrderForGuest`,
             {
               listings: listings,
               customerOrder: customerOrder,
@@ -138,7 +139,7 @@ function StripeForm(props: StripeFormProps) {
           };
           apiJson
             .post(
-              "http://localhost:3000/api/customer/createCustomerOrderForCustomer",
+              `http://${localhost_address}/api/customer/createCustomerOrderForCustomer`,
               {
                 listings: listings,
                 customerOrder: customerOrder,

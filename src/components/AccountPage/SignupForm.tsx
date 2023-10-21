@@ -6,8 +6,6 @@ import useApiJson from "../../hooks/useApiJson";
 import { Calendar, CalendarChangeEvent } from "primereact/calendar";
 import FormFieldSelect from "../FormFieldSelect";
 import { countryValueLabelPair } from "../../enums/Country";
-import { clear } from "console";
-const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
 
 function SignupForm() {
   const apiJson = useApiJson();
@@ -23,6 +21,8 @@ function SignupForm() {
   const [birthday, setBirthday] = useState<string | Date | Date[] | null>(null);
   const [address, setAddress] = useState<string>("");
   const [nationality, setNationality] = useState<string | undefined>(undefined);
+
+  const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
 
   function clearForm() {
     setEmail("");

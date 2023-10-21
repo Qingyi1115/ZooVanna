@@ -37,6 +37,8 @@ function EditProfileForm(props: EditCustomerFormProps) {
     currCustomer.nationality,
   );
 
+  const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
+
   console.log("currCustomer.birthday");
   console.log(currCustomer.birthday);
 
@@ -221,7 +223,7 @@ function EditProfileForm(props: EditCustomerFormProps) {
 
     try {
       await apiJson.put(
-        `http://localhost:3000/api/customer/updateCustomer/${currCustomer.customerId}`,
+        `http://${localhost_address}/api/customer/updateCustomer/${currCustomer.customerId}`,
         updatedCustomer,
       );
       // success

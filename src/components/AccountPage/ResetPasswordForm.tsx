@@ -3,7 +3,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import * as Form from "@radix-ui/react-form";
 import { useToast } from "@/components/ui/use-toast";
 import useApiJson from "../../hooks/useApiJson";
-const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
 
 function ResetPasswordForm() {
   const { token } = useParams();
@@ -13,6 +12,8 @@ function ResetPasswordForm() {
   const navigate = useNavigate();
   const [newPassword, setNewPassword] = useState<string>("");
   const [newPassword2, setNewPassword2] = useState<string>("");
+
+  const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
 
   // ValidityState properties: https://developer.mozilla.org/en-US/docs/Web/API/ValidityState
   function validateNewPassword(props: ValidityState) {

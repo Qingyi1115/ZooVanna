@@ -31,6 +31,8 @@ function OrderReviewForm() {
   const [discountAmount, setDiscountAmount] = useState<number>(0);
   const [finalTotal, setFinalTotal] = useState<number>(total);
 
+  const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
+
   const apiJson = useApiJson();
 
   const toastShadcn = useToast().toast;
@@ -66,7 +68,7 @@ function OrderReviewForm() {
     };
     apiJson
       .put(
-        `http://localhost:3000/api/promotion/verifyPromotionCode/${promotionCode}`,
+        `http://${localhost_address}/api/promotion/verifyPromotionCode/${promotionCode}`,
         packet,
       )
       .then((promotion) => {

@@ -20,6 +20,8 @@ function CompletionPage() {
   const [clientSecret, setClientSecret] = useState<string | undefined>("");
   const navigate = useNavigate();
 
+  const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
+
   const appearance: Appearance = {
     theme: "stripe",
   };
