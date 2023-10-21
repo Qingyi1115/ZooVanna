@@ -31,6 +31,7 @@ import {
   CardHeaderModified,
   CardTitleModified,
 } from "../CardModified";
+const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
 
 {
   /*const toast = useRef<Toast>(null);*/
@@ -75,7 +76,7 @@ function LocalListingTable() {
   const fetchlistings = async () => {
     try {
       apiJson
-        .get("http://localhost:3000/api/listingCustomer/getLocalListings")
+        .get(`http://${localhost_address}/api/listingCustomer/getLocalListings`)
         .catch((err: any) => console.log(err))
         .then((res: any) => {
           console.log("local" + res);

@@ -15,6 +15,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
 
 function ChangePasswordPage() {
   const { state } = useAuthContext();
@@ -46,7 +47,7 @@ function ChangePasswordPage() {
     const fetchCustomerData = async () => {
       try {
         const responseJson = await apiJson.get(
-          "http://localhost:3000/api/customer/getCustomer",
+          `http://${localhost_address}/api/customer/getCustomer`,
         );
         setCurrCustomer(responseJson as Customer);
       } catch (error: any) {

@@ -6,6 +6,7 @@ import { Country } from "../enums/Country";
 import EditProfileForm from "../components/AccountPage/EditProfileForm";
 import { useAuthContext } from "../hooks/useAuthContext";
 import ViewProfileForm from "../components/AccountPage/ViewProfileForm";
+const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
 
 function ViewEditProfilePage() {
   const { state } = useAuthContext();
@@ -37,7 +38,7 @@ function ViewEditProfilePage() {
     const fetchCustomerData = async () => {
       try {
         const responseJson = await apiJson.get(
-          "http://localhost:3000/api/customer/getCustomer",
+          `http://${localhost_address}/api/customer/getCustomer`,
         );
         setCurrCustomer(responseJson as Customer);
       } catch (error: any) {

@@ -9,6 +9,7 @@ import { countryValueLabelPair } from "../../enums/Country";
 import { clear } from "console";
 import Customer from "../../models/Customer";
 import useApiFormData from "../../hooks/useApiFormData";
+const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
 
 interface EditPasswordFormProps {
   currCustomer: Customer;
@@ -97,7 +98,7 @@ function EditPasswordForm(props: EditPasswordFormProps) {
     try {
       console.log(currCustomer.customerId);
       const responseJson = await apiJson.put(
-        `http://localhost:3000/api/customer/updatePassword/${currCustomer.customerId}`,
+        `http://${localhost_address}/api/customer/updatePassword/${currCustomer.customerId}`,
         passwords,
       );
 

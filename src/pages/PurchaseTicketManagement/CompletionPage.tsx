@@ -9,6 +9,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import { Stripe, StripeElementsOptions } from "@stripe/stripe-js";
 import { Appearance } from "@stripe/stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
+const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
 
 function CompletionPage() {
   const { customerOrderId, code, id } = useParams();
@@ -28,7 +29,7 @@ function CompletionPage() {
   };
 
   useEffect(() => {
-    apiJson.get("http://localhost:3000/config").then(async (r) => {
+    apiJson.get(`http://${localhost_address}/config`).then(async (r) => {
       console.log(r);
       const publishableKey = r.publishableKey;
       console.log(loadStripe(publishableKey));
@@ -39,7 +40,7 @@ function CompletionPage() {
   useEffect(() => {
     let payment: any;
     apiJson
-      .post("http://localhost:3000/fetchPayment", { id: id })
+      .post(`http://${localhost_address}/fetchPayment`, { id: id })
       .catch((error) => {
         console.log(error);
         setError(true);
@@ -57,7 +58,7 @@ function CompletionPage() {
             console.log("here?");
             apiJson
               .post(
-                `http://localhost:3000/api/customer/completePaymentForCustomer/${customerOrderId}`,
+                `http://${localhost_address}/api/customer/completePaymentForCustomer/${customerOrderId}`,
                 { payment },
               )
               .catch((error) => {
@@ -72,7 +73,7 @@ function CompletionPage() {
             console.log("or here?");
             apiJson
               .post(
-                `http://localhost:3000/api/customer/completePaymentForGuest/${customerOrderId}`,
+                `http://${localhost_address}/api/customer/completePaymentForGuest/${customerOrderId}`,
                 { payment },
               )
               .catch((error) => {

@@ -11,6 +11,7 @@ import useApiJson from "../../../hooks/useApiJson";
 import { useToast } from "@/components/ui/use-toast";
 
 import { Link } from "react-router-dom";
+const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
 
 function PromotionCardsContainer() {
   const apiJson = useApiJson();
@@ -52,7 +53,7 @@ function PromotionCardsContainer() {
     const fetchPromotion = async () => {
       try {
         const responseJson = await apiJson.get(
-          "http://localhost:3000/api/promotion/getAllPublishedPromotions",
+          `http://${localhost_address}/api/promotion/getAllPublishedPromotions`,
         );
         setPromotionList(responseJson as Promotion[]);
       } catch (error: any) {

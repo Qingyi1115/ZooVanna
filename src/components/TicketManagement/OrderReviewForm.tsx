@@ -12,6 +12,7 @@ import { Dialog } from "primereact/dialog";
 import React from "react";
 import useApiJson from "../../hooks/useApiJson";
 import { useToast } from "@/components/ui/use-toast";
+const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
 
 function OrderReviewForm() {
   const location = useLocation();
@@ -40,7 +41,7 @@ function OrderReviewForm() {
         currentSpending: total,
       };
       const response = await apiJson.put(
-        `http://localhost:3000/api/promotion/cancelUsePromotionCode/${promotionCode}`,
+        `http://${localhost_address}/api/promotion/cancelUsePromotionCode/${promotionCode}`,
         packet,
       );
       setDiscount(0);

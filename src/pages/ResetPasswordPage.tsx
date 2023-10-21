@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
-import useApiJson from "../hooks/useApiJson";
 import Customer from "../models/Customer";
 import { Country } from "../enums/Country";
 import EditProfileForm from "../components/AccountPage/EditProfileForm";

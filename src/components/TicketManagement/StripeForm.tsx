@@ -9,6 +9,7 @@ import useApiJson from "../../hooks/useApiJson";
 import { useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Customer from "../../models/Customer";
+const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
 
 interface StripeFormProps {
   localListingList: Listing[];
@@ -62,7 +63,7 @@ function StripeForm(props: StripeFormProps) {
   useEffect(() => {
     if (user) {
       apiJson
-        .get("http://localhost:3000/api/customer/getCustomer")
+        .get(`http://${localhost_address}/api/customer/getCustomer`)
         .catch((error) => {
           console.log(error);
           toastShadcn({

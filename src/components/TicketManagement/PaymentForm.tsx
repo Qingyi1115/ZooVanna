@@ -18,6 +18,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import useApiJson from "../../hooks/useApiJson";
 import { Elements } from "@stripe/react-stripe-js";
+const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
 
 function PaymentForm() {
   const location = useLocation();
@@ -66,7 +67,7 @@ function PaymentForm() {
   };
 
   useEffect(() => {
-    apiJson.get("http://localhost:3000/config").then(async (r) => {
+    apiJson.get(`http://${localhost_address}/config`).then(async (r) => {
       console.log(r);
       const publishableKey = r.publishableKey;
       console.log(loadStripe(publishableKey));
@@ -77,7 +78,9 @@ function PaymentForm() {
   useEffect(() => {
     console.log(total);
     apiJson
-      .post("http://localhost:3000/create-payment-intent", { total: total })
+      .post(`http://${localhost_address}/create-payment-intent`, {
+        total: total,
+      })
       .catch((error) => {
         console.log(error);
       })

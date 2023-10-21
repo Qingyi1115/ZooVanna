@@ -7,6 +7,7 @@ import { Calendar, CalendarChangeEvent } from "primereact/calendar";
 import FormFieldSelect from "../FormFieldSelect";
 import { countryValueLabelPair } from "../../enums/Country";
 import { clear } from "console";
+const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
 
 function SignupForm() {
   const apiJson = useApiJson();
@@ -200,7 +201,7 @@ function SignupForm() {
 
     try {
       const responseJson = await apiJson.post(
-        "http://localhost:3000/api/customer/createCustomer",
+        `http://${localhost_address}/api/customer/createCustomer`,
         newCustomer,
       );
       // success

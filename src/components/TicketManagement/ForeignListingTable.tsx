@@ -35,6 +35,7 @@ import {
 {
   /*const toast = useRef<Toast>(null);*/
 }
+const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
 
 function ForeignListingTable() {
   const apiJson = useApiJson();
@@ -75,7 +76,9 @@ function ForeignListingTable() {
   const fetchlistings = async () => {
     try {
       apiJson
-        .get("http://localhost:3000/api/listingCustomer/getForeignerListings")
+        .get(
+          `http://${localhost_address}/api/listingCustomer/getForeignerListings`,
+        )
         .catch((err: any) => console.log(err))
         .then((res: any) => {
           console.log("local" + res);

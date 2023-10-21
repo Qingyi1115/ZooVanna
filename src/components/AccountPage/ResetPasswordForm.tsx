@@ -3,15 +3,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import * as Form from "@radix-ui/react-form";
 import { useToast } from "@/components/ui/use-toast";
 import useApiJson from "../../hooks/useApiJson";
-import FormFieldSelect from "../FormFieldSelect";
-import { countryValueLabelPair } from "../../enums/Country";
-import { clear } from "console";
-import Customer from "../../models/Customer";
-import useApiFormData from "../../hooks/useApiFormData";
+const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
 
 function ResetPasswordForm() {
   const { token } = useParams();
-
   const apiJson = useApiJson();
 
   const toastShadcn = useToast().toast;
@@ -68,7 +63,8 @@ function ResetPasswordForm() {
 
     try {
       const responseJson = await apiJson.put(
-        `http://localhost:3000/api/customer/resetForgottenPassword/` + token,
+        `http://${localhost_address}/api/customer/resetForgottenPassword/` +
+          token,
         packet,
       );
 
@@ -76,8 +72,7 @@ function ResetPasswordForm() {
 
       // success
       toastShadcn({
-        description:
-          "You have successfully changed your password.",
+        description: "You have successfully changed your password.",
       });
       navigate("/account");
     } catch (error: any) {

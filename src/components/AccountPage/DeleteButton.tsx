@@ -14,6 +14,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
 
 function DeleteButton({ email }: { email: string }) {
   const apiJson = useApiJson();
@@ -23,10 +24,10 @@ function DeleteButton({ email }: { email: string }) {
   const deleteCustomer = async () => {
     try {
       const customer = await apiJson.get(
-        "http://localhost:3000/api/customer/getCustomer",
+        `http://${localhost_address}/api/customer/getCustomer`,
       );
       const responseJson = await apiJson.del(
-        "http://localhost:3000/api/customer/deleteCustomer/" +
+        `http://${localhost_address}/api/customer/deleteCustomer/` +
           customer.customerId,
       );
 

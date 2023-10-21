@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import ListingCard from "./ListingCard";
-import useApiJson from "../../hooks/useApiJson";
 import { useEffect } from "react";
 import Listing from "../../models/Listing";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";

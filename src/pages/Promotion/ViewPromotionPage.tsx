@@ -6,6 +6,7 @@ import { NavLink } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { FaChevronLeft } from "react-icons/fa";
+const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
 
 import ViewPromotionDetails from "../../components/HomePage/Promotion/ViewPromotionDetails";
 
@@ -35,7 +36,7 @@ function ViewPromotionDetailsPage() {
     const fetchPromotion = async () => {
       try {
         const responseJson = await apiJson.get(
-          `http://localhost:3000/api/promotion/getPromotion/${promotionId}`,
+          `http://${localhost_address}/api/promotion/getPromotion/${promotionId}`,
         );
         setCurPromotion(responseJson as Promotion);
       } catch (error: any) {
