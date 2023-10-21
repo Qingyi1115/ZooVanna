@@ -33,9 +33,9 @@ function ListingForm() {
   const [isChecked, setIsChecked] = useState<boolean>(location.state.isChecked);
   let localListingList: Listing[] = location.state.localListingList;
   let foreignerListingList: Listing[] = location.state.foreignerListingList;
-  let entry = new Date(
-    location.state.entry ? location.state.entry : new Date(Date.now()),
-  );
+  let temp = new Date(Date.now());
+  temp.setHours(0, 0, 0);
+  let entry = new Date(location.state.entry ? location.state.entry : temp);
   let result: number = 0;
 
   let personal = location.state.personal;

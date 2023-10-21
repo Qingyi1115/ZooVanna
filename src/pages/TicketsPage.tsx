@@ -19,6 +19,7 @@ function TicketsPage() {
   const [foreignerListingList, setForeignerListingList] = useState<Listing[]>();
   const apiJson = useApiJson();
   const entryDate = new Date(Date.now());
+  entryDate.setHours(0, 0, 0);
   let personal: any = {
     customerFirstName: "",
     customerLastName: "",

@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { Calendar } from "primereact/calendar";
+import { Calendar, CalendarDateTemplateEvent } from "primereact/calendar";
 import { CalendarChangeEvent } from "primereact/calendar";
 import Listing from "../../models/Listing";
 import { NavLink } from "react-router-dom";
@@ -10,6 +10,7 @@ import DateFormSummary from "./DateFormSummary";
 import { Separator } from "@/components/ui/separator";
 import { useEffect } from "react";
 import { useAuthContext } from "../../hooks/useAuthContext";
+import useApiJson from "../../hooks/useApiJson";
 function SelectDateForm() {
   const location = useLocation();
   const localListingList: Listing[] = location.state.localListingList;
@@ -24,9 +25,19 @@ function SelectDateForm() {
   console.log(entry);
   const listingList: Listing[] = [...localListingList, ...foreignerListingList];
   const isChecked = location.state.isChecked;
+  const [dates, setDates] = useState<any>();
+  const [disabledDates, setDisabledDates] = useState<Date[]>();
+
+  console.log(entry);
 
   const { state } = useAuthContext();
   const { user } = state;
+  const apiJson = useApiJson();
+
+  const minDate = new Date(Date.now());
+  minDate.setHours(0, 0, 0);
+  const maxDate = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000);
+  maxDate.setHours(0, 0, 0);
 
   useEffect(() => {
     let result = 0;
@@ -50,8 +61,125 @@ function SelectDateForm() {
     setTotal(result);
   }, []);
 
-  console.log(localListingList);
-  console.log(foreignerListingList);
+  useEffect(() => {
+    apiJson
+      .get("http://localhost:3000/api/orderItem/getDateOrderCount")
+      .then((result) => {
+        setDates(result.result);
+        console.log(result.result);
+        let temp: Date[] = [];
+        const currentDate = new Date(minDate);
+        while (currentDate <= maxDate) {
+          if (
+            (result.result[currentDate.toLocaleDateString()] &&
+              result.result[currentDate.toLocaleDateString()] + item > 25) ||
+            item > 25
+          ) {
+            temp.push(new Date(currentDate.toLocaleDateString()));
+          }
+          currentDate.setDate(currentDate.getDate() + 1);
+        }
+        {
+          /*for (var key in result.result) {
+          if (result.result[key] + item > 25) {
+            temp.push(new Date(key));
+          }
+        }*/
+        }
+        setDisabledDates(temp);
+        console.log(temp);
+      });
+  }, [item]);
+
+  const dateTemplate = (date: CalendarDateTemplateEvent) => {
+    const example = new Date(date.year, date.month, date.day);
+    return (
+      <div
+        className={`text flex h-full w-full items-center justify-center rounded-full 
+          ${
+            dates && dates[example.toLocaleDateString()] !== undefined
+              ? entry &&
+                example.toLocaleDateString() ==
+                  new Date(entry.toLocaleString()).toLocaleDateString()
+                ? "bg-black"
+                : dates[example.toLocaleDateString()] + item > 25
+                ? ""
+                : dates[example.toLocaleDateString()] + item > 10
+                ? "bg-red-500"
+                : dates[example.toLocaleDateString()] + item > 5
+                ? "bg-yellow-400"
+                : "bg-green-400"
+              : example.getTime() <
+                  new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).getTime() &&
+                example.getTime() > new Date(Date.now()).getTime()
+              ? entry &&
+                example.toLocaleDateString() ==
+                  new Date(entry.toLocaleString()).toLocaleDateString()
+                ? "bg-black"
+                : item > 25
+                ? ""
+                : item > 10
+                ? "bg-red-500"
+                : item > 5
+                ? "bg-yellow-400"
+                : "bg-green-400"
+              : ""
+          }
+          `}
+      >
+        <div
+          className={`
+            ${
+              dates && dates[example.toLocaleDateString()] !== undefined
+                ? entry &&
+                  example.toLocaleDateString() ==
+                    new Date(entry.toLocaleString()).toLocaleDateString()
+                  ? "text-white underline"
+                  : dates[example.toLocaleDateString()] + item > 25
+                  ? "text-black"
+                  : "text-white"
+                : example.getTime() <
+                    new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).getTime() &&
+                  example.getTime() > new Date(Date.now()).getTime()
+                ? entry &&
+                  example.toLocaleDateString() ==
+                    new Date(entry.toLocaleString()).toLocaleDateString()
+                  ? "text-white underline"
+                  : item > 25
+                  ? "text-black"
+                  : "text-white"
+                : ""
+            }
+            `}
+        >
+          {date.day}
+        </div>
+      </div>
+    );
+  };
+  function isDisabled() {
+    if (entry && disabledDates) {
+      for (let i in disabledDates) {
+        if (entry) {
+          console.log(disabledDates[i].toLocaleString());
+          console.log(entry.toLocaleString());
+        }
+        if (
+          entry &&
+          disabledDates[i].toLocaleString() == entry.toLocaleString()
+        ) {
+          console.log("it is the same");
+          console.log(i.toLocaleString());
+          entry.toLocaleString();
+          return true;
+        }
+      }
+      return false;
+    }
+  }
+
+  //${date.day == 30 ? "bg-green-400" : "bg-red-500"}
+
   return (
     <div className="block items-center overflow-hidden pt-5 lg:pt-30">
       <div className="mb-5 px-10 text-2xl font-bold sm:px-20 md:mb-5 md:px-40 lg:px-27">
@@ -70,9 +198,19 @@ function SelectDateForm() {
                 }}
                 inline
                 className="w-full border-0 "
-                minDate={new Date(Date.now())}
+                minDate={minDate}
+                maxDate={maxDate}
+                dateTemplate={dateTemplate}
+                disabledDates={disabledDates}
               />
             </div>
+            {isDisabled() && (
+              <div className=" mt-2 flex w-full">
+                <div className="flex h-8 w-full items-center justify-center bg-red-100 text-justify text-sm text-red-600">
+                  The date you choose is disabled!
+                </div>
+              </div>
+            )}
           </div>
         </div>
         <div className="mb-2 flex w-screen items-center justify-center px-10 pb-5 sm:px-20 md:px-40 lg:p-0 lg:px-20">
@@ -158,9 +296,8 @@ function SelectDateForm() {
               <Button className="w-full rounded">Next</Button>
             </NavLink>
           </div>
-        ) : (
+        ) : !isDisabled() ? (
           <div className="justify-right w-2/5 lg:w-1/5">
-            {" "}
             <NavLink
               to="/tickets/orderReview"
               state={{
@@ -175,6 +312,12 @@ function SelectDateForm() {
             >
               <Button className="w-full rounded">Next</Button>
             </NavLink>
+          </div>
+        ) : (
+          <div className="justify-right w-2/5 lg:w-1/5">
+            <div className="w-full">
+              <Button className="disabled w-full rounded">Next</Button>
+            </div>
           </div>
         )}
       </div>
