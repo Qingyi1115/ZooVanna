@@ -86,6 +86,10 @@ function StripeForm(props: StripeFormProps) {
     console.log(customerOrderId);
     if (!customerOrderId) {
       if (!user || !customer) {
+        //if not user or not customer
+        //if not user but is customer cannot cuz can only retrieve customer if is user
+        //if user or not customer can get in
+        //if not user and not customer can get in
         customerOrder = {
           bookingReference: uuidv4().substring(0, 8).toUpperCase(),
           totalAmount: total,

@@ -1,4 +1,7 @@
+import { PaymentStatus } from "src/enums/PaymentStatus";
 import { OrderStatus } from "../enums/OrderStatus";
+import OrderItem from "./OrderItem";
+import Payment from "./Payment";
 
 interface CustomerOrder {
   bookingReference: string;
@@ -9,6 +12,10 @@ interface CustomerOrder {
   customerLastName: string;
   customerContactNo: string;
   customerEmail: string;
+  orderItems: OrderItem[];
+  payments: Payment[];
+  paymentStatus: PaymentStatus;
+  customerOrderId: number;
 }
 
 export default CustomerOrder;
