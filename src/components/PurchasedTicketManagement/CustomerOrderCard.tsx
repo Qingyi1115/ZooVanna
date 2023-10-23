@@ -49,7 +49,11 @@ function CustomerOrderCard(props: CustomerOrderProps) {
               >
                 {customerOrder.paymentStatus}
               </div>
-              <div>SGD {payments[payments.length - 1]?.amount}</div>
+              <div>
+                {payments[payments.length - 1]
+                  ? "SGD " + payments[payments.length - 1].amount
+                  : ""}
+              </div>
             </div>
             <div className="mt-3 flex items-center justify-end">
               <Button className="h-8 text-sm">View ticket(s)</Button>

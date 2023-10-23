@@ -37,6 +37,8 @@ import ViewPromotionPage from "./pages/Promotion/ViewPromotionPage";
 import Successful from "./pages/PurchaseTicketManagement/Successful";
 import TicketLandingPage from "./pages/TicketLandingPage";
 import ViewPurchasedTicketsPage from "./pages/PurchaseTicketManagement/ViewPurchasedTicketsPage";
+import LoginFormTicket from "./components/AccountPage/LoginFormTicket";
+import LoginTicketPage from "./pages/LoginTicketPage";
 
 function App() {
   const { state } = useAuthContext();
@@ -90,7 +92,9 @@ function App() {
               // need user in logged in state
               <Route
                 path="/tickets/purchasedTickets"
-                element={user ? <ViewPurchasedTicketsPage /> : <LoginPage />}
+                element={
+                  user ? <ViewPurchasedTicketsPage /> : <LoginTicketPage />
+                }
               />{" "}
               <Route path="/itinerary" element={<ItineraryPage />} />
               <Route path="/account" element={<AccountPage />} />
