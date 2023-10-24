@@ -16,6 +16,7 @@ interface CustomerOrder {
   payments: Payment[];
   paymentStatus: PaymentStatus;
   customerOrderId: number;
+  pdfUrl: string;
 }
 
 export default CustomerOrder;
