@@ -5,6 +5,7 @@ import { HiOutlineCalendar, HiOutlineCloudDownload } from "react-icons/hi";
 import moment from "moment-timezone";
 import { PaymentStatus } from "../../enums/PaymentStatus";
 import { Button } from "@/components/ui/button";
+import { useEffect } from "react";
 
 interface CustomerOrderProps {
   customerOrder: CustomerOrder;
@@ -20,8 +21,39 @@ function CustomerOrderCard(props: CustomerOrderProps) {
     // return timestampWithSuffix;
     return formattedTime;
   }
+
   const customerOrder = props.customerOrder;
   const payments = props.payments;
+  console.log(customerOrder.pdfUrl);
+
+  function handleClick() {
+    console.log(customerOrder.pdfUrl);
+    window.open(`http://localhost:3000/pdf/${customerOrder.pdfUrl}`, "_blank");
+  }
+
+  function handleDownload() {
+    fetch(`http://localhost:3000/pdf/${customerOrder.pdfUrl}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/pdf",
+      },
+    })
+      .then((response) => response.blob())
+      .then((blob) => {
+        const url = window.URL.createObjectURL(new Blob([blob]));
+
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = customerOrder.pdfUrl;
+
+        document.body.appendChild(link);
+
+        link.click();
+
+        link.parentNode?.removeChild(link);
+      });
+  }
+
   return (
     <div className="mb-4">
       <Card className="p-3">
@@ -55,12 +87,16 @@ function CustomerOrderCard(props: CustomerOrderProps) {
                   : ""}
               </div>
             </div>
-            <div className="mt-3 flex items-center justify-end">
-              <Button className="h-8 text-sm">View ticket(s)</Button>
-              <Button className="ml-2 h-8 w-8 p-0">
-                <HiOutlineCloudDownload className="m-0 h-[50%] w-[50%] p-0" />
-              </Button>
-            </div>
+            {customerOrder.paymentStatus == PaymentStatus.COMPLETED && (
+              <div className="mt-3 flex items-center justify-end">
+                <Button className="h-8 text-sm" onClick={handleClick}>
+                  View ticket(s)
+                </Button>
+                <Button className="ml-2 h-8 w-8 p-0" onClick={handleDownload}>
+                  <HiOutlineCloudDownload className="m-0 h-[50%] w-[50%] p-0" />
+                </Button>
+              </div>
+            )}
           </div>
         </CardContent>
       </Card>
