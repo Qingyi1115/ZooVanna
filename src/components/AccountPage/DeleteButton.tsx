@@ -91,7 +91,6 @@ function DeleteButton({ email }: { email: string }) {
               className="col-span-3"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Enter promotion code"
             />
           </div>
         </div>
