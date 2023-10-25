@@ -32,97 +32,99 @@ const backgroundbounds: LatLngBounds = new LatLngBounds(
   backgroundbottomright,
 );
 
+const localhost_5174_address = import.meta.env.VITE_LOCALHOST_5174_ADDRESS;
+// http://localhost:5174/src/assets/mapicons/parking.png
 // map icons
 function iconFunction(facilityType: string) {
   console.log("facil type icon: " + facilityType);
   switch (facilityType) {
     case "INFORMATION_CENTRE":
       return new L.Icon({
-        iconUrl: "../../../src/assets/mapicons/parking.png",
+        iconUrl: `http://${localhost_5174_address}/src/assets/mapicons/parking.png`,
         iconSize: [31, 40],
         iconAnchor: [15, 40],
       });
     case "ZOO_DIRECTORY":
       return new L.Icon({
-        iconUrl: "../../../src/assets/mapicons/parking.png",
+        iconUrl: `http://${localhost_5174_address}/src/assets/mapicons/parking.png`,
         iconSize: [31, 40],
         iconAnchor: [15, 40],
       });
     case "AMPHITHEATRE":
       return new L.Icon({
-        iconUrl: "../../../src/assets/mapicons/parking.png",
+        iconUrl: `http://${localhost_5174_address}/src/assets/mapicons/parking.png`,
         iconSize: [31, 40],
         iconAnchor: [15, 40],
       });
     case "GAZEBO":
       return new L.Icon({
-        iconUrl: "../../../src/assets/mapicons/parking.png",
+        iconUrl: `http://${localhost_5174_address}/src/assets/mapicons/parking.png`,
         iconSize: [31, 40],
         iconAnchor: [15, 40],
       });
     case "AED":
       return new L.Icon({
-        iconUrl: "../../../src/assets/mapicons/parking.png",
+        iconUrl: `http://${localhost_5174_address}/src/assets/mapicons/parking.png`,
         iconSize: [31, 40],
         iconAnchor: [15, 40],
       });
     case "RESTROOM":
       return new L.Icon({
-        iconUrl: "../../../src/assets/mapicons/parking.png",
+        iconUrl: `http://${localhost_5174_address}/src/assets/mapicons/parking.png`,
         iconSize: [31, 40],
         iconAnchor: [15, 40],
       });
     case "NURSERY":
       return new L.Icon({
-        iconUrl: "../../../src/assets/mapicons/parking.png",
+        iconUrl: `http://${localhost_5174_address}/src/assets/mapicons/parking.png`,
         iconSize: [31, 40],
         iconAnchor: [15, 40],
       });
     case "FIRST_AID":
       return new L.Icon({
-        iconUrl: "../../../src/assets/mapicons/parking.png",
+        iconUrl: `http://${localhost_5174_address}/src/assets/mapicons/parking.png`,
         iconSize: [31, 40],
         iconAnchor: [15, 40],
       });
     case "BENCHES":
       return new L.Icon({
-        iconUrl: "../../../src/assets/mapicons/parking.png",
+        iconUrl: `http://${localhost_5174_address}/src/assets/mapicons/parking.png`,
         iconSize: [31, 40],
         iconAnchor: [15, 40],
       });
     case "PLAYGROUND":
       return new L.Icon({
-        iconUrl: "../../../src/assets/mapicons/parking.png",
+        iconUrl: `http://${localhost_5174_address}/src/assets/mapicons/parking.png`,
         iconSize: [31, 40],
         iconAnchor: [15, 40],
       });
     case "TRAMSTOP":
       return new L.Icon({
-        iconUrl: "../../../src/assets/mapicons/parking.png",
+        iconUrl: `http://${localhost_5174_address}/src/assets/mapicons/parking.png`,
         iconSize: [31, 40],
         iconAnchor: [15, 40],
       });
     case "PARKING":
       return new L.Icon({
-        iconUrl: "../../../src/assets/mapicons/parking.png",
+        iconUrl: `http://${localhost_5174_address}/src/assets/mapicons/parking.png`,
         iconSize: [31, 40],
         iconAnchor: [15, 40],
       });
     case "RESTAURANT":
       return new L.Icon({
-        iconUrl: "../../../src/assets/mapicons/parking.png",
+        iconUrl: `http://${localhost_5174_address}/src/assets/mapicons/parking.png`,
         iconSize: [31, 40],
         iconAnchor: [15, 40],
       });
     case "SHOP_SOUVENIR":
       return new L.Icon({
-        iconUrl: "../../../src/assets/mapicons/parking.png",
+        iconUrl: `http://${localhost_5174_address}/src/assets/mapicons/parking.png`,
         iconSize: [31, 40],
         iconAnchor: [15, 40],
       });
     default:
       return new L.Icon({
-        iconUrl: "../../../src/assets/mapicons/parking.png",
+        iconUrl: `http://${localhost_5174_address}/src/assets/mapicons/parking.png`,
         iconSize: [31, 40],
         iconAnchor: [15, 40],
       });
@@ -156,9 +158,9 @@ function MapComponent(props: LandingPageMapProps) {
 
   return (
     <div>
-      <div className="h-[50vh] w-full">
+      <div className="h-[80vh] w-screen ">
         {/* 
-            OLD MAP
+            OLD MAPS
         <MapContainer
           center={[0, 0]}
           zoom={3}
@@ -190,17 +192,27 @@ function MapComponent(props: LandingPageMapProps) {
           minZoom={15}
           maxZoom={20}
         >
+          {/* <TileLayer
+            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          /> */}
           <TileLayer
             noWrap={true}
             attribution="Merlion Zoo"
-            url={"https://tile.openstreetmap.org/{z}/{x}/{y}.png"}
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
+
+          {/* <TileLayer
+            noWrap={true}
+            attribution="Merlion Zoo"
+            url={`https://tile.openstreetmap.org/{z}/{x}/{y}.png`}
+          /> */}
           <ImageOverlay
-            url={"../../../src/assets/merlionzoogreenbgonly.png"}
+            url={`http://${localhost_5174_address}/src/assets/merlionzoogreenbgonly.png`}
             bounds={backgroundbounds}
           />
           <ImageOverlay
-            url={"../../../src/assets/merlionzootest.png"}
+            url={`http://${localhost_5174_address}/src/assets/merlionzootest.png`}
             bounds={bounds}
           />
           {facilityList.map((facility, idx) => (
