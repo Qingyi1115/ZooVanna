@@ -9,7 +9,7 @@ import {
 
 import MainLayout from "./components/MainLayout";
 import HomePage from "./pages/HomePage";
-import MapPage from "./pages/MapPage";
+import MapPage from "./pages/Map/MapPage";
 import TicketsPage from "./pages/TicketsPage";
 import ItineraryPage from "./pages/ItineraryPage";
 import AccountPage from "./pages/AccountPage";
