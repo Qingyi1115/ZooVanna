@@ -23,13 +23,11 @@ function SelectDateForm() {
   const [entry, setEntry] = useState<string | Date | Date[] | null>(
     new Date(entryDate),
   );
-  console.log(entry);
+
   const listingList: Listing[] = [...localListingList, ...foreignerListingList];
   const isChecked = location.state.isChecked;
   const [dates, setDates] = useState<any>();
   const [disabledDates, setDisabledDates] = useState<Date[]>();
-
-  console.log(entry);
 
   const { state } = useAuthContext();
   const { user } = state;
@@ -67,7 +65,6 @@ function SelectDateForm() {
       .get(`http://${localhost_address}/api/orderItem/getDateOrderCount`)
       .then((result) => {
         setDates(result.result);
-        console.log(result.result);
         let temp: Date[] = [];
         const currentDate = new Date(minDate);
         while (currentDate <= maxDate) {
@@ -76,9 +73,11 @@ function SelectDateForm() {
               result.result[currentDate.toLocaleDateString()] + item > 25) ||
             item > 25
           ) {
-            temp.push(new Date(currentDate.toLocaleDateString()));
+            temp.push(new Date(currentDate.getTime()));
           }
+          console.log("A", currentDate.toLocaleDateString());
           currentDate.setDate(currentDate.getDate() + 1);
+          console.log("B", currentDate.toLocaleDateString());
         }
         {
           /*for (var key in result.result) {
@@ -161,16 +160,20 @@ function SelectDateForm() {
   function isDisabled() {
     if (entry && disabledDates) {
       for (let i in disabledDates) {
-        if (entry) {
+        {
+          /*if (entry) {
           console.log(disabledDates[i].toLocaleString());
           console.log(entry.toLocaleString());
+        }*/
         }
         if (
           entry &&
           disabledDates[i].toLocaleString() == entry.toLocaleString()
         ) {
-          console.log("it is the same");
-          console.log(i.toLocaleString());
+          {
+            /*console.log("it is the same");
+        console.log(i.toLocaleString());*/
+          }
           entry.toLocaleString();
           return true;
         }
