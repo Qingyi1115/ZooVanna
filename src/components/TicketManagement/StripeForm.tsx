@@ -82,12 +82,13 @@ function StripeForm(props: StripeFormProps) {
   }, []);
 
   async function handleProcessing() {
+    entry.setHours(0, 0, 0);
     let customerOrder;
     console.log(customerOrderId);
     if (!customerOrderId) {
       if (!user || !customer) {
         customerOrder = {
-          bookingReference: uuidv4(),
+          bookingReference: uuidv4().substring(0, 8).toUpperCase(),
           totalAmount: total,
           orderStatus: "ACTIVE",
           entryDate: entry,
@@ -125,7 +126,7 @@ function StripeForm(props: StripeFormProps) {
       } else {
         if (customer && user) {
           customerOrder = {
-            bookingReference: uuidv4(),
+            bookingReference: uuidv4().substring(0, 8).toUpperCase(),
             totalAmount: total,
             orderStatus: "ACTIVE",
             entryDate: entry,
