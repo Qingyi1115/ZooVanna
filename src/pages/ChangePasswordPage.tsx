@@ -20,12 +20,13 @@ function ChangePasswordPage() {
   const { state } = useAuthContext();
   const { user } = state;
   let email: string = user ? user.email : "";
+  const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
   //   console.log("User in view edit profile page: " + user?.email + user?.token);
 
   const apiJson = useApiJson();
 
   //   const customer = await apiJson.get(
-  //     "http://localhost:3000/api/customer/getCustomer",
+  //     "http://${localhost_address}/api/customer/getCustomer",
   //     email,
   //   );
 
@@ -46,7 +47,7 @@ function ChangePasswordPage() {
     const fetchCustomerData = async () => {
       try {
         const responseJson = await apiJson.get(
-          "http://localhost:3000/api/customer/getCustomer",
+          `http://${localhost_address}/api/customer/getCustomer`,
         );
         setCurrCustomer(responseJson as Customer);
       } catch (error: any) {
