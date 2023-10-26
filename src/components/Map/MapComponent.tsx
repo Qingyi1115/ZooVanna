@@ -149,40 +149,25 @@ function MapComponent(props: LandingPageMapProps) {
     lng: number;
   } | null>(null);
 
-  const { facilityList, setSelectedFacility, setIsShownOnMap } = props;
+  const {
+    facilityList,
+    selectedFacility,
+    setSelectedFacility,
+    setIsShownOnMap,
+  } = props;
 
   function handleMarkerClick(facility: Facility) {
-    setSelectedFacility(facility);
+    console.log(facility);
+    if (selectedFacility == facility) {
+      setSelectedFacility(null);
+    } else {
+      setSelectedFacility(facility);
+    }
   }
 
   return (
     <div>
       <div className="h-[80vh] w-screen ">
-        {/* 
-            OLD MAPS
-        <MapContainer
-          center={[0, 0]}
-          zoom={3}
-          // maxBounds={[
-          //   [-21, 28],
-          //   [120, -180],
-          // ]}
-          //   bounds={[]}
-          minZoom={1}
-          maxZoom={5}
-          crs={CRS.Simple}
-        >
-          <TileLayer
-            noWrap={true}
-            attribution="Merlion Zoo"
-            url={"../../../../src/assets/maps/merlionzootest/{z}/{x}/{y}.png"}
-          />
-          <Marker position={[yCoord, xCoord]}></Marker>
-          {markers.map((position, idx) => (
-              <Marker key={`marker-${idx}`} position={position}></Marker>
-            ))}
-          <MyComponent />
-        </MapContainer> */}
         <MapContainer
           center={merlioncenter}
           zoom={16}
@@ -207,11 +192,11 @@ function MapComponent(props: LandingPageMapProps) {
             url={`https://tile.openstreetmap.org/{z}/{x}/{y}.png`}
           /> */}
           <ImageOverlay
-            url={`http://${localhost_5174_address}/src/assets/merlionzoogreenbgonly.png`}
+            url={`http://${localhost_5174_address}/src/assets/mapBG.png`}
             bounds={backgroundbounds}
           />
           <ImageOverlay
-            url={`http://${localhost_5174_address}/src/assets/merlionzootest.png`}
+            url={`http://${localhost_5174_address}/src/assets/realmap.png`}
             bounds={bounds}
           />
           {facilityList.map((facility, idx) => (
