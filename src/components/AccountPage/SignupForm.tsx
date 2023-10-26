@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import * as Form from "@radix-ui/react-form";
 import { useToast } from "@/components/ui/use-toast";
 import useApiJson from "../../hooks/useApiJson";
@@ -8,11 +8,12 @@ import FormFieldSelect from "../FormFieldSelect";
 import { countryValueLabelPair } from "../../enums/Country";
 
 function SignupForm() {
+  const { token } = useParams();
   const apiJson = useApiJson();
   const toastShadcn = useToast().toast;
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState<string>("");
+  // const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
@@ -25,7 +26,7 @@ function SignupForm() {
   const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
 
   function clearForm() {
-    setEmail("");
+    // setEmail("");
     setPassword("");
     setFirstName("");
     setLastName("");
@@ -35,25 +36,25 @@ function SignupForm() {
     setNationality(undefined);
   }
 
-  // ValidityState properties: https://developer.mozilla.org/en-US/docs/Web/API/ValidityState
-  function validateEmail(props: ValidityState) {
-    if (props != undefined) {
-      if (props.valueMissing) {
-        return (
-          <div className="font-medium text-red-600">
-            * Please enter an e-mail
-          </div>
-        );
-      } else if (props.typeMismatch) {
-        return (
-          <div className="font-medium text-red-600">
-            * Invalid e-mail format
-          </div>
-        );
-      }
-    }
-    return null;
-  }
+  // // ValidityState properties: https://developer.mozilla.org/en-US/docs/Web/API/ValidityState
+  // function validateEmail(props: ValidityState) {
+  //   if (props != undefined) {
+  //     if (props.valueMissing) {
+  //       return (
+  //         <div className="font-medium text-red-600">
+  //           * Please enter an e-mail
+  //         </div>
+  //       );
+  //     } else if (props.typeMismatch) {
+  //       return (
+  //         <div className="font-medium text-red-600">
+  //           * Invalid e-mail format
+  //         </div>
+  //       );
+  //     }
+  //   }
+  //   return null;
+  // }
 
   function validatePassword(props: ValidityState) {
     if (props != undefined) {
@@ -191,7 +192,6 @@ function SignupForm() {
       customerPassword: password,
       firstName: firstName,
       lastName: lastName,
-      email: email,
       contactNo: contactNo,
       //   birthday: isoBirthday,
       birthday: birthday,
@@ -201,7 +201,7 @@ function SignupForm() {
 
     try {
       const responseJson = await apiJson.post(
-        `http://${localhost_address}/api/customer/createCustomer`,
+        `http://${localhost_address}/api/customer/createCustomer/${token}`,
         newCustomer,
       );
       // success
@@ -224,7 +224,7 @@ function SignupForm() {
   return (
     <div className="flex w-full justify-center">
       <Form.Root className="w-4/5" onSubmit={handleSubmit}>
-        <Form.Field name="email" className="mb-10 flex flex-col gap-1">
+        {/* <Form.Field name="email" className="mb-10 flex flex-col gap-1">
           <Form.Label className="text-base font-medium text-black">
             E-mail
           </Form.Label>
@@ -239,8 +239,8 @@ function SignupForm() {
           {/* <Form.Message name="email" match={"valueMissing"}>
               Please enter an email
             </Form.Message> */}
-          <Form.ValidityState>{validateEmail}</Form.ValidityState>
-        </Form.Field>
+        {/* <Form.ValidityState>{validateEmail}</Form.ValidityState>
+        </Form.Field> */}
 
         <Form.Field name="password" className="mb-10 flex flex-col gap-1">
           <Form.Label className="text-base font-medium text-black">
