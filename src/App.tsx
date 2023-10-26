@@ -38,18 +38,23 @@ import ViewPromotionPage from "./pages/Promotion/ViewPromotionPage";
 import Successful from "./pages/PurchaseTicketManagement/Successful";
 import TicketLandingPage from "./pages/TicketLandingPage";
 import CheckYourInbox from "./pages/CheckYourInbox";
+import ViewPurchasedTicketsPage from "./pages/PurchaseTicketManagement/ViewPurchasedTicketsPage";
+import LoginFormTicket from "./components/AccountPage/LoginFormTicket";
+import LoginTicketPage from "./pages/LoginTicketPage";
 
 function App() {
+  const { state } = useAuthContext();
+  const { user } = state;
   return (
     <PrimeReactProvider>
       <div className="">
         <BrowserRouter>
-          {/* <Routes>
+          <Routes>
             <Route
               path="/login"
               element={!user ? <LoginPage /> : <Navigate to={"/"} />}
             />
-          </Routes> */}
+          </Routes>
           <MainLayout>
             <Routes>
               <Route path="/" element={<HomePage />} />
@@ -58,7 +63,7 @@ function App() {
                 element={<ViewPromotionPage />}
               />
               <Route path="/map" element={<MapPage />} />
-
+              {/*Ticket Management*/}
               <Route path="/tickets" element={<TicketLandingPage />} />
               <Route path="/tickets/buy" element={<TicketsPage />} />
               <Route path="/tickets/selectListing" element={<ListingPage />} />
@@ -86,6 +91,13 @@ function App() {
                 path="/tickets/completion/:customerOrderId/:code/:id"
                 element={<CompletionPage />}
               />
+              // need user in logged in state
+              <Route
+                path="/tickets/purchasedTickets"
+                element={
+                  user ? <ViewPurchasedTicketsPage /> : <LoginTicketPage />
+                }
+              />{" "}
               <Route path="/itinerary" element={<ItineraryPage />} />
               <Route path="/account" element={<AccountPage />} />
               <Route path="/login" element={<LoginPage />} />

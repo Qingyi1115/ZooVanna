@@ -5,7 +5,6 @@ interface Payment {
   paymentId: number;
   amount: number;
   paymentType: PaymentType;
-  paymentStatus: PaymentStatus;
   transactionId: number;
   description: string;
 }

@@ -20,6 +20,7 @@ function TicketsPage() {
   const apiJson = useApiJson();
   const entryDate = new Date(Date.now());
   const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
+  entryDate.setHours(0, 0, 0);
   let personal: any = {
     customerFirstName: "",
     customerLastName: "",
