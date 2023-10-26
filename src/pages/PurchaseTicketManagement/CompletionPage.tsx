@@ -47,7 +47,7 @@ function CompletionPage() {
       .then((res) => {
         if (res.status === "succeeded") {
           payment = {
-            amount: res.amount,
+            amount: res.amount / 100,
             time: new Date(),
             paymentType: res.type,
             transactionId: id,
