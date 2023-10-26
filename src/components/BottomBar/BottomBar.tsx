@@ -26,7 +26,7 @@ const BottomBar = () => {
   return (
     <footer
       ref={sidebar}
-      className={`fixed inset-x-0 bottom-0 left-0 z-9999 mb-0 inline-block flex h-auto w-screen flex-row overflow-y-hidden bg-black duration-300 ease-linear lg:static`}
+      className={`fixed inset-x-0 bottom-0 left-0 z-9999 mb-0 inline-block flex h-[7vh] h-auto w-screen flex-row overflow-y-hidden bg-black duration-300 ease-linear lg:static`}
     >
       <div className="no-scrollbar flex h-full w-full flex-row items-center justify-around duration-300 ease-linear">
         <NavLink
