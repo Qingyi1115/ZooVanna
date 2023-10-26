@@ -75,20 +75,15 @@ function MapLandingPage() {
   );
   const [refreshSeed, setRefreshSeed] = useState<number>(0);
 
-  //   const [deleteLocationFromMapDialog, setDeleteLocationFromMapDialog] =
-  //     useState<boolean>(false);
-
-  const [isShownOnMap, setIsShownOnMap] = useState<boolean>(false);
-
   const [filteredFacilityList, setFilteredFacilityList] = useState<Facility[]>(
     [],
   );
   const [facilityTypeFilterValue, setFacilityTypeFilterValue] = useState<
     string | null
   >(null);
-  const [isShownOnMapFilterValue, setIsShownOnMapFilterValue] = useState<
-    string | null
-  >(null);
+
+  const [searchText, setSearchText] = useState<string>("");
+
   const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
 
   useEffect(() => {
@@ -123,132 +118,44 @@ function MapLandingPage() {
     fetchNoLocationFacilities();
   }, [refreshSeed]);
 
+  // function handleFacilTypeFilterMap(value: string) {
+  //   const tempFacilityList = [...facilityList].filter((facility) => {
+  //     if (value == "All") {
+  //       return true;
+  //     } else {
+  //       return facility.facilityDetailJson.facilityType == value;
+  //     }
+  //   });
+
+  //   setFilteredFacilityList(tempFacilityList);
+  // }
+
   function handleFacilTypeFilterMap(value: string) {
     const tempFacilityList = [...facilityList].filter((facility) => {
-      // console.log(
-      //   "facil type: " +
-      //     FacilityType[
-      //       facility.facilityDetailJson
-      //         .facilityType as keyof typeof FacilityType
-      //     ].toString()
-      // );
-      // console.log("facil filter value: " + value);
-      if (value == "All") {
-        return true;
-      } else {
-        return (
-          // FacilityType[
-          //   facility.facilityDetailJson
-          //     .facilityType as keyof typeof FacilityType
-          // ].toString() == value
-          facility.facilityDetailJson.facilityType == value
-        );
+      if (
+        value === "All" ||
+        facility.facilityDetailJson.facilityType === value
+      ) {
+        // Check if the facility matches the selected facility type
+        if (searchText.trim() === "") {
+          // If searchText is empty, return all facilities that match the type
+          return true;
+        } else {
+          // If searchText is not empty, also check if the facility includes the searchText
+          const facilityName = facility.facilityName.toLowerCase();
+          const search = searchText.toLowerCase();
+          return facilityName.includes(search);
+        }
       }
+      return false; // Exclude facilities that don't match the selected facility type
     });
 
     setFilteredFacilityList(tempFacilityList);
   }
 
-  //   function handleCustMapVisibilityFilterMap(value: string) {
-  //     const tempFacilityList = [...facilityList].filter((facility) => {
-  //       if (value == "All") {
-  //         return true;
-  //       } else {
-  //         return facility.showOnMap.toString() == value;
-  //       }
-  //     });
-
-  //     setFilteredFacilityList(tempFacilityList);
-  //   }
-
   function clearMapFilters() {
-    setIsShownOnMapFilterValue("All");
     setFacilityTypeFilterValue("All");
     setFilteredFacilityList(facilityList);
-  }
-
-  // Delete stuff
-  //   const confirmDeleteLocationFromMap = () => {
-  //     setDeleteLocationFromMapDialog(true);
-  //   };
-
-  //   const hideDeleteLocationFromMapDialog = () => {
-  //     setDeleteLocationFromMapDialog(false);
-  //   };
-
-  //   // Show On Map Toggle stuff
-  //   const [toggleShowOnMapDialog, setToggleShowOnMapDialog] =
-  //     useState<boolean>(false);
-  //   const [isChecked, setIsChecked] = useState<boolean>(false);
-
-  //   function handleOnCheckedChangeShowOnMap(checked: boolean) {
-  //     confirmToggleShowOnMap();
-  //     setIsChecked(checked);
-  //   }
-
-  //   const confirmToggleShowOnMap = () => {
-  //     setToggleShowOnMapDialog(true);
-  //   };
-
-  //   const hideToggleShowOnMapDialog = () => {
-  //     setToggleShowOnMapDialog(false);
-  //   };
-
-  //   // toggle show on map stuff
-  //   async function handleToggleShowOnMap() {
-  //     if (!selectedFacility) {
-  //       return;
-  //     }
-
-  //     const updatedFacility = {
-  //       facilityName: selectedFacility.facilityName,
-  //       xCoordinate: selectedFacility.xCoordinate,
-  //       yCoordinate: selectedFacility.yCoordinate,
-  //       showOnMap: isChecked,
-  //       facilityDetail: selectedFacility.facilityDetail,
-  //       isSheltered: selectedFacility.isSheltered,
-  //       facilityDetailJson: selectedFacility.facilityDetailJson,
-  //     };
-
-  //     console.log("heree");
-  //     console.log(isChecked);
-
-  //     try {
-  //       const responseJson = await apiJson.put(
-  //         `http://localhost:3000/api/assetFacility/updateFacility/${selectedFacility.facilityId}`,
-  //         updatedFacility,
-  //       );
-  //       // success
-  //       toastShadcn({
-  //         description: "Successfully updated customer map visibility",
-  //       });
-  //       setIsShownOnMap(isChecked);
-  //       setToggleShowOnMapDialog(false);
-  //       setRefreshSeed(refreshSeed + 1);
-  //     } catch (error: any) {
-  //       toastShadcn({
-  //         variant: "destructive",
-  //         title: "Uh oh! Something went wrong.",
-  //         description:
-  //           "An error has occurred while updating customer map visibility map: \n" +
-  //           error.message,
-  //       });
-  //     }
-  //   }
-
-  function SearchBar() {
-    return (
-      <div className="relative">
-        <Input
-          type="search"
-          placeholder="Find attractions, food, more..."
-          className="w-full py-2 pl-10 pr-3 focus:border-blue-300 focus:outline-none focus:ring"
-        />
-        <div className="absolute inset-y-0 left-0 flex items-center pl-3">
-          <HiOutlineSearch className="text-gray-500 h-5 w-5" />
-        </div>
-      </div>
-    );
   }
 
   function FilterButton() {
@@ -334,53 +241,29 @@ function MapLandingPage() {
     <div className="h-screen w-screen justify-center">
       <div className="flex w-full flex-col rounded-lg border border-stroke bg-white pt-4 text-black shadow-default">
         <div className="px-4 pt-4">
-          <SearchBar />
+          <div className="relative">
+            <Input
+              type="search"
+              value={searchText}
+              placeholder="Find attractions, food, more..."
+              className="w-full py-2 pl-10 pr-3 focus:border-blue-300 focus:outline-none focus:ring"
+              onChange={(e) => {
+                setSearchText(e.target.value);
+                handleFacilTypeFilterMap(
+                  facilityTypeFilterValue ? facilityTypeFilterValue : "All",
+                );
+              }}
+            />
+            <div className="absolute inset-y-0 left-0 flex items-center pl-3">
+              <HiOutlineSearch className="text-gray-500 h-5 w-5" />
+            </div>
+          </div>
           <HorizontalScrollOptionsList
             options={options}
             onOptionClick={handleOptionClick}
             selectedOption={selectedOption} // Pass selectedOption as a prop
           />
         </div>
-        {/* Header */}
-        {/* <div className="flex justify-between">
-      <Button variant={"outline"} type="button" className="invisible">
-        Back
-      </Button>
-      <span className="self-center text-title-xl font-bold">Zoo Map</span>
-      <Button disabled className="invisible">
-        Back
-      </Button>
-    </div> */}
-
-        {/* Facility Type Filter */}
-        {/* <Select
-                value={isShownOnMapFilterValue?.toString()}
-                onValueChange={(value) => {
-                  setIsShownOnMapFilterValue(value);
-                  handleCustMapVisibilityFilterMap(value);
-                }}
-              >
-                <SelectTrigger className="w-56">
-                  <SelectValue placeholder="Customer map visibility" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectGroup id="shownOnMapFilterSelect">
-                    <SelectLabel>Is Shown on Customer Map</SelectLabel>
-                    <SelectItem key={"all"} value="All">
-                      All
-                    </SelectItem>
-                    <SelectItem key={"true"} value="true">
-                      Only Yes
-                    </SelectItem>
-                    <SelectItem key={"false"} value="false">
-                      Only No
-                    </SelectItem>
-                  </SelectGroup>
-                </SelectContent>
-              </Select> */}
-
-        {/* <Button onClick={clearMapFilters}>Clear Filter</Button>
-            </div> */}
 
         <div className=" w-full overflow-hidden rounded-md border border-stroke shadow-md">
           <div className="relative">
@@ -390,7 +273,7 @@ function MapLandingPage() {
               facilityList={filteredFacilityList}
               selectedFacility={selectedFacility}
               setSelectedFacility={setSelectedFacility}
-              setIsShownOnMap="true"
+              setIsShownOnMap={true}
             />
           </div>
         </div>

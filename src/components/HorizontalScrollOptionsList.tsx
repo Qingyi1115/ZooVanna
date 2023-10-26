@@ -18,8 +18,8 @@ const HorizontalScrollOptionsList: React.FC<
   selectedOption, // Use selectedOption from props
 }) => {
   return (
-    <div className="max-w-md">
-      <div className="max-w-xs overflow-x-auto whitespace-nowrap py-3">
+    <div>
+      <div className=" overflow-x-auto whitespace-nowrap py-3">
         {options.map((option) => (
           <div
             key={option.text}

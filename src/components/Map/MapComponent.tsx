@@ -153,7 +153,6 @@ function MapComponent(props: LandingPageMapProps) {
 
   function handleMarkerClick(facility: Facility) {
     setSelectedFacility(facility);
-    setIsShownOnMap(facility.showOnMap);
   }
 
   return (
