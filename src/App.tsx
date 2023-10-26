@@ -22,7 +22,7 @@ import SignupEmailPage from "./pages/SignUpEmailPage";
 import ViewProfilePage from "./pages/ViewProfilePage";
 import EditProfilePage from "./pages/EditProfilePage";
 import ChangePasswordPage from "./pages/ChangePasswordPage";
-import RequestResetPasswordForm from "./components/AccountPage/RequestResetPasswordForm";
+import RequestResetPasswordPage from "./pages/RequestResetPasswordPage";
 import ResetPasswordForm from "./components/AccountPage/ResetPasswordForm";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import ListingPage from "./pages/PurchaseTicketManagement/ListingPage";
@@ -109,7 +109,7 @@ function App() {
               <Route path="/changePassword" element={<ChangePasswordPage />} />
               <Route
                 path="/requestResetPassword"
-                element={<RequestResetPasswordForm />}
+                element={<RequestResetPasswordPage />}
               />
               <Route
                 path="/resetPasswordNew/:token"
