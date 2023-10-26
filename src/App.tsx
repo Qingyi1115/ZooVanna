@@ -18,6 +18,7 @@ import { useAuthContext } from "./hooks/useAuthContext";
 import SignupForm from "./components/AccountPage/SignupForm";
 import { PrimeReactProvider, PrimeReactContext } from "primereact/api";
 import SignupPage from "./pages/SignUpPage";
+import SignupEmailPage from "./pages/SignUpEmailPage";
 import ViewProfilePage from "./pages/ViewProfilePage";
 import EditProfilePage from "./pages/EditProfilePage";
 import ChangePasswordPage from "./pages/ChangePasswordPage";
@@ -36,6 +37,7 @@ import CompletionPage from "./pages/PurchaseTicketManagement/CompletionPage";
 import ViewPromotionPage from "./pages/Promotion/ViewPromotionPage";
 import Successful from "./pages/PurchaseTicketManagement/Successful";
 import TicketLandingPage from "./pages/TicketLandingPage";
+import CheckYourInbox from "./pages/CheckYourInbox";
 
 function App() {
   return (
@@ -87,7 +89,9 @@ function App() {
               <Route path="/itinerary" element={<ItineraryPage />} />
               <Route path="/account" element={<AccountPage />} />
               <Route path="/login" element={<LoginPage />} />
-              <Route path="/signup" element={<SignupPage />} />
+              <Route path="/signupemail" element={<SignupEmailPage />} />
+              <Route path="/inbox" element={<CheckYourInbox />} />
+              <Route path="/signup/:token" element={<SignupPage />} />
               <Route path="/viewProfile" element={<ViewProfilePage />} />
               <Route path="/editProfile" element={<EditProfilePage />} />
               <Route path="/changePassword" element={<ChangePasswordPage />} />

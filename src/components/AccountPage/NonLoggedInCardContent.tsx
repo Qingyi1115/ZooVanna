@@ -19,7 +19,7 @@ function NonLoggedInCardContent() {
         </Button>
         <Separator className="opacity-20" />
       </NavLink>
-      <NavLink to="/signup">
+      <NavLink to="/signupemail">
         <Button
           variant={"ghost"}
           className="w-full justify-between rounded-none  text-base"
