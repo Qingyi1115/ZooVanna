@@ -19,8 +19,9 @@ function TicketsPage() {
   const [foreignerListingList, setForeignerListingList] = useState<Listing[]>();
   const apiJson = useApiJson();
   const entryDate = new Date(Date.now());
-  const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
   entryDate.setHours(0, 0, 0);
+  const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
+
   let personal: any = {
     customerFirstName: "",
     customerLastName: "",

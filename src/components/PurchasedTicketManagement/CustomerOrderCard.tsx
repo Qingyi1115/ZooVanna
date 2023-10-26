@@ -13,6 +13,7 @@ interface CustomerOrderProps {
 }
 
 function CustomerOrderCard(props: CustomerOrderProps) {
+  const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
   function convertUtcToTimezone(utcDate: Date, targetTimezone: string): string {
     const utcMoment = moment.utc(utcDate);
     const targetMoment = utcMoment.tz(targetTimezone);
@@ -28,11 +29,14 @@ function CustomerOrderCard(props: CustomerOrderProps) {
 
   function handleClick() {
     console.log(customerOrder.pdfUrl);
-    window.open(`http://localhost:3000/pdf/${customerOrder.pdfUrl}`, "_blank");
+    window.open(
+      `http://${localhost_address}/pdf/${customerOrder.pdfUrl}`,
+      "_blank",
+    );
   }
 
   function handleDownload() {
-    fetch(`http://localhost:3000/pdf/${customerOrder.pdfUrl}`, {
+    fetch(`http://${localhost_address}/pdf/${customerOrder.pdfUrl}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/pdf",

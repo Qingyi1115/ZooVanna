@@ -12,6 +12,7 @@ import { useEffect } from "react";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import useApiJson from "../../hooks/useApiJson";
 function SelectDateForm() {
+  const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
   const location = useLocation();
   const localListingList: Listing[] = location.state.localListingList;
   const foreignerListingList: Listing[] = location.state.foreignerListingList;
@@ -63,7 +64,7 @@ function SelectDateForm() {
 
   useEffect(() => {
     apiJson
-      .get("http://localhost:3000/api/orderItem/getDateOrderCount")
+      .get(`http://${localhost_address}/api/orderItem/getDateOrderCount`)
       .then((result) => {
         setDates(result.result);
         console.log(result.result);

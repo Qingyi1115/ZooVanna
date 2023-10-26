@@ -37,10 +37,17 @@ import CompletionPage from "./pages/PurchaseTicketManagement/CompletionPage";
 import ViewPromotionPage from "./pages/Promotion/ViewPromotionPage";
 import Successful from "./pages/PurchaseTicketManagement/Successful";
 import TicketLandingPage from "./pages/TicketLandingPage";
+<<<<<<< HEAD
 import CheckYourInbox from "./pages/CheckYourInbox";
 import ViewPurchasedTicketsPage from "./pages/PurchaseTicketManagement/ViewPurchasedTicketsPage";
 import LoginFormTicket from "./components/AccountPage/LoginFormTicket";
 import LoginTicketPage from "./pages/LoginTicketPage";
+=======
+import ViewPurchasedTicketsPage from "./pages/PurchaseTicketManagement/ViewPurchasedTicketsPage";
+import LoginFormTicket from "./components/AccountPage/LoginFormTicket";
+import LoginTicketPage from "./pages/LoginTicketPage";
+import CheckYourInbox from "./pages/CheckYourInbox";
+>>>>>>> 09cd0e33dfce23469c660cdcf74cd9f994f578b2
 
 function App() {
   const { state } = useAuthContext();

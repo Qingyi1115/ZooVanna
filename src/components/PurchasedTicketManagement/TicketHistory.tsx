@@ -4,6 +4,7 @@ import CustomerOrderCard from "./CustomerOrderCard";
 import CustomerOrder from "../../models/CustomerOrder";
 
 function TicketHistory() {
+  const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
   const apiJson = useApiJson();
   const [custOrders, setCustOrders] = useState<CustomerOrder[]>();
   //put use Effect for upcoming ticket here
@@ -11,7 +12,7 @@ function TicketHistory() {
   useEffect(() => {
     apiJson
       .get(
-        "http://localhost:3000/api/customerOrder/getPastCustomerOrderByCustomer",
+        `http://${localhost_address}/api/customerOrder/getPastCustomerOrderByCustomer`,
       )
       .then((result) => setCustOrders(result.result));
   }, []);
