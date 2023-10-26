@@ -4,7 +4,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/components/ui/use-toast";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
 import {
   Dialog,
@@ -277,6 +277,26 @@ function MapLandingPage() {
             />
           </div>
         </div>
+
+        {selectedFacility && (
+          <Card
+            className="h-1/8 fixed bottom-0 left-0 right-0 max-w-lg translate-y-full transform rounded-t-lg bg-white p-4 shadow-lg transition-transform duration-1000"
+            style={{
+              transform: selectedFacility
+                ? "translateY(0)"
+                : "translateY(100%)",
+            }}
+          >
+            <CardHeader>
+              <CardContent className="mb-8 font-semibold">
+                {selectedFacility.facilityName}
+              </CardContent>
+              {/* <CardDescription>
+                  Deploy your new project in one-click.
+              </CardDescription> */}
+            </CardHeader>
+          </Card>
+        )}
       </div>
     </div>
   );
