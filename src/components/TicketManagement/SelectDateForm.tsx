@@ -76,7 +76,7 @@ function SelectDateForm() {
               result.result[currentDate.toLocaleDateString()] + item > 25) ||
             item > 25
           ) {
-            temp.push(new Date(currentDate.toLocaleDateString()));
+            temp.push(new Date(currentDate.getTime()));
           }
           currentDate.setDate(currentDate.getDate() + 1);
         }
