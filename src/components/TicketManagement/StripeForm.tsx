@@ -35,6 +35,7 @@ function StripeForm(props: StripeFormProps) {
   let code: number;
   const id = props.id;
   const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
+  const localhost_5174_address = import.meta.env.VITE_LOCALHOST_5174_ADDRESS;
 
   const { state } = useAuthContext();
   const { user } = state;
@@ -182,7 +183,7 @@ function StripeForm(props: StripeFormProps) {
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: `http://${localhost_address}/tickets/completion/${customerOrderId}/${code}/${id}`,
+        return_url: `http://${localhost_5174_address}/tickets/completion/${customerOrderId}/${code}/${id}`,
       },
     });
     if (error) {

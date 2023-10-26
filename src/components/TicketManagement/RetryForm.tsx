@@ -32,7 +32,7 @@ function RetryForm(props: RetryFormProps) {
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: `http://{localhost_address}/tickets/completion/${customerOrderId}/${code}/${id}`,
+        return_url: `http://${localhost_address}/tickets/completion/${customerOrderId}/${code}/${id}`,
       },
     });
     if (error) {
