@@ -94,6 +94,7 @@ function MapLandingPage() {
   useEffect(() => {
     const fetchNoLocationFacilities = async () => {
       try {
+        console.log("useEffect here");
         const responseJson = await apiJson.post(
           `http://${localhost_address}/api/assetFacility/getAllFacilityCustomer`,
           { includes: ["facilityDetail"] },
@@ -314,8 +315,12 @@ function MapLandingPage() {
 
   const handleOptionClick = (option: Option | null) => {
     if (option) {
-      setSelectedOption(option);
-      console.log(`Selected option: ${option.text}`);
+      if (selectedOption == option) {
+        setSelectedOption(null);
+      } else {
+        setSelectedOption(option);
+        console.log(`Selected option: ${option.text}`);
+      }
 
       if (option.text === "Amenities") {
         setFilteredFacilityList(facilityList);

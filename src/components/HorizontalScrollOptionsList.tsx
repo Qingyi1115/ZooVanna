@@ -24,7 +24,7 @@ const HorizontalScrollOptionsList: React.FC<
           <div
             key={option.text}
             className={`inline-block cursor-pointer rounded-full px-4 py-1.5 text-sm ${
-              selectedOption === option
+              selectedOption?.text === option.text
                 ? "bg-black text-white"
                 : "bg-gray-100 text-black"
             }`}
