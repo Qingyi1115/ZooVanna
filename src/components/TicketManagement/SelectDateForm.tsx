@@ -23,13 +23,11 @@ function SelectDateForm() {
   const [entry, setEntry] = useState<string | Date | Date[] | null>(
     new Date(entryDate),
   );
-  console.log(entry);
+
   const listingList: Listing[] = [...localListingList, ...foreignerListingList];
   const isChecked = location.state.isChecked;
   const [dates, setDates] = useState<any>();
   const [disabledDates, setDisabledDates] = useState<Date[]>();
-
-  console.log(entry);
 
   const { state } = useAuthContext();
   const { user } = state;
@@ -67,7 +65,6 @@ function SelectDateForm() {
       .get(`http://${localhost_address}/api/orderItem/getDateOrderCount`)
       .then((result) => {
         setDates(result.result);
-        console.log(result.result);
         let temp: Date[] = [];
         const currentDate = new Date(minDate);
         while (currentDate <= maxDate) {
@@ -88,7 +85,6 @@ function SelectDateForm() {
         }*/
         }
         setDisabledDates(temp);
-        console.log(temp);
       });
   }, [item]);
 
@@ -100,8 +96,7 @@ function SelectDateForm() {
           ${
             dates && dates[example.toLocaleDateString()] !== undefined
               ? entry &&
-                example.toLocaleDateString() ==
-                  new Date(entry.toLocaleString()).toLocaleDateString()
+                example.getTime() == new Date(entry.toString()).getTime()
                 ? "bg-black"
                 : dates[example.toLocaleDateString()] + item > 25
                 ? ""
@@ -114,8 +109,7 @@ function SelectDateForm() {
                   new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).getTime() &&
                 example.getTime() > new Date(Date.now()).getTime()
               ? entry &&
-                example.toLocaleDateString() ==
-                  new Date(entry.toLocaleString()).toLocaleDateString()
+                example.getTime() == new Date(entry.toString()).getTime()
                 ? "bg-black"
                 : item > 25
                 ? ""
@@ -133,8 +127,7 @@ function SelectDateForm() {
             ${
               dates && dates[example.toLocaleDateString()] !== undefined
                 ? entry &&
-                  example.toLocaleDateString() ==
-                    new Date(entry.toLocaleString()).toLocaleDateString()
+                  example.getTime() == new Date(entry.toString()).getTime()
                   ? "text-white underline"
                   : dates[example.toLocaleDateString()] + item > 25
                   ? "text-black"
@@ -143,8 +136,7 @@ function SelectDateForm() {
                     new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).getTime() &&
                   example.getTime() > new Date(Date.now()).getTime()
                 ? entry &&
-                  example.toLocaleDateString() ==
-                    new Date(entry.toLocaleString()).toLocaleDateString()
+                  example.getTime() == new Date(entry.toString()).getTime()
                   ? "text-white underline"
                   : item > 25
                   ? "text-black"
@@ -161,16 +153,10 @@ function SelectDateForm() {
   function isDisabled() {
     if (entry && disabledDates) {
       for (let i in disabledDates) {
-        if (entry) {
-          console.log(disabledDates[i].toLocaleString());
-          console.log(entry.toLocaleString());
-        }
         if (
           entry &&
           disabledDates[i].toLocaleString() == entry.toLocaleString()
         ) {
-          console.log("it is the same");
-          console.log(i.toLocaleString());
           entry.toLocaleString();
           return true;
         }

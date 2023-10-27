@@ -1,0 +1,11 @@
+{
+    "appId": "com.zoovanna",
+    "appName": "ZooVanna app",
+    "bundledWebRuntime": false,
+    "webDir": "www",
+    "plugins": {
+      "CustomUrlScheme": {
+        "urlScheme": "zoovanna"
+      }
+    }
+}
