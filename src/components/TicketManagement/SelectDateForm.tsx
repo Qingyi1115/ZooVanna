@@ -75,9 +75,7 @@ function SelectDateForm() {
           ) {
             temp.push(new Date(currentDate.getTime()));
           }
-          console.log("A", currentDate.toLocaleDateString());
           currentDate.setDate(currentDate.getDate() + 1);
-          console.log("B", currentDate.toLocaleDateString());
         }
         {
           /*for (var key in result.result) {
@@ -87,7 +85,6 @@ function SelectDateForm() {
         }*/
         }
         setDisabledDates(temp);
-        console.log(temp);
       });
   }, [item]);
 
@@ -99,8 +96,7 @@ function SelectDateForm() {
           ${
             dates && dates[example.toLocaleDateString()] !== undefined
               ? entry &&
-                example.toLocaleDateString() ==
-                  new Date(entry.toLocaleString()).toLocaleDateString()
+                example.getTime() == new Date(entry.toString()).getTime()
                 ? "bg-black"
                 : dates[example.toLocaleDateString()] + item > 25
                 ? ""
@@ -113,8 +109,7 @@ function SelectDateForm() {
                   new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).getTime() &&
                 example.getTime() > new Date(Date.now()).getTime()
               ? entry &&
-                example.toLocaleDateString() ==
-                  new Date(entry.toLocaleString()).toLocaleDateString()
+                example.getTime() == new Date(entry.toString()).getTime()
                 ? "bg-black"
                 : item > 25
                 ? ""
@@ -132,8 +127,7 @@ function SelectDateForm() {
             ${
               dates && dates[example.toLocaleDateString()] !== undefined
                 ? entry &&
-                  example.toLocaleDateString() ==
-                    new Date(entry.toLocaleString()).toLocaleDateString()
+                  example.getTime() == new Date(entry.toString()).getTime()
                   ? "text-white underline"
                   : dates[example.toLocaleDateString()] + item > 25
                   ? "text-black"
@@ -142,8 +136,7 @@ function SelectDateForm() {
                     new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).getTime() &&
                   example.getTime() > new Date(Date.now()).getTime()
                 ? entry &&
-                  example.toLocaleDateString() ==
-                    new Date(entry.toLocaleString()).toLocaleDateString()
+                  example.getTime() == new Date(entry.toString()).getTime()
                   ? "text-white underline"
                   : item > 25
                   ? "text-black"
@@ -160,20 +153,10 @@ function SelectDateForm() {
   function isDisabled() {
     if (entry && disabledDates) {
       for (let i in disabledDates) {
-        {
-          /*if (entry) {
-          console.log(disabledDates[i].toLocaleString());
-          console.log(entry.toLocaleString());
-        }*/
-        }
         if (
           entry &&
           disabledDates[i].toLocaleString() == entry.toLocaleString()
         ) {
-          {
-            /*console.log("it is the same");
-        console.log(i.toLocaleString());*/
-          }
           entry.toLocaleString();
           return true;
         }
