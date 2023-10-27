@@ -207,15 +207,12 @@ function MapLandingPage() {
   }
 
   const options = [
+    { text: "Zone" },
     { text: "Wildlife" },
     { text: "Feeding" },
     { text: "Shows" },
     { text: "Keeper Talk" },
-    { text: "Dining" },
     { text: "Amenities" },
-    { text: "Kids" },
-
-    // Add more options as needed
   ];
 
   const [selectedOption, setSelectedOption] = useState<Option | null>(null);
