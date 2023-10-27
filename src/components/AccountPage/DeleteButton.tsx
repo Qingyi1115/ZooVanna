@@ -17,6 +17,7 @@ import {
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { InputText } from "primereact/inputtext";
+import { useAuthContext } from "../../hooks/useAuthContext";
 
 function DeleteButton({ email }: { email: string }) {
   const apiJson = useApiJson();
@@ -24,6 +25,8 @@ function DeleteButton({ email }: { email: string }) {
   const navigate = useNavigate();
   const [input, setInput] = useState<string>("");
   const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
+
+  const { dispatch } = useAuthContext();
 
   const deleteCustomer = async () => {
     if (input == "DELETE") {
@@ -37,12 +40,12 @@ function DeleteButton({ email }: { email: string }) {
         );
 
         toastShadcn({
-          variant: "destructive",
           title: "Deletion Successful",
           description: "Successfully deleted your account",
         });
 
         //might need to logout first
+        dispatch({ type: "LOGOUT" });
         navigate("/login");
 
         //   setDeleteSpeciesDialog(false);
@@ -95,7 +98,11 @@ function DeleteButton({ email }: { email: string }) {
           </div>
         </div>
         <DialogFooter>
-          <Button type="submit" onClick={deleteCustomer}>
+          <Button
+            type="submit"
+            variant={"destructive"}
+            onClick={deleteCustomer}
+          >
             Delete my account
           </Button>
         </DialogFooter>
