@@ -41,6 +41,7 @@ import ViewPurchasedTicketsPage from "./pages/PurchaseTicketManagement/ViewPurch
 import LoginFormTicket from "./components/AccountPage/LoginFormTicket";
 import LoginTicketPage from "./pages/LoginTicketPage";
 import CheckYourInbox from "./pages/CheckYourInbox";
+import AppUrlListener from "./components/AppUrlListener";
 
 function App() {
   const { state } = useAuthContext();
@@ -49,6 +50,7 @@ function App() {
     <PrimeReactProvider>
       <div className="">
         <BrowserRouter>
+          <AppUrlListener></AppUrlListener>
           <Routes>
             <Route
               path="/login"
