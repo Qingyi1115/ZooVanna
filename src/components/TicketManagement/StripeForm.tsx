@@ -183,7 +183,7 @@ function StripeForm(props: StripeFormProps) {
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: `http://${localhost_5174_address}/tickets/completion/${customerOrderId}/${code}/${id}`,
+        return_url: `https://${localhost_5174_address}/tickets/completion/${customerOrderId}/${code}/${id}`,
       },
     });
     if (error) {
