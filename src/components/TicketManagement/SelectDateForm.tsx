@@ -168,7 +168,7 @@ function SelectDateForm() {
   //${date.day == 30 ? "bg-green-400" : "bg-red-500"}
 
   return (
-    <div className="block items-center overflow-hidden pt-5 lg:pt-30">
+    <div className="block items-center overflow-hidden pt-5 lg:pt-25">
       <div className="mb-5 px-10 text-2xl font-bold sm:px-20 md:mb-5 md:px-40 lg:px-27">
         Select Date
       </div>
@@ -191,10 +191,24 @@ function SelectDateForm() {
                 disabledDates={disabledDates}
               />
             </div>
+            <div className="mt-2 w-full pl-2 md:flex md:pl-14 ">
+              <div className="mt-2 flex">
+                <div className="w-6 rounded-full bg-green-500"></div>{" "}
+                <div className="ml-1 font-medium"> : Available</div>
+              </div>
+              <div className="mt-2 flex">
+                <div className="w-6 rounded-full bg-yellow-400 md:ml-3"> </div>{" "}
+                <div className="ml-1 font-medium"> : Selling fast</div>
+              </div>
+              <div className="mt-2 flex">
+                <div className="w-6 rounded-full bg-red-500 md:ml-3"> </div>{" "}
+                <div className="ml-1 font-medium"> : Running out!</div>
+              </div>
+            </div>
             {isDisabled() && (
-              <div className=" mt-2 flex w-full">
+              <div className=" mt-3 flex w-full">
                 <div className="flex h-8 w-full items-center justify-center bg-red-100 text-justify text-sm text-red-600">
-                  The date you choose is disabled!
+                  The date you choose is not available!
                 </div>
               </div>
             )}
