@@ -106,7 +106,7 @@ function RequestResetPasswordForm() {
 
         <Form.Submit asChild>
           <button className="mt-10 h-12 w-full rounded-full border bg-black text-whiter">
-            Send me a reset password email
+            Send reset email
           </button>
         </Form.Submit>
       </Form.Root>

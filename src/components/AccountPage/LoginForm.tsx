@@ -95,7 +95,7 @@ function LoginForm() {
 
         <Form.Submit asChild>
           <button className="h-12 w-full rounded border bg-black text-whiter">
-            Log In
+            Log in
           </button>
         </Form.Submit>
         {error && (
