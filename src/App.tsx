@@ -52,10 +52,10 @@ function App() {
         <BrowserRouter>
           <AppUrlListener></AppUrlListener>
           <Routes>
-            <Route
+            {/* <Route
               path="/login"
               element={!user ? <LoginPage /> : <Navigate to={"/"} />}
-            />
+            /> */}
           </Routes>
           <MainLayout>
             <Routes>
