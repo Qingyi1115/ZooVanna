@@ -101,8 +101,6 @@ function SelectDateForm() {
                 : dates[example.toLocaleDateString()] + item > 25
                 ? ""
                 : dates[example.toLocaleDateString()] + item > 10
-                ? "bg-red-500"
-                : dates[example.toLocaleDateString()] + item > 5
                 ? "bg-yellow-400"
                 : "bg-green-400"
               : example.getTime() <
@@ -114,8 +112,6 @@ function SelectDateForm() {
                 : item > 25
                 ? ""
                 : item > 10
-                ? "bg-red-500"
-                : item > 5
                 ? "bg-yellow-400"
                 : "bg-green-400"
               : ""
@@ -191,7 +187,7 @@ function SelectDateForm() {
                 disabledDates={disabledDates}
               />
             </div>
-            <div className="mt-2 w-full pl-2 md:flex md:pl-14 ">
+            <div className="mt-2 w-full justify-center pl-2 md:flex md:pl-0">
               <div className="mt-2 flex">
                 <div className="w-6 rounded-full bg-green-500"></div>{" "}
                 <div className="ml-1 font-medium"> : Available</div>
@@ -200,10 +196,10 @@ function SelectDateForm() {
                 <div className="w-6 rounded-full bg-yellow-400 md:ml-3"> </div>{" "}
                 <div className="ml-1 font-medium"> : Selling fast</div>
               </div>
-              <div className="mt-2 flex">
+              {/*<div className="mt-2 flex">
                 <div className="w-6 rounded-full bg-red-500 md:ml-3"> </div>{" "}
                 <div className="ml-1 font-medium"> : Running out!</div>
-              </div>
+              </div>*/}
             </div>
             {isDisabled() && (
               <div className=" mt-3 flex w-full">
