@@ -74,7 +74,8 @@ function ResetPasswordForm() {
 
       // success
       toastShadcn({
-        description: "You have successfully changed your password.",
+        description:
+          "You have successfully changed your password. Please log in with your new password.",
       });
       navigate("/account");
     } catch (error: any) {
