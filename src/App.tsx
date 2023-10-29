@@ -115,7 +115,7 @@ function App() {
               />
               <Route
                 path="/resetPasswordNew/:token"
-                element={<ResetPasswordForm />}
+                element={<ResetPasswordPage />}
               />
             </Routes>
           </MainLayout>
