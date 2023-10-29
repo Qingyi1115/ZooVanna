@@ -23,6 +23,7 @@ function RetryForm(props: RetryFormProps) {
   }
 
   async function handlePayment(customerOrderId: number | null) {
+    const localhost_address = import.meta.env.VITE_LOCALHOST_5174_ADDRESS;
     if (!stripe || !elements) {
       return;
     }
@@ -31,7 +32,7 @@ function RetryForm(props: RetryFormProps) {
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: `http://localhost:5174/tickets/completion/${customerOrderId}/${code}/${id}`,
+        return_url: `http://${localhost_address}/tickets/completion/${customerOrderId}/${code}/${id}`,
       },
     });
     if (error) {

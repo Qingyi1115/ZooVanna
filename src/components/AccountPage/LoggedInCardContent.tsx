@@ -34,6 +34,16 @@ function LoggedInCardContent() {
         </Button>
         <Separator className="opacity-20" />
       </NavLink> */}
+      <NavLink to="/tickets/purchasedTickets">
+        <Button
+          variant={"ghost"}
+          className="mx-0 w-full justify-between rounded-none text-base"
+        >
+          View Bookings
+          <HiOutlineChevronRight />
+        </Button>
+        <Separator className="opacity-20" />
+      </NavLink>
       <NavLink to="/changePassword">
         <Button
           variant={"ghost"}

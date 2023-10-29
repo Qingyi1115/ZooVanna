@@ -34,6 +34,8 @@ function StripeForm(props: StripeFormProps) {
   const [customerOrderId, setCustomerOrderId] = useState<number | null>(null);
   let code: number;
   const id = props.id;
+  const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
+  const localhost_5174_address = import.meta.env.VITE_LOCALHOST_5174_ADDRESS;
 
   const { state } = useAuthContext();
   const { user } = state;
@@ -62,9 +64,7 @@ function StripeForm(props: StripeFormProps) {
   useEffect(() => {
     if (user) {
       apiJson
-        .post("http://localhost:3000/api/customer/getCustomer", {
-          email: user.email,
-        })
+        .get(`http://${localhost_address}/api/customer/getCustomer`)
         .catch((error) => {
           console.log(error);
           toastShadcn({
@@ -83,12 +83,17 @@ function StripeForm(props: StripeFormProps) {
   }, []);
 
   async function handleProcessing() {
+    entry.setHours(0, 0, 0);
     let customerOrder;
     console.log(customerOrderId);
     if (!customerOrderId) {
       if (!user || !customer) {
+        //if not user or not customer
+        //if not user but is customer cannot cuz can only retrieve customer if is user
+        //if user or not customer can get in
+        //if not user and not customer can get in
         customerOrder = {
-          bookingReference: uuidv4(),
+          bookingReference: uuidv4().substring(0, 8).toUpperCase(),
           totalAmount: total,
           orderStatus: "ACTIVE",
           entryDate: entry,
@@ -101,7 +106,7 @@ function StripeForm(props: StripeFormProps) {
 
         apiJson
           .post(
-            "http://localhost:3000/api/customer/createCustomerOrderForGuest",
+            `http://${localhost_address}/api/customer/createCustomerOrderForGuest`,
             {
               listings: listings,
               customerOrder: customerOrder,
@@ -126,7 +131,7 @@ function StripeForm(props: StripeFormProps) {
       } else {
         if (customer && user) {
           customerOrder = {
-            bookingReference: uuidv4(),
+            bookingReference: uuidv4().substring(0, 8).toUpperCase(),
             totalAmount: total,
             orderStatus: "ACTIVE",
             entryDate: entry,
@@ -138,9 +143,8 @@ function StripeForm(props: StripeFormProps) {
           };
           apiJson
             .post(
-              "http://localhost:3000/api/customer/createCustomerOrderForCustomer",
+              `http://${localhost_address}/api/customer/createCustomerOrderForCustomer`,
               {
-                email: user.email,
                 listings: listings,
                 customerOrder: customerOrder,
               },
@@ -179,7 +183,7 @@ function StripeForm(props: StripeFormProps) {
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: `http://localhost:5174/tickets/completion/${customerOrderId}/${code}/${id}`,
+        return_url: `http://${localhost_5174_address}/tickets/completion/${customerOrderId}/${code}/${id}`,
       },
     });
     if (error) {

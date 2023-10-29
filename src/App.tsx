@@ -9,7 +9,7 @@ import {
 
 import MainLayout from "./components/MainLayout";
 import HomePage from "./pages/HomePage";
-import MapPage from "./pages/MapPage";
+import MapPage from "./pages/Map/MapPage";
 import TicketsPage from "./pages/TicketsPage";
 import ItineraryPage from "./pages/ItineraryPage";
 import AccountPage from "./pages/AccountPage";
@@ -18,10 +18,11 @@ import { useAuthContext } from "./hooks/useAuthContext";
 import SignupForm from "./components/AccountPage/SignupForm";
 import { PrimeReactProvider, PrimeReactContext } from "primereact/api";
 import SignupPage from "./pages/SignUpPage";
+import SignupEmailPage from "./pages/SignUpEmailPage";
 import ViewProfilePage from "./pages/ViewProfilePage";
 import EditProfilePage from "./pages/EditProfilePage";
 import ChangePasswordPage from "./pages/ChangePasswordPage";
-import RequestResetPasswordForm from "./components/AccountPage/RequestResetPasswordForm";
+import RequestResetPasswordPage from "./pages/RequestResetPasswordPage";
 import ResetPasswordForm from "./components/AccountPage/ResetPasswordForm";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import ListingPage from "./pages/PurchaseTicketManagement/ListingPage";
@@ -36,18 +37,26 @@ import CompletionPage from "./pages/PurchaseTicketManagement/CompletionPage";
 import ViewPromotionPage from "./pages/Promotion/ViewPromotionPage";
 import Successful from "./pages/PurchaseTicketManagement/Successful";
 import TicketLandingPage from "./pages/TicketLandingPage";
+import ViewPurchasedTicketsPage from "./pages/PurchaseTicketManagement/ViewPurchasedTicketsPage";
+import LoginFormTicket from "./components/AccountPage/LoginFormTicket";
+import LoginTicketPage from "./pages/LoginTicketPage";
+import CheckYourInbox from "./pages/CheckYourInbox";
+import AppUrlListener from "./components/AppUrlListener";
 
 function App() {
+  const { state } = useAuthContext();
+  const { user } = state;
   return (
     <PrimeReactProvider>
       <div className="">
         <BrowserRouter>
-          {/* <Routes>
-            <Route
+          <AppUrlListener></AppUrlListener>
+          <Routes>
+            {/* <Route
               path="/login"
               element={!user ? <LoginPage /> : <Navigate to={"/"} />}
-            />
-          </Routes> */}
+            /> */}
+          </Routes>
           <MainLayout>
             <Routes>
               <Route path="/" element={<HomePage />} />
@@ -56,7 +65,7 @@ function App() {
                 element={<ViewPromotionPage />}
               />
               <Route path="/map" element={<MapPage />} />
-
+              {/*Ticket Management*/}
               <Route path="/tickets" element={<TicketLandingPage />} />
               <Route path="/tickets/buy" element={<TicketsPage />} />
               <Route path="/tickets/selectListing" element={<ListingPage />} />
@@ -84,20 +93,29 @@ function App() {
                 path="/tickets/completion/:customerOrderId/:code/:id"
                 element={<CompletionPage />}
               />
+              // need user in logged in state
+              <Route
+                path="/tickets/purchasedTickets"
+                element={
+                  user ? <ViewPurchasedTicketsPage /> : <LoginTicketPage />
+                }
+              />{" "}
               <Route path="/itinerary" element={<ItineraryPage />} />
               <Route path="/account" element={<AccountPage />} />
               <Route path="/login" element={<LoginPage />} />
-              <Route path="/signup" element={<SignupPage />} />
+              <Route path="/signupemail" element={<SignupEmailPage />} />
+              <Route path="/inbox" element={<CheckYourInbox />} />
+              <Route path="/signup/:token" element={<SignupPage />} />
               <Route path="/viewProfile" element={<ViewProfilePage />} />
               <Route path="/editProfile" element={<EditProfilePage />} />
               <Route path="/changePassword" element={<ChangePasswordPage />} />
               <Route
                 path="/requestResetPassword"
-                element={<RequestResetPasswordForm />}
+                element={<RequestResetPasswordPage />}
               />
               <Route
                 path="/resetPasswordNew/:token"
-                element={<ResetPasswordForm />}
+                element={<ResetPasswordPage />}
               />
             </Routes>
           </MainLayout>

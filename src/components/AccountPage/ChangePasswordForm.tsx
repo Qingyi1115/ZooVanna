@@ -31,6 +31,8 @@ function EditPasswordForm(props: EditPasswordFormProps) {
   const [newPassword, setNewPassword] = useState<string>("");
   const [newPassword2, setNewPassword2] = useState<string>("");
 
+  const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
+
   // ValidityState properties: https://developer.mozilla.org/en-US/docs/Web/API/ValidityState
   function validateOldPassword(props: ValidityState) {
     if (props != undefined) {
@@ -97,7 +99,7 @@ function EditPasswordForm(props: EditPasswordFormProps) {
     try {
       console.log(currCustomer.customerId);
       const responseJson = await apiJson.put(
-        `http://localhost:3000/api/customer/updatePassword/${currCustomer.customerId}`,
+        `http://${localhost_address}/api/customer/updatePassword/${currCustomer.customerId}`,
         passwords,
       );
 
