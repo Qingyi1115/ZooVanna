@@ -69,8 +69,8 @@ function SelectDateForm() {
         const currentDate = new Date(minDate);
         while (currentDate <= maxDate) {
           if (
-            (result.result[currentDate.toLocaleDateString()] &&
-              result.result[currentDate.toLocaleDateString()] + item > 25) ||
+            (result.result[currentDate.getTime()] &&
+              result.result[currentDate.getTime()] + item > 25) ||
             item > 25
           ) {
             temp.push(new Date(currentDate.getTime()));
@@ -84,23 +84,35 @@ function SelectDateForm() {
           }
         }*/
         }
+        console.log(temp);
         setDisabledDates(temp);
       });
   }, [item]);
 
   const dateTemplate = (date: CalendarDateTemplateEvent) => {
     const example = new Date(date.year, date.month, date.day);
+    console.log(example.getTime());
+    console.log(dates);
+    {
+      /*if (dates) {
+      console.log(
+        dates[example.getTime()] === undefined
+          ? "undefined"
+          : dates[example.getTime()],
+      );
+    }*/
+    }
     return (
       <div
         className={`text flex h-full w-full items-center justify-center rounded-full 
           ${
-            dates && dates[example.toLocaleDateString()] !== undefined
+            dates && dates[example.getTime()] !== undefined
               ? entry &&
                 example.getTime() == new Date(entry.toString()).getTime()
                 ? "bg-black"
-                : dates[example.toLocaleDateString()] + item > 25
+                : dates[example.getTime()] + item > 25
                 ? ""
-                : dates[example.toLocaleDateString()] + item > 10
+                : dates[example.getTime()] + item > 10
                 ? "bg-yellow-400"
                 : "bg-green-400"
               : example.getTime() <
@@ -121,7 +133,7 @@ function SelectDateForm() {
         <div
           className={`
             ${
-              dates && dates[example.toLocaleDateString()] !== undefined
+              dates && dates[example.getTime()] !== undefined
                 ? entry &&
                   example.getTime() == new Date(entry.toString()).getTime()
                   ? "text-white underline"
@@ -151,7 +163,7 @@ function SelectDateForm() {
       for (let i in disabledDates) {
         if (
           entry &&
-          disabledDates[i].toLocaleString() == entry.toLocaleString()
+          disabledDates[i].getTime() == new Date(entry.toString()).getTime()
         ) {
           entry.toLocaleString();
           return true;
