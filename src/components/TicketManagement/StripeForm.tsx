@@ -34,6 +34,8 @@ function StripeForm(props: StripeFormProps) {
   const [customerOrderId, setCustomerOrderId] = useState<number | null>(null);
   let code: number;
   const id = props.id;
+  const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
+  const localhost_5174_address = import.meta.env.VITE_LOCALHOST_5174_ADDRESS;
 
   const { state } = useAuthContext();
   const { user } = state;
@@ -62,7 +64,7 @@ function StripeForm(props: StripeFormProps) {
   useEffect(() => {
     if (user) {
       apiJson
-        .get("http://localhost:3000/api/customer/getCustomer")
+        .get(`http://${localhost_address}/api/customer/getCustomer`)
         .catch((error) => {
           console.log(error);
           toastShadcn({
@@ -104,7 +106,7 @@ function StripeForm(props: StripeFormProps) {
 
         apiJson
           .post(
-            "http://localhost:3000/api/customer/createCustomerOrderForGuest",
+            `http://${localhost_address}/api/customer/createCustomerOrderForGuest`,
             {
               listings: listings,
               customerOrder: customerOrder,
@@ -141,7 +143,7 @@ function StripeForm(props: StripeFormProps) {
           };
           apiJson
             .post(
-              "http://localhost:3000/api/customer/createCustomerOrderForCustomer",
+              `http://${localhost_address}/api/customer/createCustomerOrderForCustomer`,
               {
                 listings: listings,
                 customerOrder: customerOrder,
@@ -181,7 +183,7 @@ function StripeForm(props: StripeFormProps) {
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: `http://localhost:5174/tickets/completion/${customerOrderId}/${code}/${id}`,
+        return_url: `http://${localhost_5174_address}/tickets/completion/${customerOrderId}/${code}/${id}`,
       },
     });
     if (error) {

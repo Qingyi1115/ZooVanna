@@ -17,6 +17,8 @@ function RequestResetPasswordForm() {
   const navigate = useNavigate();
   const [email, setEmail] = useState<string>("");
 
+  const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
+
   // ValidityState properties: https://developer.mozilla.org/en-US/docs/Web/API/ValidityState
   function validateEmail(props: ValidityState) {
     if (props != undefined) {
@@ -42,7 +44,8 @@ function RequestResetPasswordForm() {
 
     try {
       const responseJson = await apiJson.post(
-        `http://localhost:3000/api/customer/sendForgetPasswordLink/` + email,
+        `http://${localhost_address}/api/customer/sendForgetPasswordLink/` +
+          email,
         {},
       );
 
@@ -103,7 +106,7 @@ function RequestResetPasswordForm() {
 
         <Form.Submit asChild>
           <button className="mt-10 h-12 w-full rounded-full border bg-black text-whiter">
-            Send me a reset password email
+            Send reset email
           </button>
         </Form.Submit>
       </Form.Root>

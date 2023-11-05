@@ -12,6 +12,7 @@ import { useEffect } from "react";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import useApiJson from "../../hooks/useApiJson";
 function SelectDateForm() {
+  const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
   const location = useLocation();
   const localListingList: Listing[] = location.state.localListingList;
   const foreignerListingList: Listing[] = location.state.foreignerListingList;
@@ -22,13 +23,11 @@ function SelectDateForm() {
   const [entry, setEntry] = useState<string | Date | Date[] | null>(
     new Date(entryDate),
   );
-  console.log(entry);
+
   const listingList: Listing[] = [...localListingList, ...foreignerListingList];
   const isChecked = location.state.isChecked;
   const [dates, setDates] = useState<any>();
   const [disabledDates, setDisabledDates] = useState<Date[]>();
-
-  console.log(entry);
 
   const { state } = useAuthContext();
   const { user } = state;
@@ -63,19 +62,18 @@ function SelectDateForm() {
 
   useEffect(() => {
     apiJson
-      .get("http://localhost:3000/api/orderItem/getDateOrderCount")
+      .get(`http://${localhost_address}/api/orderItem/getDateOrderCount`)
       .then((result) => {
         setDates(result.result);
-        console.log(result.result);
         let temp: Date[] = [];
         const currentDate = new Date(minDate);
         while (currentDate <= maxDate) {
           if (
-            (result.result[currentDate.toLocaleDateString()] &&
-              result.result[currentDate.toLocaleDateString()] + item > 25) ||
+            (result.result[currentDate.getTime()] &&
+              result.result[currentDate.getTime()] + item > 25) ||
             item > 25
           ) {
-            temp.push(new Date(currentDate.toLocaleDateString()));
+            temp.push(new Date(currentDate.getTime()));
           }
           currentDate.setDate(currentDate.getDate() + 1);
         }
@@ -86,41 +84,46 @@ function SelectDateForm() {
           }
         }*/
         }
-        setDisabledDates(temp);
         console.log(temp);
+        setDisabledDates(temp);
       });
   }, [item]);
 
   const dateTemplate = (date: CalendarDateTemplateEvent) => {
     const example = new Date(date.year, date.month, date.day);
+    console.log(example.getTime());
+    console.log(dates);
+    {
+      /*if (dates) {
+      console.log(
+        dates[example.getTime()] === undefined
+          ? "undefined"
+          : dates[example.getTime()],
+      );
+    }*/
+    }
     return (
       <div
         className={`text flex h-full w-full items-center justify-center rounded-full 
           ${
-            dates && dates[example.toLocaleDateString()] !== undefined
+            dates && dates[example.getTime()] !== undefined
               ? entry &&
-                example.toLocaleDateString() ==
-                  new Date(entry.toLocaleString()).toLocaleDateString()
+                example.getTime() == new Date(entry.toString()).getTime()
                 ? "bg-black"
-                : dates[example.toLocaleDateString()] + item > 25
+                : dates[example.getTime()] + item > 25
                 ? ""
-                : dates[example.toLocaleDateString()] + item > 10
-                ? "bg-red-500"
-                : dates[example.toLocaleDateString()] + item > 5
+                : dates[example.getTime()] + item > 10
                 ? "bg-yellow-400"
                 : "bg-green-400"
               : example.getTime() <
                   new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).getTime() &&
                 example.getTime() > new Date(Date.now()).getTime()
               ? entry &&
-                example.toLocaleDateString() ==
-                  new Date(entry.toLocaleString()).toLocaleDateString()
+                example.getTime() == new Date(entry.toString()).getTime()
                 ? "bg-black"
                 : item > 25
                 ? ""
                 : item > 10
-                ? "bg-red-500"
-                : item > 5
                 ? "bg-yellow-400"
                 : "bg-green-400"
               : ""
@@ -130,10 +133,9 @@ function SelectDateForm() {
         <div
           className={`
             ${
-              dates && dates[example.toLocaleDateString()] !== undefined
+              dates && dates[example.getTime()] !== undefined
                 ? entry &&
-                  example.toLocaleDateString() ==
-                    new Date(entry.toLocaleString()).toLocaleDateString()
+                  example.getTime() == new Date(entry.toString()).getTime()
                   ? "text-white underline"
                   : dates[example.toLocaleDateString()] + item > 25
                   ? "text-black"
@@ -142,8 +144,7 @@ function SelectDateForm() {
                     new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).getTime() &&
                   example.getTime() > new Date(Date.now()).getTime()
                 ? entry &&
-                  example.toLocaleDateString() ==
-                    new Date(entry.toLocaleString()).toLocaleDateString()
+                  example.getTime() == new Date(entry.toString()).getTime()
                   ? "text-white underline"
                   : item > 25
                   ? "text-black"
@@ -160,16 +161,10 @@ function SelectDateForm() {
   function isDisabled() {
     if (entry && disabledDates) {
       for (let i in disabledDates) {
-        if (entry) {
-          console.log(disabledDates[i].toLocaleString());
-          console.log(entry.toLocaleString());
-        }
         if (
           entry &&
-          disabledDates[i].toLocaleString() == entry.toLocaleString()
+          disabledDates[i].getTime() == new Date(entry.toString()).getTime()
         ) {
-          console.log("it is the same");
-          console.log(i.toLocaleString());
           entry.toLocaleString();
           return true;
         }
@@ -181,7 +176,7 @@ function SelectDateForm() {
   //${date.day == 30 ? "bg-green-400" : "bg-red-500"}
 
   return (
-    <div className="block items-center overflow-hidden pt-5 lg:pt-30">
+    <div className="block items-center overflow-hidden pt-5 lg:pt-25">
       <div className="mb-5 px-10 text-2xl font-bold sm:px-20 md:mb-5 md:px-40 lg:px-27">
         Select Date
       </div>
@@ -204,10 +199,24 @@ function SelectDateForm() {
                 disabledDates={disabledDates}
               />
             </div>
+            <div className="mt-2 w-full justify-center pl-2 md:flex md:pl-0">
+              <div className="mt-2 flex">
+                <div className="w-6 rounded-full bg-green-500"></div>{" "}
+                <div className="ml-1 font-medium"> : Available</div>
+              </div>
+              <div className="mt-2 flex">
+                <div className="w-6 rounded-full bg-yellow-400 md:ml-3"> </div>{" "}
+                <div className="ml-1 font-medium"> : Selling fast</div>
+              </div>
+              {/*<div className="mt-2 flex">
+                <div className="w-6 rounded-full bg-red-500 md:ml-3"> </div>{" "}
+                <div className="ml-1 font-medium"> : Running out!</div>
+              </div>*/}
+            </div>
             {isDisabled() && (
-              <div className=" mt-2 flex w-full">
+              <div className=" mt-3 flex w-full">
                 <div className="flex h-8 w-full items-center justify-center bg-red-100 text-justify text-sm text-red-600">
-                  The date you choose is disabled!
+                  The date you choose is not available!
                 </div>
               </div>
             )}

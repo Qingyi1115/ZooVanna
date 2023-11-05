@@ -26,13 +26,17 @@ function useLogin() {
   async function login(email: string, password: string): Promise<boolean> {
     setIsLoading(true);
     setError(null);
+    const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
 
     try {
-      const response = await fetch("http://localhost:3000/api/customer/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
+      const response = await fetch(
+        `http://${localhost_address}/api/customer/login`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password }),
+        },
+      );
 
       if (!response.ok) {
         const json: ErrorResponse = await response.json();

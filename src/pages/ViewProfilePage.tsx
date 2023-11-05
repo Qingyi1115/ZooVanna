@@ -15,8 +15,10 @@ function ViewProfilePage() {
 
   const apiJson = useApiJson();
 
+  const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
+
   //   const customer = await apiJson.get(
-  //     "http://localhost:3000/api/customer/getCustomer",
+  //     "http://${localhost_address}/api/customer/getCustomer",
   //     email,
   //   );
 
@@ -37,7 +39,7 @@ function ViewProfilePage() {
     const fetchCustomerData = async () => {
       try {
         const responseJson = await apiJson.get(
-          "http://localhost:3000/api/customer/getCustomer",
+          `http://${localhost_address}/api/customer/getCustomer`,
         );
         setCurrCustomer(responseJson as Customer);
       } catch (error: any) {
@@ -61,7 +63,7 @@ function ViewProfilePage() {
 export default ViewProfilePage;
 
 //   useEffect(() => {
-//     apiJson.get("http://localhost:3000/api/customer/getCustomer", email);
+//     apiJson.get("http://${localhost_address}/api/customer/getCustomer", email);
 //   }, []);
 
 //   useEffect(() => {
@@ -76,7 +78,7 @@ export default ViewProfilePage;
 //     async function fetchCustomerData() {
 //       try {
 //         const response = await apiJson.get(
-//           "http://localhost:3000/api/customer/getCustomer",
+//           "http://${localhost_address}/api/customer/getCustomer",
 //           email,
 //         );
 //         console.log(response);

@@ -5,7 +5,10 @@ import { HiOutlineCalendar, HiOutlineCloudDownload } from "react-icons/hi";
 import moment from "moment-timezone";
 import { PaymentStatus } from "../../enums/PaymentStatus";
 import { Button } from "@/components/ui/button";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
+import { Filesystem, Directory, Encoding } from "@capacitor/filesystem";
+import { Toast } from "primereact/toast";
+import { useToast } from "@/components/ui/use-toast";
 
 interface CustomerOrderProps {
   customerOrder: CustomerOrder;
@@ -13,6 +16,9 @@ interface CustomerOrderProps {
 }
 
 function CustomerOrderCard(props: CustomerOrderProps) {
+  const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
+  const toast = useRef<Toast>(null);
+  const toastShadcn = useToast().toast;
   function convertUtcToTimezone(utcDate: Date, targetTimezone: string): string {
     const utcMoment = moment.utc(utcDate);
     const targetMoment = utcMoment.tz(targetTimezone);
@@ -28,17 +34,62 @@ function CustomerOrderCard(props: CustomerOrderProps) {
 
   function handleClick() {
     console.log(customerOrder.pdfUrl);
-    window.open(`http://localhost:3000/pdf/${customerOrder.pdfUrl}`, "_blank");
+    window.open(
+      `http://${localhost_address}/pdf/${customerOrder.pdfUrl}`,
+      "_blank",
+    );
   }
 
-  function handleDownload() {
-    fetch(`http://localhost:3000/pdf/${customerOrder.pdfUrl}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/pdf",
-      },
-    })
-      .then((response) => response.blob())
+  async function handleDownload() {
+    try {
+      const permission = await Filesystem.requestPermissions();
+      if (permission.publicStorage == "granted") {
+        const response = await fetch(
+          `http://${localhost_address}/pdf/${customerOrder.pdfUrl}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/pdf",
+            },
+          },
+        );
+
+        const blob = await response.blob();
+        const arrayBuffer = await blob.arrayBuffer();
+        const uint8Array = new Uint8Array(arrayBuffer);
+        const base64String = uint8Array.reduce(
+          (data, byte) => data + String.fromCharCode(byte),
+          "",
+        );
+
+        const result = await Filesystem.writeFile({
+          path: `${customerOrder.pdfUrl}`,
+          data: base64String,
+          directory: Directory.Documents,
+        });
+
+        toastShadcn({
+          //variant: "destructive",
+          title: "Assignment Successful",
+          description: "File is stored at: " + result.uri,
+        });
+      } else {
+        toastShadcn({
+          variant: "destructive",
+          title: "Assignment Failed",
+          description: "Cannot download without user permission",
+        });
+      }
+    } catch (error: any) {
+      toastShadcn({
+        variant: "destructive",
+        title: "Assignment Failed",
+        description: "Error downloading file" + error.message,
+      });
+      console.error("Error downloading file:", error.message);
+    }
+    {
+      /*.then((response) => response.blob())
       .then((blob) => {
         const url = window.URL.createObjectURL(new Blob([blob]));
 
@@ -51,7 +102,8 @@ function CustomerOrderCard(props: CustomerOrderProps) {
         link.click();
 
         link.parentNode?.removeChild(link);
-      });
+      });*/
+    }
   }
 
   return (
@@ -60,8 +112,8 @@ function CustomerOrderCard(props: CustomerOrderProps) {
         <CardTitle className="text-xl">ZooVanna Ticket</CardTitle>
         <CardContent className="p-0">
           <div>
-            <div className="mb-1 mt-2 font-medium">
-              {customerOrder.bookingReference}
+            <div className="mb-1 mt-2 ">
+              Ref #: {customerOrder.bookingReference}
             </div>
             <div className="mb-1 flex items-center">
               <HiOutlineCalendar className="mr-1 h-[8%] w-[8%] md:h-6 md:w-6" />{" "}
@@ -79,7 +131,7 @@ function CustomerOrderCard(props: CustomerOrderProps) {
                     : "text-red-500"
                 } font-medium`}
               >
-                {customerOrder.paymentStatus}
+                PAYMENT {customerOrder.paymentStatus}
               </div>
               <div>
                 {payments[payments.length - 1]
@@ -90,11 +142,11 @@ function CustomerOrderCard(props: CustomerOrderProps) {
             {customerOrder.paymentStatus == PaymentStatus.COMPLETED && (
               <div className="mt-3 flex items-center justify-end">
                 <Button className="h-8 text-sm" onClick={handleClick}>
-                  View ticket(s)
+                  Download PDF
                 </Button>
-                <Button className="ml-2 h-8 w-8 p-0" onClick={handleDownload}>
+                {/*<Button className="ml-2 h-8 w-8 p-0" onClick={handleDownload}>
                   <HiOutlineCloudDownload className="m-0 h-[50%] w-[50%] p-0" />
-                </Button>
+            </Button>*/}
               </div>
             )}
           </div>
