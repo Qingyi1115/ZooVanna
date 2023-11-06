@@ -1,60 +1,33 @@
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 
-import { NavLink, useNavigate } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
-import { useToast } from "@/components/ui/use-toast";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Switch } from "@/components/ui/switch";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import {
   Dialog,
-  DialogPortal,
-  DialogOverlay,
-  DialogTrigger,
   DialogContent,
   DialogHeader,
-  DialogFooter,
   DialogTitle,
-  DialogDescription,
+  DialogTrigger
 } from "@/components/ui/dialog";
-import { Label } from "@/components/ui/label";
-import { InputText } from "primereact/inputtext";
+import { useToast } from "@/components/ui/use-toast";
+import { useNavigate } from "react-router-dom";
 
 import {
   Select,
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
-  SelectValue,
+  SelectValue
 } from "@/components/ui/select";
 
-import {
-  MapContainer,
-  Marker,
-  useMap,
-  useMapEvents,
-  ImageOverlay,
-  Polygon,
-  SVGOverlay,
-} from "react-leaflet";
-import { TileLayer } from "react-leaflet";
-import L, {
-  LatLng,
-  LatLngBounds,
-  LatLngBoundsLiteral,
-  LatLngExpression,
-} from "leaflet";
-import Facility from "../../models/Facility";
-import useApiJson from "../../hooks/useApiJson";
-import HorizontalScrollOptionsList from "../../components/HorizontalScrollOptionsList";
-import { FacilityType } from "../../enums/FacilityType";
-import { HiCheck, HiX, HiOutlineSearch } from "react-icons/hi";
-import { FiFilter } from "react-icons/fi";
-import MapComponent from "../../components/Map/MapComponent";
-import { Portal } from "@radix-ui/react-portal";
 import { Input } from "@/components/ui/input";
+import { FiFilter } from "react-icons/fi";
+import { HiOutlineSearch } from "react-icons/hi";
+import HorizontalScrollOptionsList from "../../components/HorizontalScrollOptionsList";
+import MapComponent from "../../components/Map/MapComponent";
+import { FacilityType } from "../../enums/FacilityType";
+import useApiJson from "../../hooks/useApiJson";
+import Facility from "../../models/Facility";
 // Import Tailwind CSS styles
 import "tailwindcss/tailwind.css";
 

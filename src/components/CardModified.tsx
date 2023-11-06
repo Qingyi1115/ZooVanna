@@ -74,10 +74,5 @@ const CardFooterModified = React.forwardRef<
 CardFooterModified.displayName = "CardFooter";
 
 export {
-  CardModified,
-  CardHeaderModified,
-  CardFooterModified,
-  CardTitleModified,
-  CardDescriptionModified,
-  CardContentModified,
+  CardContentModified, CardDescriptionModified, CardFooterModified, CardHeaderModified, CardModified, CardTitleModified
 };

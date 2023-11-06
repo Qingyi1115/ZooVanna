@@ -1,11 +1,11 @@
+import { useToast } from "@/components/ui/use-toast";
+import * as Form from "@radix-ui/react-form";
+import { Calendar, CalendarChangeEvent } from "primereact/calendar";
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import * as Form from "@radix-ui/react-form";
-import { useToast } from "@/components/ui/use-toast";
-import useApiJson from "../../hooks/useApiJson";
-import { Calendar, CalendarChangeEvent } from "primereact/calendar";
-import FormFieldSelect from "../FormFieldSelect";
 import { countryValueLabelPair } from "../../enums/Country";
+import useApiJson from "../../hooks/useApiJson";
+import FormFieldSelect from "../FormFieldSelect";
 
 function SignupForm() {
   const { token } = useParams();

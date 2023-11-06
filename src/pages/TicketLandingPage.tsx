@@ -1,9 +1,7 @@
 import { Button } from "@/components/ui/button";
-import React from "react";
-import PromotionCardsContainer from "../components/HomePage/Promotion/PromotionCardsContainer";
-import LocalListingTable from "../components/TicketManagement/LocalListingTable";
 import { NavLink } from "react-router-dom";
 import ForeignListingTable from "../components/TicketManagement/ForeignListingTable";
+import LocalListingTable from "../components/TicketManagement/LocalListingTable";
 
 function HomePage() {
   return (

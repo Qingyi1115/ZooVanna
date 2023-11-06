@@ -1,12 +1,10 @@
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { useAuthContext } from "../../hooks/useAuthContext";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 //import LoggedInCardContent from "../../components/AccountPage/LoggedInCardContent";
 import { Button } from "@/components/ui/button";
-import { NavLink } from "react-router-dom";
-import LoginPurchaseForm from "../AccountPage/LoginPurchaseForm";
-import Listing from "../../models/Listing";
-import { useLocation } from "react-router-dom";
 import { useState } from "react";
+import { NavLink, useLocation } from "react-router-dom";
+import Listing from "../../models/Listing";
+import LoginPurchaseForm from "../AccountPage/LoginPurchaseForm";
 
 function CustOrGuest() {
   const location = useLocation();

@@ -1,47 +1,41 @@
-import "./App.css";
 import {
   BrowserRouter,
-  Routes,
   Route,
-  Navigate,
-  useLocation,
+  Routes
 } from "react-router-dom";
+import "./App.css";
 
+import { PrimeReactProvider } from "primereact/api";
+import AppUrlListener from "./components/AppUrlListener";
 import MainLayout from "./components/MainLayout";
-import HomePage from "./pages/HomePage";
-import MapPage from "./pages/Map/MapPage";
-import TicketsPage from "./pages/TicketsPage";
-import ItineraryPage from "./pages/ItineraryPage";
-import AccountPage from "./pages/AccountPage";
-import LoginPage from "./pages/LoginPage";
-import { useAuthContext } from "./hooks/useAuthContext";
-import SignupForm from "./components/AccountPage/SignupForm";
-import { PrimeReactProvider, PrimeReactContext } from "primereact/api";
-import SignupPage from "./pages/SignUpPage";
-import SignupEmailPage from "./pages/SignUpEmailPage";
-import ViewProfilePage from "./pages/ViewProfilePage";
-import EditProfilePage from "./pages/EditProfilePage";
-import ChangePasswordPage from "./pages/ChangePasswordPage";
-import RequestResetPasswordPage from "./pages/RequestResetPasswordPage";
-import ResetPasswordForm from "./components/AccountPage/ResetPasswordForm";
-import ResetPasswordPage from "./pages/ResetPasswordPage";
-import ListingPage from "./pages/PurchaseTicketManagement/ListingPage";
-import SelectDateForm from "./components/TicketManagement/SelectDateForm";
-import OrderReviewForm from "./components/TicketManagement/OrderReviewForm";
 import CustOrGuest from "./components/TicketManagement/CustOrGuestPage";
 import ListingForm from "./components/TicketManagement/ListingForm";
-import PersonalDetails from "./components/TicketManagement/PersonalDetails";
-import LoginPurchaseForm from "./components/AccountPage/LoginPurchaseForm";
+import OrderReviewForm from "./components/TicketManagement/OrderReviewForm";
 import PaymentForm from "./components/TicketManagement/PaymentForm";
-import CompletionPage from "./pages/PurchaseTicketManagement/CompletionPage";
-import ViewPromotionPage from "./pages/Promotion/ViewPromotionPage";
-import Successful from "./pages/PurchaseTicketManagement/Successful";
-import TicketLandingPage from "./pages/TicketLandingPage";
-import ViewPurchasedTicketsPage from "./pages/PurchaseTicketManagement/ViewPurchasedTicketsPage";
-import LoginFormTicket from "./components/AccountPage/LoginFormTicket";
-import LoginTicketPage from "./pages/LoginTicketPage";
+import PersonalDetails from "./components/TicketManagement/PersonalDetails";
+import SelectDateForm from "./components/TicketManagement/SelectDateForm";
+import { useAuthContext } from "./hooks/useAuthContext";
+import AccountPage from "./pages/AccountPage";
+import ChangePasswordPage from "./pages/ChangePasswordPage";
 import CheckYourInbox from "./pages/CheckYourInbox";
-import AppUrlListener from "./components/AppUrlListener";
+import EditProfilePage from "./pages/EditProfilePage";
+import HomePage from "./pages/HomePage";
+import ItineraryPage from "./pages/ItineraryPage";
+import LoginPage from "./pages/LoginPage";
+import LoginTicketPage from "./pages/LoginTicketPage";
+import MapPage from "./pages/Map/MapPage";
+import ViewPromotionPage from "./pages/Promotion/ViewPromotionPage";
+import CompletionPage from "./pages/PurchaseTicketManagement/CompletionPage";
+import ListingPage from "./pages/PurchaseTicketManagement/ListingPage";
+import Successful from "./pages/PurchaseTicketManagement/Successful";
+import ViewPurchasedTicketsPage from "./pages/PurchaseTicketManagement/ViewPurchasedTicketsPage";
+import RequestResetPasswordPage from "./pages/RequestResetPasswordPage";
+import ResetPasswordPage from "./pages/ResetPasswordPage";
+import SignupEmailPage from "./pages/SignUpEmailPage";
+import SignupPage from "./pages/SignUpPage";
+import TicketLandingPage from "./pages/TicketLandingPage";
+import TicketsPage from "./pages/TicketsPage";
+import ViewProfilePage from "./pages/ViewProfilePage";
 
 function App() {
   const { state } = useAuthContext();

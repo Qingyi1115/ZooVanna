@@ -1,11 +1,8 @@
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { FaChevronLeft } from "react-icons/fa";
+import { NavLink, useParams } from "react-router-dom";
 import useApiJson from "../../hooks/useApiJson";
 import Promotion from "../../models/Promotion";
-import { NavLink } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { useNavigate } from "react-router-dom";
-import { FaChevronLeft } from "react-icons/fa";
 
 import ViewPromotionDetails from "../../components/HomePage/Promotion/ViewPromotionDetails";
 

@@ -1,14 +1,12 @@
+import { useToast } from "@/components/ui/use-toast";
+import * as Form from "@radix-ui/react-form";
+import { Calendar, CalendarChangeEvent } from "primereact/calendar";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import * as Form from "@radix-ui/react-form";
-import { useToast } from "@/components/ui/use-toast";
-import useApiJson from "../../hooks/useApiJson";
-import { Calendar, CalendarChangeEvent } from "primereact/calendar";
-import FormFieldSelect from "../FormFieldSelect";
 import { countryValueLabelPair } from "../../enums/Country";
-import { clear } from "console";
-import Customer from "../../models/Customer";
 import useApiFormData from "../../hooks/useApiFormData";
+import Customer from "../../models/Customer";
+import FormFieldSelect from "../FormFieldSelect";
 
 interface ViewCustomerFormProps {
   currCustomer: Customer;

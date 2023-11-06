@@ -1,20 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router";
-import useApiJson from "../hooks/useApiJson";
-import Customer from "../models/Customer";
-import { Country } from "../enums/Country";
-import EditProfileForm from "../components/AccountPage/EditProfileForm";
-import { useAuthContext } from "../hooks/useAuthContext";
-import ViewProfileForm from "../components/AccountPage/ViewProfileForm";
-import ChangePasswordForm from "../components/AccountPage/ChangePasswordForm";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
-  CardTitle,
+  CardTitle
 } from "@/components/ui/card";
+import { useEffect, useState } from "react";
+import ChangePasswordForm from "../components/AccountPage/ChangePasswordForm";
+import useApiJson from "../hooks/useApiJson";
+import { useAuthContext } from "../hooks/useAuthContext";
+import Customer from "../models/Customer";
 
 function ChangePasswordPage() {
   const { state } = useAuthContext();

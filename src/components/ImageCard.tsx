@@ -1,11 +1,9 @@
-import React from "react";
 import {
-  CardModified,
   CardContentModified,
   CardDescriptionModified,
-  CardFooterModified,
   CardHeaderModified,
-  CardTitleModified,
+  CardModified,
+  CardTitleModified
 } from "./CardModified";
 
 interface ImageCardProps {

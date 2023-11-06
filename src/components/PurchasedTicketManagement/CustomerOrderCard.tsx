@@ -1,14 +1,14 @@
-import Payment from "../../models/Payment";
-import CustomerOrder from "../../models/CustomerOrder";
-import { Card, CardContent, CardTitle } from "@/components/ui/card";
-import { HiOutlineCalendar, HiOutlineCloudDownload } from "react-icons/hi";
-import moment from "moment-timezone";
-import { PaymentStatus } from "../../enums/PaymentStatus";
 import { Button } from "@/components/ui/button";
-import { useEffect, useRef } from "react";
-import { Filesystem, Directory, Encoding } from "@capacitor/filesystem";
-import { Toast } from "primereact/toast";
+import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/components/ui/use-toast";
+import { Directory, Filesystem } from "@capacitor/filesystem";
+import moment from "moment-timezone";
+import { Toast } from "primereact/toast";
+import { useRef } from "react";
+import { HiOutlineCalendar } from "react-icons/hi";
+import { PaymentStatus } from "../../enums/PaymentStatus";
+import CustomerOrder from "../../models/CustomerOrder";
+import Payment from "../../models/Payment";
 
 interface CustomerOrderProps {
   customerOrder: CustomerOrder;
