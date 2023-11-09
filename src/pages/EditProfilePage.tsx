@@ -1,11 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router";
-import useApiJson from "../hooks/useApiJson";
-import Customer from "../models/Customer";
-import { Country } from "../enums/Country";
+import { useEffect, useState } from "react";
 import EditProfileForm from "../components/AccountPage/EditProfileForm";
+import useApiJson from "../hooks/useApiJson";
 import { useAuthContext } from "../hooks/useAuthContext";
-import ViewProfileForm from "../components/AccountPage/ViewProfileForm";
+import Customer from "../models/Customer";
 
 function EditProfilePage() {
   const { state } = useAuthContext();

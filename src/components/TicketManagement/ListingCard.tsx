@@ -1,14 +1,6 @@
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardContent,
-  CardFooter,
-} from "@/components/ui/card";
+import { ListingStatus } from "../../enums/ListingStatus";
 import Listing from "../../models/Listing";
 import AddOrMinusButton from "./addOrMinusButton";
-import { Button } from "@/components/ui/button";
-import { ListingStatus } from "../../enums/ListingStatus";
 
 interface ListingProps {
   listing: Listing;

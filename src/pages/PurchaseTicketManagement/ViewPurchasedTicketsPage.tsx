@@ -1,8 +1,7 @@
-import UpcomingTicket from "../../components/PurchasedTicketManagement/UpcomingTicket";
-import { Dropdown } from "primereact/dropdown";
+import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import TicketHistory from "../../components/PurchasedTicketManagement/TicketHistory";
-import { Button } from "@/components/ui/button";
+import UpcomingTicket from "../../components/PurchasedTicketManagement/UpcomingTicket";
 
 function ViewPurchasedTicketsPage() {
   const [selectedType, setSelectedType] = useState("Upcoming");

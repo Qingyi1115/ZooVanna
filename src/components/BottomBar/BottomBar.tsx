@@ -1,13 +1,12 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 // import Logo from "../images/logo/logo.svg";
-import BottomBarLinkGroup from "./BottomBarLinkGroup";
 
 import {
+  HiOutlineDocumentText,
   HiOutlineHome,
   HiOutlineMap,
   HiOutlineTicket,
-  HiOutlineDocumentText,
   HiOutlineUser,
 } from "react-icons/hi";
 

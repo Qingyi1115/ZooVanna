@@ -1,22 +1,19 @@
-import React, { useState } from "react";
-import { useToast } from "@/components/ui/use-toast";
-import useApiJson from "../../hooks/useApiJson";
-import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
-  DialogPortal,
-  DialogOverlay,
-  DialogTrigger,
   DialogContent,
-  DialogHeader,
-  DialogFooter,
-  DialogTitle,
   DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger
 } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
+import { useToast } from "@/components/ui/use-toast";
 import { InputText } from "primereact/inputtext";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import useApiJson from "../../hooks/useApiJson";
 import { useAuthContext } from "../../hooks/useAuthContext";
 
 function DeleteButton({ email }: { email: string }) {

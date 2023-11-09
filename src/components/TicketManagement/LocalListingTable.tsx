@@ -1,36 +1,20 @@
-import { Toast } from "primereact/toast";
-import React, { useEffect, useState, useRef } from "react";
 import { DataTable } from "primereact/datatable";
-import {
-  TableModified,
-  TableHeaderModified,
-  TableBodyModified,
-  TableFooterModified,
-  TableHeadModified,
-  TableRowModified,
-  TableCellModified,
-  TableCaptionModified,
-} from "./TableModified";
-import useApiJson from "../../hooks/useApiJson";
+import { useEffect, useRef, useState } from "react";
 import Listing from "src/models/Listing";
-import { InputText } from "primereact/inputtext";
-import { Column } from "primereact/column";
-import { NavLink } from "react-router-dom";
-import { HiCheck, HiEye, HiPencil, HiPlus, HiTrash, HiX } from "react-icons/hi";
-import { Button } from "@/components/ui/button";
-import { useToast } from "@/components/ui/use-toast";
-import { Dialog } from "primereact/dialog";
-import { ListingType } from "../../enums/ListingType";
 import { ListingStatus } from "../../enums/ListingStatus";
-import { Separator } from "@/components/ui/separator";
+import useApiJson from "../../hooks/useApiJson";
 import {
-  CardModified,
   CardContentModified,
-  CardDescriptionModified,
-  CardFooterModified,
-  CardHeaderModified,
-  CardTitleModified,
+  CardModified
 } from "../CardModified";
+import {
+  TableBodyModified,
+  TableCellModified,
+  TableHeadModified,
+  TableHeaderModified,
+  TableModified,
+  TableRowModified
+} from "./TableModified";
 
 {
   /*const toast = useRef<Toast>(null);*/

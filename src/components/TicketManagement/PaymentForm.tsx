@@ -1,23 +1,17 @@
-import Listing from "../../models/Listing";
-import { Form, useLocation } from "react-router-dom";
-import { Card, CardHeader, CardContent, CardTitle } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import DateFormSummary from "./DateFormSummary";
-import { Button } from "@/components/ui/button";
-import StripeForm from "./StripeForm";
-import { useRef } from "react";
-import { Toast } from "primereact/toast";
 import { useToast } from "@/components/ui/use-toast";
+import { Elements } from "@stripe/react-stripe-js";
 import {
   Appearance,
   Stripe,
   StripeElementsOptions,
   loadStripe,
 } from "@stripe/stripe-js";
-import { useEffect } from "react";
-import { useState } from "react";
+import { Toast } from "primereact/toast";
+import { useEffect, useRef, useState } from "react";
+import { useLocation } from "react-router-dom";
 import useApiJson from "../../hooks/useApiJson";
-import { Elements } from "@stripe/react-stripe-js";
+import Listing from "../../models/Listing";
+import StripeForm from "./StripeForm";
 
 function PaymentForm() {
   const location = useLocation();

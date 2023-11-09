@@ -1,7 +1,6 @@
-import React from "react";
 import { Button } from "@/components/ui/button";
-import useLogout from "../../hooks/useLogout";
 import { useNavigate } from "react-router-dom";
+import useLogout from "../../hooks/useLogout";
 
 function LogoutButton() {
   const { logout } = useLogout();

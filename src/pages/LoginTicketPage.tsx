@@ -1,19 +1,12 @@
-import React from "react";
 
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
-  CardTitle,
+  CardTitle
 } from "@/components/ui/card";
 
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import LoginForm from "../components/AccountPage/LoginForm";
-import LoggedInCardContent from "../components/AccountPage/LoggedInCardContent";
-import { Button } from "@/components/ui/button";
 import LoginFormTicket from "../components/AccountPage/LoginFormTicket";
 
 function LoginTicketPage() {

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import useApiJson from "../../hooks/useApiJson";
-import CustomerOrderCard from "./CustomerOrderCard";
 import CustomerOrder from "../../models/CustomerOrder";
+import CustomerOrderCard from "./CustomerOrderCard";
 
 function TicketHistory() {
   const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;

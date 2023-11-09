@@ -1,60 +1,33 @@
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 
-import { NavLink, useNavigate } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
-import { useToast } from "@/components/ui/use-toast";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Switch } from "@/components/ui/switch";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import {
   Dialog,
-  DialogPortal,
-  DialogOverlay,
-  DialogTrigger,
   DialogContent,
   DialogHeader,
-  DialogFooter,
   DialogTitle,
-  DialogDescription,
+  DialogTrigger,
 } from "@/components/ui/dialog";
-import { Label } from "@/components/ui/label";
-import { InputText } from "primereact/inputtext";
+import { useToast } from "@/components/ui/use-toast";
+import { useNavigate } from "react-router-dom";
 
 import {
   Select,
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
 
-import {
-  MapContainer,
-  Marker,
-  useMap,
-  useMapEvents,
-  ImageOverlay,
-  Polygon,
-  SVGOverlay,
-} from "react-leaflet";
-import { TileLayer } from "react-leaflet";
-import L, {
-  LatLng,
-  LatLngBounds,
-  LatLngBoundsLiteral,
-  LatLngExpression,
-} from "leaflet";
-import Facility from "../../models/Facility";
-import useApiJson from "../../hooks/useApiJson";
-import HorizontalScrollOptionsList from "../../components/HorizontalScrollOptionsList";
-import { FacilityType } from "../../enums/FacilityType";
-import { HiCheck, HiX, HiOutlineSearch } from "react-icons/hi";
-import { FiFilter } from "react-icons/fi";
-import MapComponent from "../../components/Map/MapComponent";
-import { Portal } from "@radix-ui/react-portal";
 import { Input } from "@/components/ui/input";
+import { FiFilter } from "react-icons/fi";
+import { HiOutlineSearch } from "react-icons/hi";
+import HorizontalScrollOptionsList from "../../components/HorizontalScrollOptionsList";
+import MapComponent from "../../components/Map/MapComponent";
+import { FacilityType } from "../../enums/FacilityType";
+import useApiJson from "../../hooks/useApiJson";
+import Facility from "../../models/Facility";
 // Import Tailwind CSS styles
 import "tailwindcss/tailwind.css";
 
@@ -64,20 +37,23 @@ interface Option {
   text: string;
 }
 
+interface FacilityWithSelected extends Facility {
+  selected: boolean;
+}
+
 function MapLandingPage() {
   const navigate = useNavigate();
   const apiJson = useApiJson();
   const toastShadcn = useToast().toast;
 
-  const [facilityList, setFacilityList] = useState<Facility[]>([]);
-  const [selectedFacility, setSelectedFacility] = useState<Facility | null>(
-    null,
-  );
+  const [facilityList, setFacilityList] = useState<FacilityWithSelected[]>([]);
+  const [selectedFacility, setSelectedFacility] =
+    useState<FacilityWithSelected | null>(null);
   const [refreshSeed, setRefreshSeed] = useState<number>(0);
 
-  const [filteredFacilityList, setFilteredFacilityList] = useState<Facility[]>(
-    [],
-  );
+  const [filteredFacilityList, setFilteredFacilityList] = useState<
+    FacilityWithSelected[]
+  >([]);
   const [facilityTypeFilterValue, setFacilityTypeFilterValue] = useState<
     string | null
   >(null);
@@ -95,13 +71,18 @@ function MapLandingPage() {
           { includes: ["facilityDetail"] },
         );
         const facilityListWithLocation = (
-          responseJson.facilities as Facility[]
-        ).filter((facility) => {
-          // console.log(facility);
-          return !(
-            facility.xCoordinate == null || facility.yCoordinate == null
-          );
-        });
+          responseJson.facilities as FacilityWithSelected[]
+        )
+          .filter((facility) => {
+            // console.log(facility);
+            return !(
+              facility.xCoordinate == null || facility.yCoordinate == null
+            );
+          })
+          .map((facility) => ({
+            ...facility,
+            selected: false,
+          }));
         setFacilityList(facilityListWithLocation);
         setFilteredFacilityList(facilityListWithLocation);
         if (selectedFacility) {
@@ -207,7 +188,7 @@ function MapLandingPage() {
   }
 
   const options = [
-    { text: "Zone" },
+    { text: "All" },
     { text: "Wildlife" },
     { text: "Feeding" },
     { text: "Shows" },
@@ -235,66 +216,61 @@ function MapLandingPage() {
   };
 
   return (
-    <div className="h-screen w-screen justify-center">
-      <div className="flex w-full flex-col rounded-lg border border-stroke bg-white pt-4 text-black shadow-default">
-        <div className="px-4 pt-4">
-          <div className="relative">
-            <Input
-              type="search"
-              value={searchText}
-              placeholder="Find attractions, food, more..."
-              className="w-full py-2 pl-10 pr-3 focus:border-blue-300 focus:outline-none focus:ring"
-              onChange={(e) => {
-                setSearchText(e.target.value);
-                handleFacilTypeFilterMap(
-                  facilityTypeFilterValue ? facilityTypeFilterValue : "All",
-                );
-              }}
-            />
-            <div className="absolute inset-y-0 left-0 flex items-center pl-3">
-              <HiOutlineSearch className="text-gray-500 h-5 w-5" />
-            </div>
+    <div className="no-scrollbar fixed bottom-[1vh] flex h-screen w-full w-screen flex-col justify-center rounded-lg border border-stroke bg-white pt-4 text-black shadow-default">
+      <div className="relative px-4 pt-4">
+        <div className="relative">
+          <Input
+            type="search"
+            value={searchText}
+            placeholder="Find attractions, food, more..."
+            className="w-full py-2 pl-10 pr-3 focus:border-blue-300 focus:outline-none focus:ring"
+            onChange={(e) => {
+              setSearchText(e.target.value);
+              handleFacilTypeFilterMap(
+                facilityTypeFilterValue ? facilityTypeFilterValue : "All",
+              );
+            }}
+          />
+          <div className="absolute inset-y-0 left-0 flex items-center pl-3">
+            <HiOutlineSearch className="text-gray-500 h-5 w-5" />
           </div>
-          <HorizontalScrollOptionsList
-            options={options}
-            onOptionClick={handleOptionClick}
-            selectedOption={selectedOption} // Pass selectedOption as a prop
+        </div>
+        <HorizontalScrollOptionsList
+          options={options}
+          onOptionClick={handleOptionClick}
+          selectedOption={selectedOption} // Pass selectedOption as a prop
+        />
+      </div>
+
+      <div className=" w-full overflow-hidden rounded-md border border-stroke shadow-md">
+        <div className="">
+          {selectedOption?.text == "Amenities" && <FilterButton />}
+
+          <MapComponent
+            facilityList={filteredFacilityList}
+            setFacilityList={setFilteredFacilityList}
+            selectedFacility={selectedFacility}
+            setSelectedFacility={setSelectedFacility}
+            setIsShownOnMap={true}
           />
         </div>
+      </div>
 
-        <div className=" w-full overflow-hidden rounded-md border border-stroke shadow-md">
-          <div className="relative">
-            {selectedOption?.text == "Amenities" && <FilterButton />}
-
-            <MapComponent
-              facilityList={filteredFacilityList}
-              selectedFacility={selectedFacility}
-              setSelectedFacility={setSelectedFacility}
-              setIsShownOnMap={true}
-            />
-          </div>
-        </div>
-
-        {selectedFacility && (
-          <Card
-            className="h-1/8 fixed bottom-0 left-0 right-0 max-w-lg translate-y-full transform rounded-t-lg bg-white p-4 shadow-lg transition-transform duration-1000"
-            style={{
-              transform: selectedFacility
-                ? "translateY(0)"
-                : "translateY(100%)",
-            }}
-          >
-            <CardHeader>
-              <CardContent className="mb-8 font-semibold">
-                {selectedFacility.facilityName}
-              </CardContent>
-              {/* <CardDescription>
+      {selectedFacility && (
+        <Card
+          className=" fixed bottom-[8vh] left-0 right-0 mx-3 translate-y-full transform bg-white shadow-lg transition-transform duration-1000"
+          style={{
+            transform: selectedFacility ? "translateY(0)" : "translateY(100%)",
+          }}
+        >
+          <CardContent className="mt-5 font-semibold">
+            {selectedFacility.facilityName}
+          </CardContent>
+          {/* <CardDescription>
                   Deploy your new project in one-click.
               </CardDescription> */}
-            </CardHeader>
-          </Card>
-        )}
-      </div>
+        </Card>
+      )}
     </div>
   );
 }

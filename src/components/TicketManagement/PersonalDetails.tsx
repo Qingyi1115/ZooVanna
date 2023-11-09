@@ -1,17 +1,8 @@
-import Listing from "../../models/Listing";
-import { Navigate, useLocation } from "react-router-dom";
-import { useToast } from "@/components/ui/use-toast";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import * as Form from "@radix-ui/react-form";
 import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
-import FormFieldInput from "../FormFieldInput";
 import { InputText } from "primereact/inputtext";
-import { Toast } from "@radix-ui/react-toast";
-import { NavLink } from "react-router-dom";
-import { useRef } from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { NavLink, useLocation } from "react-router-dom";
+import Listing from "../../models/Listing";
 
 function PersonalDetails() {
   const location = useLocation();
