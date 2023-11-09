@@ -216,7 +216,7 @@ function MapLandingPage() {
   };
 
   return (
-    <div className="no-scrollbar fixed bottom-[0vh] flex h-screen w-full w-screen flex-col justify-center rounded-lg border border-stroke bg-white pt-4 text-black shadow-default">
+    <div className="no-scrollbar fixed bottom-[1vh] flex h-screen w-full w-screen flex-col justify-center rounded-lg border border-stroke bg-white pt-4 text-black shadow-default">
       <div className="relative px-4 pt-4">
         <div className="relative">
           <Input
