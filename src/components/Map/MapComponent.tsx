@@ -172,7 +172,7 @@ function MapComponent(props: LandingPageMapProps) {
           zoom={15}
           bounds={bounds}
           maxBounds={bounds}
-          minZoom={15}
+          minZoom={14}
           maxZoom={20}
         >
           {/* <TileLayer
