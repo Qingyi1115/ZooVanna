@@ -188,7 +188,7 @@ function MapLandingPage() {
   }
 
   const options = [
-    { text: "Zone" },
+    { text: "All" },
     { text: "Wildlife" },
     { text: "Feeding" },
     { text: "Shows" },
@@ -216,65 +216,61 @@ function MapLandingPage() {
   };
 
   return (
-    <div className="h-screen w-screen justify-center">
-      <div className="flex w-full flex-col rounded-lg border border-stroke bg-white pt-4 text-black shadow-default">
-        <div className="px-4 pt-4">
-          <div className="relative">
-            <Input
-              type="search"
-              value={searchText}
-              placeholder="Find attractions, food, more..."
-              className="w-full py-2 pl-10 pr-3 focus:border-blue-300 focus:outline-none focus:ring"
-              onChange={(e) => {
-                setSearchText(e.target.value);
-                handleFacilTypeFilterMap(
-                  facilityTypeFilterValue ? facilityTypeFilterValue : "All",
-                );
-              }}
-            />
-            <div className="absolute inset-y-0 left-0 flex items-center pl-3">
-              <HiOutlineSearch className="text-gray-500 h-5 w-5" />
-            </div>
+    <div className="no-scrollbar fixed bottom-[0vh] flex h-screen w-full w-screen flex-col justify-center rounded-lg border border-stroke bg-white pt-4 text-black shadow-default">
+      <div className="relative px-4 pt-4">
+        <div className="relative">
+          <Input
+            type="search"
+            value={searchText}
+            placeholder="Find attractions, food, more..."
+            className="w-full py-2 pl-10 pr-3 focus:border-blue-300 focus:outline-none focus:ring"
+            onChange={(e) => {
+              setSearchText(e.target.value);
+              handleFacilTypeFilterMap(
+                facilityTypeFilterValue ? facilityTypeFilterValue : "All",
+              );
+            }}
+          />
+          <div className="absolute inset-y-0 left-0 flex items-center pl-3">
+            <HiOutlineSearch className="text-gray-500 h-5 w-5" />
           </div>
-          <HorizontalScrollOptionsList
-            options={options}
-            onOptionClick={handleOptionClick}
-            selectedOption={selectedOption} // Pass selectedOption as a prop
+        </div>
+        <HorizontalScrollOptionsList
+          options={options}
+          onOptionClick={handleOptionClick}
+          selectedOption={selectedOption} // Pass selectedOption as a prop
+        />
+      </div>
+
+      <div className=" w-full overflow-hidden rounded-md border border-stroke shadow-md">
+        <div className="">
+          {selectedOption?.text == "Amenities" && <FilterButton />}
+
+          <MapComponent
+            facilityList={filteredFacilityList}
+            setFacilityList={setFilteredFacilityList}
+            selectedFacility={selectedFacility}
+            setSelectedFacility={setSelectedFacility}
+            setIsShownOnMap={true}
           />
         </div>
+      </div>
 
-        <div className=" w-full overflow-hidden rounded-md border border-stroke shadow-md">
-          <div className="relative">
-            {selectedOption?.text == "Amenities" && <FilterButton />}
-
-            <MapComponent
-              facilityList={filteredFacilityList}
-              setFacilityList={setFilteredFacilityList}
-              selectedFacility={selectedFacility}
-              setSelectedFacility={setSelectedFacility}
-              setIsShownOnMap={true}
-            />
-          </div>
-        </div>
-
-        {selectedFacility && (
-          <Card
-            className=" fixed bottom-[8vh] left-0 right-0 mx-3 translate-y-full transform bg-white shadow-lg transition-transform duration-1000"
-            style={{
-              transform: selectedFacility
-                ? "translateY(0)"
-                : "translateY(100%)",
-            }}
-          >
-            <CardContent className="mt-5 font-semibold">
-              {selectedFacility.facilityName}
-            </CardContent>
-            {/* <CardDescription>
+      {selectedFacility && (
+        <Card
+          className=" fixed bottom-[8vh] left-0 right-0 mx-3 translate-y-full transform bg-white shadow-lg transition-transform duration-1000"
+          style={{
+            transform: selectedFacility ? "translateY(0)" : "translateY(100%)",
+          }}
+        >
+          <CardContent className="mt-5 font-semibold">
+            {selectedFacility.facilityName}
+          </CardContent>
+          {/* <CardDescription>
                   Deploy your new project in one-click.
               </CardDescription> */}
-          </Card>
-        )}
-      </div>
+        </Card>
+      )}
     </div>
   );
 }

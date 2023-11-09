@@ -181,7 +181,7 @@ function MapComponent(props: LandingPageMapProps) {
           /> */}
           <TileLayer
             noWrap={true}
-            attribution="Merlion Zoo"
+            // attribution="Merlion Zoo"
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
 
