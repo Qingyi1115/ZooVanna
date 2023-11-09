@@ -1,27 +1,20 @@
-import L, {
-  LatLng,
-  LatLngBounds,
-  LatLngExpression
-} from "leaflet";
+import L, { LatLng, LatLngBounds, LatLngExpression } from "leaflet";
 import { useState } from "react";
 
-import {
-  ImageOverlay,
-  MapContainer,
-  Marker,
-  TileLayer
-} from "react-leaflet";
+import { ImageOverlay, MapContainer, Marker, TileLayer } from "react-leaflet";
 import Facility from "../../models/Facility";
 
 const merlioncenter: LatLngExpression = [1.295, 103.775887811];
 const merliontopleft: LatLng = new LatLng(1.3, 103.766998922);
 const merlionbottomright: LatLng = new LatLng(1.29, 103.7847767);
+// const merlionbottomright: LatLng = new LatLng(1.29, 103.7847767);
 const bounds: LatLngBounds = new LatLngBounds(
   merliontopleft,
   merlionbottomright,
 );
 const backgroundtopleft: LatLng = new LatLng(1.4, 104.766998922);
-const backgroundbottomright: LatLng = new LatLng(1.1, 102.7847767);
+const backgroundbottomright: LatLng = new LatLng(1.1, 102.847767);
+// const backgroundbottomright: LatLng = new LatLng(1.1, 102.7847767);
 const backgroundbounds: LatLngBounds = new LatLngBounds(
   backgroundtopleft,
   backgroundbottomright,
@@ -30,109 +23,99 @@ const backgroundbounds: LatLngBounds = new LatLngBounds(
 const localhost_5174_address = import.meta.env.VITE_LOCALHOST_5174_ADDRESS;
 // http://localhost:5174/src/assets/mapicons/parking.png
 // map icons
-function iconFunction(facilityType: string) {
+function iconFunction(selected: boolean, facilityType: string) {
   console.log("facil type icon: " + facilityType);
+  let iconUrl = `http://${localhost_5174_address}/src/assets/mapicons/1.png`;
   switch (facilityType) {
     case "INFORMATION_CENTRE":
-      return new L.Icon({
-        iconUrl: `http://${localhost_5174_address}/src/assets/mapicons/1.png`,
-        iconSize: [30, 31],
-        iconAnchor: [15, 40],
-      });
+      iconUrl = `http://${localhost_5174_address}/src/assets/mapicons/1.png`;
+      break;
+
     case "ZOO_DIRECTORY":
-      return new L.Icon({
-        iconUrl: `http://${localhost_5174_address}/src/assets/mapicons/3.png`,
-        iconSize: [30, 31],
-        iconAnchor: [15, 40],
-      });
+      iconUrl = `http://${localhost_5174_address}/src/assets/mapicons/3.png`;
+      break;
+
     case "AMPHITHEATRE":
-      return new L.Icon({
-        iconUrl: `http://${localhost_5174_address}/src/assets/mapicons/4.png`,
-        iconSize: [30, 31],
-        iconAnchor: [15, 40],
-      });
+      iconUrl = `http://${localhost_5174_address}/src/assets/mapicons/4.png`;
+      break;
+
     case "GAZEBO":
-      return new L.Icon({
-        iconUrl: `http://${localhost_5174_address}/src/assets/mapicons/5.png`,
-        iconSize: [30, 31],
-        iconAnchor: [15, 40],
-      });
+      iconUrl = `http://${localhost_5174_address}/src/assets/mapicons/5.png`;
+      break;
+
     case "AED":
-      return new L.Icon({
-        iconUrl: `http://${localhost_5174_address}/src/assets/mapicons/6.png`,
-        iconSize: [30, 31],
-        iconAnchor: [15, 40],
-      });
+      iconUrl = `http://${localhost_5174_address}/src/assets/mapicons/6.png`;
+      break;
+
     case "RESTROOM":
-      return new L.Icon({
-        iconUrl: `http://${localhost_5174_address}/src/assets/mapicons/7.png`,
-        iconSize: [30, 31],
-        iconAnchor: [15, 40],
-      });
+      iconUrl = `http://${localhost_5174_address}/src/assets/mapicons/7.png`;
+      break;
+
     case "NURSERY":
-      return new L.Icon({
-        iconUrl: `http://${localhost_5174_address}/src/assets/mapicons/8.png`,
-        iconSize: [30, 31],
-        iconAnchor: [15, 40],
-      });
+      iconUrl = `http://${localhost_5174_address}/src/assets/mapicons/8.png`;
+      break;
+
     case "FIRST_AID":
-      return new L.Icon({
-        iconUrl: `http://${localhost_5174_address}/src/assets/mapicons/9.png`,
-        iconSize: [30, 31],
-        iconAnchor: [15, 40],
-      });
+      iconUrl = `http://${localhost_5174_address}/src/assets/mapicons/9.png`;
+      break;
+
     case "BENCHES":
-      return new L.Icon({
-        iconUrl: `http://${localhost_5174_address}/src/assets/mapicons/10.png`,
-        iconSize: [30, 31],
-        iconAnchor: [15, 40],
-      });
+      iconUrl = `http://${localhost_5174_address}/src/assets/mapicons/10.png`;
+      break;
+
     case "PLAYGROUND":
-      return new L.Icon({
-        iconUrl: `http://${localhost_5174_address}/src/assets/mapicons/11.png`,
-        iconSize: [30, 31],
-        iconAnchor: [15, 40],
-      });
+      iconUrl = `http://${localhost_5174_address}/src/assets/mapicons/11.png`;
+      break;
+
     case "TRAMSTOP":
-      return new L.Icon({
-        iconUrl: `http://${localhost_5174_address}/src/assets/mapicons/13.png`,
-        iconSize: [30, 31],
-        iconAnchor: [15, 40],
-      });
+      iconUrl = `http://${localhost_5174_address}/src/assets/mapicons/13.png`;
+      break;
+
     case "PARKING":
-      return new L.Icon({
-        iconUrl: `http://${localhost_5174_address}/src/assets/mapicons/14.png`,
-        iconSize: [30, 31],
-        iconAnchor: [15, 40],
-      });
+      iconUrl = `http://${localhost_5174_address}/src/assets/mapicons/14.png`;
+      break;
+
     case "RESTAURANT":
-      return new L.Icon({
-        iconUrl: `http://${localhost_5174_address}/src/assets/mapicons/15.png`,
-        iconSize: [30, 31],
-        iconAnchor: [15, 40],
-      });
+      iconUrl = `http://${localhost_5174_address}/src/assets/mapicons/15.png`;
+      break;
+
     case "SHOP_SOUVENIR":
-      return new L.Icon({
-        iconUrl: `http://${localhost_5174_address}/src/assets/mapicons/16.png`,
-        iconSize: [30, 31],
-        iconAnchor: [15, 40],
-      });
+      iconUrl = `http://${localhost_5174_address}/src/assets/mapicons/16.png`;
+      break;
+
     default:
-      return new L.Icon({
-        iconUrl: `http://${localhost_5174_address}/src/assets/mapicons/17.png`,
-        iconSize: [30, 31],
-        iconAnchor: [15, 40],
-      });
+      iconUrl = `http://${localhost_5174_address}/src/assets/mapicons/17.png`;
+      break;
   }
-  // return new L.Icon({
-  //   iconUrl: "../../../../src/assets/mapicons/parking.png",
-  //   iconSize: [30, 31],
-  //   iconAnchor: [15, 40],
-  // });
+
+  if (selected) {
+    return new L.Icon({
+      iconUrl,
+      iconSize: [30, 31],
+      iconAnchor: [15, 40],
+      className: "selected-icon",
+    });
+  }
+
+  return new L.Icon({
+    iconUrl,
+    iconSize: [30, 31],
+    iconAnchor: [15, 40],
+  });
+}
+// return new L.Icon({
+//   iconUrl =  "../../../../src/assets/mapicons/parking.png",
+//   iconSize: [30, 31],
+//   iconAnchor: [15, 40],
+// });
+
+interface FacilityWithSelected extends Facility {
+  selected: boolean;
 }
 
 interface LandingPageMapProps {
-  facilityList: Facility[];
+  facilityList: FacilityWithSelected[];
+  setFacilityList: any;
   selectedFacility: Facility | null;
   setSelectedFacility: any;
   setIsShownOnMap: any;
@@ -146,12 +129,33 @@ function MapComponent(props: LandingPageMapProps) {
 
   const {
     facilityList,
+    setFacilityList,
     selectedFacility,
     setSelectedFacility,
     setIsShownOnMap,
   } = props;
 
-  function handleMarkerClick(facility: Facility) {
+  function handleMarkerClick(selFacility: FacilityWithSelected) {
+    if (selectedFacility?.facilityId == selFacility.facilityId) {
+      const tempFacilityList = facilityList.map((facility) =>
+        facility.facilityId === selFacility.facilityId
+          ? { ...facility, selected: false }
+          : { ...facility, selected: false },
+      );
+      setFacilityList(tempFacilityList);
+      setSelectedFacility(null);
+    } else {
+      const tempFacilityList = facilityList.map((facility) =>
+        facility.facilityId === selFacility.facilityId
+          ? { ...facility, selected: !facility.selected }
+          : { ...facility, selected: false },
+      );
+      setSelectedFacility(selFacility);
+      setFacilityList(tempFacilityList);
+    }
+  }
+
+  function oldHandleMarkerClick(facility: Facility) {
     console.log(facility);
     if (selectedFacility == facility) {
       setSelectedFacility(null);
@@ -165,7 +169,7 @@ function MapComponent(props: LandingPageMapProps) {
       <div className="h-[80vh] w-screen ">
         <MapContainer
           center={merlioncenter}
-          zoom={16}
+          zoom={15}
           bounds={bounds}
           maxBounds={bounds}
           minZoom={15}
@@ -197,7 +201,10 @@ function MapComponent(props: LandingPageMapProps) {
           {facilityList.map((facility, idx) => (
             <Marker
               key={`marker-${idx}`}
-              icon={iconFunction(facility.facilityDetailJson.facilityType)}
+              icon={iconFunction(
+                facility.selected,
+                facility.facilityDetailJson.facilityType,
+              )}
               eventHandlers={{
                 click: () => handleMarkerClick(facility),
                 // mouseover: onHoverMarker,

@@ -6,7 +6,7 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-  DialogTrigger
+  DialogTrigger,
 } from "@/components/ui/dialog";
 import { useToast } from "@/components/ui/use-toast";
 import { useNavigate } from "react-router-dom";
@@ -17,7 +17,7 @@ import {
   SelectGroup,
   SelectItem,
   SelectTrigger,
-  SelectValue
+  SelectValue,
 } from "@/components/ui/select";
 
 import { Input } from "@/components/ui/input";
@@ -37,20 +37,23 @@ interface Option {
   text: string;
 }
 
+interface FacilityWithSelected extends Facility {
+  selected: boolean;
+}
+
 function MapLandingPage() {
   const navigate = useNavigate();
   const apiJson = useApiJson();
   const toastShadcn = useToast().toast;
 
-  const [facilityList, setFacilityList] = useState<Facility[]>([]);
-  const [selectedFacility, setSelectedFacility] = useState<Facility | null>(
-    null,
-  );
+  const [facilityList, setFacilityList] = useState<FacilityWithSelected[]>([]);
+  const [selectedFacility, setSelectedFacility] =
+    useState<FacilityWithSelected | null>(null);
   const [refreshSeed, setRefreshSeed] = useState<number>(0);
 
-  const [filteredFacilityList, setFilteredFacilityList] = useState<Facility[]>(
-    [],
-  );
+  const [filteredFacilityList, setFilteredFacilityList] = useState<
+    FacilityWithSelected[]
+  >([]);
   const [facilityTypeFilterValue, setFacilityTypeFilterValue] = useState<
     string | null
   >(null);
@@ -68,13 +71,18 @@ function MapLandingPage() {
           { includes: ["facilityDetail"] },
         );
         const facilityListWithLocation = (
-          responseJson.facilities as Facility[]
-        ).filter((facility) => {
-          // console.log(facility);
-          return !(
-            facility.xCoordinate == null || facility.yCoordinate == null
-          );
-        });
+          responseJson.facilities as FacilityWithSelected[]
+        )
+          .filter((facility) => {
+            // console.log(facility);
+            return !(
+              facility.xCoordinate == null || facility.yCoordinate == null
+            );
+          })
+          .map((facility) => ({
+            ...facility,
+            selected: false,
+          }));
         setFacilityList(facilityListWithLocation);
         setFilteredFacilityList(facilityListWithLocation);
         if (selectedFacility) {
@@ -241,6 +249,7 @@ function MapLandingPage() {
 
             <MapComponent
               facilityList={filteredFacilityList}
+              setFacilityList={setFilteredFacilityList}
               selectedFacility={selectedFacility}
               setSelectedFacility={setSelectedFacility}
               setIsShownOnMap={true}
@@ -250,21 +259,19 @@ function MapLandingPage() {
 
         {selectedFacility && (
           <Card
-            className="h-1/8 fixed bottom-0 left-0 right-0 max-w-lg translate-y-full transform rounded-t-lg bg-white p-4 shadow-lg transition-transform duration-1000"
+            className=" fixed bottom-[8vh] left-0 right-0 mx-3 translate-y-full transform bg-white shadow-lg transition-transform duration-1000"
             style={{
               transform: selectedFacility
                 ? "translateY(0)"
                 : "translateY(100%)",
             }}
           >
-            <CardHeader>
-              <CardContent className="mb-8 font-semibold">
-                {selectedFacility.facilityName}
-              </CardContent>
-              {/* <CardDescription>
+            <CardContent className="mt-5 font-semibold">
+              {selectedFacility.facilityName}
+            </CardContent>
+            {/* <CardDescription>
                   Deploy your new project in one-click.
               </CardDescription> */}
-            </CardHeader>
           </Card>
         )}
       </div>
