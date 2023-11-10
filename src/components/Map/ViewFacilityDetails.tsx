@@ -10,6 +10,7 @@ interface FacilityDetailsProps {
 
 function ViewFacilityDetails(props: FacilityDetailsProps) {
   const { curFacility } = props;
+  console.log(curFacility);
   const toastShadcn = useToast().toast;
 
   function convertUtcToTimezone(utcDate: Date, targetTimezone: string): string {
@@ -31,18 +32,18 @@ function ViewFacilityDetails(props: FacilityDetailsProps) {
       : undefined;
 
   return (
-    <div className="">
+    <div className="border-b border-graydark/30 transition-colors">
       <Table>
         <TableBody>
           <TableRow>
-            <TableCell className="w-1/3 font-bold" colSpan={2}>
+            <TableCell className="w-1/2 font-bold" colSpan={2}>
               Name
             </TableCell>
             <TableCell>{curFacility.facilityName}</TableCell>
           </TableRow>
           <TableRow>
-            <TableCell className="w-1/3 font-bold" colSpan={2}>
-              Shelter available
+            <TableCell className="w-1/2 font-bold" colSpan={2}>
+              Shelter Available
             </TableCell>
             <TableCell>
               {String(curFacility.isSheltered) == "false" ? "No" : "Yes"}

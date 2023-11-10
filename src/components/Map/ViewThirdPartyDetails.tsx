@@ -26,7 +26,7 @@ function ViewThirdPartyDetails(props: ThirdPartyProps) {
                         <TableCell>{curThirdParty.maxAccommodationSize}</TableCell>
                     </TableRow> */}
           <TableRow>
-            <TableCell className="w-1/3 font-bold" colSpan={2}>
+            <TableCell className="w-1/2 font-bold" colSpan={2}>
               Air condition available
             </TableCell>
             <TableCell>
@@ -34,7 +34,7 @@ function ViewThirdPartyDetails(props: ThirdPartyProps) {
             </TableCell>
           </TableRow>
           <TableRow>
-            <TableCell className="w-1/3 font-bold" colSpan={2}>
+            <TableCell className="w-1/2 font-bold" colSpan={2}>
               Type
             </TableCell>
             <TableCell>{beautifyText(curThirdParty.facilityType)}</TableCell>

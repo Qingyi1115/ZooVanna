@@ -1,9 +1,4 @@
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableRow
-} from "@/components/ui/table";
+import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { useToast } from "@/components/ui/use-toast";
 import * as moment from "moment-timezone";
 import { FiCopy } from "react-icons/fi";
@@ -15,6 +10,7 @@ interface PromotionDetailsProps {
 
 function ViewPromotionDetails(props: PromotionDetailsProps) {
   const { curPromotion } = props;
+  console.log(curPromotion);
   const toastShadcn = useToast().toast;
 
   const handleCopyToClipboard = (text: string) => {

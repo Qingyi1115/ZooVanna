@@ -36,6 +36,7 @@ function ViewPromotionDetailsPage() {
         const responseJson = await apiJson.get(
           `http://${localhost_address}/api/promotion/getPromotion/${promotionId}`,
         );
+        console.log(responseJson);
         setCurPromotion(responseJson as Promotion);
       } catch (error: any) {
         console.log(error);

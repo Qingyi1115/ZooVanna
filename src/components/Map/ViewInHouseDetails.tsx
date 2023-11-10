@@ -31,7 +31,7 @@ function ViewInHouseDetails(props: InHouseDetailsProps) {
             <TableCell>{curInHouse.maxAccommodationSize}</TableCell>
           </TableRow> */}
           <TableRow>
-            <TableCell className="w-1/3 font-bold" colSpan={2}>
+            <TableCell className="w-1/2 font-bold" colSpan={2}>
               Air Condition Available
             </TableCell>
             <TableCell>
@@ -39,7 +39,7 @@ function ViewInHouseDetails(props: InHouseDetailsProps) {
             </TableCell>
           </TableRow>
           <TableRow>
-            <TableCell className="w-1/3 font-bold" colSpan={2}>
+            <TableCell className="w-1/2 font-bold" colSpan={2}>
               Facility Type
             </TableCell>
             <TableCell>{beautifyText(curInHouse.facilityType)}</TableCell>

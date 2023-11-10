@@ -9,7 +9,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { useToast } from "@/components/ui/use-toast";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 import {
   Select,
@@ -258,14 +258,18 @@ function MapLandingPage() {
       </div>
 
       {selectedFacility && (
-        <ImageCardSide
-          key={selectedFacility.facilityId}
-          imageUrl={`http://${localhost_address}/` + selectedFacility.imageUrl}
-          title={selectedFacility.facilityName}
-          description={
-            selectedFacility.isSheltered ? "Sheltered" : "Non-sheltered"
-          }
-        />
+        <Link to={`/facility/viewfacility/${selectedFacility.facilityId}`}>
+          <ImageCardSide
+            key={selectedFacility.facilityId}
+            imageUrl={
+              `http://${localhost_address}/` + selectedFacility.imageUrl
+            }
+            title={selectedFacility.facilityName}
+            description={
+              selectedFacility.isSheltered ? "Sheltered" : "Non-sheltered"
+            }
+          />
+        </Link>
         // <Card
         //   className=" fixed bottom-[8vh] left-0 right-0 mx-3 translate-y-full transform bg-white shadow-lg transition-transform duration-1000"
         //   style={{

@@ -1,11 +1,11 @@
 interface Facility {
   facilityId: number;
   facilityName: string;
+  imageUrl: string;
   xCoordinate: number;
   yCoordinate: number;
   isSheltered: Boolean;
   showOnMap: boolean;
-  imageUrl: string;
   facilityDetail: string;
   facilityDetailJson: any;
 }
