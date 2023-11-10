@@ -1,8 +1,4 @@
-import {
-  BrowserRouter,
-  Route,
-  Routes
-} from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 
 import { PrimeReactProvider } from "primereact/api";
@@ -36,6 +32,7 @@ import SignupPage from "./pages/SignUpPage";
 import TicketLandingPage from "./pages/TicketLandingPage";
 import TicketsPage from "./pages/TicketsPage";
 import ViewProfilePage from "./pages/ViewProfilePage";
+import ViewFacilityDetailsPage from "./pages/Map/ViewFacilityDetailsPage";
 
 function App() {
   const { state } = useAuthContext();
@@ -53,12 +50,18 @@ function App() {
           </Routes>
           <MainLayout>
             <Routes>
+              {/* Home */}
               <Route path="/" element={<HomePage />} />
               <Route
                 path="/promotion/viewpromotion/:promotionId"
                 element={<ViewPromotionPage />}
               />
+              {/* Map Management */}
               <Route path="/map" element={<MapPage />} />
+              <Route
+                path="/facility/viewfacility/:facilityId"
+                element={<ViewFacilityDetailsPage />}
+              />
               {/*Ticket Management*/}
               <Route path="/tickets" element={<TicketLandingPage />} />
               <Route path="/tickets/buy" element={<TicketsPage />} />
@@ -87,7 +90,6 @@ function App() {
                 path="/tickets/completion/:customerOrderId/:code/:id"
                 element={<CompletionPage />}
               />
-              // need user in logged in state
               <Route
                 path="/tickets/purchasedTickets"
                 element={

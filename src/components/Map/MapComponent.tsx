@@ -166,7 +166,7 @@ function MapComponent(props: LandingPageMapProps) {
 
   return (
     <div>
-      <div className="h-[80vh] w-screen ">
+      <div className="h-[84vh] w-screen ">
         <MapContainer
           center={merlioncenter}
           zoom={15}
