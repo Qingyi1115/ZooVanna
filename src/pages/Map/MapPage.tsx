@@ -30,6 +30,7 @@ import useApiJson from "../../hooks/useApiJson";
 import Facility from "../../models/Facility";
 // Import Tailwind CSS styles
 import "tailwindcss/tailwind.css";
+import ImageCardSide from "../../components/ImageCardSide";
 
 // import geolocation from "geolocation";
 
@@ -216,7 +217,7 @@ function MapLandingPage() {
   };
 
   return (
-    <div className="no-scrollbar fixed bottom-[1vh] flex h-screen w-full w-screen flex-col justify-center rounded-lg border border-stroke bg-white pt-4 text-black shadow-default">
+    <div className="no-scrollbar fixed bottom-[1vh] flex h-screen w-full w-screen flex-col justify-center rounded-lg border border-stroke bg-white text-black shadow-default">
       <div className="relative px-4 pt-4">
         <div className="relative">
           <Input
@@ -242,8 +243,8 @@ function MapLandingPage() {
         />
       </div>
 
-      <div className=" w-full overflow-hidden rounded-md border border-stroke shadow-md">
-        <div className="">
+      <div className=" w-full overflow-hidden border border-stroke shadow-md">
+        <div className="relative">
           {selectedOption?.text == "Amenities" && <FilterButton />}
 
           <MapComponent
@@ -257,19 +258,27 @@ function MapLandingPage() {
       </div>
 
       {selectedFacility && (
-        <Card
-          className=" fixed bottom-[8vh] left-0 right-0 mx-3 translate-y-full transform bg-white shadow-lg transition-transform duration-1000"
-          style={{
-            transform: selectedFacility ? "translateY(0)" : "translateY(100%)",
-          }}
-        >
-          <CardContent className="mt-5 font-semibold">
-            {selectedFacility.facilityName}
-          </CardContent>
-          {/* <CardDescription>
-                  Deploy your new project in one-click.
-              </CardDescription> */}
-        </Card>
+        <ImageCardSide
+          key={selectedFacility.facilityId}
+          imageUrl={`http://${localhost_address}/` + selectedFacility.imageUrl}
+          title={selectedFacility.facilityName}
+          description={
+            selectedFacility.isSheltered ? "Sheltered" : "Non-sheltered"
+          }
+        />
+        // <Card
+        //   className=" fixed bottom-[8vh] left-0 right-0 mx-3 translate-y-full transform bg-white shadow-lg transition-transform duration-1000"
+        //   style={{
+        //     transform: selectedFacility ? "translateY(0)" : "translateY(100%)",
+        //   }}
+        // >
+        //   <CardContent className="mt-5 font-semibold">
+        //     {selectedFacility.facilityName}
+        //   </CardContent>
+        //   {/* <CardDescription>
+        //           Deploy your new project in one-click.
+        //       </CardDescription> */}
+        // </Card>
       )}
     </div>
   );
