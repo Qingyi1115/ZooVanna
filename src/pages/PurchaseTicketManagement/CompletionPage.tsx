@@ -9,6 +9,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import { Stripe, StripeElementsOptions } from "@stripe/stripe-js";
 import { Appearance } from "@stripe/stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
+import {App, URLOpenListenerEvent} from '@capacitor/app';
 
 function CompletionPage() {
   const { customerOrderId, code, id } = useParams();
