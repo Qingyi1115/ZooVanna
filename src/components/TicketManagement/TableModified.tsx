@@ -107,12 +107,6 @@ const TableCaptionModified = React.forwardRef<
 TableCaptionModified.displayName = "TableCaption";
 
 export {
-  TableModified,
-  TableHeaderModified,
-  TableBodyModified,
-  TableFooterModified,
-  TableHeadModified,
-  TableRowModified,
-  TableCellModified,
-  TableCaptionModified,
+  TableBodyModified, TableCaptionModified, TableCellModified, TableFooterModified,
+  TableHeadModified, TableHeaderModified, TableModified, TableRowModified
 };

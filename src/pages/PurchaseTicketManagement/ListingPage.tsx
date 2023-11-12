@@ -1,13 +1,5 @@
-import { BrowserRouter, NavLink, Route, Routes } from "react-router-dom";
-import ListingForm from "../../components/TicketManagement/ListingForm";
-import { Button } from "@/components/ui/button";
-import useApiJson from "../../hooks/useApiJson";
-import { useState, useEffect } from "react";
+import { Navigate, useLocation } from "react-router-dom";
 import Listing from "../../models/Listing";
-import SelectDateForm from "../../components/TicketManagement/SelectDateForm";
-import Customer from "../../models/Customer";
-import { useLocation } from "react-router-dom";
-import { Navigate } from "react-router-dom";
 
 function ListingPage() {
   const location = useLocation();

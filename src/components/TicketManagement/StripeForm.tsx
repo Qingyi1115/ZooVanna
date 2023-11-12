@@ -1,13 +1,10 @@
-import { PaymentElement } from "@stripe/react-stripe-js";
 import { Button } from "@/components/ui/button";
-import { useStripe, useElements } from "@stripe/react-stripe-js";
-import { useState } from "react";
-import { StripeError } from "@stripe/stripe-js";
+import { PaymentElement, useElements, useStripe } from "@stripe/react-stripe-js";
+import { useEffect, useState } from "react";
 import Listing from "src/models/Listing";
-import { useAuthContext } from "../../hooks/useAuthContext";
-import useApiJson from "../../hooks/useApiJson";
-import { useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
+import useApiJson from "../../hooks/useApiJson";
+import { useAuthContext } from "../../hooks/useAuthContext";
 import Customer from "../../models/Customer";
 
 interface StripeFormProps {

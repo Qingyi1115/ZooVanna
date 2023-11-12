@@ -1,6 +1,6 @@
+import { Toaster } from "@/components/ui/toaster";
 import React from "react";
 import BottomBar from "./BottomBar/BottomBar";
-import { Toaster } from "@/components/ui/toaster";
 
 interface PropsType {
   children: React.ReactNode;

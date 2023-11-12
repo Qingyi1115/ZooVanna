@@ -1,11 +1,8 @@
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { FaChevronLeft } from "react-icons/fa";
+import { NavLink, useParams } from "react-router-dom";
 import useApiJson from "../../hooks/useApiJson";
 import Promotion from "../../models/Promotion";
-import { NavLink } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { useNavigate } from "react-router-dom";
-import { FaChevronLeft } from "react-icons/fa";
 
 import ViewPromotionDetails from "../../components/HomePage/Promotion/ViewPromotionDetails";
 
@@ -39,6 +36,7 @@ function ViewPromotionDetailsPage() {
         const responseJson = await apiJson.get(
           `http://${localhost_address}/api/promotion/getPromotion/${promotionId}`,
         );
+        console.log(responseJson);
         setCurPromotion(responseJson as Promotion);
       } catch (error: any) {
         console.log(error);
@@ -49,26 +47,27 @@ function ViewPromotionDetailsPage() {
   }, [refreshSeed]);
 
   return (
-    <div className="flex h-screen flex-col">
-      <div className="relative">
+    <div className="flex h-screen flex-col lg:flex-row">
+      <div className="relative lg:w-1/2">
         <img
           src={`http://${localhost_address}/` + curPromotion.imageUrl}
           alt="Current promotion image"
-          className="w-full object-cover shadow-4"
+          className={`mx-auto w-full max-w-full object-cover lg:mx-0 ${
+            window.innerWidth >= 1024
+              ? "pl-20 pt-4 lg:rounded-bl-xl lg:rounded-tl-xl"
+              : ""
+          }`}
         />
         <NavLink to={`/`} className="absolute left-4 top-4">
           <button className="flex h-10 w-10 items-center justify-center rounded-full bg-white bg-opacity-75 text-black">
-            <FaChevronLeft /> {/* Use the imported icon component */}
+            <FaChevronLeft />
           </button>
         </NavLink>
       </div>
 
-      <div className="flex h-screen flex-col p-6">
+      <div className="flex flex-col p-6 lg:w-1/2">
         <ViewPromotionDetails curPromotion={curPromotion} />
       </div>
-      {/* </div> */}
-      {/* )} */}
-      {/* </div> */}
     </div>
   );
 }

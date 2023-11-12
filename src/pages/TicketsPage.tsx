@@ -1,16 +1,9 @@
-import React from "react";
-import CustOrGuest from "../components/TicketManagement/CustOrGuestPage";
-import { useAuthContext } from "../hooks/useAuthContext";
-import ListingPage from "./PurchaseTicketManagement/ListingPage";
+import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-import { BrowserRouter, NavLink, Route, Routes } from "react-router-dom";
-import ListingForm from "../components/TicketManagement/ListingForm";
-import { Button } from "@/components/ui/button";
 import useApiJson from "../hooks/useApiJson";
-import { useState, useEffect } from "react";
-import Listing from "../models/Listing";
-import SelectDateForm from "../components/TicketManagement/SelectDateForm";
+import { useAuthContext } from "../hooks/useAuthContext";
 import Customer from "../models/Customer";
+import Listing from "../models/Listing";
 
 function TicketsPage() {
   const { state } = useAuthContext();

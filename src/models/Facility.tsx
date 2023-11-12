@@ -1,6 +1,7 @@
 interface Facility {
   facilityId: number;
   facilityName: string;
+  imageUrl: string;
   xCoordinate: number;
   yCoordinate: number;
   isSheltered: Boolean;

@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
-import React from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import { Separator } from "@/components/ui/separator";
 

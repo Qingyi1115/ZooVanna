@@ -1,20 +1,8 @@
-import React from "react";
-import Promotion from "../../../models/Promotion";
-import { FiCopy } from "react-icons/fi";
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import { NavLink } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { useNavigate } from "react-router-dom";
-import * as moment from "moment-timezone";
+import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { useToast } from "@/components/ui/use-toast";
+import * as moment from "moment-timezone";
+import { FiCopy } from "react-icons/fi";
+import Promotion from "../../../models/Promotion";
 
 interface PromotionDetailsProps {
   curPromotion: Promotion;
@@ -22,6 +10,7 @@ interface PromotionDetailsProps {
 
 function ViewPromotionDetails(props: PromotionDetailsProps) {
   const { curPromotion } = props;
+  console.log(curPromotion);
   const toastShadcn = useToast().toast;
 
   const handleCopyToClipboard = (text: string) => {

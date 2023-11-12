@@ -1,5 +1,5 @@
-import { ListingType } from "../enums/ListingType";
 import { ListingStatus } from "../enums/ListingStatus";
+import { ListingType } from "../enums/ListingType";
 import OrderItem from "./OrderItem";
 
 interface Listing {

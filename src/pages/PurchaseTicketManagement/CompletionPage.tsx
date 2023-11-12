@@ -1,15 +1,14 @@
-import { Button } from "@/components/ui/button";
+import { Elements } from "@stripe/react-stripe-js";
+import { Appearance, Stripe, StripeElementsOptions, loadStripe } from "@stripe/stripe-js";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import useApiJson from "../../hooks/useApiJson";
-import { useEffect } from "react";
-import { useState } from "react";
-import { NavLink } from "react-router-dom";
 import RetryForm from "../../components/TicketManagement/RetryForm";
 import { Elements } from "@stripe/react-stripe-js";
 import { Stripe, StripeElementsOptions } from "@stripe/stripe-js";
 import { Appearance } from "@stripe/stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import {App, URLOpenListenerEvent} from '@capacitor/app';
+import useApiJson from "../../hooks/useApiJson";
 
 function CompletionPage() {
   const { customerOrderId, code, id } = useParams();

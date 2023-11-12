@@ -1,13 +1,10 @@
-import React, { useState } from "react";
-import ListingCard from "./ListingCard";
-import useApiJson from "../../hooks/useApiJson";
-import { useEffect } from "react";
-import Listing from "../../models/Listing";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useEffect, useRef, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import { useRef } from "react";
 import { ListingStatus } from "../../enums/ListingStatus";
+import Listing from "../../models/Listing";
+import ListingCard from "./ListingCard";
 
 interface CheckboxProps {
   label: string;

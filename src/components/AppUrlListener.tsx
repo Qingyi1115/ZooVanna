@@ -1,6 +1,6 @@
+import { App, URLOpenListenerEvent } from "@capacitor/app";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { App, URLOpenListenerEvent } from "@capacitor/app";
 
 const AppUrlListener: React.FC<any> = () => {
   let navigate = useNavigate();
