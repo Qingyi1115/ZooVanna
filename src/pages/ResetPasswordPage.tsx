@@ -3,7 +3,7 @@ import {
   CardContent,
   CardFooter,
   CardHeader,
-  CardTitle
+  CardTitle,
 } from "@/components/ui/card";
 import ResetPasswordForm from "../components/AccountPage/ResetPasswordForm";
 
@@ -17,15 +17,15 @@ function ResetPasswordPage() {
   //   );
 
   return (
-    <div className="p-10">
-      <Card className="w-full">
-        <CardHeader>
-          <CardTitle>Reset Password</CardTitle>
+    <div className="flex h-full w-full items-center p-10">
+      <Card className="w-full justify-center">
+        <CardHeader className="flex w-4/5 justify-center ">
+          <CardTitle className="">Reset Password</CardTitle>
           {/* <CardDescription>
             Deploy your new project in one-click.
           </CardDescription> */}
         </CardHeader>
-        <CardContent>
+        <CardContent className="flex h-full w-full justify-center pb-0">
           {/* can force a reload upon successful log in using
           window.location.reload(); */}
           <ResetPasswordForm />
