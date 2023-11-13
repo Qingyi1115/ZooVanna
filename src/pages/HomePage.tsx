@@ -15,11 +15,10 @@ function HomePage() {
         {/* <h1 className="px-4 text-2xl font-bold">Merlion Zoo</h1> */}
         <Banner />
       </div>
-      <div className="pl-6">
+      <div className="pb-10 pl-2">
         <PromotionCardsContainer />
+        <PublicEventCardsContainer />
       </div>
-      <PromotionCardsContainer />
-      <PublicEventCardsContainer />
     </div>
   );
 }
