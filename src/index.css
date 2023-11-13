@@ -116,3 +116,57 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+/* Slideshow */
+.merlionZooText {
+  position: absolute;
+  bottom: 4%;    
+  left: 5%;
+  z-index: 10; 
+}
+
+.slideshow {
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+}
+
+.slideshowSlider {
+  white-space: nowrap;
+  transition: ease 1000ms;
+}
+
+.slide {
+  display: inline-block;
+
+  height: 400px;
+  width: 100%;
+}
+
+/* Buttons */
+
+.slideshowDots {
+  text-align: center;
+  position: absolute;
+  bottom: 1%;
+  left: 40%;
+}
+
+.slideshowDot {
+  display: inline-block;
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+
+  cursor: pointer;
+  margin: 0px 7px 0px;
+
+  background-color: #c4c4c4;
+
+
+}
+
+.slideshowDot.active {
+  background-color: black;
+  width: 8px;
+}
