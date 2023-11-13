@@ -46,10 +46,10 @@ function EventImageCard({
               {new Date(startDateTime).toLocaleTimeString()}
             </div>
             {/*<div>
-              {new Date(startDateTime).toLocaleTimeString()}
-              {" - "}
-              {new Date(endDateTime).toLocaleTimeString()}
-  </div>*/}
+            {new Date(startDateTime).toLocaleTimeString()}
+            {" - "}
+            {new Date(endDateTime).toLocaleTimeString()}
+</div>*/}
             <div className="font-medium">{facilityName}</div>
           </div>
         </CardDescriptionModified>
