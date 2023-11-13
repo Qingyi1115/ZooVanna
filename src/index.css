@@ -120,7 +120,7 @@ body {
 /* Slideshow */
 .merlionZooText {
   position: absolute;
-  bottom: 4%;    
+  bottom: 5%;    
   left: 5%;
   z-index: 10; 
 }
