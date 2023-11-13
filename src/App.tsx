@@ -33,6 +33,8 @@ import TicketLandingPage from "./pages/TicketLandingPage";
 import TicketsPage from "./pages/TicketsPage";
 import ViewProfilePage from "./pages/ViewProfilePage";
 import ViewFacilityDetailsPage from "./pages/Map/ViewFacilityDetailsPage";
+import ViewAllPublicEventsPage from "./pages/PublicEvent/ViewAllPublicEventsPage";
+import ViewPublicEventDetailsPage from "./pages/PublicEvent/ViewPublicEventPage";
 
 function App() {
   const { state } = useAuthContext();
@@ -55,6 +57,14 @@ function App() {
               <Route
                 path="/promotion/viewpromotion/:promotionId"
                 element={<ViewPromotionPage />}
+              />
+              <Route
+                path="/event/viewevent/:zooEventId"
+                element={<ViewPublicEventDetailsPage />}
+              />
+              <Route
+                path="/event/viewAllEvents"
+                element={<ViewAllPublicEventsPage />}
               />
               {/* Map Management */}
               <Route path="/map" element={<MapPage />} />
@@ -95,7 +105,10 @@ function App() {
                 element={
                   user ? <ViewPurchasedTicketsPage /> : <LoginTicketPage />
                 }
-              />{" "}
+              />
+              {/*Events */}
+              <Route path="/allEvents" element={<ViewAllPublicEventsPage />} />
+
               <Route path="/itinerary" element={<ItineraryPage />} />
               <Route path="/account" element={<AccountPage />} />
               <Route path="/login" element={<LoginPage />} />
