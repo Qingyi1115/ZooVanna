@@ -1,3 +1,4 @@
+import PublicEventCardsContainer from "../components/HomePage/PublicEvent/PublicEventCardsContainer";
 import Banner from "../components/HomePage/Banner/Banner";
 import PromotionCardsContainer from "../components/HomePage/Promotion/PromotionCardsContainer";
 
@@ -17,6 +18,8 @@ function HomePage() {
       <div className="pl-6">
         <PromotionCardsContainer />
       </div>
+      <PromotionCardsContainer />
+      <PublicEventCardsContainer />
     </div>
   );
 }
