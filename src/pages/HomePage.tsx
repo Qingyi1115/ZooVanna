@@ -1,3 +1,4 @@
+import PublicEventCardsContainer from "../components/HomePage/PublicEvent/PublicEventCardsContainer";
 import PromotionCardsContainer from "../components/HomePage/Promotion/PromotionCardsContainer";
 
 function HomePage() {
@@ -13,6 +14,7 @@ function HomePage() {
         <h1 className="px-4 text-2xl font-bold">Merlion Zoo</h1>
       </div>
       <PromotionCardsContainer />
+      <PublicEventCardsContainer />
     </div>
   );
 }
