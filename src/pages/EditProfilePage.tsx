@@ -60,7 +60,7 @@ function EditProfilePage() {
         </CardDescription> */}
         </CardHeader>
         <CardContent className="px-0">
-          <div className="p-2">
+          <div className="py-2">
             {currCustomer.customerId !== -1 && (
               <EditProfileForm currCustomer={currCustomer} />
             )}

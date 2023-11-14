@@ -37,9 +37,6 @@ function EditProfileForm(props: EditCustomerFormProps) {
 
   const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
 
-  console.log("currCustomer.birthday");
-  console.log(currCustomer.birthday);
-
   function clearForm() {
     setEmail("");
     setFirstName("");
