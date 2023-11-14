@@ -30,7 +30,7 @@ function ViewProfileForm(props: ViewCustomerFormProps) {
   const [birthday, setBirthday] = useState<string | Date | Date[] | null>(
     new Date(currCustomer.birthday),
   );
-  const [address, setAddress] = useState<string>(currCustomer.address);
+  // const [address, setAddress] = useState<string>(currCustomer.address);
   const [nationality, setNationality] = useState<string | undefined>(
     currCustomer.nationality,
   );
@@ -44,7 +44,6 @@ function ViewProfileForm(props: ViewCustomerFormProps) {
     setLastName("");
     setContactNo("");
     setBirthday("");
-    setAddress("");
     setNationality(undefined);
   }
 
@@ -161,7 +160,7 @@ function ViewProfileForm(props: ViewCustomerFormProps) {
     <div className="flex w-full justify-center">
       {/* <h2>My Profile</h2> */}
       <Form.Root className="w-4/5" onSubmit={handleSubmit}>
-        <Form.Field name="email" className="mb-10 flex flex-col gap-1">
+        <Form.Field name="email" className="mb-5 flex flex-col gap-1">
           <Form.Label className="text-base font-medium text-black">
             E-mail
           </Form.Label>
@@ -180,7 +179,7 @@ function ViewProfileForm(props: ViewCustomerFormProps) {
           <Form.ValidityState>{validateEmail}</Form.ValidityState>
         </Form.Field>
 
-        <Form.Field name="firstName" className="mb-10 flex flex-col gap-1">
+        <Form.Field name="firstName" className="mb-5 flex flex-col gap-1">
           <Form.Label className="text-base font-medium text-black">
             First Name
           </Form.Label>
@@ -196,7 +195,7 @@ function ViewProfileForm(props: ViewCustomerFormProps) {
           <Form.ValidityState>{validateFirstName}</Form.ValidityState>
         </Form.Field>
 
-        <Form.Field name="lastName" className="mb-10 flex flex-col gap-1">
+        <Form.Field name="lastName" className="mb-5 flex flex-col gap-1">
           <Form.Label className="text-base font-medium text-black">
             Last Name
           </Form.Label>
@@ -212,7 +211,7 @@ function ViewProfileForm(props: ViewCustomerFormProps) {
           <Form.ValidityState>{validateLastName}</Form.ValidityState>
         </Form.Field>
 
-        {/* <Form.Field name="dateOfBirth" className="mb-10 flex flex-col gap-1">
+        {/* <Form.Field name="dateOfBirth" className="mb-5 flex flex-col gap-1">
           <Form.Label className="text-base font-medium text-black">
             Date of Birth
           </Form.Label>
@@ -227,10 +226,11 @@ function ViewProfileForm(props: ViewCustomerFormProps) {
           <Form.ValidityState>{validateLastName}</Form.ValidityState>
         </Form.Field> */}
 
-        <div className="card justify-content-center mb-10 flex flex-col">
+        <div className="card justify-content-center mb-5 flex flex-col">
           <div>Birthday</div>
 
           <Calendar
+            className="h-14 w-full rounded-md border border-zoovanna-brown/50 text-black placeholder-black"
             value={birthday}
             disabled={isDisabled}
             onChange={(e: CalendarChangeEvent) => {
@@ -242,7 +242,7 @@ function ViewProfileForm(props: ViewCustomerFormProps) {
           />
         </div>
 
-        <Form.Field name="contactNo" className="mb-10 flex flex-col gap-1">
+        <Form.Field name="contactNo" className="mb-5 flex flex-col gap-1">
           <Form.Label className="text-base font-medium text-black">
             Contact Number
           </Form.Label>
@@ -259,7 +259,7 @@ function ViewProfileForm(props: ViewCustomerFormProps) {
           <Form.ValidityState>{validateContactNo}</Form.ValidityState>
         </Form.Field>
 
-        <Form.Field name="address" className="mb-10 flex flex-col gap-1">
+        {/* <Form.Field name="address" className="mb-5 flex flex-col gap-1">
           <Form.Label className="text-base font-medium text-black">
             Address
           </Form.Label>
@@ -273,7 +273,7 @@ function ViewProfileForm(props: ViewCustomerFormProps) {
             className="h-14 w-full rounded-md border border-zoovanna-brown/50 bg-whiten px-4 text-black placeholder-black/70"
           />
           <Form.ValidityState>{validateAddress}</Form.ValidityState>
-        </Form.Field>
+        </Form.Field> */}
 
         <FormFieldSelect
           formFieldName="nationality"
@@ -288,7 +288,7 @@ function ViewProfileForm(props: ViewCustomerFormProps) {
         />
 
         <Form.Submit asChild>
-          <button className="mt-10 h-12 w-full rounded-full border bg-black text-whiter">
+          <button className="mt-10 h-12 w-full rounded-md border bg-black text-whiter">
             {isDisabled ? "Edit my profile" : "Confirm edit"}
           </button>
         </Form.Submit>

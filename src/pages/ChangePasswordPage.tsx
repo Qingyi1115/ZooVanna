@@ -32,7 +32,6 @@ function ChangePasswordPage() {
     email: "",
     contactNo: "",
     birthday: new Date(),
-    address: "",
     nationality: "",
   };
 
@@ -55,11 +54,11 @@ function ChangePasswordPage() {
   }, []);
 
   return (
-    <div className="p-10">
+    <div className="p-2">
       {currCustomer.customerId !== -1 && (
         <Card className="w-full">
           <CardHeader>
-            <CardTitle>Change Password</CardTitle>
+            <CardTitle className="px-7">Change Password</CardTitle>
             {/* <CardDescription>
             Deploy your new project in one-click.
           </CardDescription> */}

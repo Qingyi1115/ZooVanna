@@ -57,7 +57,7 @@ function LoginForm() {
   return (
     <div className="md:h-200 flex w-full justify-center">
       <Form.Root className="w-4/5" onSubmit={handleSubmit}>
-        <Form.Field name="email" className="mb-10 flex flex-col gap-1">
+        <Form.Field name="email" className="mb-5 flex flex-col gap-1">
           <Form.Label className="text-base font-medium text-black">
             E-mail
           </Form.Label>
@@ -75,7 +75,7 @@ function LoginForm() {
           <Form.ValidityState>{validateEmail}</Form.ValidityState>
         </Form.Field>
 
-        <Form.Field name="password" className="mb-10 flex flex-col gap-1">
+        <Form.Field name="password" className="mb-5 flex flex-col gap-1">
           <Form.Label className="text-base font-medium text-black">
             Password
           </Form.Label>
@@ -94,7 +94,7 @@ function LoginForm() {
         </Form.Field>
 
         <Form.Submit asChild>
-          <button className="h-12 w-full rounded border bg-black text-whiter">
+          <button className="mt-5 h-12 w-full rounded border bg-black text-whiter">
             Log in
           </button>
         </Form.Submit>

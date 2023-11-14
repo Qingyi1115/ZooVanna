@@ -30,15 +30,12 @@ function EditProfileForm(props: EditCustomerFormProps) {
   const [birthday, setBirthday] = useState<string | Date | Date[] | null>(
     new Date(currCustomer.birthday),
   );
-  const [address, setAddress] = useState<string>(currCustomer.address);
+  // const [address, setAddress] = useState<string>(currCustomer.address);
   const [nationality, setNationality] = useState<string | undefined>(
     currCustomer.nationality,
   );
 
   const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
-
-  console.log("currCustomer.birthday");
-  console.log(currCustomer.birthday);
 
   function clearForm() {
     setEmail("");
@@ -46,7 +43,7 @@ function EditProfileForm(props: EditCustomerFormProps) {
     setLastName("");
     setContactNo("");
     setBirthday("");
-    setAddress("");
+    // setAddress("");
     setNationality(undefined);
   }
 
@@ -141,24 +138,24 @@ function EditProfileForm(props: EditCustomerFormProps) {
   //   return null;
   // }
 
-  function validateAddress(props: ValidityState) {
-    if (props != undefined) {
-      if (props.valueMissing) {
-        return (
-          <div className="font-medium text-red-600">
-            * Please enter an address
-          </div>
-        );
-      } else if (props.patternMismatch) {
-        return (
-          <div className="font-medium text-danger">
-            * Please enter at least 5 characters
-          </div>
-        );
-      }
-    }
-    return null;
-  }
+  // function validateAddress(props: ValidityState) {
+  //   if (props != undefined) {
+  //     if (props.valueMissing) {
+  //       return (
+  //         <div className="font-medium text-red-600">
+  //           * Please enter an address
+  //         </div>
+  //       );
+  //     } else if (props.patternMismatch) {
+  //       return (
+  //         <div className="font-medium text-danger">
+  //           * Please enter at least 5 characters
+  //         </div>
+  //       );
+  //     }
+  //   }
+  //   return null;
+  // }
 
   function validateNationality(props: ValidityState) {
     if (props != undefined) {
@@ -215,7 +212,7 @@ function EditProfileForm(props: EditCustomerFormProps) {
         birthday == undefined
           ? currCustomer.birthday.toISOString()
           : formattedBirthday,
-      address: address,
+  
       nationality: nationality,
     };
 
@@ -243,7 +240,7 @@ function EditProfileForm(props: EditCustomerFormProps) {
   return (
     <div className="flex w-full justify-center">
       <Form.Root className="w-4/5" onSubmit={handleSubmit}>
-        <Form.Field name="email" className="mb-10 flex flex-col gap-1">
+        <Form.Field name="email" className="mb-5 flex flex-col gap-1">
           <Form.Label className="text-base font-medium text-black">
             E-mail
           </Form.Label>
@@ -262,7 +259,7 @@ function EditProfileForm(props: EditCustomerFormProps) {
           <Form.ValidityState>{validateEmail}</Form.ValidityState>
         </Form.Field>
 
-        <Form.Field name="firstName" className="mb-10 flex flex-col gap-1">
+        <Form.Field name="firstName" className="mb-5 flex flex-col gap-1">
           <Form.Label className="text-base font-medium text-black">
             First Name
           </Form.Label>
@@ -279,7 +276,7 @@ function EditProfileForm(props: EditCustomerFormProps) {
           <Form.ValidityState>{validateFirstName}</Form.ValidityState>
         </Form.Field>
 
-        <Form.Field name="lastName" className="mb-10 flex flex-col gap-1">
+        <Form.Field name="lastName" className="mb-5 flex flex-col gap-1">
           <Form.Label className="text-base font-medium text-black">
             Last Name
           </Form.Label>
@@ -296,7 +293,7 @@ function EditProfileForm(props: EditCustomerFormProps) {
           <Form.ValidityState>{validateLastName}</Form.ValidityState>
         </Form.Field>
 
-        {/* <Form.Field name="dateOfBirth" className="mb-10 flex flex-col gap-1">
+        {/* <Form.Field name="dateOfBirth" className="mb-5 flex flex-col gap-1">
           <Form.Label className="text-base font-medium text-black">
             Date of Birth
           </Form.Label>
@@ -311,10 +308,11 @@ function EditProfileForm(props: EditCustomerFormProps) {
           <Form.ValidityState>{validateLastName}</Form.ValidityState>
         </Form.Field> */}
 
-        <div className="card justify-content-center mb-10 flex flex-col">
+        <div className="card justify-content-center mb-5 flex flex-col">
           <div>Birthday</div>
 
           <Calendar
+            className="h-14 w-full rounded-md border border-zoovanna-brown/50 text-black placeholder-black/70"
             value={birthday}
             disabled={isDisabled}
             onChange={(e: CalendarChangeEvent) => {
@@ -326,7 +324,7 @@ function EditProfileForm(props: EditCustomerFormProps) {
           />
         </div>
 
-        <Form.Field name="contactNo" className="mb-10 flex flex-col gap-1">
+        <Form.Field name="contactNo" className="mb-5 flex flex-col gap-1">
           <Form.Label className="text-base font-medium text-black">
             Contact Number
           </Form.Label>
@@ -344,7 +342,7 @@ function EditProfileForm(props: EditCustomerFormProps) {
           <Form.ValidityState>{validateContactNo}</Form.ValidityState>
         </Form.Field>
 
-        <Form.Field name="address" className="mb-10 flex flex-col gap-1">
+        {/* <Form.Field name="address" className="mb-5 flex flex-col gap-1">
           <Form.Label className="text-base font-medium text-black">
             Address
           </Form.Label>
@@ -360,7 +358,7 @@ function EditProfileForm(props: EditCustomerFormProps) {
             className="h-14 w-full rounded-md border border-zoovanna-brown/50 bg-whiten px-4 text-black placeholder-black/70"
           />
           <Form.ValidityState>{validateAddress}</Form.ValidityState>
-        </Form.Field>
+        </Form.Field> */}
 
         <FormFieldSelect
           formFieldName="nationality"
@@ -375,7 +373,7 @@ function EditProfileForm(props: EditCustomerFormProps) {
         />
 
         <Form.Submit asChild>
-          <button className="mt-10 h-12 w-full rounded-full border bg-black text-whiter">
+          <button className="mt-10 h-12 w-full rounded-md border bg-black text-whiter">
             {isDisabled ? "Edit my profile" : "Confirm edit"}
           </button>
         </Form.Submit>

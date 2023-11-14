@@ -6,6 +6,7 @@ import {
   CardHeader,
   CardTitle
 } from "@/components/ui/card";
+
 import DeleteButton from "../components/AccountPage/DeleteButton";
 import LoggedInCardContent from "../components/AccountPage/LoggedInCardContent";
 import LogoutButton from "../components/AccountPage/LogoutButton";

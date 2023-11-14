@@ -93,7 +93,7 @@ function SignupFormEmail() {
         </Form.Field>
 
         <Form.Submit asChild>
-          <button className="mt-10 h-12 w-full rounded-full border bg-black text-whiter">
+          <button className="mt-10 h-12 w-full rounded-md border bg-black text-whiter">
             Verify my email
           </button>
         </Form.Submit>

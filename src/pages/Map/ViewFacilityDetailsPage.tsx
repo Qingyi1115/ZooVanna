@@ -3,6 +3,7 @@ import { FaChevronLeft } from "react-icons/fa";
 import { NavLink, useParams } from "react-router-dom";
 import useApiJson from "../../hooks/useApiJson";
 import Facility from "../../models/Facility";
+import { Button } from "@/components/ui/button";
 
 import ViewFacilityDetails from "../../components/Map/ViewFacilityDetails";
 import ViewThirdPartyDetails from "../../components/Map/ViewThirdPartyDetails";
@@ -87,6 +88,14 @@ function ViewFacilityDetailsPage() {
             {curFacility.facilityDetail == "inHouse" && (
               <ViewInHouseDetails curInHouse={curInHouse}></ViewInHouseDetails>
             )}
+            <div className="flex px-4 py-15 ">
+              <p>Anything broken?</p>
+              <NavLink to={`/reportFaultyFacility`}>
+                <Button variant={"outline"} className="ml-3 h-7 w-full px-2">
+                  Report faulty facility
+                </Button>
+              </NavLink>
+            </div>
           </div>
         </div>
       )}

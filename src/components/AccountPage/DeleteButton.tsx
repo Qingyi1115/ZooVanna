@@ -6,7 +6,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger
+  DialogTrigger,
 } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/components/ui/use-toast";
@@ -69,7 +69,7 @@ function DeleteButton({ email }: { email: string }) {
       <DialogTrigger asChild>
         <Button
           variant={"destructive"}
-          className="mb-6 mt-4 w-full rounded-xl border-danger text-whiter shadow-md hover:bg-danger/50"
+          className="mb-6 w-full rounded-xl border-danger text-whiter shadow-md hover:bg-danger/50"
         >
           Delete my account
         </Button>

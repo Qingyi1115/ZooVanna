@@ -119,7 +119,7 @@ function EditPasswordForm(props: EditPasswordFormProps) {
   return (
     <div className="flex w-full justify-center">
       <Form.Root className="w-4/5" onSubmit={handleSubmit}>
-        <Form.Field name="email" className="mb-10 flex flex-col gap-1">
+        <Form.Field name="email" className="mb-5 flex flex-col gap-1">
           <Form.Label className="text-base font-medium text-black">
             Old password
           </Form.Label>
@@ -137,7 +137,7 @@ function EditPasswordForm(props: EditPasswordFormProps) {
           <Form.ValidityState>{validateOldPassword}</Form.ValidityState>
         </Form.Field>
 
-        <Form.Field name="newPassword" className="mb-10 flex flex-col gap-1">
+        <Form.Field name="newPassword" className="mb-5 flex flex-col gap-1">
           <Form.Label className="text-base font-medium text-black">
             New Password
           </Form.Label>
@@ -154,7 +154,7 @@ function EditPasswordForm(props: EditPasswordFormProps) {
           <Form.ValidityState>{validateNewPassword}</Form.ValidityState>
         </Form.Field>
 
-        <Form.Field name="newPassword2" className="mb-10 flex flex-col gap-1">
+        <Form.Field name="newPassword2" className="flex flex-col gap-1">
           <Form.Label className="text-base font-medium text-black">
             Confirm New Password
           </Form.Label>
@@ -170,7 +170,7 @@ function EditPasswordForm(props: EditPasswordFormProps) {
         </Form.Field>
 
         <Form.Submit asChild>
-          <button className="mt-10 h-12 w-full rounded-full border bg-black text-whiter">
+          <button className="mt-12 h-12 w-full rounded-md border bg-black text-whiter">
             Update password
           </button>
         </Form.Submit>

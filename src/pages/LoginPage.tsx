@@ -1,10 +1,9 @@
-
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
-  CardTitle
+  CardTitle,
 } from "@/components/ui/card";
 
 import LoginForm from "../components/AccountPage/LoginForm";
@@ -16,7 +15,7 @@ function LoginPage() {
     <div className="flex h-screen flex-col items-center p-6">
       <Card className="mt-6 w-full">
         <CardHeader>
-          <CardTitle>Log in to your existing account</CardTitle>
+          <CardTitle className="px-2">Log in</CardTitle>
           {/* <CardDescription>
                 Deploy your new project in one-click.
             </CardDescription> */}

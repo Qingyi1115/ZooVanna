@@ -15,7 +15,7 @@ function LogoutButton() {
     <Button
       onClick={handleLogout}
       variant={"outline"}
-      className="mb-6 mt-4 w-full rounded-xl border-danger text-danger shadow-md hover:bg-danger/50"
+      className="mb-6 mt-6 w-full rounded-xl border-danger text-danger shadow-md hover:bg-danger/50"
     >
       Log out
     </Button>
