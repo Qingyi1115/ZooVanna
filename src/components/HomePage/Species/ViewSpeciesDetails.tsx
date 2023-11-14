@@ -4,7 +4,9 @@ import * as moment from "moment-timezone";
 import { FiCopy } from "react-icons/fi";
 import Species from "../../../models/Species";
 import beautifyText from "../../../hooks/beautifyText";
-import { FaLightbulb } from "react-icons/fa";
+import { FaStop, FaLightbulb } from "react-icons/fa";
+import { useSpeechSynthesis } from "react-speech-kit";
+import { HiSpeakerWave } from "react-icons/hi2";
 
 import {
   Card,
@@ -22,6 +24,8 @@ function ViewSpeciesDetails(props: SpeciesDetailsProps) {
   const { curSpecies } = props;
   console.log(curSpecies);
   const toastShadcn = useToast().toast;
+
+  const { speak, cancel, speaking } = useSpeechSynthesis();
 
   return (
     <div className="">
@@ -70,7 +74,19 @@ function ViewSpeciesDetails(props: SpeciesDetailsProps) {
           </TableRow> */}
         </TableBody>
       </Table>
-      <span className="text-m px-4 font-extrabold">Animal Insights</span>
+      <span className="flex">
+        <p className="text-m px-4 font-extrabold">Animal Insights</p>
+        <button
+          className="btn btn-m rounded-full bg-black px-4 py-1 text-xs text-whiter"
+          onClick={() =>
+            speaking
+              ? cancel()
+              : speak({ text: curSpecies.educationalDescription })
+          }
+        >
+          {speaking ? <FaStop /> : <HiSpeakerWave />}
+        </button>
+      </span>
       <p className="text-s mb-4 mt-2 px-4">
         {curSpecies.educationalDescription}
       </p>
