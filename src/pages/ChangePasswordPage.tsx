@@ -32,7 +32,6 @@ function ChangePasswordPage() {
     email: "",
     contactNo: "",
     birthday: new Date(),
-    address: "",
     nationality: "",
   };
 

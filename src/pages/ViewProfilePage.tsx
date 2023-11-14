@@ -3,7 +3,13 @@ import ViewProfileForm from "../components/AccountPage/ViewProfileForm";
 import useApiJson from "../hooks/useApiJson";
 import { useAuthContext } from "../hooks/useAuthContext";
 import Customer from "../models/Customer";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 function ViewProfilePage() {
   const { state } = useAuthContext();
@@ -27,7 +33,6 @@ function ViewProfilePage() {
     email: "",
     contactNo: "",
     birthday: new Date(),
-    address: "",
     nationality: "",
   };
 

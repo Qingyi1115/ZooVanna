@@ -30,7 +30,7 @@ function EditProfileForm(props: EditCustomerFormProps) {
   const [birthday, setBirthday] = useState<string | Date | Date[] | null>(
     new Date(currCustomer.birthday),
   );
-  const [address, setAddress] = useState<string>(currCustomer.address);
+  // const [address, setAddress] = useState<string>(currCustomer.address);
   const [nationality, setNationality] = useState<string | undefined>(
     currCustomer.nationality,
   );
@@ -43,7 +43,7 @@ function EditProfileForm(props: EditCustomerFormProps) {
     setLastName("");
     setContactNo("");
     setBirthday("");
-    setAddress("");
+    // setAddress("");
     setNationality(undefined);
   }
 
@@ -138,24 +138,24 @@ function EditProfileForm(props: EditCustomerFormProps) {
   //   return null;
   // }
 
-  function validateAddress(props: ValidityState) {
-    if (props != undefined) {
-      if (props.valueMissing) {
-        return (
-          <div className="font-medium text-red-600">
-            * Please enter an address
-          </div>
-        );
-      } else if (props.patternMismatch) {
-        return (
-          <div className="font-medium text-danger">
-            * Please enter at least 5 characters
-          </div>
-        );
-      }
-    }
-    return null;
-  }
+  // function validateAddress(props: ValidityState) {
+  //   if (props != undefined) {
+  //     if (props.valueMissing) {
+  //       return (
+  //         <div className="font-medium text-red-600">
+  //           * Please enter an address
+  //         </div>
+  //       );
+  //     } else if (props.patternMismatch) {
+  //       return (
+  //         <div className="font-medium text-danger">
+  //           * Please enter at least 5 characters
+  //         </div>
+  //       );
+  //     }
+  //   }
+  //   return null;
+  // }
 
   function validateNationality(props: ValidityState) {
     if (props != undefined) {
@@ -212,7 +212,7 @@ function EditProfileForm(props: EditCustomerFormProps) {
         birthday == undefined
           ? currCustomer.birthday.toISOString()
           : formattedBirthday,
-      address: address,
+  
       nationality: nationality,
     };
 
@@ -342,7 +342,7 @@ function EditProfileForm(props: EditCustomerFormProps) {
           <Form.ValidityState>{validateContactNo}</Form.ValidityState>
         </Form.Field>
 
-        <Form.Field name="address" className="mb-5 flex flex-col gap-1">
+        {/* <Form.Field name="address" className="mb-5 flex flex-col gap-1">
           <Form.Label className="text-base font-medium text-black">
             Address
           </Form.Label>
@@ -358,7 +358,7 @@ function EditProfileForm(props: EditCustomerFormProps) {
             className="h-14 w-full rounded-md border border-zoovanna-brown/50 bg-whiten px-4 text-black placeholder-black/70"
           />
           <Form.ValidityState>{validateAddress}</Form.ValidityState>
-        </Form.Field>
+        </Form.Field> */}
 
         <FormFieldSelect
           formFieldName="nationality"

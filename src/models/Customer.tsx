@@ -20,7 +20,6 @@ interface Customer {
   email: string;
   contactNo: string;
   birthday: Date;
-  address: string;
   nationality: string;
 }
 

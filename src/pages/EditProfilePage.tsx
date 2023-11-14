@@ -3,7 +3,12 @@ import EditProfileForm from "../components/AccountPage/EditProfileForm";
 import useApiJson from "../hooks/useApiJson";
 import { useAuthContext } from "../hooks/useAuthContext";
 import Customer from "../models/Customer";
-import { CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
+import {
+  CardHeader,
+  CardTitle,
+  CardContent,
+  CardFooter,
+} from "@/components/ui/card";
 import { Card } from "primereact/card";
 
 function EditProfilePage() {
@@ -28,7 +33,6 @@ function EditProfilePage() {
     email: "",
     contactNo: "",
     birthday: new Date(),
-    address: "",
     nationality: "",
   };
 

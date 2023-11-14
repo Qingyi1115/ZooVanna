@@ -20,7 +20,7 @@ function SignupForm() {
   const [contactNo, setContactNo] = useState<string>("");
   //   const [birthday, setBirthday] = useState<string>("");
   const [birthday, setBirthday] = useState<string | Date | Date[] | null>(null);
-  const [address, setAddress] = useState<string>("");
+  // const [address, setAddress] = useState<string>("");
   const [nationality, setNationality] = useState<string | undefined>(undefined);
 
   const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
@@ -32,7 +32,6 @@ function SignupForm() {
     setLastName("");
     setContactNo("");
     setBirthday(null);
-    setAddress("");
     setNationality(undefined);
   }
 
@@ -195,7 +194,7 @@ function SignupForm() {
       contactNo: contactNo,
       //   birthday: isoBirthday,
       birthday: birthday,
-      address: address,
+      // address: address,
       nationality: nationality,
     };
 
@@ -342,7 +341,7 @@ function SignupForm() {
           <Form.ValidityState>{validateContactNo}</Form.ValidityState>
         </Form.Field>
 
-        <Form.Field name="address" className="mb-5 flex flex-col gap-1">
+        {/* <Form.Field name="address" className="mb-5 flex flex-col gap-1">
           <Form.Label className="text-base font-medium text-black">
             Address
           </Form.Label>
@@ -357,7 +356,7 @@ function SignupForm() {
             className="h-14 w-full rounded-md border border-zoovanna-brown/50 bg-whiten px-4 text-black placeholder-black/70"
           />
           <Form.ValidityState>{validateAddress}</Form.ValidityState>
-        </Form.Field>
+        </Form.Field> */}
 
         <FormFieldSelect
           formFieldName="nationality"
