@@ -36,11 +36,11 @@ function ViewFacilityDetails(props: FacilityDetailsProps) {
       <Table>
         <TableBody>
           <TableRow>
-            <TableCell className="w-1/2 font-bold" colSpan={2}>
-              Name
+            <TableCell className="text-lg font-extrabold" colSpan={3}>
+              {curFacility.facilityName}
             </TableCell>
-            <TableCell>{curFacility.facilityName}</TableCell>
           </TableRow>
+
           <TableRow>
             <TableCell className="w-1/2 font-bold" colSpan={2}>
               Shelter Available
