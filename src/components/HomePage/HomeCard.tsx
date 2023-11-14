@@ -20,7 +20,7 @@ function HomeCard() {
   return (
     <Card className="w-full">
       <CardTitle className="">
-        <div className="flex w-full items-center justify-between px-10 py-3">
+        <div className="flex w-full items-center justify-between px-8 py-3">
           <div className="text-center">
             <NavLink to="/species/viewAllSpecies">
               <button className="flex flex-col items-center justify-center focus:outline-none">
@@ -33,7 +33,7 @@ function HomeCard() {
             <NavLink to="/tickets">
               <button className="flex flex-col items-center justify-center focus:outline-none">
                 <HiTicket className="hover:text-yellow-600" />
-                <p className="pt-0.9 text-xs">Buy Tickets</p>
+                <p className="pt-0.9 text-xs">Tickets</p>
               </button>
             </NavLink>
           </div>
@@ -41,7 +41,7 @@ function HomeCard() {
             <NavLink to="/announcement/viewAllAnnouncements">
               <button className="flex flex-col items-center justify-center focus:outline-none">
                 <FaBell className="h-5 hover:text-yellow-600" />
-                <p className=" pt-1 text-xs">Announcement</p>
+                <p className=" pt-1 text-xs">Notice</p>
               </button>
             </NavLink>
           </div>
