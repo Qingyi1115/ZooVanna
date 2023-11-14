@@ -3,6 +3,7 @@ import ViewProfileForm from "../components/AccountPage/ViewProfileForm";
 import useApiJson from "../hooks/useApiJson";
 import { useAuthContext } from "../hooks/useAuthContext";
 import Customer from "../models/Customer";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
 function ViewProfilePage() {
   const { state } = useAuthContext();
@@ -49,10 +50,24 @@ function ViewProfilePage() {
   }, []);
 
   return (
-    <div className="p-10">
-      {currCustomer.customerId !== -1 && (
-        <ViewProfileForm currCustomer={currCustomer} />
-      )}
+    <div className="flex h-screen flex-col items-center p-6">
+      <Card className="mt-6 w-full">
+        <CardHeader>
+          <CardTitle className="px-2">My Profile</CardTitle>
+          {/* <CardDescription>
+              Deploy your new project in one-click.
+          </CardDescription> */}
+        </CardHeader>
+        <CardContent className="px-0">
+          <div className="p-2">
+            {currCustomer.customerId !== -1 && (
+              <ViewProfileForm currCustomer={currCustomer} />
+            )}
+          </div>
+        </CardContent>
+        <CardFooter className="flex justify-between"></CardFooter>
+      </Card>
+      <div className="invisible"> padding</div>
     </div>
   );
 }

@@ -3,6 +3,8 @@ import EditProfileForm from "../components/AccountPage/EditProfileForm";
 import useApiJson from "../hooks/useApiJson";
 import { useAuthContext } from "../hooks/useAuthContext";
 import Customer from "../models/Customer";
+import { CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
+import { Card } from "primereact/card";
 
 function EditProfilePage() {
   const { state } = useAuthContext();
@@ -49,10 +51,24 @@ function EditProfilePage() {
   }, []);
 
   return (
-    <div className="p-10">
-      {currCustomer.customerId !== -1 && (
-        <EditProfileForm currCustomer={currCustomer} />
-      )}
+    <div className="flex h-screen flex-col items-center p-6">
+      <Card className="mt-6 w-full">
+        <CardHeader>
+          <CardTitle className="px-2">My Profile</CardTitle>
+          {/* <CardDescription>
+            Deploy your new project in one-click.
+        </CardDescription> */}
+        </CardHeader>
+        <CardContent className="px-0">
+          <div className="p-2">
+            {currCustomer.customerId !== -1 && (
+              <EditProfileForm currCustomer={currCustomer} />
+            )}
+          </div>
+        </CardContent>
+        <CardFooter className="flex justify-between"></CardFooter>
+      </Card>
+      <div className="invisible"> padding</div>
     </div>
   );
 }
