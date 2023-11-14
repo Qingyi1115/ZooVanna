@@ -4,6 +4,7 @@ import * as moment from "moment-timezone";
 import { FiCopy } from "react-icons/fi";
 import Species from "../../../models/Species";
 import beautifyText from "../../../hooks/beautifyText";
+import { FaLightbulb } from "react-icons/fa";
 
 import {
   Card,
@@ -43,7 +44,9 @@ function ViewSpeciesDetails(props: SpeciesDetailsProps) {
             <TableCell className="w-1/3 font-bold" colSpan={2}>
               Scientific Name
             </TableCell>
-            <TableCell className="italic">{curSpecies.scientificName}</TableCell>
+            <TableCell className="italic">
+              {curSpecies.scientificName}
+            </TableCell>
           </TableRow>
           <TableRow>
             <TableCell className="w-1/3 font-bold" colSpan={2}>
@@ -67,13 +70,20 @@ function ViewSpeciesDetails(props: SpeciesDetailsProps) {
           </TableRow> */}
         </TableBody>
       </Table>
-      <span className="px-4 text-m font-extrabold">Animal Insights</span>
-      <p className="px-4 text-s mt-2 mb-4">{curSpecies.educationalDescription}</p>
+      <span className="text-m px-4 font-extrabold">Animal Insights</span>
+      <p className="text-s mb-4 mt-2 px-4">
+        {curSpecies.educationalDescription}
+      </p>
       <Card className="">
         <CardHeader className="text-m pb-3 font-bold">
-          Did you know?
+          <div className="flex">
+            <FaLightbulb className="h-5 text-yellow-500" />
+            <p className="ml-2">Did you know?</p>
+          </div>
         </CardHeader>
-        <CardContent className="">{curSpecies.educationalFunFact}</CardContent>
+        <CardContent className="ml-2">
+          {curSpecies.educationalFunFact}
+        </CardContent>
       </Card>
 
       {/* <Card className="bg-black">
