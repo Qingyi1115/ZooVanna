@@ -53,8 +53,8 @@ function Banner() {
   return (
     <div className="slideshow">
       <div className="merlionZooText">
-        <h1 className="h-shadow text-3xl font-extrabold text-white">
-          Merlion Zoo
+        <h1 className="text-3xl font-extrabold text-white">
+          <span className="text-shadow-md">Merlion Zoo</span>
         </h1>
       </div>
       <div

@@ -120,7 +120,7 @@ body {
 /* Slideshow */
 .merlionZooText {
   position: absolute;
-  bottom: 4%;    
+  bottom: 5%;    
   left: 5%;
   z-index: 10; 
 }
@@ -169,4 +169,16 @@ body {
 .slideshowDot.active {
   background-color: black;
   width: 8px;
+}
+
+@layer utilities {
+  /* Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
 }
