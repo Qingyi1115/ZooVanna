@@ -36,6 +36,7 @@ import ViewFacilityDetailsPage from "./pages/Map/ViewFacilityDetailsPage";
 import ViewAllPublicEventsPage from "./pages/PublicEvent/ViewAllPublicEventsPage";
 import ViewPublicEventDetailsPage from "./pages/PublicEvent/ViewPublicEventPage";
 import ViewAllSpeciesPage from "./pages/Species/ViewAllSpeciesPage";
+import ViewSpeciesDetailsPage from "./pages/Species/ViewSpeciesDetailsPage";
 
 function App() {
   const { state } = useAuthContext();
@@ -70,6 +71,10 @@ function App() {
               <Route
                 path="/species/viewAllSpecies"
                 element={<ViewAllSpeciesPage />}
+              />
+              <Route
+                path="/species/viewspecies/:speciesCode"
+                element={<ViewSpeciesDetailsPage />}
               />
 
               {/* Map Management */}
