@@ -5,32 +5,26 @@ import useApiJson from "../../hooks/useApiJson";
 import Promotion from "../../models/Promotion";
 
 import ViewPromotionDetails from "../../components/HomePage/Promotion/ViewPromotionDetails";
-import ZooEvent from "../../models/ZooEvent";
+import PublicEvent from "../../models/PublicEvent";
 import { EventType } from "../../enums/EventType";
 import ViewPublicEventDetails from "../../components/HomePage/PublicEvent/ViewPublicEventDetails";
 
 function ViewPublicEventDetailsPage() {
   const apiJson = useApiJson();
 
-  let emptyPublicEvent: ZooEvent = {
-    zooEventId: -1,
-    eventName: "",
-    eventDescription: "",
-    eventIsPublic: false,
-    eventType: EventType.CUSTOMER_FEEDING,
-    eventStartDateTime: new Date(Date.now()),
-    requiredNumberOfKeeper: -1,
+  let emptyPublicEvent: PublicEvent = {
+    publicEventId: -1,
+    title: "",
+    details: "",
+    startDate: new Date(Date.now()),
+    endDate: null,
     // External Event
-    eventNotificationDate: new Date(Date.now()),
-    eventEndDateTime: new Date(Date.now()),
     imageUrl: "",
-    eventDurationHrs: 0,
-    eventTiming: null,
   };
 
-  const { zooEventId } = useParams<{ zooEventId: string }>();
+  const { publicEventId } = useParams<{ publicEventId: string }>();
   const [curPublicEvent, setCurPublicEvent] =
-    useState<ZooEvent>(emptyPublicEvent);
+    useState<PublicEvent>(emptyPublicEvent);
   const [refreshSeed, setRefreshSeed] = useState<number>(0);
 
   const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
@@ -39,10 +33,10 @@ function ViewPublicEventDetailsPage() {
     const fetchPublicEvent = async () => {
       try {
         const responseJson = await apiJson.get(
-          `http://${localhost_address}/api/zooEventCustomer/getPublishedPublicZooEvent/${zooEventId}`,
+          `http://${localhost_address}/api/zooEventCustomer/getPublicEventById/${publicEventId}`,
         );
         console.log(responseJson);
-        setCurPublicEvent(responseJson.result as ZooEvent);
+        setCurPublicEvent(responseJson.result as PublicEvent);
       } catch (error: any) {
         console.log(error);
       }
@@ -63,11 +57,14 @@ function ViewPublicEventDetailsPage() {
               : ""
           }`}
         />
-        <NavLink to={`/`} className="absolute left-4 top-4">
-          <button className="flex h-10 w-10 items-center justify-center rounded-full bg-white bg-opacity-75 text-black">
+        <div className="absolute left-4 top-4">
+          <button
+            onClick={() => window.history.back()}
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-white bg-opacity-75 text-black"
+          >
             <FaChevronLeft />
           </button>
-        </NavLink>
+        </div>
       </div>
 
       <div className="flex flex-col p-6 lg:w-1/2">

@@ -61,7 +61,7 @@ function App() {
                 element={<ViewPromotionPage />}
               />
               <Route
-                path="/event/viewevent/:zooEventId"
+                path="/event/viewevent/:publicEventId"
                 element={<ViewPublicEventDetailsPage />}
               />
               <Route

@@ -3,10 +3,11 @@ import { useToast } from "@/components/ui/use-toast";
 import * as moment from "moment-timezone";
 import { FiCopy } from "react-icons/fi";
 import Promotion from "../../../models/Promotion";
-import ZooEvent from "../../../models/ZooEvent";
+import PublicEvent from "../../../models/PublicEvent";
+import { RecurringPattern } from "../../../enums/RecurringPattern";
 
 interface PublicEventDetailsProps {
-  curPublicEvent: ZooEvent;
+  curPublicEvent: PublicEvent;
 }
 
 function ViewPublicEventDetails(props: PublicEventDetailsProps) {
@@ -24,15 +25,11 @@ function ViewPublicEventDetails(props: PublicEventDetailsProps) {
   }
 
   const endDateString = convertUtcToTimezone(
-    curPublicEvent.eventEndDateTime
-      ? curPublicEvent.eventEndDateTime
-      : new Date(),
+    curPublicEvent.endDate ? curPublicEvent.endDate : new Date(),
     "Asia/Singapore",
   );
   const startDateString = convertUtcToTimezone(
-    curPublicEvent.eventStartDateTime
-      ? curPublicEvent.eventStartDateTime
-      : new Date(),
+    curPublicEvent.startDate ? curPublicEvent.startDate : new Date(),
     "Asia/Singapore",
   );
 
@@ -52,15 +49,19 @@ function ViewPublicEventDetails(props: PublicEventDetailsProps) {
         <TableBody>
           <TableRow>
             <TableCell className="text-lg font-extrabold" colSpan={3}>
-              {curPublicEvent.eventName}
+              {curPublicEvent.title}
             </TableCell>
           </TableRow>
           <TableRow>
             <TableCell className="w-1/3 font-bold" colSpan={2}>
-              Date:
+              Event Period
             </TableCell>
             <TableCell>
-              {new Date(curPublicEvent.eventStartDateTime).toDateString()}
+              {new Date(curPublicEvent.startDate).toDateString()}
+              {" - "}
+              {curPublicEvent.endDate
+                ? new Date(curPublicEvent.endDate).toDateString()
+                : "Finished"}
             </TableCell>
           </TableRow>
           <TableRow>
@@ -68,14 +69,35 @@ function ViewPublicEventDetails(props: PublicEventDetailsProps) {
               Time:
             </TableCell>
             <TableCell>
-              {" "}
-              {new Date(curPublicEvent.eventStartDateTime).toLocaleTimeString()}
-              {" - "}
-              {new Date(
-                curPublicEvent.eventEndDateTime
-                  ? curPublicEvent.eventEndDateTime
-                  : Date.now(),
-              ).toLocaleTimeString()}
+              {curPublicEvent.publicEventSessions?.map((publicEventSession) => {
+                return publicEventSession.time;
+              })}
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell className="w-1/3 font-bold" colSpan={2}>
+              Happening:
+            </TableCell>
+            <TableCell>
+              {curPublicEvent.publicEventSessions?.map((publicEventSession) => {
+                return (
+                  <div>
+                    {publicEventSession.recurringPattern ===
+                    RecurringPattern.NON_RECURRING
+                      ? "One Time Only"
+                      : publicEventSession.recurringPattern ===
+                        RecurringPattern.DAILY
+                      ? "Daily"
+                      : publicEventSession.recurringPattern ===
+                        RecurringPattern.WEEKLY
+                      ? "Weekly"
+                      : publicEventSession.recurringPattern ===
+                        RecurringPattern.MONTHLY
+                      ? "Monthly"
+                      : ""}
+                  </div>
+                );
+              })}
             </TableCell>
           </TableRow>
           <TableRow>
@@ -106,7 +128,7 @@ function ViewPublicEventDetails(props: PublicEventDetailsProps) {
           </TableRow> */}
 
           <TableRow>
-            <TableCell colSpan={4}>{curPublicEvent.eventDescription}</TableCell>
+            <TableCell colSpan={4}>{curPublicEvent.details}</TableCell>
           </TableRow>
         </TableBody>
       </Table>
