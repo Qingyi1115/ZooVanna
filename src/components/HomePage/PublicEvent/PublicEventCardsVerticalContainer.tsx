@@ -6,7 +6,7 @@ import useApiJson from "../../../hooks/useApiJson";
 import Promotion from "../../../models/Promotion";
 import { useToast } from "@/components/ui/use-toast";
 import { Link } from "react-router-dom";
-import ZooEvent from "../../../models/ZooEvent";
+import PublicEvent from "../../../models/PublicEvent";
 import { EventType } from "../../../enums/EventType";
 import { Button } from "@/components/ui/button";
 import EventImageCard from "../../EventImageCard";
@@ -21,25 +21,19 @@ function PublicEventCardsVerticalContainer() {
     day: "2-digit",
   };
 
-  let emptyPublicEvent: ZooEvent = {
-    zooEventId: -1,
-    eventName: "",
-    eventDescription: "",
-    eventIsPublic: false,
-    eventType: EventType.CUSTOMER_FEEDING,
-    eventStartDateTime: new Date(Date.now()),
-    requiredNumberOfKeeper: -1,
+  let emptyPublicEvent: PublicEvent = {
+    publicEventId: -1,
+    title: "",
+    details: "",
+    startDate: new Date(Date.now()),
+    endDate: null,
     // External Event
-    eventNotificationDate: new Date(Date.now()),
-    eventEndDateTime: new Date(Date.now()),
     imageUrl: "",
-    eventDurationHrs: 0,
-    eventTiming: null,
   };
 
-  const [publicEventList, setPublicEventList] = useState<ZooEvent[]>([]);
+  const [publicEventList, setPublicEventList] = useState<PublicEvent[]>([]);
   const [selectedPublicEvent, setSelectedPublicEvent] =
-    useState<ZooEvent>(emptyPublicEvent);
+    useState<PublicEvent>(emptyPublicEvent);
   //   const [deletePromotionDialog, setDeletePromotionDialog] =
   //     useState<boolean>(false);
   const [globalFilter, setGlobalFilter] = useState<string>("");
@@ -54,9 +48,9 @@ function PublicEventCardsVerticalContainer() {
     const fetchPublicEvent = async () => {
       try {
         const responseJson = await apiJson.get(
-          `http://${localhost_address}/api/zooEventCustomer/getAllPublishedPublicZooEvents`,
+          `http://${localhost_address}/api/zooEventCustomer/getAllPublicEvents`,
         );
-        setPublicEventList(responseJson.result as ZooEvent[]);
+        setPublicEventList(responseJson.result as PublicEvent[]);
       } catch (error: any) {
         console.log(error);
       }
@@ -65,22 +59,26 @@ function PublicEventCardsVerticalContainer() {
   }, []);
 
   return (
-    <div className="h-screen md:h-[88vh]">
-      <div className=" flex items-center px-10 pt-10">
+    <div className="mb-10 h-full">
+      <div className=" mb-5 flex items-center px-10 pt-10">
         <h1 className="text-2xl font-extrabold">Events</h1>
       </div>
       {publicEventList && (
-        <div className="flex h-screen w-full justify-center ">
+        <div className="flex h-full w-full justify-center">
           <div className="grid h-fit w-full justify-center gap-6 px-10 sm:grid-cols-2 md:grid-cols-3 md:justify-between md:gap-10 md:px-10 xl:grid-cols-5">
             {publicEventList.map((item) => (
-              <div className="w-full pb-0 pt-5">
-                <Link to={`/event/viewevent/${item.zooEventId}`} className="">
+              <div className="mb-5 h-fit w-full pb-0">
+                <Link
+                  to={`/event/viewevent/${item.publicEventId}`}
+                  className=""
+                >
                   <EventImageCard
-                    key={item.zooEventId}
+                    key={item.publicEventId}
                     imageUrl={`http://${localhost_address}/` + item.imageUrl}
-                    title={item.eventName}
-                    description={item.eventDescription}
-                    startDateTime={item.eventStartDateTime}
+                    title={item.title}
+                    description={item.details}
+                    startDateTime={item.startDate}
+                    endDateTime={item.endDate}
                     facilityName={
                       item.inHouse?.facility?.facilityName
                         ? item.inHouse.facility.facilityName

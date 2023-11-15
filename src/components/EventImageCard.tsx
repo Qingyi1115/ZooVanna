@@ -13,6 +13,7 @@ interface ImageCardProps {
   description: string;
   startDateTime: Date;
   facilityName: string;
+  endDateTime: Date | null;
 }
 
 function EventImageCard({
@@ -21,6 +22,7 @@ function EventImageCard({
   title,
   description,
   startDateTime,
+  endDateTime,
   facilityName,
 }: ImageCardProps) {
   return (
