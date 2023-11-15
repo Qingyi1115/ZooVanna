@@ -40,7 +40,7 @@ function AddOrMinusButton(props: ButtonProps) {
 
   function incNum() {
     listing.orderItems.push({
-      isRedeemed: false,
+      isRedeemed: 0,
       verificationCode: uuidv4(),
       timeRedeemed: null,
     });

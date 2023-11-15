@@ -1,6 +1,6 @@
 interface OrderItem {
   verificationCode: string;
-  isRedeemed: boolean;
+  isRedeemed: number;
   timeRedeemed: Date | null;
 }
 export default OrderItem;
