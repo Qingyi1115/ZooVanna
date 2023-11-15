@@ -1,3 +1,4 @@
+import moment from "moment-timezone";
 import {
   CardContentModified,
   CardDescriptionModified,
@@ -25,6 +26,14 @@ function EventImageCard({
   endDateTime,
   facilityName,
 }: ImageCardProps) {
+  function convertUtcToTimezone(utcDate: Date, targetTimezone: string): string {
+    const utcMoment = moment.utc(utcDate);
+    const targetMoment = utcMoment.tz(targetTimezone);
+    const formattedTime: string = targetMoment.format("DD MMM YYYY");
+    // const timestampWithSuffix: string = `${formattedTime} SGT`;
+    // return timestampWithSuffix;
+    return formattedTime;
+  }
   return (
     <CardModified className="w-full min-w-[240px] max-w-[300px]">
       <CardContentModified>
@@ -44,8 +53,10 @@ function EventImageCard({
           <div>
             {/*<div>{description}</div>*/}
             <div className="font-medium">
-              {new Date(startDateTime).toDateString()}{" "}
-              {new Date(startDateTime).toLocaleTimeString()}
+              Starting {convertUtcToTimezone(startDateTime, "Asia/Singapore")}
+              {endDateTime && " - "}
+              {endDateTime &&
+                convertUtcToTimezone(endDateTime, "Asia/Singapore")}
             </div>
             {/*<div>
             {new Date(startDateTime).toLocaleTimeString()}

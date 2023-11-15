@@ -5,6 +5,10 @@ import { FiCopy } from "react-icons/fi";
 import Promotion from "../../../models/Promotion";
 import PublicEvent from "../../../models/PublicEvent";
 import { RecurringPattern } from "../../../enums/RecurringPattern";
+import {
+  convertTo12HourFormat,
+  convertUtcToTimezone,
+} from "../../../helpers/timeZone";
 
 interface PublicEventDetailsProps {
   curPublicEvent: PublicEvent;
@@ -15,25 +19,22 @@ function ViewPublicEventDetails(props: PublicEventDetailsProps) {
   console.log(curPublicEvent);
   const toastShadcn = useToast().toast;
 
-  function convertUtcToTimezone(utcDate: Date, targetTimezone: string): string {
-    const utcMoment = moment.utc(utcDate);
-    const targetMoment = utcMoment.tz(targetTimezone);
-    const formattedTime: string = targetMoment.format("DD MMM YYYY");
-    // const timestampWithSuffix: string = `${formattedTime} SGT`;
-    // return timestampWithSuffix;
-    return formattedTime;
+  function addOrdinalSuffix(day: number) {
+    if (day >= 11 && day <= 13) {
+      return day + "th";
+    } else {
+      switch (day % 10) {
+        case 1:
+          return day + "st";
+        case 2:
+          return day + "nd";
+        case 3:
+          return day + "rd";
+        default:
+          return day + "th";
+      }
+    }
   }
-
-  const endDateString = convertUtcToTimezone(
-    curPublicEvent.endDate ? curPublicEvent.endDate : new Date(),
-    "Asia/Singapore",
-  );
-  const startDateString = convertUtcToTimezone(
-    curPublicEvent.startDate ? curPublicEvent.startDate : new Date(),
-    "Asia/Singapore",
-  );
-
-  const combinedDate = `${startDateString} - ${endDateString}`;
 
   return (
     <div className="lg:flex lg:h-[90vh] lg:items-center">
@@ -57,10 +58,10 @@ function ViewPublicEventDetails(props: PublicEventDetailsProps) {
               Event Period
             </TableCell>
             <TableCell>
-              {new Date(curPublicEvent.startDate).toDateString()}
+              {convertUtcToTimezone(curPublicEvent.startDate, "Asia/Singapore")}
               {" - "}
               {curPublicEvent.endDate
-                ? new Date(curPublicEvent.endDate).toDateString()
+                ? convertUtcToTimezone(curPublicEvent.endDate, "Asia/Singapore")
                 : "Finished"}
             </TableCell>
           </TableRow>
@@ -69,9 +70,45 @@ function ViewPublicEventDetails(props: PublicEventDetailsProps) {
               Time:
             </TableCell>
             <TableCell>
-              {curPublicEvent.publicEventSessions?.map((publicEventSession) => {
-                return publicEventSession.time;
-              })}
+              <div>
+                {curPublicEvent.publicEventSessions?.map(
+                  (publicEventSession) => {
+                    return (
+                      <div>
+                        {publicEventSession.recurringPattern ===
+                        RecurringPattern.NON_RECURRING
+                          ? convertTo12HourFormat(publicEventSession.time)
+                          : publicEventSession.recurringPattern ===
+                            RecurringPattern.DAILY
+                          ? convertTo12HourFormat(publicEventSession.time)
+                          : publicEventSession.recurringPattern ===
+                            RecurringPattern.MONTHLY
+                          ? "Every " +
+                            addOrdinalSuffix(
+                              publicEventSession.dayOfMonth
+                                ? publicEventSession.dayOfMonth
+                                : 2,
+                            ) +
+                            " day of the month, " +
+                            convertTo12HourFormat(publicEventSession.time)
+                          : publicEventSession.recurringPattern ===
+                            RecurringPattern.WEEKLY
+                          ? publicEventSession.dayOfWeek != undefined &&
+                            publicEventSession.dayOfWeek.charAt(0) +
+                              publicEventSession.dayOfWeek
+                                .substring(
+                                  1,
+                                  publicEventSession.dayOfWeek.length,
+                                )
+                                .toLowerCase() +
+                              " " +
+                              convertTo12HourFormat(publicEventSession.time)
+                          : ""}
+                      </div>
+                    );
+                  },
+                )}
+              </div>
             </TableCell>
           </TableRow>
           <TableRow>
@@ -79,25 +116,21 @@ function ViewPublicEventDetails(props: PublicEventDetailsProps) {
               Happening:
             </TableCell>
             <TableCell>
-              {curPublicEvent.publicEventSessions?.map((publicEventSession) => {
-                return (
-                  <div>
-                    {publicEventSession.recurringPattern ===
-                    RecurringPattern.NON_RECURRING
-                      ? "One Time Only"
-                      : publicEventSession.recurringPattern ===
-                        RecurringPattern.DAILY
-                      ? "Daily"
-                      : publicEventSession.recurringPattern ===
-                        RecurringPattern.WEEKLY
-                      ? "Weekly"
-                      : publicEventSession.recurringPattern ===
-                        RecurringPattern.MONTHLY
-                      ? "Monthly"
-                      : ""}
-                  </div>
-                );
-              })}
+              {curPublicEvent.publicEventSessions
+                ? curPublicEvent.publicEventSessions[0].recurringPattern ===
+                  RecurringPattern.NON_RECURRING
+                  ? "One Time Only"
+                  : curPublicEvent.publicEventSessions[0].recurringPattern ===
+                    RecurringPattern.DAILY
+                  ? "Daily"
+                  : curPublicEvent.publicEventSessions[0].recurringPattern ===
+                    RecurringPattern.WEEKLY
+                  ? "Weekly"
+                  : curPublicEvent.publicEventSessions[0].recurringPattern ===
+                    RecurringPattern.MONTHLY
+                  ? "Monthly"
+                  : ""
+                : ""}
             </TableCell>
           </TableRow>
           <TableRow>
@@ -128,7 +161,9 @@ function ViewPublicEventDetails(props: PublicEventDetailsProps) {
           </TableRow> */}
 
           <TableRow>
-            <TableCell colSpan={4}>{curPublicEvent.details}</TableCell>
+            <TableCell className="text-justify" colSpan={6}>
+              {curPublicEvent.details}
+            </TableCell>
           </TableRow>
         </TableBody>
       </Table>
