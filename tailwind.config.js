@@ -37,6 +37,7 @@ module.exports = {
         popover: "#FFFFFF",
         "popover-foreground": "#24341c",
         card: "#FFFFFF",
+        heart: "#ff0000",
         "card-foreground": "#24341c",
         //
         "zoovanna-green-light": "F5F9E4",

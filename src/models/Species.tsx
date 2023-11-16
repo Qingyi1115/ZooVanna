@@ -1,3 +1,4 @@
+import Customer from "./Customer";
 
 interface Species {
   speciesId: number;
@@ -13,6 +14,7 @@ interface Species {
   habitatOrExhibit: string;
   imageUrl: string;
 
+  customers?: Customer[];
 }
 
 export default Species;

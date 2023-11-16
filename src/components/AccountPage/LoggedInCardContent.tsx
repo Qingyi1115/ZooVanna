@@ -43,6 +43,16 @@ function LoggedInCardContent() {
         </Button>
         <Separator className="opacity-20" />
       </NavLink>
+      <NavLink to="/favourites">
+        <Button
+          variant={"ghost"}
+          className="mx-0 w-full justify-between rounded-none text-base"
+        >
+          View Favourites
+          <HiOutlineChevronRight />
+        </Button>
+        <Separator className="opacity-20" />
+      </NavLink>
       <NavLink to="/changePassword">
         <Button
           variant={"ghost"}

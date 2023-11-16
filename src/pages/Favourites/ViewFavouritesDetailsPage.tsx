@@ -9,7 +9,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import Customer from "src/models/Customer";
 
-function ViewSpeciesDetailsPage() {
+function ViewFavouritesDetailsPage() {
   const apiJson = useApiJson();
   const { state } = useAuthContext();
   const { user } = state;
@@ -167,4 +167,4 @@ function ViewSpeciesDetailsPage() {
   );
 }
 
-export default ViewSpeciesDetailsPage;
+export default ViewFavouritesDetailsPage;
