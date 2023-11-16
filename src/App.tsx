@@ -38,6 +38,7 @@ import ViewPublicEventDetailsPage from "./pages/PublicEvent/ViewPublicEventPage"
 import ViewAllSpeciesPage from "./pages/Species/ViewAllSpeciesPage";
 import ViewSpeciesDetailsPage from "./pages/Species/ViewSpeciesDetailsPage";
 import ViewAllFavouritesPage from "./pages/Favourites/ViewAllFavouritesPage";
+import ViewNotFavouritesPage from "./pages/Favourites/ViewNotFavouritesPage";
 
 function App() {
   const { state } = useAuthContext();
@@ -140,6 +141,10 @@ function App() {
               />
               {/*Favourite Attraction */}
               <Route path="/favourites" element={<ViewAllFavouritesPage />} />
+              <Route
+                path="/notFavourites"
+                element={<ViewNotFavouritesPage />}
+              />
             </Routes>
           </MainLayout>
         </BrowserRouter>
