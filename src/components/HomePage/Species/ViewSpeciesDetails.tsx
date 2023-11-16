@@ -7,6 +7,8 @@ import beautifyText from "../../../hooks/beautifyText";
 import { FaStop, FaLightbulb } from "react-icons/fa";
 import { useSpeechSynthesis } from "react-speech-kit";
 import { HiSpeakerWave } from "react-icons/hi2";
+import { FaHeart } from "react-icons/fa";
+import { FaRegHeart } from "react-icons/fa";
 
 import {
   Card,
@@ -15,15 +17,40 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { useAuthContext } from "../../../hooks/useAuthContext";
+import { useEffect, useState } from "react";
+import useApiJson from "../../../hooks/useApiJson";
 
 interface SpeciesDetailsProps {
   curSpecies: Species;
+  loved: boolean;
+  refreshSeed: number;
+  setRefreshSeed: any;
+  changeHeart: any;
 }
 
 function ViewSpeciesDetails(props: SpeciesDetailsProps) {
-  const { curSpecies } = props;
+  const { curSpecies, loved, refreshSeed, setRefreshSeed, changeHeart } = props;
+  const { state } = useAuthContext();
+  const { user } = state;
   console.log(curSpecies);
   const toastShadcn = useToast().toast;
+  const apiJson = useApiJson();
+  const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
+
+  {
+    /*useEffect(() => {
+    apiJson
+      .get(
+        `http://${localhost_address}/api/species/isThisLovedByCustomer/${curSpecies.speciesCode}`,
+      )
+      .catch((error) => console.log(error))
+      .then((result) => {
+        setLoved(result.result as boolean);
+        console.log(result.result);
+      });
+  }, []);*/
+  }
 
   const { speak, cancel, speaking } = useSpeechSynthesis();
 
@@ -39,9 +66,27 @@ function ViewSpeciesDetails(props: SpeciesDetailsProps) {
           </TableRow>
         </TableHeader> */}
         <TableBody>
-          <TableRow>
-            <TableCell className="text-lg font-extrabold" colSpan={3}>
-              {curSpecies.commonName}
+          <TableRow className="p-0">
+            <TableCell className="h-full items-center ">
+              <div className="text-lg font-extrabold">
+                {curSpecies.commonName}
+              </div>
+            </TableCell>
+            <TableCell></TableCell>
+            <TableCell></TableCell>
+            <TableCell className="">
+              {user ? (
+                loved ? (
+                  <FaHeart className=" h-8 w-8" onClick={() => changeHeart()} />
+                ) : (
+                  <FaRegHeart
+                    className="h-8 w-8"
+                    onClick={() => changeHeart()}
+                  />
+                )
+              ) : (
+                ""
+              )}
             </TableCell>
           </TableRow>
           <TableRow>

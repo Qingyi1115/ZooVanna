@@ -12,7 +12,7 @@ import { useToast } from "@/components/ui/use-toast";
 
 import { Link } from "react-router-dom";
 
-function SpeciesList() {
+function FavouriteSpeciesList() {
   const apiJson = useApiJson();
 
   // date options
@@ -46,9 +46,9 @@ function SpeciesList() {
     const fetchSpecies = async () => {
       try {
         const responseJson = await apiJson.get(
-          `http://${localhost_address}/api/species/getAllSpeciesCustomer`,
+          `http://${localhost_address}/api/species/getSpeciesLovedByCustomer`,
         );
-        setSpeciesList(responseJson as Species[]);
+        setSpeciesList(responseJson.result as Species[]);
       } catch (error: any) {
         console.log(error);
       }
@@ -59,7 +59,7 @@ function SpeciesList() {
   return (
     <div>
       <div className="px-4 pt-4">
-        <h1 className="text-xl font-extrabold">Animals in Merlion Zoo</h1>
+        <h1 className="text-xl font-extrabold">Favourites</h1>
       </div>
       {speciesList && (
         <div>
@@ -82,4 +82,4 @@ function SpeciesList() {
   );
 }
 
-export default SpeciesList;
+export default FavouriteSpeciesList;

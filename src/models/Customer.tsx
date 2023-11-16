@@ -1,5 +1,7 @@
 // import { Country } from "../enums/Country";
 
+import Species from "./Species";
+
 // interface Customer {
 //   customerId: number;
 //   firstName: string;
@@ -21,6 +23,8 @@ interface Customer {
   contactNo: string;
   birthday: Date;
   nationality: string;
+
+  species?: Species[];
 }
 
 export default Customer;
