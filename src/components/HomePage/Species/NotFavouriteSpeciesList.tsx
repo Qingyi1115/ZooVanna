@@ -39,6 +39,7 @@ function NotFavouriteSpeciesList() {
 
   const [speciesList, setSpeciesList] = useState<Species[]>([]);
   const [selectedSpecies, setSelectedSpecies] = useState<Species>(emptySpecies);
+  const [refreshSeed, setRefreshSeed] = useState<number>(0);
 
   const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
 
@@ -54,31 +55,31 @@ function NotFavouriteSpeciesList() {
       }
     };
     fetchSpecies();
-  }, []);
+  }, [refreshSeed]);
 
   return (
     <div>
       <div className="px-4 pt-4">
-        <h1 className="text-xl font-extrabold">Add into Favourites</h1>
+        <h1 className="text-2xl font-extrabold">Add into Favourites</h1>
       </div>
       {speciesList.length > 0 ? (
         <div>
           {speciesList.map((species) => (
             <div className="py-2">
-              <Link to={`/species/viewspecies/${species.speciesCode}`}>
-                <ImageCardSpecies
-                  species={species}
-                  key={species.speciesId}
-                  imageUrl={`http://${localhost_address}/` + species.imageUrl}
-                  title={species.commonName}
-                  description={""}
-                />
-              </Link>
+              <ImageCardSpecies
+                species={species}
+                key={species.speciesId}
+                imageUrl={`http://${localhost_address}/` + species.imageUrl}
+                title={species.commonName}
+                description={""}
+                refreshSeed={refreshSeed}
+                setRefreshSeed={setRefreshSeed}
+              />
             </div>
           ))}
         </div>
       ) : (
-        <div className="flex px-4 pt-4">
+        <div className=" flex items-center justify-center px-4 pt-60 text-xl">
           All animals have already been added to Favourite List!
         </div>
       )}

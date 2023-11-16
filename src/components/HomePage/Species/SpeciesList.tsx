@@ -41,6 +41,7 @@ function SpeciesList() {
   const [selectedSpecies, setSelectedSpecies] = useState<Species>(emptySpecies);
 
   const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
+  const [refreshSeed, setRefreshSeed] = useState<number>(0);
 
   useEffect(() => {
     const fetchSpecies = async () => {
@@ -54,7 +55,7 @@ function SpeciesList() {
       }
     };
     fetchSpecies();
-  }, []);
+  }, [refreshSeed]);
 
   return (
     <div>
@@ -65,15 +66,15 @@ function SpeciesList() {
         <div>
           {speciesList.map((species) => (
             <div className="py-2">
-              <Link to={`/species/viewspecies/${species.speciesCode}`}>
-                <ImageCardSpecies
-                  species={species}
-                  key={species.speciesId}
-                  imageUrl={`http://${localhost_address}/` + species.imageUrl}
-                  title={species.commonName}
-                  description={""}
-                />
-              </Link>
+              <ImageCardSpecies
+                species={species}
+                key={species.speciesId}
+                imageUrl={`http://${localhost_address}/` + species.imageUrl}
+                title={species.commonName}
+                description={""}
+                refreshSeed={refreshSeed}
+                setRefreshSeed={setRefreshSeed}
+              />
             </div>
           ))}
         </div>

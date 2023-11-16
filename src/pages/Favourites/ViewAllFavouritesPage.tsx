@@ -6,11 +6,11 @@ function ViewAllFavouritesPage() {
   const navigate = useNavigate();
   return (
     <div className="flex h-full flex-col p-6">
-      <div className="mb-5">
+      <div className="mb-5 h-full">
         <FavouriteSpeciesList />
-        <div className="px-4">
+        <div className="flex justify-center px-4">
           <Button
-            className="mt-5 w-full"
+            className="mb-5 mt-5 w-full"
             onClick={() => navigate("/notFavourites")}
           >
             Add Favourites
