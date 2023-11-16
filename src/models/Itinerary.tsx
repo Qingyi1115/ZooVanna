@@ -1,15 +1,13 @@
 import Customer from "./Customer";
+import ItineraryItem from "./ItineraryItem";
 
 interface Itinerary {
-  customerId: number;
-  firstName: string;
-  lastName: string;
-  email: string;
-  contactNo: string;
-  birthday: Date;
-  nationality: string;
+  itineraryId: number;
+  datePlannedVisit: Date;
+  itineraryName: string;
 
   customer?: Customer;
+  itinerayItems?: ItineraryItem[];
 }
 
 export default Itinerary;

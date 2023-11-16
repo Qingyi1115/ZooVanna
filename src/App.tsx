@@ -16,7 +16,7 @@ import ChangePasswordPage from "./pages/ChangePasswordPage";
 import CheckYourInbox from "./pages/CheckYourInbox";
 import EditProfilePage from "./pages/EditProfilePage";
 import HomePage from "./pages/HomePage";
-import ItineraryPage from "./pages/ItineraryPage";
+import ItineraryPage from "./pages/Itinerary/ItineraryPage";
 import LoginPage from "./pages/LoginPage";
 import LoginTicketPage from "./pages/LoginTicketPage";
 import MapPage from "./pages/Map/MapPage";
@@ -39,6 +39,7 @@ import ViewAllSpeciesPage from "./pages/Species/ViewAllSpeciesPage";
 import ViewSpeciesDetailsPage from "./pages/Species/ViewSpeciesDetailsPage";
 import ViewAllFavouritesPage from "./pages/Favourites/ViewAllFavouritesPage";
 import ViewNotFavouritesPage from "./pages/Favourites/ViewNotFavouritesPage";
+import CreateItineraryPage from "./pages/Itinerary/CreateItineraryPage";
 
 function App() {
   const { state } = useAuthContext();
@@ -144,6 +145,12 @@ function App() {
               <Route
                 path="/notFavourites"
                 element={<ViewNotFavouritesPage />}
+              />
+
+              {/*Itinerary */}
+              <Route
+                path="/createItinerary"
+                element={<CreateItineraryPage />}
               />
             </Routes>
           </MainLayout>
