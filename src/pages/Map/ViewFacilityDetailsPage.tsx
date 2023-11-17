@@ -28,6 +28,7 @@ function ViewFacilityDetailsPage() {
   const { facilityId } = useParams<{ facilityId: string }>();
   const [curFacility, setCurFacility] = useState<Facility>(emptyFacility);
   const [refreshSeed, setRefreshSeed] = useState<number>(0);
+  const [crowdLevel, setCrowdLevel] = useState<string>("");
 
   const curThirdParty =
     curFacility.facilityDetail == "thirdParty"
@@ -48,6 +49,12 @@ function ViewFacilityDetailsPage() {
           { includes: ["facilityDetail"] },
         );
         setCurFacility(responseJson.facility as Facility);
+
+        const responseJson2 = await apiJson.get(
+          `http://${localhost_address}/api/assetFacility/crowdLevelByFacilityId/${facilityId}`,
+        );
+        setCrowdLevel(responseJson2.crowdLevel);
+        console.log(responseJson2);
       } catch (error: any) {
         console.log(error);
       }
@@ -78,7 +85,10 @@ function ViewFacilityDetailsPage() {
           </div>
 
           <div className="flex flex-col p-6 lg:w-1/2">
-            <ViewFacilityDetails curFacility={curFacility} />
+            <ViewFacilityDetails
+              curFacility={curFacility}
+              crowdLevel={crowdLevel}
+            />
             <span></span>
             {curFacility.facilityDetail == "thirdParty" && (
               <ViewThirdPartyDetails

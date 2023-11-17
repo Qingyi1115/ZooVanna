@@ -3,6 +3,7 @@ import { useState } from "react";
 
 import { ImageOverlay, MapContainer, Marker, TileLayer } from "react-leaflet";
 import Facility from "../../models/Facility";
+import Weather from "./Weather";
 
 const merlioncenter: LatLngExpression = [1.295, 103.775887811];
 const merliontopleft: LatLng = new LatLng(1.3, 103.766998922);
@@ -166,6 +167,7 @@ function MapComponent(props: LandingPageMapProps) {
 
   return (
     <div>
+      
       <div className="h-[84vh] w-screen ">
         <MapContainer
           center={merlioncenter}
