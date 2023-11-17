@@ -37,6 +37,7 @@ import ViewAllPublicEventsPage from "./pages/PublicEvent/ViewAllPublicEventsPage
 import ViewPublicEventDetailsPage from "./pages/PublicEvent/ViewPublicEventPage";
 import ViewAllSpeciesPage from "./pages/Species/ViewAllSpeciesPage";
 import ViewSpeciesDetailsPage from "./pages/Species/ViewSpeciesDetailsPage";
+import ViewAllAnnouncementsPage from "./pages/Announcement/ViewAllAnnouncementsPage";
 
 function App() {
   const { state } = useAuthContext();
@@ -56,6 +57,14 @@ function App() {
             <Routes>
               {/* Home */}
               <Route path="/" element={<HomePage />} />
+              {/* <Route
+                path="/announcement/viewannouncement/:announcementId"
+                element={<ViewAnnouncementPage />}
+              /> */}
+              <Route
+                path="/announcement/viewAllAnnouncements"
+                element={<ViewAllAnnouncementsPage />}
+              />
               <Route
                 path="/promotion/viewpromotion/:promotionId"
                 element={<ViewPromotionPage />}
