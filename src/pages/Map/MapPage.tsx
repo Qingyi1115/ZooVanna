@@ -270,7 +270,7 @@ function MapLandingPage() {
             }
           />
         </Link>
-        // <Card
+        // <Card  
         //   className=" fixed bottom-[8vh] left-0 right-0 mx-3 translate-y-full transform bg-white shadow-lg transition-transform duration-1000"
         //   style={{
         //     transform: selectedFacility ? "translateY(0)" : "translateY(100%)",
