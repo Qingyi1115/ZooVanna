@@ -31,6 +31,7 @@ import Facility from "../../models/Facility";
 // Import Tailwind CSS styles
 import "tailwindcss/tailwind.css";
 import ImageCardSide from "../../components/ImageCardSide";
+import Weather from "../../components/Map/Weather";
 
 // import geolocation from "geolocation";
 
@@ -144,10 +145,12 @@ function MapLandingPage() {
     return (
       <Dialog>
         <DialogTrigger asChild>
-          <div className="absolute right-4 top-4 z-10">
-            <button className="flex h-10 w-10 items-center justify-center rounded-full bg-white bg-opacity-75 text-black">
-              <FiFilter /> {/* Use the imported icon component */}
-            </button>
+          <div>
+            <div className="absolute right-4 top-4 z-10">
+              <button className="flex h-10 w-10 items-center justify-center rounded-full bg-white bg-opacity-75 text-black">
+                <FiFilter />
+              </button>
+            </div>
           </div>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
@@ -245,7 +248,14 @@ function MapLandingPage() {
 
       <div className=" w-full overflow-hidden border border-stroke shadow-md">
         <div className="relative">
-          {selectedOption?.text == "Amenities" && <FilterButton />}
+          <div>
+            {selectedOption?.text == "Amenities" && <FilterButton />}
+            <div className="absolute right-20 top-4 z-10">
+              <div className="flex h-10 items-center justify-center rounded-full bg-white bg-opacity-75 text-black">
+                <Weather lat={1.295} long={103.775887811} />
+              </div>
+            </div>
+          </div>
 
           <MapComponent
             facilityList={filteredFacilityList}
@@ -270,7 +280,7 @@ function MapLandingPage() {
             }
           />
         </Link>
-        // <Card  
+        // <Card
         //   className=" fixed bottom-[8vh] left-0 right-0 mx-3 translate-y-full transform bg-white shadow-lg transition-transform duration-1000"
         //   style={{
         //     transform: selectedFacility ? "translateY(0)" : "translateY(100%)",
