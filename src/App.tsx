@@ -37,6 +37,8 @@ import ViewAllPublicEventsPage from "./pages/PublicEvent/ViewAllPublicEventsPage
 import ViewPublicEventDetailsPage from "./pages/PublicEvent/ViewPublicEventPage";
 import ViewAllSpeciesPage from "./pages/Species/ViewAllSpeciesPage";
 import ViewSpeciesDetailsPage from "./pages/Species/ViewSpeciesDetailsPage";
+import ViewAllAnnouncementsPage from "./pages/Announcement/ViewAllAnnouncementsPage";
+import ViewAnnouncementDetailsPage from "./pages/Announcement/ViewAnnouncementDetailsPage";
 import ViewAllFavouritesPage from "./pages/Favourites/ViewAllFavouritesPage";
 import ViewNotFavouritesPage from "./pages/Favourites/ViewNotFavouritesPage";
 
@@ -58,6 +60,14 @@ function App() {
             <Routes>
               {/* Home */}
               <Route path="/" element={<HomePage />} />
+              <Route
+                path="/announcement/viewannouncement/:announcementId"
+                element={<ViewAnnouncementDetailsPage />}
+              />
+              <Route
+                path="/announcement/viewAllAnnouncements"
+                element={<ViewAllAnnouncementsPage />}
+              />
               <Route
                 path="/promotion/viewpromotion/:promotionId"
                 element={<ViewPromotionPage />}

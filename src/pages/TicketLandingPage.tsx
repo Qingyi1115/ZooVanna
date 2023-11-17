@@ -31,7 +31,7 @@ function HomePage() {
 
       <div className="md:justify- w-full ">
         <NavLink to={"/tickets/buy"}>
-          <Button className="mr-2 w-full md:w-1/5">Buy Now</Button>
+          <Button className="mb-10 mr-2 w-full md:w-1/5">Buy Now</Button>
         </NavLink>
       </div>
     </div>
