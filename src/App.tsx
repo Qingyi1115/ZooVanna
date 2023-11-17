@@ -40,6 +40,9 @@ import ViewSpeciesDetailsPage from "./pages/Species/ViewSpeciesDetailsPage";
 import ViewAllFavouritesPage from "./pages/Favourites/ViewAllFavouritesPage";
 import ViewNotFavouritesPage from "./pages/Favourites/ViewNotFavouritesPage";
 import CreateItineraryPage from "./pages/Itinerary/CreateItineraryPage";
+import BasicItineraryForm from "./components/ItineraryPage/BasicItineraryForm";
+import SelectPlaces from "./components/ItineraryPage/SelectPlaces";
+import Generate from "./components/ItineraryPage/Generate";
 
 function App() {
   const { state } = useAuthContext();
@@ -152,6 +155,9 @@ function App() {
                 path="/createItinerary"
                 element={<CreateItineraryPage />}
               />
+              <Route path="/basicItinerary" element={<BasicItineraryForm />} />
+              <Route path="/selectPlaces" element={<SelectPlaces />} />
+              <Route path="/generatePlaces" element={<Generate />} />
             </Routes>
           </MainLayout>
         </BrowserRouter>

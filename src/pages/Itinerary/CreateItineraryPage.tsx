@@ -1,35 +1,49 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BasicItineraryForm from "../../components/ItineraryPage/BasicItineraryForm";
-import GeneratePlaces from "../../components/ItineraryPage/GeneratePlaces";
 import Facility from "src/models/Facility";
+import Enclosure from "src/models/Enclosure";
+import Species from "src/models/Species";
+import { Navigate, useLocation } from "react-router-dom";
+import useApiJson from "../../hooks/useApiJson";
 
+interface SpeciesWithSelected extends Species {
+  selected: boolean;
+}
 function CreateItineraryPage() {
+  const location = useLocation();
   const [itineraryName, setItineraryName] = useState<string>();
   const [plannedDateVisit, setPlannedDateVisit] = useState<
     string | Date | Date[] | null
   >(null);
-  const [pageNumber, setPageNumber] = useState<number>(1);
   const [facilities, setFacilities] = useState<Facility[]>();
+  const [speciesList, setSpeciesList] = useState<SpeciesWithSelected[]>(
+    location.state.speciesList,
+  );
+
+  window.addEventListener("beforeunload", function (event) {
+    // Cancel the event to prevent the default browser dialog
+    event.preventDefault();
+    // Chrome requires returnValue to be set
+    event.returnValue = "";
+
+    // Your logic here (e.g., displaying a custom confirmation message)
+    const confirmationMessage =
+      "Are you sure you want to leave? Any unsaved changes may be lost.";
+    return confirmationMessage;
+  });
+
   return (
     <div className="px-6 pt-10">
-      {pageNumber === 1 ? (
-        <BasicItineraryForm
-          itineraryName={itineraryName}
-          setItineraryName={setItineraryName}
-          plannedDateVisit={plannedDateVisit}
-          setPlannedDateVisit={setPlannedDateVisit}
-          pageNumber={pageNumber}
-          setPageNumber={setPageNumber}
+      {speciesList !== undefined && (
+        <Navigate
+          to={"/basicItinerary"}
+          state={{
+            itineraryName,
+            plannedDateVisit,
+            facilities,
+            speciesList,
+          }}
         />
-      ) : pageNumber === 2 ? (
-        <GeneratePlaces
-          facilities={facilities}
-          setFacilities={setFacilities}
-          pageNumber={pageNumber}
-          setPageNumber={setPageNumber}
-        />
-      ) : (
-        ""
       )}
     </div>
   );

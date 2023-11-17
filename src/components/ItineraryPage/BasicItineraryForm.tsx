@@ -1,28 +1,34 @@
 import { Button } from "@/components/ui/button";
 import * as Form from "@radix-ui/react-form";
 import { Calendar, CalendarChangeEvent } from "primereact/calendar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import useApiJson from "../../hooks/useApiJson";
+import Species from "../../models/Species";
 
-interface itineraryProps {
-  itineraryName: string | undefined;
-  setItineraryName: any;
-  plannedDateVisit: string | Date | Date[] | null;
-  setPlannedDateVisit: any;
-  pageNumber: number;
-  setPageNumber: any;
+interface SpeciesWithSelected extends Species {
+  selected: boolean;
 }
-function BasicItineraryForm(props: itineraryProps) {
-  const {
-    itineraryName,
-    setItineraryName,
-    plannedDateVisit,
-    setPlannedDateVisit,
-    pageNumber,
-    setPageNumber,
-  } = props;
+function BasicItineraryForm() {
+  const location = useLocation();
+  const navigate = useNavigate();
   const [error, setError] = useState<any>();
   const today = new Date(Date.now());
   today.setHours(0, 0, 0);
+  const [itineraryName, setItineraryName] = useState<string>(
+    location.state.itineraryName,
+  );
+
+  const facilities = location.state.facilities;
+  const [speciesList, setSpeciesList] = useState<SpeciesWithSelected[]>(
+    location.state.speciesList,
+  );
+  const [plannedDateVisit, setPlannedDateVisit] = useState<
+    string | Date | Date[] | null
+  >(location.state.plannedDateVisit);
+  const apiJson = useApiJson();
+  const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
+
   function validateItineraryName(props: ValidityState) {
     if (props != undefined) {
       if (props.valueMissing) {
@@ -34,10 +40,15 @@ function BasicItineraryForm(props: itineraryProps) {
     return null;
   }
   function handleSubmit() {
-    setPageNumber(pageNumber + 1);
+    if (speciesList) {
+      console.log(speciesList);
+      navigate("/selectPlaces", {
+        state: { itineraryName, plannedDateVisit, facilities, speciesList },
+      });
+    }
   }
   return (
-    <div>
+    <div className="px-6 pt-10">
       <div className="text-2xl font-bold">1. Itinerary Details</div>
       <div className="pt-5">
         <Form.Root className="w-full" onSubmit={handleSubmit}>
