@@ -17,6 +17,17 @@ import { NavLink } from "react-router-dom";
 //HiLightBulb from hi2
 
 function HomeCard() {
+  const sendEmail = () => {
+    const emailAddress = "zooVanna@gmail.com";
+    const subject = "Inquiry about ZooVanna";
+    const body = "Hello, I'm writing to ask about ";
+
+    const mailtoLink = `mailto:${emailAddress}?subject=${encodeURIComponent(
+      subject,
+    )}&body=${encodeURIComponent(body)}`;
+
+    window.open(mailtoLink, "_blank");
+  };
   return (
     <Card className="w-full">
       <CardTitle className="">
@@ -46,12 +57,13 @@ function HomeCard() {
             </NavLink>
           </div>
           <div className="text-center">
-            <NavLink to="/emailUs">
-              <button className="flex flex-col items-center justify-center focus:outline-none">
-                <MdEmail className="hover:text-yellow-600" />
-                <p className="pt-0.9 text-xs">Email Us</p>
-              </button>
-            </NavLink>
+            <button
+              className="flex flex-col items-center justify-center focus:outline-none"
+              onClick={sendEmail}
+            >
+              <MdEmail className="hover:text-yellow-600" />
+              <p className="pt-0.9 text-xs">Email Us</p>
+            </button>
           </div>
         </div>
       </CardTitle>

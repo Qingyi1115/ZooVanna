@@ -39,6 +39,8 @@ import ViewAllSpeciesPage from "./pages/Species/ViewAllSpeciesPage";
 import ViewSpeciesDetailsPage from "./pages/Species/ViewSpeciesDetailsPage";
 import ViewAllAnnouncementsPage from "./pages/Announcement/ViewAllAnnouncementsPage";
 import ViewAnnouncementDetailsPage from "./pages/Announcement/ViewAnnouncementDetailsPage";
+import ViewAllFavouritesPage from "./pages/Favourites/ViewAllFavouritesPage";
+import ViewNotFavouritesPage from "./pages/Favourites/ViewNotFavouritesPage";
 
 function App() {
   const { state } = useAuthContext();
@@ -146,6 +148,12 @@ function App() {
               <Route
                 path="/resetPasswordNew/:token"
                 element={<ResetPasswordPage />}
+              />
+              {/*Favourite Attraction */}
+              <Route path="/favourites" element={<ViewAllFavouritesPage />} />
+              <Route
+                path="/notFavourites"
+                element={<ViewNotFavouritesPage />}
               />
             </Routes>
           </MainLayout>
