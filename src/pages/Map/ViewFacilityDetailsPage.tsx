@@ -90,7 +90,9 @@ function ViewFacilityDetailsPage() {
             )}
             <div className="flex px-4 py-15 ">
               <p>Anything broken?</p>
-              <NavLink to={`/reportFaultyFacility`}>
+              <NavLink
+                to={`/facility/reportFaultyFacility/${curFacility.facilityId}`}
+              >
                 <Button variant={"outline"} className="ml-3 h-7 w-full px-2">
                   Report faulty facility
                 </Button>

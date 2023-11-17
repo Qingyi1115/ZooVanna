@@ -41,6 +41,7 @@ import ViewAllAnnouncementsPage from "./pages/Announcement/ViewAllAnnouncementsP
 import ViewAnnouncementDetailsPage from "./pages/Announcement/ViewAnnouncementDetailsPage";
 import ViewAllFavouritesPage from "./pages/Favourites/ViewAllFavouritesPage";
 import ViewNotFavouritesPage from "./pages/Favourites/ViewNotFavouritesPage";
+import ReportFaultyFacilityPage from "./pages/Map/ReportFaultyFacilityPage";
 
 function App() {
   const { state } = useAuthContext();
@@ -95,6 +96,11 @@ function App() {
                 path="/facility/viewfacility/:facilityId"
                 element={<ViewFacilityDetailsPage />}
               />
+              <Route
+                path="/facility/reportFaultyFacility/:facilityId"
+                element={<ReportFaultyFacilityPage />}
+              />
+
               {/*Ticket Management*/}
               <Route path="/tickets" element={<TicketLandingPage />} />
               <Route path="/tickets/buy" element={<TicketsPage />} />
