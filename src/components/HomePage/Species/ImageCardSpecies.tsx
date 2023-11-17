@@ -111,7 +111,7 @@ function ImageCardSpecies({
           ""
         )}
       </div>
-      <div className="m-3 h-30 w-3/5 max-w-[200px] overflow-hidden rounded-xl">
+      <div className="m-3 h-30 w-full max-w-[200px] overflow-hidden rounded-xl">
         <img
           src={imageUrl}
           alt="Card Image"
@@ -121,15 +121,10 @@ function ImageCardSpecies({
       <CardContentModified className="m-0 h-30 w-full p-0">
         <CardHeaderModified className="w-full p-0 pl-3 pt-3">
           <CardTitleModified className="w-full ">
-            <div className="">
+            <div className="items-center pt-10">
               <div>{title}</div>
             </div>
           </CardTitleModified>
-          <CardDescriptionModified>
-            <div className="flex">
-              <div>ehloojkljljkj</div>
-            </div>
-          </CardDescriptionModified>
         </CardHeaderModified>
 
         {/*<div
