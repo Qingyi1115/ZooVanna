@@ -10,7 +10,8 @@ import Species from "../../../models/Species";
 
 import { useToast } from "@/components/ui/use-toast";
 
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { FaChevronLeft } from "react-icons/fa";
 
 function SpeciesList() {
   const apiJson = useApiJson();
@@ -58,13 +59,18 @@ function SpeciesList() {
 
   return (
     <div>
-      <div className="px-4 pt-4">
-        <h1 className="text-xl font-extrabold">Animals in Merlion Zoo</h1>
+      <div className="flex px-4 pt-4">
+        <NavLink to={`/`} className="">
+          <button className="flex h-10 w-10 items-center justify-center rounded-full bg-white bg-opacity-75 text-black">
+            <FaChevronLeft />
+          </button>
+        </NavLink>
+        <h1 className="ml-4 pt-1 text-xl font-extrabold">Animals in Merlion Zoo</h1>
       </div>
       {speciesList && (
         <div>
           {speciesList.map((species) => (
-            <div className = "py-2">
+            <div className="py-2">
               <Link to={`/species/viewspecies/${species.speciesCode}`}>
                 <ImageCardSpecies
                   key={species.speciesId}

@@ -17,7 +17,8 @@ import Announcement from "../../../models/Announcement";
 
 import { useToast } from "@/components/ui/use-toast";
 
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { FaChevronLeft } from "react-icons/fa";
 
 function AnnouncementList() {
   const apiJson = useApiJson();
@@ -53,8 +54,13 @@ function AnnouncementList() {
 
   return (
     <div>
-      <div className="px-4 pt-4">
-        <h1 className="text-xl font-extrabold">Announcements</h1>
+      <div className="flex px-4 pt-4">
+        <NavLink to={`/`} className="">
+          <button className="flex h-10 w-10 items-center justify-center rounded-full bg-white bg-opacity-75 text-black">
+            <FaChevronLeft />
+          </button>
+        </NavLink>
+        <h1 className="ml-4 pt-1 text-xl font-extrabold">Announcements</h1>
       </div>
       {announcementList && (
         <div>
@@ -64,7 +70,7 @@ function AnnouncementList() {
                 to={`/announcement/viewannouncement/${announcement.announcementId}`}
               >
                 <Card>
-                  <CardHeader className="text-md font-bold pb-3">
+                  <CardHeader className="text-md pb-3 font-bold">
                     {announcement.title}
                   </CardHeader>
                   <CardContent className="text-sm">

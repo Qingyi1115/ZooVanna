@@ -58,7 +58,7 @@ function ViewSpeciesDetailsPage() {
               : ""
           }`}
         />
-        <NavLink to={`/`} className="absolute left-4 top-4">
+        <NavLink to={`/species/viewAllSpecies`} className="absolute left-4 top-4">
           <button className="flex h-10 w-10 items-center justify-center rounded-full bg-white bg-opacity-75 text-black">
             <FaChevronLeft />
           </button>
