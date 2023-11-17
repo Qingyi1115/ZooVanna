@@ -53,6 +53,8 @@ function MapLandingPage() {
     useState<FacilityWithSelected | null>(null);
   const [refreshSeed, setRefreshSeed] = useState<number>(0);
 
+  const [updated, setUpdated] = useState<boolean>(true);
+
   const [filteredFacilityList, setFilteredFacilityList] = useState<
     FacilityWithSelected[]
   >([]);
@@ -64,14 +66,52 @@ function MapLandingPage() {
 
   const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
 
+  const options = [
+    { text: "All" },
+    { text: "Wildlife" },
+    { text: "Feeding" },
+    { text: "Shows" },
+    { text: "Keeper Talk" },
+    { text: "Amenities" },
+  ];
+
+  const [selectedOption, setSelectedOption] = useState<Option>({
+    text: "All",
+  });
+
+  const handleOptionClick = (option: Option) => {
+    if (option) {
+      setSelectedOption(option);
+      setUpdated(false);
+      console.log(`Selected option: ${option.text}`);
+
+      if (option.text === "Amenities") {
+        setFilteredFacilityList(facilityList);
+      } else {
+        setFilteredFacilityList([]);
+      }
+    }
+  };
+
   useEffect(() => {
     const fetchNoLocationFacilities = async () => {
       try {
         console.log("useEffect here");
-        const responseJson = await apiJson.post(
-          `http://${localhost_address}/api/assetFacility/getAllFacilityCustomer`,
-          { includes: [""] },
-        );
+        let responseJson;
+        if (
+          selectedOption?.text === "All" ||
+          selectedOption?.text === "Amenities"
+        ) {
+          responseJson = await apiJson.post(
+            `http://${localhost_address}/api/assetFacility/getAllFacilityCustomer`,
+            { includes: [""] },
+          );
+        } else {
+          responseJson = await apiJson.get(
+            `http://${localhost_address}/api/enclosure/getAllEnclosuresFacility`,
+          );
+        }
+        console.log(responseJson);
         const facilityListWithLocation = (
           responseJson.facilities as FacilityWithSelected[]
         )
@@ -85,6 +125,7 @@ function MapLandingPage() {
             ...facility,
             selected: false,
           }));
+        console.log(facilityListWithLocation);
         setFacilityList(facilityListWithLocation);
         setFilteredFacilityList(facilityListWithLocation);
         if (selectedFacility) {
@@ -93,13 +134,14 @@ function MapLandingPage() {
           );
           setSelectedFacility(updatedFacility || null);
         }
+        setUpdated(true);
       } catch (error: any) {
         console.log(error);
       }
     };
 
     fetchNoLocationFacilities();
-  }, [refreshSeed]);
+  }, [refreshSeed, selectedOption]);
 
   // function handleFacilTypeFilterMap(value: string) {
   //   const tempFacilityList = [...facilityList].filter((facility) => {
@@ -146,7 +188,7 @@ function MapLandingPage() {
       <Dialog>
         <DialogTrigger asChild>
           <div>
-            <div className="absolute right-4 top-4 z-10">
+            <div className="">
               <button className="flex h-10 w-10 items-center justify-center rounded-full bg-white bg-opacity-75 text-black">
                 <FiFilter />
               </button>
@@ -191,34 +233,6 @@ function MapLandingPage() {
     );
   }
 
-  const options = [
-    { text: "All" },
-    { text: "Wildlife" },
-    { text: "Feeding" },
-    { text: "Shows" },
-    { text: "Keeper Talk" },
-    { text: "Amenities" },
-  ];
-
-  const [selectedOption, setSelectedOption] = useState<Option | null>(null);
-
-  const handleOptionClick = (option: Option | null) => {
-    if (option) {
-      if (selectedOption == option) {
-        setSelectedOption(null);
-      } else {
-        setSelectedOption(option);
-        console.log(`Selected option: ${option.text}`);
-      }
-
-      if (option.text === "Amenities") {
-        setFilteredFacilityList(facilityList);
-      } else {
-        setFilteredFacilityList([]);
-      }
-    }
-  };
-
   return (
     <div className="no-scrollbar fixed bottom-[1vh] flex h-screen w-full w-screen flex-col justify-center rounded-lg border border-stroke bg-white text-black shadow-default">
       <div className="relative px-4 pt-4">
@@ -248,22 +262,28 @@ function MapLandingPage() {
 
       <div className=" w-full overflow-hidden border border-stroke shadow-md">
         <div className="relative">
-          <div>
-            {selectedOption?.text == "Amenities" && <FilterButton />}
-            <div className="absolute right-20 top-4 z-10">
+          <div className="absolute right-4 top-4 z-10 flex">
+            <div className="pr-4">
               <div className="flex h-10 items-center justify-center rounded-full bg-white bg-opacity-75 text-black">
                 <Weather lat={1.295} long={103.775887811} />
               </div>
             </div>
+            {(selectedOption?.text == "Amenities" ||
+              selectedOption?.text == "All") && <FilterButton />}
+            {/* <FilterButton /> */}
           </div>
-
-          <MapComponent
-            facilityList={filteredFacilityList}
-            setFacilityList={setFilteredFacilityList}
-            selectedFacility={selectedFacility}
-            setSelectedFacility={setSelectedFacility}
-            setIsShownOnMap={true}
-          />
+          {updated ? (
+            <MapComponent
+              selectedOption={selectedOption}
+              facilityList={filteredFacilityList}
+              setFacilityList={setFilteredFacilityList}
+              selectedFacility={selectedFacility}
+              setSelectedFacility={setSelectedFacility}
+              setIsShownOnMap={true}
+            />
+          ) : (
+            <div className="h-[84vh] w-screen "></div>
+          )}
         </div>
       </div>
 

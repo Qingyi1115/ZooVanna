@@ -53,7 +53,7 @@ function Weather(props: LocationProps) {
       {icon && (
         <div className="flex items-center px-3">
           <img className="w-10" id="wicon" src={`${iconUrl}/${icon}.png`} alt="Weather Icon" />
-          <div className="text-sm pl-1">{weather}</div>
+          <div className="text-sm pl-1 font-semibold">{weather}</div>
         </div>
       )}
     </div>
