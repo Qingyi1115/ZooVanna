@@ -1,6 +1,7 @@
 import { EventTimingType } from "../enums/EventTimingType";
 import { EventType } from "../enums/EventType";
 import InHouse from "./InHouse";
+import PublicEventSession from "./PublicEventSession";
 
 interface ZooEvent {
   zooEventId: number;
@@ -24,6 +25,7 @@ interface ZooEvent {
   //   animals?: Animal[];
   inHouse?: InHouse;
   // animalClinic?: AnimalClinic;
+  publicEventSession?: PublicEventSession;
 }
 
 export default ZooEvent;
