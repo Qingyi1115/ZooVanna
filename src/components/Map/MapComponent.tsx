@@ -91,7 +91,7 @@ function iconFunction(selected: boolean, facilityType: string) {
       break;
 
     case "ENCLOSURE":
-      iconUrl = `http://${localhost_5174_address}/src/assets/mapicons/18.png`;
+      iconUrl = `http://${localhost_5174_address}/src/assets/mapicons/17.png`;
       break;
 
     case "CUSTOMER_FEEDING":
@@ -107,7 +107,7 @@ function iconFunction(selected: boolean, facilityType: string) {
       break;
 
     default:
-      iconUrl = `http://${localhost_5174_address}/src/assets/mapicons/17.png`;
+      iconUrl = `http://${localhost_5174_address}/src/assets/mapicons/18.png`;
       break;
   }
 
