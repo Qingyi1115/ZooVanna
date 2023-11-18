@@ -1,7 +1,13 @@
 import L, { LatLng, LatLngBounds, LatLngExpression } from "leaflet";
 import { useState } from "react";
 
-import { ImageOverlay, MapContainer, Marker, TileLayer } from "react-leaflet";
+import {
+  ImageOverlay,
+  MapContainer,
+  Marker,
+  TileLayer,
+  Tooltip,
+} from "react-leaflet";
 import Facility from "../../models/Facility";
 import Weather from "./Weather";
 
