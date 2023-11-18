@@ -180,7 +180,7 @@ function ItineraryMapComponent(props: LandingPageMapProps) {
 
   return (
     <div>
-      <Card className="h-[60vh] w-full rounded rounded-lg ">
+      <Card className="h-[50vh] w-full overflow-hidden rounded rounded-lg">
         <MapContainer
           center={merlioncenter}
           zoom={15}

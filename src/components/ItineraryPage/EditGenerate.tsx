@@ -21,7 +21,7 @@ interface SpeciesWithSelected extends Species {
   selected: boolean;
 }
 
-function Generate() {
+function EditGenerate() {
   const location = useLocation();
   const navigate = useNavigate();
   const [facilities, setFacilities] = useState<Facility[]>(
@@ -32,6 +32,7 @@ function Generate() {
   );
   console.log("here is " + speciesList);
 
+  const itineraryId = location.state.itineraryId;
   const itineraryName: string = location.state.itineraryName;
   const plannedDateVisit: Date = location.state.plannedDateVisit;
   const apiJson = useApiJson();
@@ -62,11 +63,13 @@ function Generate() {
     const reorderedItems = Array.from(facilities);
     const [reorderedItem] = reorderedItems.splice(result.source.index, 1);
     reorderedItems.splice(result.destination.index, 0, reorderedItem);
-
+    console.log("reorderedItems ");
+    console.log(reorderedItems);
     setFacilities(reorderedItems);
   }
 
   function generateItinerary() {
+    console.log(facilities);
     const data: any = {
       itineraryName,
       datePlannedVisit: plannedDateVisit.getTime(),
@@ -74,7 +77,10 @@ function Generate() {
       speciesData: speciesList.filter((species) => species.selected === true),
     };
     apiJson
-      .post(`http://localhost:3000/api/itinerary/createItinerary`, data)
+      .put(
+        `http://localhost:3000/api/itinerary/editItinerary/${itineraryId}`,
+        data,
+      )
       .catch((error) => console.log(error))
       .then((res) => {
         console.log(res.result);
@@ -172,4 +178,4 @@ function Generate() {
   );
 }
 
-export default Generate;
+export default EditGenerate;

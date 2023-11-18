@@ -46,6 +46,10 @@ import BasicItineraryForm from "./components/ItineraryPage/BasicItineraryForm";
 import SelectPlaces from "./components/ItineraryPage/SelectPlaces";
 import Generate from "./components/ItineraryPage/Generate";
 import ReportFaultyFacilityPage from "./pages/Map/ReportFaultyFacilityPage";
+import ViewItinerary from "./components/ItineraryPage/ViewItinerary";
+import EditBasicItineraryForm from "./components/ItineraryPage/EditBasicItineraryForm";
+import EditSelectPlaces from "./components/ItineraryPage/editSelectPlaces";
+import EditGenerate from "./components/ItineraryPage/EditGenerate";
 
 function App() {
   const { state } = useAuthContext();
@@ -174,6 +178,16 @@ function App() {
               <Route path="/basicItinerary" element={<BasicItineraryForm />} />
               <Route path="/selectPlaces" element={<SelectPlaces />} />
               <Route path="/generatePlaces" element={<Generate />} />
+              <Route
+                path="/viewItinerary/:itineraryId"
+                element={<ViewItinerary />}
+              />
+              <Route
+                path="/editBasicItinerary"
+                element={<EditBasicItineraryForm />}
+              />
+              <Route path="/editSelectPlaces" element={<EditSelectPlaces />} />
+              <Route path="/editGeneratePlaces" element={<EditGenerate />} />
             </Routes>
           </MainLayout>
         </BrowserRouter>

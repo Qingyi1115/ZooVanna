@@ -108,7 +108,7 @@ function ImageCardSpeciesForFacility({
           </CardTitleModified>
           <CardDescriptionModified>
             <div className="flex">
-              <div>ehloojkljljkj</div>
+              <div></div>
             </div>
           </CardDescriptionModified>
         </CardHeaderModified>
