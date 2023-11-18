@@ -179,7 +179,7 @@ function ItineraryMapComponent(props: LandingPageMapProps) {
           {facilityList.map((facility, idx) => (
             <Marker
               key={`marker-${idx}`}
-              icon={iconFunction(true, idx + 1)}
+              icon={iconFunction(false, idx + 1)}
               position={[facility.yCoordinate, facility.xCoordinate]}
             ></Marker>
           ))}
