@@ -20,18 +20,6 @@ function CreateItineraryPage() {
     location.state.speciesList,
   );
 
-  window.addEventListener("beforeunload", function (event) {
-    // Cancel the event to prevent the default browser dialog
-    event.preventDefault();
-    // Chrome requires returnValue to be set
-    event.returnValue = "";
-
-    // Your logic here (e.g., displaying a custom confirmation message)
-    const confirmationMessage =
-      "Are you sure you want to leave? Any unsaved changes may be lost.";
-    return confirmationMessage;
-  });
-
   return (
     <div className="px-6 pt-10">
       {speciesList !== undefined && (

@@ -75,7 +75,7 @@ function BasicItineraryForm() {
 
             <Calendar
               className="h-14 w-full appearance-none rounded-md border border-zoovanna-brown/50 bg-transparent placeholder-black/70"
-              placeholder="Enter your date of birth"
+              placeholder="Enter your planned date of visit"
               value={plannedDateVisit}
               onChange={(e: CalendarChangeEvent) => {
                 if (e && e.value !== undefined) {

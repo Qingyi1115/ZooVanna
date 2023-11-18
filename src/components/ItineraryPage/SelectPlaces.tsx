@@ -89,58 +89,64 @@ function SelectPlaces() {
 
   return (
     <div className="px-6 pt-10">
-      <div className="text-2xl font-bold">2. Select Animals to Visit </div>
-      <div className="pt-5">
-        {speciesList && (
-          <div>
-            {speciesList.map((species) => (
-              <div className="py-2">
-                <ImageCardSpeciesForFacility
-                  species={species}
-                  key={species.speciesId}
-                  imageUrl={`http://${localhost_address}/` + species.imageUrl}
-                  title={species.commonName}
-                  description={""}
-                  selected={species.selected}
-                  handleClick={handleClick}
-                />
+      {speciesList && (
+        <div>
+          <div className="text-2xl font-bold">2. Select Animals to Visit </div>
+          <div className="pt-5">
+            {speciesList && (
+              <div>
+                {speciesList.map((species) => (
+                  <div className="py-2">
+                    <ImageCardSpeciesForFacility
+                      species={species}
+                      key={species.speciesId}
+                      imageUrl={
+                        `http://${localhost_address}/` + species.imageUrl
+                      }
+                      title={species.commonName}
+                      description={""}
+                      selected={species.selected}
+                      handleClick={handleClick}
+                    />
+                  </div>
+                ))}
               </div>
-            ))}
+            )}
+            <div className="mb-3 mt-4 flex justify-between">
+              <Button
+                className="w-2/5 md:w-1/5"
+                onClick={() =>
+                  navigate("/basicItinerary", {
+                    state: {
+                      facilities,
+                      speciesList,
+                      itineraryName,
+                      plannedDateVisit,
+                    },
+                  })
+                }
+              >
+                Back
+              </Button>
+              <Button
+                className="w-2/5 md:w-1/5"
+                onClick={() =>
+                  navigate("/generatePlaces", {
+                    state: {
+                      facilities,
+                      speciesList,
+                      itineraryName,
+                      plannedDateVisit,
+                    },
+                  })
+                }
+              >
+                Next
+              </Button>
+            </div>
           </div>
-        )}
-        <div className="mb-3 mt-4 flex justify-between">
-          <Button
-            className="w-2/5 md:w-1/5"
-            onClick={() =>
-              navigate("/basicItinerary", {
-                state: {
-                  facilities,
-                  speciesList,
-                  itineraryName,
-                  plannedDateVisit,
-                },
-              })
-            }
-          >
-            Back
-          </Button>
-          <Button
-            className="w-2/5 md:w-1/5"
-            onClick={() =>
-              navigate("/generatePlaces", {
-                state: {
-                  facilities,
-                  speciesList,
-                  itineraryName,
-                  plannedDateVisit,
-                },
-              })
-            }
-          >
-            Next
-          </Button>
         </div>
-      </div>
+      )}
     </div>
   );
 }
