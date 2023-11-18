@@ -1,7 +1,13 @@
 import L, { LatLng, LatLngBounds, LatLngExpression } from "leaflet";
 import { useState } from "react";
 
-import { ImageOverlay, MapContainer, Marker, TileLayer } from "react-leaflet";
+import {
+  ImageOverlay,
+  MapContainer,
+  Marker,
+  TileLayer,
+  Tooltip,
+} from "react-leaflet";
 import Facility from "../../models/Facility";
 import Weather from "./Weather";
 
@@ -85,7 +91,7 @@ function iconFunction(selected: boolean, facilityType: string) {
       break;
 
     case "ENCLOSURE":
-      iconUrl = `http://${localhost_5174_address}/src/assets/mapicons/18.png`;
+      iconUrl = `http://${localhost_5174_address}/src/assets/mapicons/17.png`;
       break;
 
     case "CUSTOMER_FEEDING":
@@ -101,7 +107,7 @@ function iconFunction(selected: boolean, facilityType: string) {
       break;
 
     default:
-      iconUrl = `http://${localhost_5174_address}/src/assets/mapicons/17.png`;
+      iconUrl = `http://${localhost_5174_address}/src/assets/mapicons/18.png`;
       break;
   }
 

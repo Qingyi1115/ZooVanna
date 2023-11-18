@@ -26,6 +26,26 @@
   z-index: 0 !important;
 }
 
+leaflet-popup-tip-container {
+  display: none;
+}
+
+.leaflet-tooltip {
+  position: absolute;
+  padding: none;
+  background-color: none;
+  border: none;
+  border-radius: none;
+  color: none;
+  white-space: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  pointer-events: none;
+  box-shadow: none;
+}
+
 html {
   /* overflow: hidden; */
   height: 100vh;
