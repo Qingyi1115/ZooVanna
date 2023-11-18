@@ -25,84 +25,47 @@ const backgroundbounds: LatLngBounds = new LatLngBounds(
 const localhost_5174_address = import.meta.env.VITE_LOCALHOST_5174_ADDRESS;
 // http://localhost:5174/src/assets/mapicons/parking.png
 // map icons
-function iconFunction(selected: boolean, facilityType: string) {
-  console.log("facil type icon: " + facilityType);
-  let iconUrl = `http://${localhost_5174_address}/src/assets/mapicons/1.png`;
-  switch (facilityType) {
-    case "INFORMATION_CENTRE":
-      iconUrl = `http://${localhost_5174_address}/src/assets/mapicons/1.png`;
+function iconFunction(selected: boolean, number: number) {
+  let iconUrl = `http://${localhost_5174_address}/src/assets/numbers/1.png`;
+  switch (number) {
+    case 1:
+      iconUrl = `http://${localhost_5174_address}/src/assets/numbers/1.png`;
       break;
 
-    case "ZOO_DIRECTORY":
-      iconUrl = `http://${localhost_5174_address}/src/assets/mapicons/3.png`;
+    case 2:
+      iconUrl = `http://${localhost_5174_address}/src/assets/numbers/2.png`;
       break;
 
-    case "AMPHITHEATRE":
-      iconUrl = `http://${localhost_5174_address}/src/assets/mapicons/4.png`;
+    case 3:
+      iconUrl = `http://${localhost_5174_address}/src/assets/numbers/3.png`;
       break;
 
-    case "GAZEBO":
-      iconUrl = `http://${localhost_5174_address}/src/assets/mapicons/5.png`;
+    case 4:
+      iconUrl = `http://${localhost_5174_address}/src/assets/numbers/4.png`;
       break;
 
-    case "AED":
-      iconUrl = `http://${localhost_5174_address}/src/assets/mapicons/6.png`;
+    case 5:
+      iconUrl = `http://${localhost_5174_address}/src/assets/numbers/5.png`;
       break;
 
-    case "RESTROOM":
-      iconUrl = `http://${localhost_5174_address}/src/assets/mapicons/7.png`;
+    case 6:
+      iconUrl = `http://${localhost_5174_address}/src/assets/numbers/6.png`;
       break;
 
-    case "NURSERY":
-      iconUrl = `http://${localhost_5174_address}/src/assets/mapicons/8.png`;
+    case 7:
+      iconUrl = `http://${localhost_5174_address}/src/assets/numbers/7.png`;
       break;
 
-    case "FIRST_AID":
-      iconUrl = `http://${localhost_5174_address}/src/assets/mapicons/9.png`;
+    case 8:
+      iconUrl = `http://${localhost_5174_address}/src/assets/numbers/8.png`;
       break;
 
-    case "BENCHES":
-      iconUrl = `http://${localhost_5174_address}/src/assets/mapicons/10.png`;
+    case 9:
+      iconUrl = `http://${localhost_5174_address}/src/assets/numbers/9.png`;
       break;
 
-    case "PLAYGROUND":
-      iconUrl = `http://${localhost_5174_address}/src/assets/mapicons/11.png`;
-      break;
-
-    case "TRAMSTOP":
-      iconUrl = `http://${localhost_5174_address}/src/assets/mapicons/13.png`;
-      break;
-
-    case "PARKING":
-      iconUrl = `http://${localhost_5174_address}/src/assets/mapicons/14.png`;
-      break;
-
-    case "RESTAURANT":
-      iconUrl = `http://${localhost_5174_address}/src/assets/mapicons/15.png`;
-      break;
-
-    case "SHOP_SOUVENIR":
-      iconUrl = `http://${localhost_5174_address}/src/assets/mapicons/16.png`;
-      break;
-
-    case "ENCLOSURE":
-      iconUrl = `http://${localhost_5174_address}/src/assets/mapicons/18.png`;
-      break;
-
-    case "CUSTOMER_FEEDING":
-      iconUrl = `http://${localhost_5174_address}/src/assets/mapicons/19.png`;
-      break;
-
-    case "SHOW":
-      iconUrl = `http://${localhost_5174_address}/src/assets/mapicons/20.png`;
-      break;
-
-    case "TALK":
-      iconUrl = `http://${localhost_5174_address}/src/assets/mapicons/21.png`;
-      break;
-
-    default:
-      iconUrl = `http://${localhost_5174_address}/src/assets/mapicons/17.png`;
+    case 10:
+      iconUrl = `http://${localhost_5174_address}/src/assets/numbers/10.png`;
       break;
   }
 
@@ -216,7 +179,7 @@ function ItineraryMapComponent(props: LandingPageMapProps) {
           {facilityList.map((facility, idx) => (
             <Marker
               key={`marker-${idx}`}
-              icon={iconFunction(true, "CUSTOMER_FEEDING")}
+              icon={iconFunction(true, idx + 1)}
               position={[facility.yCoordinate, facility.xCoordinate]}
             ></Marker>
           ))}

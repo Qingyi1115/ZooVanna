@@ -170,7 +170,7 @@ function EditGenerate() {
             className="w-2/5 md:w-1/5"
             onClick={() => generateItinerary()}
           >
-            Generate
+            Save
           </Button>
         </div>
       </div>
