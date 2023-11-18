@@ -43,12 +43,12 @@ function ViewFacilityDetails(props: FacilityDetailsProps) {
             </TableCell>
           </TableRow>
 
-          <TableRow>
+          {/* <TableRow>
             <TableCell className="w-1/2 font-bold" colSpan={2}>
               Crowd Level
             </TableCell>
             <TableCell>{beautifyText(crowdLevel)}</TableCell>
-          </TableRow>
+          </TableRow> */}
 
           <TableRow>
             <TableCell className="w-1/2 font-bold" colSpan={2}>
