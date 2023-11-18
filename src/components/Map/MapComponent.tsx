@@ -88,6 +88,18 @@ function iconFunction(selected: boolean, facilityType: string) {
       iconUrl = `http://${localhost_5174_address}/src/assets/mapicons/18.png`;
       break;
 
+    case "CUSTOMER_FEEDING":
+      iconUrl = `http://${localhost_5174_address}/src/assets/mapicons/19.png`;
+      break;
+
+    case "SHOW":
+      iconUrl = `http://${localhost_5174_address}/src/assets/mapicons/20.png`;
+      break;
+
+    case "TALK":
+      iconUrl = `http://${localhost_5174_address}/src/assets/mapicons/21.png`;
+      break;
+
     default:
       iconUrl = `http://${localhost_5174_address}/src/assets/mapicons/17.png`;
       break;
@@ -232,6 +244,46 @@ function MapComponent(props: LandingPageMapProps) {
               <Marker
                 key={`marker-${idx}`}
                 icon={iconFunction(facility.selected, "ENCLOSURE")}
+                eventHandlers={{
+                  click: () => handleMarkerClick(facility),
+                  // mouseover: onHoverMarker,
+                  // mouseout: onStopHoverMarker,
+                }}
+                position={[facility.yCoordinate, facility.xCoordinate]}
+              ></Marker>
+            ))}
+          {selectedOption.text === "Feeding" &&
+            facilityList.map((facility, idx) => (
+              <Marker
+                key={`marker-${idx}`}
+                icon={iconFunction(facility.selected, "CUSTOMER_FEEDING")}
+                eventHandlers={{
+                  click: () => handleMarkerClick(facility),
+                  // mouseover: onHoverMarker,
+                  // mouseout: onStopHoverMarker,
+                }}
+                position={[facility.yCoordinate, facility.xCoordinate]}
+              ></Marker>
+            ))}
+          {selectedOption.text === "Shows" &&
+            facilityList.map((facility, idx) => (
+              <Marker
+                key={`marker-${idx}`}
+                icon={iconFunction(facility.selected, "SHOW")}
+                eventHandlers={{
+                  click: () => handleMarkerClick(facility),
+                  // mouseover: onHoverMarker,
+                  // mouseout: onStopHoverMarker,
+                }}
+                position={[facility.yCoordinate, facility.xCoordinate]}
+              ></Marker>
+            ))}
+
+          {selectedOption.text === "Keeper Talk" &&
+            facilityList.map((facility, idx) => (
+              <Marker
+                key={`marker-${idx}`}
+                icon={iconFunction(facility.selected, "TALK")}
                 eventHandlers={{
                   click: () => handleMarkerClick(facility),
                   // mouseover: onHoverMarker,

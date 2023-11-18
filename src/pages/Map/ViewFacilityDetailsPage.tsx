@@ -122,7 +122,7 @@ function ViewFacilityDetailsPage() {
             {curFacility.facilityDetail == "inHouse" && (
               <ViewInHouseDetails curInHouse={curInHouse}></ViewInHouseDetails>
             )}
-            <Card className="pt-3">
+            <Card className="pt-2 mt-2">
               <CardHeader className="text-m pb-3 pt-3 font-bold">
                 <div className="flex">
                   <p className="ml-2">Live Crowd Level Information</p>
@@ -140,7 +140,7 @@ function ViewFacilityDetailsPage() {
                     {beautifyText(crowdLevel)}
                   </div>
                 </div>
-                <div className="pt-4">
+                <div className="pt-3 text-sm">
                   {crowdLevel === "LOW" &&
                     "Great news! It's a calm and quiet day here. Enjoy the peace and space!"}
                   {crowdLevel === "MEDIUM" &&
@@ -150,7 +150,7 @@ function ViewFacilityDetailsPage() {
                 </div>
               </CardContent>
             </Card>
-            <div className="flex px-4 py-15 ">
+            <div className="flex px-4 py-10 ">
               <p>Anything broken?</p>
               <NavLink
                 to={`/facility/reportFaultyFacility/${curFacility.facilityId}`}

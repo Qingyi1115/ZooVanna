@@ -32,6 +32,7 @@ import Facility from "../../models/Facility";
 import "tailwindcss/tailwind.css";
 import ImageCardSide from "../../components/ImageCardSide";
 import Weather from "../../components/Map/Weather";
+import ZooEvent from "../../models/ZooEvent";
 
 // import geolocation from "geolocation";
 
@@ -79,6 +80,9 @@ function MapLandingPage() {
     text: "All",
   });
 
+  const [facilityEventMap, setFacilityEventMap] =
+    useState<Map<number, ZooEvent[]>>();
+
   const handleOptionClick = (option: Option) => {
     if (option) {
       setSelectedOption(option);
@@ -93,28 +97,71 @@ function MapLandingPage() {
     }
   };
 
+  function compileFacilities(zooEvents: ZooEvent[]): FacilityWithSelected[] {
+    let facil = zooEvents.map((zooEvent) => zooEvent.inHouse!.facility);
+    return facil as FacilityWithSelected[];
+  }
+
+  function createFacilityEventMap(
+    zooEvents: ZooEvent[],
+  ): Map<number, ZooEvent[]> {
+    const map = new Map<number, ZooEvent[]>();
+
+    zooEvents.forEach((event) => {
+      const facilityId = event.inHouse!.facility!.facilityId;
+      const existingEvents = map.get(facilityId) || [];
+      map.set(facilityId, [...existingEvents, event]);
+    });
+
+    return map;
+  }
+
   useEffect(() => {
     const fetchNoLocationFacilities = async () => {
       try {
         console.log("useEffect here");
-        let responseJson;
+        let facilities;
         if (
           selectedOption?.text === "All" ||
           selectedOption?.text === "Amenities"
         ) {
-          responseJson = await apiJson.post(
+          const responseJson = await apiJson.post(
             `http://${localhost_address}/api/assetFacility/getAllFacilityCustomer`,
             { includes: [""] },
           );
-        } else {
-          responseJson = await apiJson.get(
+          facilities = responseJson.facilities as FacilityWithSelected[];
+        } else if (selectedOption?.text === "Wildlife") {
+          const responseJson = await apiJson.get(
             `http://${localhost_address}/api/enclosure/getAllEnclosuresFacility`,
           );
+          facilities = responseJson.facilities as FacilityWithSelected[];
+        } else {
+          let type = "CUSTOMER_FEEDING";
+          if (selectedOption?.text === "Feeding") {
+            type = "CUSTOMER_FEEDING";
+          } else if (selectedOption?.text === "Shows") {
+            type = "SHOW";
+          } else {
+            type = "TALK";
+          }
+          const responseJson = await apiJson.post(
+            `http://${localhost_address}/api/zooEventCustomer/getAllUniquePublicZooEventsToday`,
+            { type: type },
+          );
+          console.log("EVENT");
+          // console.log(type);
+          // console.log(responseJson);
+          // console.log(responseJson.result[0].inHouse.facility);
+
+          facilities = compileFacilities(responseJson.result);
+          const feMap = createFacilityEventMap(responseJson.result);
+          setFacilityEventMap(feMap);
         }
-        console.log(responseJson);
-        const facilityListWithLocation = (
-          responseJson.facilities as FacilityWithSelected[]
-        )
+
+        console.log("FACILITIES HERE");
+        console.log(facilities);
+
+        const facilityListWithLocation = facilities!
           .filter((facility) => {
             // console.log(facility);
             return !(
@@ -125,8 +172,25 @@ function MapLandingPage() {
             ...facility,
             selected: false,
           }));
+
+        // const facilityListWithLocation = (
+        //   responseJson.facilities as FacilityWithSelected[]
+        // )
+        //   .filter((facility) => {
+        //     // console.log(facility);
+        //     return !(
+        //       facility.xCoordinate == null || facility.yCoordinate == null
+        //     );
+        //   })
+        //   .map((facility) => ({
+        //     ...facility,
+        //     selected: false,
+        //   }));
+
         console.log(facilityListWithLocation);
         setFacilityList(facilityListWithLocation);
+        console.log("FACILITY LIST");
+        console.log(facilityListWithLocation);
         setFilteredFacilityList(facilityListWithLocation);
         if (selectedFacility) {
           const updatedFacility = facilityListWithLocation.find(
@@ -134,6 +198,7 @@ function MapLandingPage() {
           );
           setSelectedFacility(updatedFacility || null);
         }
+
         setUpdated(true);
       } catch (error: any) {
         console.log(error);
@@ -295,9 +360,10 @@ function MapLandingPage() {
               `http://${localhost_address}/` + selectedFacility.imageUrl
             }
             title={selectedFacility.facilityName}
-            description={
-              selectedFacility.isSheltered ? "Sheltered" : "Non-sheltered"
-            }
+            description={""}
+            // description={
+            //   selectedFacility.isSheltered ? "Sheltered" : "Non-sheltered"
+            // }
           />
         </Link>
         // <Card
