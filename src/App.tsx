@@ -16,7 +16,7 @@ import ChangePasswordPage from "./pages/ChangePasswordPage";
 import CheckYourInbox from "./pages/CheckYourInbox";
 import EditProfilePage from "./pages/EditProfilePage";
 import HomePage from "./pages/HomePage";
-import ItineraryPage from "./pages/ItineraryPage";
+import ItineraryPage from "./pages/Itinerary/ItineraryPage";
 import LoginPage from "./pages/LoginPage";
 import LoginTicketPage from "./pages/LoginTicketPage";
 import MapPage from "./pages/Map/MapPage";
@@ -41,7 +41,15 @@ import ViewAllAnnouncementsPage from "./pages/Announcement/ViewAllAnnouncementsP
 import ViewAnnouncementDetailsPage from "./pages/Announcement/ViewAnnouncementDetailsPage";
 import ViewAllFavouritesPage from "./pages/Favourites/ViewAllFavouritesPage";
 import ViewNotFavouritesPage from "./pages/Favourites/ViewNotFavouritesPage";
+import CreateItineraryPage from "./pages/Itinerary/CreateItineraryPage";
+import BasicItineraryForm from "./components/ItineraryPage/BasicItineraryForm";
+import SelectPlaces from "./components/ItineraryPage/SelectPlaces";
+import Generate from "./components/ItineraryPage/Generate";
 import ReportFaultyFacilityPage from "./pages/Map/ReportFaultyFacilityPage";
+import ViewItinerary from "./components/ItineraryPage/ViewItinerary";
+import EditBasicItineraryForm from "./components/ItineraryPage/EditBasicItineraryForm";
+import EditSelectPlaces from "./components/ItineraryPage/editSelectPlaces";
+import EditGenerate from "./components/ItineraryPage/EditGenerate";
 
 function App() {
   const { state } = useAuthContext();
@@ -161,6 +169,25 @@ function App() {
                 path="/notFavourites"
                 element={<ViewNotFavouritesPage />}
               />
+
+              {/*Itinerary */}
+              <Route
+                path="/createItinerary"
+                element={<CreateItineraryPage />}
+              />
+              <Route path="/basicItinerary" element={<BasicItineraryForm />} />
+              <Route path="/selectPlaces" element={<SelectPlaces />} />
+              <Route path="/generatePlaces" element={<Generate />} />
+              <Route
+                path="/viewItinerary/:itineraryId"
+                element={<ViewItinerary />}
+              />
+              <Route
+                path="/editBasicItinerary"
+                element={<EditBasicItineraryForm />}
+              />
+              <Route path="/editSelectPlaces" element={<EditSelectPlaces />} />
+              <Route path="/editGeneratePlaces" element={<EditGenerate />} />
             </Routes>
           </MainLayout>
         </BrowserRouter>

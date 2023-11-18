@@ -1,12 +1,12 @@
-import HorizontalCardContainer from "../../HorizontalCardContainer";
-import ImageCard from "../../ImageCard";
+import HorizontalCardContainer from "../HorizontalCardContainer";
+import ImageCard from "../ImageCard";
 
 import { useEffect, useState } from "react";
 
 // import { Toast } from "primereact/toast";
 
-import useApiJson from "../../../hooks/useApiJson";
-import Promotion from "../../../models/Promotion";
+import useApiJson from "../../hooks/useApiJson";
+import Itinerary from "../../models/Itinerary";
 
 import { useToast } from "@/components/ui/use-toast";
 
