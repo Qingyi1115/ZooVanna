@@ -3,13 +3,15 @@ import { useToast } from "@/components/ui/use-toast";
 import * as moment from "moment-timezone";
 import { FiCopy } from "react-icons/fi";
 import Facility from "../../models/Facility";
+import beautifyText from "../../hooks/beautifyText";
 
 interface FacilityDetailsProps {
   curFacility: Facility;
+  crowdLevel: string;
 }
 
 function ViewFacilityDetails(props: FacilityDetailsProps) {
-  const { curFacility } = props;
+  const { curFacility, crowdLevel } = props;
   console.log(curFacility);
   const toastShadcn = useToast().toast;
 
@@ -40,6 +42,13 @@ function ViewFacilityDetails(props: FacilityDetailsProps) {
               {curFacility.facilityName}
             </TableCell>
           </TableRow>
+
+          {/* <TableRow>
+            <TableCell className="w-1/2 font-bold" colSpan={2}>
+              Crowd Level
+            </TableCell>
+            <TableCell>{beautifyText(crowdLevel)}</TableCell>
+          </TableRow> */}
 
           <TableRow>
             <TableCell className="w-1/2 font-bold" colSpan={2}>

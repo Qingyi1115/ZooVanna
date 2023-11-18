@@ -18,7 +18,7 @@ import { NavLink } from "react-router-dom";
 
 function HomeCard() {
   const sendEmail = () => {
-    const emailAddress = "zooVanna@gmail.com";
+    const emailAddress = "zoovannaserver@gmail.com";
     const subject = "Inquiry about ZooVanna";
     const body = "Hello, I'm writing to ask about ";
 

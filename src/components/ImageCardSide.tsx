@@ -26,7 +26,7 @@ function ImageCardSide({ key, imageUrl, title, description }: ImageCardProps) {
       </div>
       <CardContentModified className="w-3/4">
         <CardHeaderModified>
-          <CardTitleModified>{title}</CardTitleModified>
+          <CardTitleModified className="pl-5">{title}</CardTitleModified>
           <CardDescriptionModified>{description}</CardDescriptionModified>
         </CardHeaderModified>
       </CardContentModified>

@@ -3,6 +3,7 @@ import { useState } from "react";
 
 import { ImageOverlay, MapContainer, Marker, TileLayer } from "react-leaflet";
 import Facility from "../../models/Facility";
+import Weather from "./Weather";
 
 const merlioncenter: LatLngExpression = [1.295, 103.775887811];
 const merliontopleft: LatLng = new LatLng(1.3, 103.766998922);
@@ -83,6 +84,22 @@ function iconFunction(selected: boolean, facilityType: string) {
       iconUrl = `http://${localhost_5174_address}/src/assets/mapicons/16.png`;
       break;
 
+    case "ENCLOSURE":
+      iconUrl = `http://${localhost_5174_address}/src/assets/mapicons/18.png`;
+      break;
+
+    case "CUSTOMER_FEEDING":
+      iconUrl = `http://${localhost_5174_address}/src/assets/mapicons/19.png`;
+      break;
+
+    case "SHOW":
+      iconUrl = `http://${localhost_5174_address}/src/assets/mapicons/20.png`;
+      break;
+
+    case "TALK":
+      iconUrl = `http://${localhost_5174_address}/src/assets/mapicons/21.png`;
+      break;
+
     default:
       iconUrl = `http://${localhost_5174_address}/src/assets/mapicons/17.png`;
       break;
@@ -113,7 +130,12 @@ interface FacilityWithSelected extends Facility {
   selected: boolean;
 }
 
+interface Option {
+  text: string;
+}
+
 interface LandingPageMapProps {
+  selectedOption: Option;
   facilityList: FacilityWithSelected[];
   setFacilityList: any;
   selectedFacility: Facility | null;
@@ -128,6 +150,7 @@ function MapComponent(props: LandingPageMapProps) {
   } | null>(null);
 
   const {
+    selectedOption,
     facilityList,
     setFacilityList,
     selectedFacility,
@@ -198,23 +221,77 @@ function MapComponent(props: LandingPageMapProps) {
             url={`http://${localhost_5174_address}/src/assets/realmap.png`}
             bounds={bounds}
           />
-          {facilityList.map((facility, idx) => (
-            <Marker
-              key={`marker-${idx}`}
-              icon={iconFunction(
-                facility.selected,
-                facility.facilityDetailJson.facilityType,
-              )}
-              eventHandlers={{
-                click: () => handleMarkerClick(facility),
-                // mouseover: onHoverMarker,
-                // mouseout: onStopHoverMarker,
-              }}
-              position={[facility.yCoordinate, facility.xCoordinate]}
-            ></Marker>
-          ))}
-          {/* <Marker draggable position={[1.29, 103.7827767]}></Marker>{" "} */}
-          {/* <MyComponent /> */}
+
+          {(selectedOption.text === "All" ||
+            selectedOption.text === "Amenities") &&
+            facilityList.map((facility, idx) => (
+              <Marker
+                key={`marker-${idx}`}
+                icon={iconFunction(
+                  facility.selected,
+                  facility.facilityDetailJson.facilityType,
+                )}
+                eventHandlers={{
+                  click: () => handleMarkerClick(facility),
+                  // mouseover: onHoverMarker,
+                  // mouseout: onStopHoverMarker,
+                }}
+                position={[facility.yCoordinate, facility.xCoordinate]}
+              ></Marker>
+            ))}
+          {selectedOption.text === "Wildlife" &&
+            facilityList.map((facility, idx) => (
+              <Marker
+                key={`marker-${idx}`}
+                icon={iconFunction(facility.selected, "ENCLOSURE")}
+                eventHandlers={{
+                  click: () => handleMarkerClick(facility),
+                  // mouseover: onHoverMarker,
+                  // mouseout: onStopHoverMarker,
+                }}
+                position={[facility.yCoordinate, facility.xCoordinate]}
+              ></Marker>
+            ))}
+          {selectedOption.text === "Feeding" &&
+            facilityList.map((facility, idx) => (
+              <Marker
+                key={`marker-${idx}`}
+                icon={iconFunction(facility.selected, "CUSTOMER_FEEDING")}
+                eventHandlers={{
+                  click: () => handleMarkerClick(facility),
+                  // mouseover: onHoverMarker,
+                  // mouseout: onStopHoverMarker,
+                }}
+                position={[facility.yCoordinate, facility.xCoordinate]}
+              ></Marker>
+            ))}
+          {selectedOption.text === "Shows" &&
+            facilityList.map((facility, idx) => (
+              <Marker
+                key={`marker-${idx}`}
+                icon={iconFunction(facility.selected, "SHOW")}
+                eventHandlers={{
+                  click: () => handleMarkerClick(facility),
+                  // mouseover: onHoverMarker,
+                  // mouseout: onStopHoverMarker,
+                }}
+                position={[facility.yCoordinate, facility.xCoordinate]}
+              ></Marker>
+            ))}
+
+          {selectedOption.text === "Keeper Talk" &&
+            facilityList.map((facility, idx) => (
+              <Marker
+                key={`marker-${idx}`}
+                icon={iconFunction(facility.selected, "TALK")}
+                eventHandlers={{
+                  click: () => handleMarkerClick(facility),
+                  // mouseover: onHoverMarker,
+                  // mouseout: onStopHoverMarker,
+                }}
+                position={[facility.yCoordinate, facility.xCoordinate]}
+              ></Marker>
+            ))}
         </MapContainer>
       </div>
     </div>
