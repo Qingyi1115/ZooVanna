@@ -18,13 +18,13 @@ import { NavLink } from "react-router-dom";
 
 function HomeCard() {
   const sendEmail = () => {
-    const emailAddress = "zoovannaserver@gmail.com";
+    const emailAddresses = "zoovanna@gmail.com, xqy1115@gmail.com";
     const subject = "Inquiry about ZooVanna";
     const body = "Hello, I'm writing to ask about ";
 
-    const mailtoLink = `mailto:${emailAddress}?subject=${encodeURIComponent(
-      subject,
-    )}&body=${encodeURIComponent(body)}`;
+    const mailtoLink = `mailto:${encodeURIComponent(
+      emailAddresses,
+    )}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
     window.open(mailtoLink, "_blank");
   };

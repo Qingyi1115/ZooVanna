@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import ViewAllItineraryDetails from "../../components/ItineraryPage/ViewAllItineraryDetails";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import useApiJson from "../../hooks/useApiJson";
@@ -94,7 +93,7 @@ function ItineraryPage() {
               onClick={() => navigate(`/viewItinerary/${item.itineraryId}`)}
             >
               <CardContent className="p-0">
-                <div className="font-medium">{item.itineraryName}</div>
+                <div className="font-bold">{item.itineraryName}</div>
                 <div>
                   Planned Date Visit:{" "}
                   {convertUtcToTimezone(
