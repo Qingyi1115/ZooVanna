@@ -295,9 +295,10 @@ function MapLandingPage() {
               `http://${localhost_address}/` + selectedFacility.imageUrl
             }
             title={selectedFacility.facilityName}
-            description={
-              selectedFacility.isSheltered ? "Sheltered" : "Non-sheltered"
-            }
+            description={""}
+            // description={
+            //   selectedFacility.isSheltered ? "Sheltered" : "Non-sheltered"
+            // }
           />
         </Link>
         // <Card
