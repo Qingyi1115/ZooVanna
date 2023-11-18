@@ -68,16 +68,16 @@ function MapLandingPage() {
   const localhost_address = import.meta.env.VITE_LOCALHOST_3000_ADDRESS;
 
   const options = [
-    { text: "All" },
+    // { text: "All" },
+    { text: "Amenities" },
     { text: "Wildlife" },
     { text: "Feeding" },
     { text: "Shows" },
     { text: "Keeper Talk" },
-    { text: "Amenities" },
   ];
 
   const [selectedOption, setSelectedOption] = useState<Option>({
-    text: "All",
+    text: "Amenities",
   });
 
   const [facilityEventMap, setFacilityEventMap] =
@@ -155,6 +155,8 @@ function MapLandingPage() {
 
           facilities = compileFacilities(responseJson.result);
           const feMap = createFacilityEventMap(responseJson.result);
+          console.log("FACIL-EVENT MAP HERE");
+          console.log(feMap);
           setFacilityEventMap(feMap);
         }
 
@@ -352,34 +354,77 @@ function MapLandingPage() {
         </div>
       </div>
 
-      {selectedFacility && (
-        <Link to={`/facility/viewfacility/${selectedFacility.facilityId}`}>
-          <ImageCardSide
-            key={selectedFacility.facilityId}
-            imageUrl={
-              `http://${localhost_address}/` + selectedFacility.imageUrl
-            }
-            title={selectedFacility.facilityName}
-            description={""}
-            // description={
-            //   selectedFacility.isSheltered ? "Sheltered" : "Non-sheltered"
-            // }
-          />
-        </Link>
-        // <Card
-        //   className=" fixed bottom-[8vh] left-0 right-0 mx-3 translate-y-full transform bg-white shadow-lg transition-transform duration-1000"
-        //   style={{
-        //     transform: selectedFacility ? "translateY(0)" : "translateY(100%)",
-        //   }}
-        // >
-        //   <CardContent className="mt-5 font-semibold">
-        //     {selectedFacility.facilityName}
-        //   </CardContent>
-        //   {/* <CardDescription>
-        //           Deploy your new project in one-click.
-        //       </CardDescription> */}
-        // </Card>
-      )}
+      {selectedFacility &&
+        (selectedOption.text === "All" ||
+          selectedOption.text === "Amenities" ||
+          selectedOption.text === "Wildlife") && (
+          <Link to={`/facility/viewfacility/${selectedFacility.facilityId}`}>
+            <ImageCardSide
+              key={selectedFacility.facilityId}
+              imageUrl={
+                `http://${localhost_address}/` + selectedFacility.imageUrl
+              }
+              title={selectedFacility.facilityName}
+              description={""}
+              // description={
+              //   selectedFacility.isSheltered ? "Sheltered" : "Non-sheltered"
+              // }
+            />
+          </Link>
+          // <Card
+          //   className=" fixed bottom-[8vh] left-0 right-0 mx-3 translate-y-full transform bg-white shadow-lg transition-transform duration-1000"
+          //   style={{
+          //     transform: selectedFacility ? "translateY(0)" : "translateY(100%)",
+          //   }}
+          // >
+          //   <CardContent className="mt-5 font-semibold">
+          //     {selectedFacility.facilityName}
+          //   </CardContent>
+          //   {/* <CardDescription>
+          //           Deploy your new project in one-click.
+          //       </CardDescription> */}
+          // </Card>
+        )}
+
+      {selectedFacility &&
+        facilityEventMap &&
+        (selectedOption.text === "Shows" ||
+          selectedOption.text === "Keeper Talk" ||
+          selectedOption.text === "Feeding") && (
+          <Link
+            to={`/event/viewevent/${facilityEventMap.get(
+              selectedFacility.facilityId,
+            )![0].publicEventSession?.publicEvent?.publicEventId}`}
+          >
+            <ImageCardSide
+              key={selectedFacility.facilityId}
+              imageUrl={
+                `http://${localhost_address}/` +
+                facilityEventMap.get(selectedFacility.facilityId)![0].imageUrl
+              }
+              title={
+                facilityEventMap.get(selectedFacility.facilityId)![0].eventName
+              }
+              description={""}
+              // description={
+              //   selectedFacility.isSheltered ? "Sheltered" : "Non-sheltered"
+              // }
+            />
+          </Link>
+          // <Card
+          //   className=" fixed bottom-[8vh] left-0 right-0 mx-3 translate-y-full transform bg-white shadow-lg transition-transform duration-1000"
+          //   style={{
+          //     transform: selectedFacility ? "translateY(0)" : "translateY(100%)",
+          //   }}
+          // >
+          //   <CardContent className="mt-5 font-semibold">
+          //     {selectedFacility.facilityName}
+          //   </CardContent>
+          //   {/* <CardDescription>
+          //           Deploy your new project in one-click.
+          //       </CardDescription> */}
+          // </Card>
+        )}
     </div>
   );
 }
