@@ -9,6 +9,7 @@ import {
   HiOutlineTicket,
   HiOutlineUser,
 } from "react-icons/hi";
+import { useAuthContext } from "../../hooks/useAuthContext";
 
 // interface BottomBarProps {
 //   sidebarOpen: boolean;
@@ -18,6 +19,8 @@ import {
 const BottomBar = () => {
   const location = useLocation();
   const { pathname } = location;
+  const { state } = useAuthContext();
+  const { user } = state;
 
   // const trigger = useRef<any>(null);
   const sidebar = useRef<any>(null);
@@ -62,17 +65,19 @@ const BottomBar = () => {
               <span className="text-sm">Tickets</span>
             </div>
           </NavLink>
-          <NavLink
-            to="/itinerary"
-            className={`flex h-14 w-14 items-center justify-center rounded-sm font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark ${
-              pathname.includes("calendar") && "bg-graydark "
-            }`}
-          >
-            <div className="flex flex-col items-center justify-center">
-              <HiOutlineDocumentText className="h-full w-5" />
-              <span className="text-sm">Itinerary</span>
-            </div>
-          </NavLink>
+          {user && (
+            <NavLink
+              to="/itinerary"
+              className={`flex h-14 w-14 items-center justify-center rounded-sm font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark ${
+                pathname.includes("calendar") && "bg-graydark "
+              }`}
+            >
+              <div className="flex flex-col items-center justify-center">
+                <HiOutlineDocumentText className="h-full w-5" />
+                <span className="text-sm">Itinerary</span>
+              </div>
+            </NavLink>
+          )}
           <NavLink
             to="/account"
             className={`flex h-14 w-14 items-center justify-center rounded-sm font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark ${
