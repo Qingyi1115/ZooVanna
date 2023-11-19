@@ -48,7 +48,7 @@ import Generate from "./components/ItineraryPage/Generate";
 import ReportFaultyFacilityPage from "./pages/Map/ReportFaultyFacilityPage";
 import ViewItinerary from "./components/ItineraryPage/ViewItinerary";
 import EditBasicItineraryForm from "./components/ItineraryPage/EditBasicItineraryForm";
-import EditSelectPlaces from "./components/ItineraryPage/editSelectPlaces";
+import EditSelectPlaces from "./components/ItineraryPage/EditSelectPlaces";
 import EditGenerate from "./components/ItineraryPage/EditGenerate";
 
 function App() {

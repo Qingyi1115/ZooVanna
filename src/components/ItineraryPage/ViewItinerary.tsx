@@ -1,5 +1,5 @@
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import useApiJson from "../../hooks/useApiJson";
 import Facility from "../../models/Facility";
 import Species from "../../models/Species";
@@ -19,6 +19,7 @@ import ImageCard from "../ImageCard";
 import Itinerary from "../../models/Itinerary";
 import { convertUtcToTimezone } from "../../helpers/timeZone";
 import { FaEdit, FaTrash } from "react-icons/fa";
+import { Dialog } from "primereact/dialog";
 
 interface SpeciesWithSelected extends Species {
   selected: boolean;
@@ -34,6 +35,24 @@ function ViewItinerary() {
   const { itineraryId } = useParams<{ itineraryId: string }>();
   const [itinerary, setItinerary] = useState<Itinerary>();
   const [facilities, setFacilities] = useState<Facility[]>([]);
+  const [dialog, setDialog] = useState<boolean>(false);
+
+  const handleDialog = () => {
+    setDialog(true);
+  };
+
+  const hideDialog = () => {
+    setDialog(false);
+  };
+
+  const dialogFooter = (
+    <div className="p-0">
+      <div className="mt-2 flex w-full justify-end">
+        <Button onClick={hideDialog}>No</Button>
+        <Button onClick={deleteItinerary}>Yes</Button>
+      </div>
+    </div>
+  );
 
   useEffect(() => {
     apiJson
@@ -111,7 +130,7 @@ function ViewItinerary() {
           </div>
           <div
             className="flex h-10 w-10 items-center justify-center rounded-md hover:bg-zinc-100"
-            onClick={() => deleteItinerary()}
+            onClick={() => handleDialog()}
           >
             <FaTrash />
           </div>
@@ -166,6 +185,28 @@ function ViewItinerary() {
           </Button>
         </div>
       </div>
+      <Dialog
+        visible={dialog}
+        style={{ width: "25rem" }}
+        breakpoints={{ "960px": "75vw", "641px": "90vw" }}
+        header="Confirm"
+        modal
+        footer={dialogFooter}
+        onHide={hideDialog}
+        className="p-0"
+      >
+        <div className="confirmation-content flex w-full items-center justify-start pt-5">
+          <i
+            className="pi pi-exclamation-triangle mr-3"
+            style={{ fontSize: "2rem" }}
+          />
+          <div className="ml-3">
+            <div className="flex">
+              Are you sure you want to delete this itinerary?
+            </div>
+          </div>
+        </div>
+      </Dialog>
     </div>
   );
 }
