@@ -57,7 +57,7 @@ Multiple IOT hubs are available to facilitate the connection between the main Ad
 ## Other Repositories
 
 - [Backend Server](https://github.com/Qingyi1115/ZooVannaServer)
-- [Customer Mobile Application](https://github.com/Qingyi1115/ZooVanna)
+- [Admin Management Portal](https://github.com/Qingyi1115/ZooVannaAdmin)
 - [Ticket Scanner App](https://github.com/Qingyi1115/ZooVannaScanner/)
 - [IOT Hubs Server](https://github.com/Qingyi1115/ZooVannaIoTServer/)
 
